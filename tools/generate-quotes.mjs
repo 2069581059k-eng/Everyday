@@ -6,7 +6,7 @@ const selectedPath = path.join(root, 'data', 'hitokoto-selected.json')
 const knowledgePath = path.join(root, 'data', 'knowledge-selected.json')
 const pagePath = path.join(root, 'src', 'pages', 'index', 'index.ux')
 const expectedQuoteCount = 2000
-const expectedKnowledgeCount = 2000
+const expectedKnowledgeCount = JSON.parse(fs.readFileSync(path.join(root, 'data', 'knowledge-sources.json'), 'utf8')).total
 
 function compactSource(item) {
   const source = item.fromWho || item.from || '一言社区'
@@ -15,7 +15,7 @@ function compactSource(item) {
 
 const selected = JSON.parse(fs.readFileSync(selectedPath, 'utf8'))
 const riddles = JSON.parse(fs.readFileSync(knowledgePath, 'utf8'))
-if (riddles.length !== expectedKnowledgeCount) {
+if (riddles.length !== expectedKnowledgeCount || riddles.length > 5000) {
   throw new Error(`真实知识题库应为 ${expectedKnowledgeCount} 条，当前为 ${riddles.length} 条`)
 }
 for (const category of ['脑筋急转弯', '十万个为什么', '百科知识']) {
@@ -48,7 +48,8 @@ const riddleRows = riddles.map((riddle) => {
     ', category: ' + JSON.stringify(riddle.category) +
     ', answer: ' + JSON.stringify(riddle.answer) +
     ', explain: ' + JSON.stringify(riddle.explain) +
-    ', source: ' + JSON.stringify(riddle.source) + ' }'
+    ', source: ' + JSON.stringify(riddle.source) +
+    ', displayMode: ' + JSON.stringify(riddle.displayMode || 'qa') + ' }'
 })
 const riddleReplacement = 'const RIDDLES = [\n' + riddleRows.join(',\n') + '\n]'
 const riddlePattern = /const RIDDLES = \[[\s\S]*?\](?=\n\nconst QUOTES)/u
