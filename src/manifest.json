@@ -1,0 +1,28 @@
+{
+  "package": "com.dailyquote.band10pro",
+  "name": "每日一言",
+  "versionName": "1.6.1",
+  "versionCode": 10601,
+  "minPlatformVersion": 1000,
+  "icon": "/common/icon.png",
+  "simulationVersion": "default",
+  "deviceTypeList": ["watch"],
+  "features": [
+    { "name": "system.app" },
+    { "name": "system.vibrator" },
+    { "name": "system.storage" },
+    { "name": "system.brightness" }
+  ],
+  "config": {
+    "logLevel": "log",
+    "designWidth": 336
+  },
+  "router": {
+    "entry": "pages/index",
+    "pages": {
+      "pages/index": { "component": "index" }
+    }
+  },
+  "display": { "backgroundColor": "#f2eee5" },
+  "minAPILevel": 1
+}

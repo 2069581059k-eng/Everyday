@@ -1,0 +1,10 @@
+<script>
+export default {
+  onCreate() {
+    console.log('每日一言启动')
+  },
+  onDestroy() {
+    console.log('每日一言退出')
+  }
+}
+</script>
