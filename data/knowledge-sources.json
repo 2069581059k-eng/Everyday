@@ -1,0 +1,45 @@
+{
+  "generatedAt": "2026-09-08T02:45:21.660Z",
+  "selectionPolicy": "只使用源数据集现成的问题、答案和原文上下文；仅清理 HTML 与空白。脑筋急转弯的答案栏可截取原解释中的短语以适配窄屏，解析保留完整源答案；不生成知识内容。",
+  "targets": {
+    "脑筋急转弯": 400,
+    "十万个为什么": 600,
+    "百科知识": 1000
+  },
+  "counts": {
+    "脑筋急转弯": 400,
+    "十万个为什么": 600,
+    "百科知识": 1000
+  },
+  "total": 2000,
+  "sources": {
+    "brain": {
+      "name": "ChineseDatasets / brainteasers",
+      "revision": "5090c4f0fc9f2fab0e2de7d9d229f034b0524923",
+      "url": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
+      "license": "Apache-2.0",
+      "note": "源数据提供谜面与谜底；仅选择原谜底本身带解释信息的记录，答案栏只截取其中可完整显示的原文短语。",
+      "sourcePages": {
+        "count": 36,
+        "sha256": "e55cd20d0d88c4cbae23bdb5ce3fb09df2932fc8465a53f4b081dabdc2fbfec2"
+      }
+    },
+    "cmrc": {
+      "name": "CMRC 2018",
+      "revision": "master",
+      "url": "https://github.com/ymcui/cmrc2018/tree/master/squad-style-data",
+      "license": "CC-BY-SA-4.0",
+      "files": {
+        "train": {
+          "url": "https://raw.githubusercontent.com/ymcui/cmrc2018/master/squad-style-data/cmrc2018_train.json",
+          "sha256": "5497aa2f81908e31d6b0e27d99b1f90ab63a8f58fa92fffe5d17cf62eba0c212"
+        },
+        "dev": {
+          "url": "https://raw.githubusercontent.com/ymcui/cmrc2018/master/squad-style-data/cmrc2018_dev.json",
+          "sha256": "e9ff74231f05c230c6fa88b84441ee334d97234cbb610991cd94b82db00c7f1f"
+        }
+      },
+      "note": "问题由专家基于中文维基百科条目人工标注；答案与解析均直接截取官方答案或对应原文句。"
+    }
+  }
+}

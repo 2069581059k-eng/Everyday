@@ -32,6 +32,14 @@ fs.copyFileSync(
   path.join(root, 'data', 'hitokoto-source', 'LICENSE'),
   path.join(releaseDir, `${base}.AGPL-3.0.txt`)
 )
+fs.copyFileSync(
+  path.join(root, 'data', 'licenses', 'CMRC2018-CC-BY-SA-4.0.txt'),
+  path.join(releaseDir, `${base}.CC-BY-SA-4.0.txt`)
+)
+fs.copyFileSync(
+  path.join(root, 'data', 'licenses', 'Apache-2.0.txt'),
+  path.join(releaseDir, `${base}.Apache-2.0.txt`)
+)
 
 const sourceArchive = path.join(releaseDir, `${base}_Source_AGPL.zip`)
 const zip = new AdmZip()

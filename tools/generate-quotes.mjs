@@ -3,9 +3,10 @@ import path from 'node:path'
 
 const root = path.resolve(import.meta.dirname, '..')
 const selectedPath = path.join(root, 'data', 'hitokoto-selected.json')
-const riddlesPath = path.join(root, 'data', 'riddles.json')
+const knowledgePath = path.join(root, 'data', 'knowledge-selected.json')
 const pagePath = path.join(root, 'src', 'pages', 'index', 'index.ux')
 const expectedQuoteCount = 2000
+const expectedKnowledgeCount = 2000
 
 function compactSource(item) {
   const source = item.fromWho || item.from || '一言社区'
@@ -13,11 +14,14 @@ function compactSource(item) {
 }
 
 const selected = JSON.parse(fs.readFileSync(selectedPath, 'utf8'))
-const allRiddles = JSON.parse(fs.readFileSync(riddlesPath, 'utf8'))
-// 运行包只内置真正的脑筋急转弯。decoy 是旧版选择题留下的可靠题型标记；
-// 十万个为什么和百科资料仍保留在可审计源数据中，但不会进入每日题目。
-const riddles = allRiddles.filter((item) => item.category === '脑筋急转弯' && item.decoy)
-if (riddles.length < 100) throw new Error(`真正的脑筋急转弯不足 100 道，当前为 ${riddles.length} 道`)
+const riddles = JSON.parse(fs.readFileSync(knowledgePath, 'utf8'))
+if (riddles.length !== expectedKnowledgeCount) {
+  throw new Error(`真实知识题库应为 ${expectedKnowledgeCount} 条，当前为 ${riddles.length} 条`)
+}
+for (const category of ['脑筋急转弯', '十万个为什么', '百科知识']) {
+  const count = riddles.filter((item) => item.category === category).length
+  if (count < 400) throw new Error(`${category}不足 400 条，当前为 ${count} 条`)
+}
 if (selected.length !== expectedQuoteCount) {
   throw new Error(`真实语录应为 ${expectedQuoteCount} 条，当前为 ${selected.length} 条`)
 }
@@ -40,12 +44,11 @@ const rows = quotes.map((quote) => {
 const replacement = 'const QUOTES = [\n' + rows.join(',\n') + '\n]'
 const page = fs.readFileSync(pagePath, 'utf8')
 const riddleRows = riddles.map((riddle) => {
-  const knowledge = riddle.knowledge ? ', knowledge: ' + JSON.stringify(riddle.knowledge) : ''
   return '  { question: ' + JSON.stringify(riddle.question) +
-    ', category: ' + JSON.stringify(riddle.category || '脑筋急转弯') +
+    ', category: ' + JSON.stringify(riddle.category) +
     ', answer: ' + JSON.stringify(riddle.answer) +
-    ', decoy: ' + JSON.stringify(riddle.decoy) +
-    ', explain: ' + JSON.stringify(riddle.explain) + knowledge + ' }'
+    ', explain: ' + JSON.stringify(riddle.explain) +
+    ', source: ' + JSON.stringify(riddle.source) + ' }'
 })
 const riddleReplacement = 'const RIDDLES = [\n' + riddleRows.join(',\n') + '\n]'
 const riddlePattern = /const RIDDLES = \[[\s\S]*?\](?=\n\nconst QUOTES)/u
@@ -57,5 +60,5 @@ const next = page
   .replace(quotePattern, replacement + '\n\nfunction pad')
 if (next !== page) fs.writeFileSync(pagePath, next, 'utf8')
 console.log(next === page
-  ? `米环运行页面中的 ${expectedQuoteCount} 条真实语录已是最新。`
-  : `已将 ${expectedQuoteCount} 条真实语录内联到米环运行页面。`)
+  ? `米环运行页面中的 ${expectedQuoteCount} 条真实语录和 ${expectedKnowledgeCount} 条真实知识题已是最新。`
+  : `已将 ${expectedQuoteCount} 条真实语录和 ${expectedKnowledgeCount} 条真实知识题内联到米环运行页面。`)

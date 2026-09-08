@@ -9,7 +9,8 @@ const packagePath = path.join(root, 'package.json')
 const capturePath = path.join(root, 'tools', 'capture-vvd.mjs')
 const iconPath = path.join(root, 'src', 'common', 'icon.png')
 const selectedPath = path.join(root, 'data', 'hitokoto-selected.json')
-const riddlesPath = path.join(root, 'data', 'riddles.json')
+const knowledgePath = path.join(root, 'data', 'knowledge-selected.json')
+const knowledgeSourcesPath = path.join(root, 'data', 'knowledge-sources.json')
 const page = fs.readFileSync(pagePath, 'utf8')
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
 const packageJson = JSON.parse(fs.readFileSync(packagePath, 'utf8'))
@@ -24,7 +25,8 @@ const quoteBlock = page.match(/const QUOTES = (\[[\s\S]*?\])\n\nfunction pad/u)
 const quotes = quoteBlock ? Function('return (' + quoteBlock[1] + ')')() : []
 const riddleBlock = page.match(/const RIDDLES = (\[[\s\S]*?\])\n\nconst QUOTES/u)
 const riddles = riddleBlock ? Function('return (' + riddleBlock[1] + ')')() : []
-const sourceRiddles = fs.existsSync(riddlesPath) ? JSON.parse(fs.readFileSync(riddlesPath, 'utf8')) : []
+const sourceKnowledge = fs.existsSync(knowledgePath) ? JSON.parse(fs.readFileSync(knowledgePath, 'utf8')) : []
+const knowledgeSources = fs.existsSync(knowledgeSourcesPath) ? JSON.parse(fs.readFileSync(knowledgeSourcesPath, 'utf8')) : {}
 const helperBlock = page.match(/(function mulberry32\(seed\) \{[\s\S]*?\n\}\n\nconst today =)/u)
 const helperSrc = helperBlock ? helperBlock[1].replace(/\n\nconst today =[^\n]*$/, '') : ''
 const quizHelpers = helperSrc
@@ -38,6 +40,7 @@ const selected = fs.existsSync(selectedPath) ? JSON.parse(fs.readFileSync(select
 const selectedByUuid = new Map(selected.map((item) => [item.uuid, item]))
 const uniqueUuids = new Set(quotes.map((item) => item.uuid))
 const uniqueRiddleQuestions = new Set(riddles.map((item) => item.question))
+const sourceKnowledgeByQuestion = new Map(sourceKnowledge.map((item) => [item.question, item]))
 const visibleAiMarker = /人工智能|(^|[^a-z])a[\s._-]*i([^a-z]|$)/iu
 
 // ---- 语录（每日一言）验收：保持原有约束不变 ----
@@ -57,16 +60,29 @@ check(quotes.every((item) => Array.from(item.text).length <= 28), '全部语录�
 check(quotes.every((item) => !('key' in item) && !('decoy' in item)), '语录不再携带旧版关键词小测数据')
 check(quotes.every((item) => !visibleAiMarker.test(`${item.text} ${item.source}`)), '用户可见语录及来源不含 AI 字样')
 
-// ---- 脑筋急转弯题库 ----
-check(riddles.length >= 100, `运行包内置至少 100 道离线脑筋急转弯（实际 ${riddles.length}）`)
-check(uniqueRiddleQuestions.size === riddles.length, '脑筋急转弯题目无重复')
+// ---- 真实知识题库 ----
+check(riddles.length === 2000, `运行包内置恰好 2000 道真实离线知识题（实际 ${riddles.length}）`)
+check(sourceKnowledge.length === riddles.length, '运行时知识题与可审计源数据数量一致')
+check(uniqueRiddleQuestions.size === riddles.length, '三类知识题跨来源无重复')
 check(riddles.every((item) => item.question && item.answer && item.explain), '每道题均有问题、答案与解析')
-check(riddles.every((item) => item.category === '脑筋急转弯' && item.decoy), '每日题库只包含真正的脑筋急转弯')
-check(!page.includes('知识大全') && page.includes('value="脑筋急转弯"'), '入口和题目页均恢复为脑筋急转弯')
-const yawn = sourceRiddles.find((item) => item.question === '为什么人会打哈欠？')
-check(yawn && !/缺氧|增加供氧/u.test(`${yawn.answer} ${yawn.explain}`), '已移除打哈欠由缺氧导致的错误解释')
-check(riddles.some((item) => item.knowledge), '部分题目已附可信科学生活知识小贴士')
-check(!riddles.every((item) => item.knowledge), '未强行给每道题都配知识（仅适合题目附）')
+check(riddles.every((item) => item.source), '每道运行时题目均显示来源')
+check(riddles.every((item) => {
+  const source = sourceKnowledgeByQuestion.get(item.question)
+  return source && source.answer === item.answer && source.explain === item.explain && source.source === item.source
+}), '每道运行时题目均与可审计导入清单一致')
+check(riddles.every((item) => Array.from(item.answer).length <= 14), '全部答案适合米环单行答案栏阅读')
+const knowledgeCounts = Object.fromEntries(['脑筋急转弯', '十万个为什么', '百科知识'].map((category) => [
+  category,
+  riddles.filter((item) => item.category === category).length
+]))
+check(knowledgeCounts['脑筋急转弯'] === 400, '脑筋急转弯为 400 条真实数据')
+check(knowledgeCounts['十万个为什么'] === 600, '十万个为什么为 600 条真实数据')
+check(knowledgeCounts['百科知识'] === 1000, '百科知识为 1000 条真实数据')
+check(sourceKnowledge.every((item) => item.sourceId && item.sourceUrl && item.sourceLicense), '可审计题库逐条保留来源 ID、固定地址和许可证')
+check(knowledgeSources.total === 2000 && knowledgeSources.sources?.cmrc && knowledgeSources.sources?.brain?.sourcePages?.sha256, '数据源清单记录数量、版本、哈希和许可证')
+check(riddles.every((item) => !visibleAiMarker.test(`${item.question} ${item.answer} ${item.explain} ${item.source}`)), '知识题用户可见内容不含 AI 字样')
+check(page.includes('value="知识大全"'), '主页入口按钮文案为知识大全')
+check(page.includes('<text class="quiz-kicker">知识大全</text>'), '题库详情标题已统一为知识大全')
 
 // ---- 每日固定 20 道不重复（新机制，真实逻辑） ----
 check(!!quizHelpers, '页面包含按日期选題的辅助函数')
@@ -78,9 +94,13 @@ if (quizHelpers) {
   for (const day of sampleDays) {
     const list = quizHelpers.dailyRiddles(day)
     const qs = new Set(list.map((r) => r.question))
-    if (list.length !== 20 || qs.size !== list.length || list.some((r) => !r.decoy || r.category !== '脑筋急转弯')) allOk = false
+    const counts = Object.fromEntries(['脑筋急转弯', '十万个为什么', '百科知识'].map((category) => [
+      category,
+      list.filter((item) => item.category === category).length
+    ]))
+    if (list.length !== 20 || qs.size !== list.length || counts['脑筋急转弯'] !== 7 || counts['十万个为什么'] !== 6 || counts['百科知识'] !== 7) allOk = false
   }
-  check(allOk, '每天按本地日期固定 20 道且题目互不重复')
+  check(allOk, '每天固定 20 道且按 7/6/7 覆盖脑筋急转弯、为什么和百科')
   const a = quizHelpers.dailyRiddles(1).map((r) => r.question).join('|')
   const b = quizHelpers.dailyRiddles(2).map((r) => r.question).join('|')
   check(a !== b, '跨天题目选择不同（按日期区分）')
@@ -94,7 +114,7 @@ check(!page.includes('choiceOneText') && !page.includes('chooseOne') && !page.in
 check(page.includes('revealAnswer') && page.includes('answerVisible'), '提供“查看答案”按钮，点击后才显示答案')
 check(/quiz-reveal-btn" show="\{\{!answerVisible\}\}"/u.test(page), '未查看答案时显示“查看答案”按钮，查看后隐藏')
 check(/quiz-answer-box" show="\{\{answerVisible\}\}"/u.test(page), '查看答案后才显示答案与解析区')
-check(page.includes('riddleKnowledge') && page.includes('detail-next') && page.includes('quiz-explain'), '适合题目在答案区附科学生活知识小贴士，且解析可分页浏览')
+check(page.includes("r.explain + ' 来源：' + r.source") && page.includes('detail-next') && page.includes('quiz-explain'), '答案区显示原始解析、来源且支持分页浏览')
 
 // ---- 上一题/下一题、序号进度、末题边界 ----
 check(page.includes('prevQuestion') && page.includes('nextQuestion'), '支持上一题与下一题')
@@ -156,4 +176,4 @@ const captureOrder = [
 check(captureOrder.every((position) => position >= 0) && captureOrder.every((position, index) => index === 0 || position > captureOrder[index - 1]), '模拟器验收依次覆盖星座、切换星座、月历、题目和答案')
 check(captureScript.includes('/data/app/${packageName}/manifest-watch.json') && captureScript.includes('模拟器版本不一致'), '模拟器截图前核验实际安装版本')
 
-console.log(`\n每日一言静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道纯脑筋急转弯。`)
+console.log(`\n每日一言静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)
