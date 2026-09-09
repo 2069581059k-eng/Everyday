@@ -1,5 +1,17 @@
 # 当前交接
 
+## 2026-09-09 · WorkBuddy(agent) 1.8.3 多页面骨架 + 形象分析
+
+- 分支 agent-knux-cleanup；实现 fbcea99（骨架+形象分析）→ 51f8213（版本 1.8.3/10803）。
+- 能力验证：AIoT 工具链支持 manifest 多页面路由与跨页面 import（曾用最小副本实测 build success）。
+- 落地：
+  - manifest 注册 pages/zodiac-test、pages/zodiac-result，启用 system.router；星象遮罩新增「形象分析」入口。
+  - 答题页逐题一屏、进度条，答完离线计分；结果页展示主/次/三星座、核心分析、组合、维度、场景、总结、建议、免责声明，可返回/再测。
+  - common/scripts/zodiac-scoring.js + common/data/{zodiac_questions,zodiac_profiles,zodiac_templates}.js 离线承载 30题/12星座/534模板（源自用户 ZIP：日常一页_星座气质测试_30题_534模板_v1.zip，校验文件 30/120/10/12/534）。
+- Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.3（预发布）；BIN 1,073,751 B，SHA-256 25944d71…，附件齐全。
+- 验证：npm test 全绿、verify-rpk 通过；未模拟器/真机实测。
+- 遗留：知识大全/月历/收藏等仍在 index 页内以遮罩实现；后续可按目录树继续拆分 knowledge、knowledge-detail、zodiac、signbook 等独立页。
+
 ## 2026-09-09 · WorkBuddy(agent) 1.8.2
 
 - 分支 agent-knux-cleanup；实现 5e605c4（体验重构）→ 7e5bf56（版本 1.8.2/10802）。
