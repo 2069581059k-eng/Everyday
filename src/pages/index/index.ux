@@ -139,6 +139,7 @@
       <text class="zodiac-range-big">{{zodiacRange}}</text>
       <text class="zodiac-moon">{{moonText}}</text>
       <text class="zodiac-tip">{{astroTip}}</text>
+      <input class="zodiac-analyze" type="button" value="形象分析 ›" onclick="startZodiacTest" />
       <input class="zodiac-close" type="button" value="返回主页" onclick="closeZodiac" />
     </div>
   </div>
@@ -149,6 +150,7 @@ import app from '@system.app'
 import storage from '@system.storage'
 import vibrator from '@system.vibrator'
 import brightness from '@system.brightness'
+import router from '@system.router'
 
 const STORAGE_KEY = 'daily_quote_state_v1'
 
@@ -4607,6 +4609,10 @@ export default {
     this.pulse('short')
   },
 
+  startZodiacTest() {
+    router.replace({ uri: 'pages/zodiac-test/zodiac-test' })
+  },
+
   drawFortune() {
     if (!this.stateReady) return
     this.recordToday()
@@ -4887,5 +4893,6 @@ export default {
 .zodiac-range-big { position: absolute; left: 16px; top: 196px; width: 304px; color: #9a8e81; font-size: 18px; text-align: center; }
 .zodiac-moon { position: absolute; left: 16px; top: 250px; width: 304px; color: #71665b; font-size: 16px; text-align: center; }
 .zodiac-tip { position: absolute; left: 16px; top: 290px; width: 304px; color: #a83b2d; font-size: 16px; text-align: center; }
+.zodiac-analyze { position: absolute; left: 98px; top: 368px; width: 140px; height: 40px; border-width: 1px; border-color: #a83b2d; border-radius: 4px; background-color: #fffdf8; color: #a83b2d; font-size: 18px; font-weight: bold; }
 .zodiac-close { position: absolute; left: 98px; top: 420px; width: 140px; height: 40px; font-size: 18px; background-color: #a83b2d; color: #fffdf8; }
 </style>

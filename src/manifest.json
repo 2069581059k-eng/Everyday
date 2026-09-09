@@ -6,12 +6,25 @@
   "minPlatformVersion": 1000,
   "icon": "/common/icon.png",
   "simulationVersion": "default",
-  "deviceTypeList": ["watch"],
+  "deviceTypeList": [
+    "watch"
+  ],
   "features": [
-    { "name": "system.app" },
-    { "name": "system.vibrator" },
-    { "name": "system.storage" },
-    { "name": "system.brightness" }
+    {
+      "name": "system.app"
+    },
+    {
+      "name": "system.vibrator"
+    },
+    {
+      "name": "system.storage"
+    },
+    {
+      "name": "system.brightness"
+    },
+    {
+      "name": "system.router"
+    }
   ],
   "config": {
     "logLevel": "log",
@@ -20,9 +33,19 @@
   "router": {
     "entry": "pages/index",
     "pages": {
-      "pages/index": { "component": "index" }
+      "pages/index": {
+        "component": "index"
+      },
+      "pages/zodiac-test": {
+        "component": "zodiac-test"
+      },
+      "pages/zodiac-result": {
+        "component": "zodiac-result"
+      }
     }
   },
-  "display": { "backgroundColor": "#f2eee5" },
+  "display": {
+    "backgroundColor": "#f2eee5"
+  },
   "minAPILevel": 1
 }

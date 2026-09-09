@@ -180,4 +180,22 @@ const captureOrder = [
 check(captureOrder.every((position) => position >= 0) && captureOrder.every((position, index) => index === 0 || position > captureOrder[index - 1]), '模拟器验收依次覆盖星座、切换星座、月历、题目和答案')
 check(captureScript.includes('/data/app/${packageName}/manifest-watch.json') && captureScript.includes('模拟器版本不一致'), '模拟器截图前核验实际安装版本')
 
-console.log(`\n每日一言静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)
+// ---- 1.8.3 架构拆分：多页面路由 + 星座形象分析 ----
+const manifestPages = Object.keys(manifest.router?.pages || {})
+check(manifestPages.includes('pages/zodiac-test') && manifestPages.includes('pages/zodiac-result'), `manifest 注册形象分析答题与结果页（实际 ${manifestPages.join(', ')}）`)
+check(manifestPages.includes('pages/index'), 'manifest 保留首页入口')
+const zodiacTestPath = path.join(root, 'src', 'pages', 'zodiac-test', 'zodiac-test.ux')
+const zodiacResultPath = path.join(root, 'src', 'pages', 'zodiac-result', 'zodiac-result.ux')
+const zodiacTest = fs.readFileSync(zodiacTestPath, 'utf8')
+const zodiacResult = fs.readFileSync(zodiacResultPath, 'utf8')
+check(zodiacTest.includes('zodiac_questions.js') && zodiacTest.includes('scoreAnswers') && zodiacTest.includes('rankZodiacs') && zodiacTest.includes('buildAnalysis'), '答题页读取离线题库并完成计分/匹配/分析')
+check(zodiacTest.includes('router.replace') && zodiacResult.includes('router.replace'), '答题页答完跳结果页，结果页可返回/重测')
+check(zodiacResult.includes('primary') && zodiacResult.includes('mainText') && zodiacResult.includes('sceneTexts') && zodiacResult.includes('adviceTexts'), '结果页展示主气质、组合、维度、场景、建议等完整内容')
+check(zodiacTest.includes('storage.set') && zodiacResult.includes('storage.get'), '测试结果经本地存储传递')
+check(fs.existsSync(path.join(root, 'src', 'common', 'scripts', 'zodiac-scoring.js')), '公共计分脚本位于 common/scripts')
+for (const dataFile of ['zodiac_questions.js', 'zodiac_profiles.js', 'zodiac_templates.js']) {
+  check(fs.existsSync(path.join(root, 'src', 'common', 'data', dataFile)), `离线数据 ${dataFile} 位于 common/data`)
+}
+check(page.includes('value="形象分析 ›"') && page.includes('startZodiacTest()') && page.includes("uri: 'pages/zodiac-test/zodiac-test'"), '趣味星象内提供形象分析入口并跳转答题页')
+
+console.log(`\n每日一言静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`) 

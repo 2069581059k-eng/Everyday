@@ -1,0 +1,112 @@
+<template>
+  <div class="zt-page">
+    <text class="zt-head">星座气质 · 形象分析</text>
+    <text class="zt-progress">{{progressText}}</text>
+    <div class="zt-progress-bar">
+      <div class="zt-progress-fill" style="width: {{progressPct}}%;"></div>
+    </div>
+
+    <text class="zt-scene">{{currentScene}}</text>
+    <text class="zt-question">{{currentQuestion}}</text>
+
+    <div class="zt-options">
+      <input class="zt-option" type="button" value="A · {{optionA}}" onclick="chooseOption(0)" />
+      <input class="zt-option" type="button" value="B · {{optionB}}" onclick="chooseOption(1)" />
+      <input class="zt-option" type="button" value="C · {{optionC}}" onclick="chooseOption(2)" />
+      <input class="zt-option" type="button" value="D · {{optionD}}" onclick="chooseOption(3)" />
+    </div>
+
+    <input class="zt-exit" type="button" value="退出测试" onclick="quitTest" />
+  </div>
+</template>
+
+<script>
+import router from '@system.router'
+import storage from '@system.storage'
+import zodiacQuestions from '../../common/data/zodiac_questions.js'
+import zodiacProfiles from '../../common/data/zodiac_profiles.js'
+import zodiacTemplates from '../../common/data/zodiac_templates.js'
+import { scoreAnswers, rankZodiacs, buildAnalysis } from '../../common/scripts/zodiac-scoring.js'
+
+const STORAGE_KEY = 'zodiac_profile_result_v1'
+const TOTAL = 30
+
+export default {
+  currentIndex: 0,
+  answers: [],
+  currentQuestion: '',
+  currentScene: '',
+  optionA: '',
+  optionB: '',
+  optionC: '',
+  optionD: '',
+  progressText: '01 / 30',
+  progressPct: 3,
+
+  onInit() {
+    this.answers = []
+    this.currentIndex = 0
+    this.renderQuestion(0)
+  },
+
+  renderQuestion(index) {
+    const q = zodiacQuestions.questions[index]
+    this.currentScene = '场景 · ' + q.scene
+    this.currentQuestion = q.question
+    this.optionA = q.options[0].text
+    this.optionB = q.options[1].text
+    this.optionC = q.options[2].text
+    this.optionD = q.options[3].text
+    this.progressText = (index < 9 ? '0' + (index + 1) : String(index + 1)) + ' / ' + TOTAL
+    this.progressPct = Math.round(((index + 1) / TOTAL) * 100)
+  },
+
+  chooseOption(optionIndex) {
+    const q = zodiacQuestions.questions[this.currentIndex]
+    this.answers.push({ questionId: q.id, optionIndex })
+    if (this.currentIndex < TOTAL - 1) {
+      this.currentIndex += 1
+      this.renderQuestion(this.currentIndex)
+      return
+    }
+
+    const scored = scoreAnswers(zodiacQuestions, this.answers)
+    const ranked = rankZodiacs(scored.normalized, zodiacProfiles)
+    const analysis = buildAnalysis(scored.normalized, ranked, zodiacTemplates)
+    const result = { createdAt: Date.now(), normalized: scored.normalized, analysis }
+
+    const page = this
+    try {
+      storage.set({
+        key: STORAGE_KEY,
+        value: JSON.stringify(result),
+        success() { page.goResult() },
+        fail() { page.goResult() }
+      })
+    } catch (error) {
+      page.goResult()
+    }
+  },
+
+  goResult() {
+    router.replace({ uri: 'pages/zodiac-result/zodiac-result' })
+  },
+
+  quitTest() {
+    router.back()
+  }
+}
+</script>
+
+<style>
+.zt-page { flex-direction: column; width: 336px; height: 480px; background-color: #f2eee5; }
+.zt-head { margin-top: 14px; width: 336px; height: 26px; line-height: 26px; color: #2c2722; font-size: 20px; font-weight: bold; text-align: center; }
+.zt-progress { margin-top: 6px; width: 336px; height: 16px; line-height: 16px; color: #94887c; font-size: 13px; text-align: center; }
+.zt-progress-bar { margin-top: 4px; margin-left: 38px; width: 260px; height: 6px; border-radius: 3px; background-color: #e6ddd0; }
+.zt-progress-fill { height: 6px; border-radius: 3px; background-color: #a83b2d; }
+.zt-scene { margin-top: 18px; margin-left: 20px; width: 296px; height: 18px; line-height: 18px; color: #a83b2d; font-size: 14px; font-weight: bold; }
+.zt-question { margin-top: 8px; margin-left: 20px; width: 296px; height: 84px; color: #29241f; font-size: 20px; font-weight: bold; line-height: 28px; }
+.zt-options { margin-top: 6px; margin-left: 20px; width: 296px; }
+.zt-option { margin-top: 10px; width: 296px; height: 52px; border-width: 1px; border-color: #d4c9ba; border-radius: 6px; background-color: #fffdf8; color: #2c2722; font-size: 16px; text-align: center; }
+.zt-exit { margin-top: 10px; margin-left: 108px; width: 120px; height: 30px; border-width: 1px; border-color: #cfc5b7; border-radius: 4px; background-color: #f8f3e9; color: #8b8175; font-size: 14px; }
+</style>

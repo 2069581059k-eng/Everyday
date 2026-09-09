@@ -1,0 +1,28 @@
+{
+  "questions": 30,
+  "options": 120,
+  "dimensions": 10,
+  "zodiacs": 12,
+  "template_counts": {
+    "main_templates": 72,
+    "pair_templates": 132,
+    "dimension_templates": 50,
+    "contrast_templates": 40,
+    "scene_templates": 60,
+    "summary_templates": 150,
+    "advice_templates": 30
+  },
+  "total_templates": 534,
+  "dimension_max": {
+    "action": 62,
+    "social": 41,
+    "rational": 76,
+    "emotional": 46,
+    "stability": 66,
+    "curiosity": 42,
+    "independence": 65,
+    "empathy": 53,
+    "competitiveness": 20,
+    "adaptability": 62
+  }
+}

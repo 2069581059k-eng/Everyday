@@ -1,0 +1,158 @@
+<template>
+  <div class="zr-page">
+    <text class="zr-title">你的气质画像</text>
+
+    <div class="zr-top3">
+      <div class="zr-zodiac zr-primary">
+        <text class="zr-z-name">{{primaryName}}</text>
+        <text class="zr-z-match">匹配 {{primaryMatch}}%</text>
+      </div>
+      <text class="zr-vs">次</text>
+      <div class="zr-zodiac">
+        <text class="zr-z-name">{{secondaryName}}</text>
+        <text class="zr-z-match">{{secondaryMatch}}%</text>
+      </div>
+      <text class="zr-vs">三</text>
+      <div class="zr-zodiac">
+        <text class="zr-z-name">{{thirdName}}</text>
+        <text class="zr-z-match">{{thirdMatch}}%</text>
+      </div>
+    </div>
+
+    <div class="zr-scroll">
+      <text class="zr-section-title">核心分析 · {{styleText}}</text>
+      <text class="zr-text">{{mainText}}</text>
+      <text class="zr-section-title">组合色彩</text>
+      <text class="zr-text">{{pairText}}</text>
+      <text class="zr-section-title">三个突出维度</text>
+      <text class="zr-dim" for="{{dimRows}}">{{$item.name}} {{$item.value}}</text>
+      <text class="zr-text" for="{{dimTexts}}">{{$item.text}}</text>
+      <text class="zr-section-title" show="{{hasContrast}}">你的矛盾与平衡</text>
+      <text class="zr-text" show="{{hasContrast}}">{{contrastText}}</text>
+      <text class="zr-section-title">场景中的你</text>
+      <text class="zr-text" for="{{sceneTexts}}">{{$item.text}}</text>
+      <text class="zr-section-title">一句话总结</text>
+      <text class="zr-text">{{summaryText}}</text>
+      <text class="zr-section-title">给你的建议</text>
+      <text class="zr-text" for="{{adviceTexts}}">{{$item.text}}</text>
+      <text class="zr-disclaimer">本测试仅用于娱乐与自我探索，不属于心理诊断、人格测评或科学占星结论。</text>
+    </div>
+
+    <div class="zr-actions">
+      <input class="zr-btn zr-home" type="button" value="返回主页" onclick="goHome" />
+      <input class="zr-btn zr-retest" type="button" value="再测一次" onclick="retest" />
+    </div>
+  </div>
+</template>
+
+<script>
+import router from '@system.router'
+import storage from '@system.storage'
+import zodiacProfiles from '../../common/data/zodiac_profiles.js'
+import zodiacQuestions from '../../common/data/zodiac_questions.js'
+import zodiacTemplates from '../../common/data/zodiac_templates.js'
+
+const STORAGE_KEY = 'zodiac_profile_result_v1'
+
+function dimName(key) {
+  const map = {
+    action: '行动力', social: '社交性', rational: '理性', emotional: '感性', stability: '稳定性',
+    curiosity: '好奇心', independence: '独立性', empathy: '共情力', competitiveness: '竞争性', adaptability: '适应性'
+  }
+  return map[key] || key
+}
+
+export default {
+  primaryName: '',
+  primaryMatch: '',
+  secondaryName: '',
+  secondaryMatch: '',
+  thirdName: '',
+  thirdMatch: '',
+  styleText: '',
+  mainText: '',
+  pairText: '',
+  dimRows: [],
+  dimTexts: [],
+  hasContrast: false,
+  contrastText: '',
+  sceneTexts: [],
+  summaryText: '',
+  adviceTexts: [],
+  ready: false,
+
+  onInit() {
+    const page = this
+    try {
+      storage.get({
+        key: STORAGE_KEY,
+        default: '',
+        success(data) { page.renderResult(data) },
+        fail() { page.noResult() }
+      })
+    } catch (error) {
+      page.noResult()
+    }
+  },
+
+  renderResult(data) {
+    if (!data) return this.noResult()
+    let parsed = null
+    try { parsed = JSON.parse(data) } catch (error) { parsed = null }
+    if (!parsed || !parsed.analysis) return this.noResult()
+
+    const a = parsed.analysis
+    this.primaryName = a.primary.icon + ' ' + a.primary.name
+    this.primaryMatch = a.primary.match
+    this.secondaryName = a.secondary.icon + ' ' + a.secondary.name
+    this.secondaryMatch = a.secondary.match
+    this.thirdName = a.third.icon + ' ' + a.third.name
+    this.thirdMatch = a.third.match
+    this.styleText = a.style
+    this.mainText = a.main ? a.main.text : ''
+    this.pairText = a.pair ? a.pair.text : ''
+    this.dimRows = (a.topDimensions || []).map(function (d) { return { name: dimName(d.key), value: d.value } })
+    this.dimTexts = a.dimensionTexts || []
+    this.hasContrast = !!(a.contrast && a.contrast.text)
+    this.contrastText = this.hasContrast ? a.contrast.text : ''
+    this.sceneTexts = a.scenes || []
+    this.summaryText = a.summary ? a.summary.text : ''
+    this.adviceTexts = a.advice || []
+    this.ready = true
+  },
+
+  noResult() {
+    this.mainText = '还没有测试记录，先去做一次形象分析吧。'
+    this.ready = true
+  },
+
+  goHome() {
+    router.clear()
+    router.replace({ uri: 'pages/index/index' })
+  },
+
+  retest() {
+    router.replace({ uri: 'pages/zodiac-test/zodiac-test' })
+  }
+}
+</script>
+
+<style>
+.zr-page { flex-direction: column; width: 336px; height: 480px; background-color: #f2eee5; }
+.zr-title { margin-top: 10px; width: 336px; height: 24px; line-height: 24px; color: #2c2722; font-size: 19px; font-weight: bold; text-align: center; }
+.zr-top3 { flex-direction: row; margin-top: 6px; margin-left: 16px; width: 304px; height: 64px; }
+.zr-zodiac { flex-direction: column; justify-content: center; width: 96px; height: 62px; border-width: 1px; border-color: #d7cdbf; border-radius: 6px; background-color: #fffdf8; }
+.zr-primary { border-color: #a83b2d; }
+.zr-z-name { width: 96px; height: 22px; line-height: 22px; color: #2c2722; font-size: 16px; font-weight: bold; text-align: center; }
+.zr-z-match { width: 96px; height: 16px; line-height: 16px; color: #a83b2d; font-size: 12px; text-align: center; }
+.zr-vs { width: 8px; height: 62px; line-height: 62px; color: #94887c; font-size: 11px; text-align: center; }
+.zr-scroll { margin-top: 6px; margin-left: 16px; width: 304px; height: 330px; border-width: 1px; border-color: #d7cdbf; border-radius: 6px; background-color: #fffdf8; }
+.zr-section-title { margin-top: 8px; margin-left: 10px; width: 284px; height: 18px; line-height: 18px; color: #a83b2d; font-size: 14px; font-weight: bold; }
+.zr-text { margin-top: 4px; margin-left: 10px; width: 284px; color: #29241f; font-size: 15px; line-height: 21px; }
+.zr-dim { margin-top: 3px; margin-left: 10px; width: 284px; height: 18px; line-height: 18px; color: #574e45; font-size: 14px; font-weight: bold; }
+.zr-disclaimer { margin-top: 8px; margin-left: 10px; width: 284px; color: #94887c; font-size: 12px; line-height: 17px; }
+.zr-actions { flex-direction: row; margin-top: 6px; margin-left: 16px; width: 304px; height: 40px; }
+.zr-btn { width: 146px; height: 38px; border-radius: 4px; font-size: 16px; font-weight: bold; }
+.zr-home { background-color: #a83b2d; color: #fffaf2; }
+.zr-retest { margin-left: 12px; border-width: 1px; border-color: #cfc4b5; background-color: #fffdf8; color: #574e45; }
+</style>
