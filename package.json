@@ -1,6 +1,6 @@
 {
   "name": "daily-quote-band10pro",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "private": true,
   "type": "module",
   "description": "小米手环 10 Pro 离线每日一言小游戏",
