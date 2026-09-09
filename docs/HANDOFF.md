@@ -1,5 +1,18 @@
 # 当前交接
 
+## 2026-09-09 · WorkBuddy(agent) 1.8.4 五页面架构拆分
+
+- 分支 agent-knux-cleanup；实现 a5ca672（页面拆分）→ cb8e206（版本 1.8.4/10804）。
+- 落地（按用户目录树）：
+  - pages/knowledge/knowledge.ux：知识大全独立页（答题/阅读、进度独立存储 daily_quote_knowledge_v1）
+  - pages/calendar/calendar.ux：月历独立页（节假日/周末配色）
+  - index.ux 收敛纯首页：抽签/收藏/趣味星象遮罩保留，知识大全/今日日历跳转独立页，均带返回主页
+  - common/data：quotes.js / knowledge.js / zodiac_* 全离线；common/utils：date.js/random.js/zodiac.js/knowledge.js
+  - verify-game.mjs 多页面断言（index/knowledge/calendar 分开校验），108 断言全绿；JSC 五页面构建通过
+- Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.4（预发布）；BIN 1,081,651 B，SHA-256 7b60a111…，附件齐全。
+- 验证：npm test 全绿、verify-rpk 通过；未模拟器/真机实测。
+- 遗留：capture-vvd.mjs 的模拟器截图顺序仍按旧首页遮罩（03-zodiac→…→07-riddle-answer）编写，独立页后需在模拟器验证时更新点击路径。
+
 ## 2026-09-09 · WorkBuddy(agent) 1.8.3 多页面骨架 + 形象分析
 
 - 分支 agent-knux-cleanup；实现 fbcea99（骨架+形象分析）→ 51f8213（版本 1.8.3/10803）。
