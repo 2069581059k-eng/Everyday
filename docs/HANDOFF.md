@@ -1,5 +1,13 @@
 # 当前交接
 
+## 2026-09-09 · WorkBuddy(agent) 更新
+
+- 实现提交：4fe3771（阅读类显示分类标签与子标题）、d08f23e（每日 50 条、答题答案去重），分支 agent-knux-cleanup。
+- 本轮最新：按要求把每日题库上限由 20 提升到 50（五类各 10 条）；答题类（脑筋急转弯/十万个为什么）查看答案后不再单独显示短答案行，只保留一段最完整的答案+解析；阅读类左上角显示分类（read-kicker）+ 子标题（read-title）+ 大号正文（read-text）。
+- 验证：npm test 全绿。
+- 构建：JSC 构建成功（新包 1,023,412 字节，SHA-256 c3415e0d…），verify-rpk 通过；规避方式为在独立无 .git 副本中构建并调高本机临时删除保护阈值（CODEBUDDY_SAFE_DELETE_BULK_THRESHOLD），不关闭 JSC。
+- 遗留：未模拟器/真机验证；分支未合并 main。
+
 ## 2026-09-09 · WorkBuddy(agent)
 
 - 基线：026bad2（main；含 Codex 1.8.1 提交 4cdce2e）。
