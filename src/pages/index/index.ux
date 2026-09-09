@@ -61,8 +61,7 @@
           <input class="quiz-reveal-btn" show="{{!answerVisible}}" type="button" value="{{revealLabel}}" onclick="revealAnswer" />
 
           <div class="quiz-answer-box" show="{{answerVisible}}">
-            <text class="quiz-answer-label">{{answerLabel}}</text>
-            <text class="quiz-answer-text">{{riddleAnswer}}</text>
+            <text class="quiz-answer-label">答案</text>
             <text class="quiz-explain">{{riddleExplain}}</text>
             <input class="detail-next" show="{{detailTotal > 1}}" type="button" value="{{detailLabel}}" onclick="nextDetail" />
           </div>
@@ -4312,11 +4311,11 @@ function dailyRiddles(dayNumber) {
     return items
   }
   const plan = [
-    { category: '脑筋急转弯', count: 4 },
-    { category: '十万个为什么', count: 4 },
-    { category: '百科全书', count: 4 },
-    { category: '冷笑话', count: 4 },
-    { category: '鬼故事', count: 4 }
+    { category: '脑筋急转弯', count: 10 },
+    { category: '十万个为什么', count: 10 },
+    { category: '百科全书', count: 10 },
+    { category: '冷笑话', count: 10 },
+    { category: '鬼故事', count: 10 }
   ]
   const daily = []
   for (let i = 0; i < plan.length; i++) {
@@ -4798,10 +4797,9 @@ export default {
 .quiz-question { position: absolute; left: 10px; top: 8px; width: 260px; height: 114px; color: #2c2722; font-size: 23px; font-weight: bold; line-height: 29px; text-align: center; }
 .quiz-reveal-btn { position: absolute; left: 36px; top: 190px; width: 240px; height: 44px; border-radius: 4px; background-color: #a83b2d; color: #fffaf2; font-size: 18px; font-weight: bold; }
 .quiz-answer-box { position: absolute; left: 16px; top: 182px; width: 280px; height: 204px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fffdf8; }
-.quiz-answer-label { position: absolute; left: 10px; top: 6px; width: 60px; color: #a83b2d; font-size: 14px; font-weight: bold; }
-.quiz-answer-text { position: absolute; left: 10px; top: 26px; width: 260px; height: 52px; color: #2c2722; font-size: 20px; font-weight: bold; line-height: 25px; }
-.quiz-explain { position: absolute; left: 10px; top: 84px; width: 260px; height: 74px; color: #776c61; font-size: 17px; line-height: 22px; }
-.detail-next { position: absolute; left: 50px; top: 162px; width: 180px; height: 30px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
+.quiz-answer-label { position: absolute; left: 10px; top: 8px; width: 60px; color: #a83b2d; font-size: 15px; font-weight: bold; }
+.quiz-explain { position: absolute; left: 10px; top: 32px; width: 260px; height: 132px; color: #29241f; font-size: 18px; font-weight: bold; line-height: 24px; }
+.detail-next { position: absolute; left: 50px; top: 168px; width: 180px; height: 30px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
 /* 阅读模式：左上角显示分类标签，正文区含子标题 + 大号正文。 */
 .read-mode { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
 .read-kicker { position: absolute; left: 16px; top: 10px; width: 150px; height: 20px; line-height: 20px; color: #a83b2d; font-size: 14px; font-weight: bold; letter-spacing: 1px; }

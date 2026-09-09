@@ -91,7 +91,7 @@ check(riddles.every((item) => !visibleAiMarker.test(`${item.question} ${item.ans
 check(page.includes('value="知识大全"'), '主页入口按钮文案为知识大全')
 check(page.includes('<text class="quiz-kicker">{{quizCategory}}</text>'), '知识面板顶部标签改为当前分类名（如 百科全书/脑筋急转弯）')
 
-// ---- 每日固定 20 道不重复（新机制，真实逻辑） ----
+// ---- 每日固定 50 道不重复（新机制，真实逻辑） ----
 check(!!quizHelpers, '页面包含按日期选題的辅助函数')
 check(page.includes('dailyRiddles(') && page.includes('const dailyRiddleList = dailyRiddles('), '按本地日期固定生成每日题目列表')
 check(page.includes('Date.UTC') && page.includes('quoteIndex(today.dayNumber)'), '按本地日期稳定选择每日内容')
@@ -105,9 +105,9 @@ if (quizHelpers) {
       category,
       list.filter((item) => item.category === category).length
     ]))
-    if (list.length !== 20 || qs.size !== list.length || Object.values(counts).some(n => n !== 4)) allOk = false
+    if (list.length !== 50 || qs.size !== list.length || Object.values(counts).some(n => n !== 10)) allOk = false
   }
-  check(allOk, '每天固定 20 条，五类各 4 条')
+  check(allOk, '每天固定 50 条，五类各 10 条')
   const a = quizHelpers.dailyRiddles(1).map((r) => r.question).join('|')
   const b = quizHelpers.dailyRiddles(2).map((r) => r.question).join('|')
   check(a !== b, '跨天题目选择不同（按日期区分）')
@@ -126,7 +126,7 @@ check(!page.includes("+ ' 来源：' + record.source"), '正文与解析不再�
 
 // ---- 上一题/下一题、序号进度、末题边界 ----
 check(page.includes('prevQuestion') && page.includes('nextQuestion'), '支持上一题与下一题')
-check(page.includes('quizPos') && page.includes('quizTotal'), '显示序号进度（第 X / 20 题）')
+check(page.includes('quizPos') && page.includes('quizTotal'), '显示序号进度（第 X / 50 题）')
 check(page.includes('已是最后一题') && page.includes('已是第一题'), '首题与末题边界提示明确')
 
 // ---- 分类阅读模式：仅 脑筋急转弯/十万个为什么 保留查看答案，其余直接显示正文 ----
