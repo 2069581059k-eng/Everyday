@@ -1,5 +1,12 @@
 # 当前交接
 
+## 2026-09-09 · WorkBuddy(agent) 1.8.2
+
+- 分支 agent-knux-cleanup；实现 5e605c4（体验重构）→ 7e5bf56（版本 1.8.2/10802）。
+- 需求落地：启动直达主页（去封面翻签）、品牌 Daily Spark 顶部居中、主页「抽一签」手动随机抽句+签级（不再按日期自动）、月历 2026 法定节假日+周末配色、答题类每次进入答案收起。
+- Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.2（预发布）；BIN 1,023,699 B，SHA-256 6f17b1b1…
+- 验证：npm test 全绿、verify-rpk 通过；未模拟器/真机实测。
+
 ## 2026-09-09 · WorkBuddy(agent) Release 发布
 
 - 已按用户要求把构建产物发布到 GitHub Releases：tag `v1.8.1`（提交 06bb13f，分支 agent-knux-cleanup）。
