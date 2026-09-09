@@ -89,7 +89,7 @@ check(sourceKnowledge.length === importedKnowledge.length && sourceKnowledge.eve
 }), '2023 条全部与最终包逐字段匹配，无旧库独有条目')
 check(riddles.every((item) => !visibleAiMarker.test(`${item.question} ${item.answer} ${item.explain} ${item.source}`)), '知识题用户可见内容不含 AI 字样')
 check(page.includes('value="知识大全"'), '主页入口按钮文案为知识大全')
-check(page.includes('<text class="quiz-kicker">知识大全</text>'), '题库详情标题已统一为知识大全')
+check(page.includes('<text class="quiz-kicker">{{quizCategory}}</text>'), '知识面板顶部标签改为当前分类名（如 百科全书/脑筋急转弯）')
 
 // ---- 每日固定 20 道不重复（新机制，真实逻辑） ----
 check(!!quizHelpers, '页面包含按日期选題的辅助函数')
@@ -121,7 +121,8 @@ check(!page.includes('choiceOneText') && !page.includes('chooseOne') && !page.in
 check(page.includes('revealAnswer') && page.includes('answerVisible'), '提供“查看答案”按钮，点击后才显示答案')
 check(/quiz-reveal-btn" show="\{\{!answerVisible\}\}"/u.test(page), '未查看答案时显示“查看答案”按钮，查看后隐藏')
 check(/quiz-answer-box" show="\{\{answerVisible\}\}"/u.test(page), '查看答案后才显示答案与解析区')
-check(page.includes('knowledgeDetail(r)') && page.includes('detail-next') && page.includes('quiz-explain'), '答案区显示原始解析、来源且支持分页浏览')
+check(page.includes('knowledgeDetail(r)') && page.includes('detail-next') && page.includes('quiz-explain'), '答案区显示原始解析且支持分页浏览（不再拼接来源）')
+check(!page.includes("+ ' 来源：' + record.source"), '正文与解析不再拼接“来源”尾巴')
 
 // ---- 上一题/下一题、序号进度、末题边界 ----
 check(page.includes('prevQuestion') && page.includes('nextQuestion'), '支持上一题与下一题')
@@ -133,8 +134,10 @@ check(page.includes('function isQaMode('), '提供按分类判定答题/阅读�
 check(/return record\.displayMode === 'qa' \|\| record\.category === '脑筋急转弯' \|\| record\.category === '十万个为什么'/u.test(page), '仅 脑筋急转弯 与 十万个为什么 属于答题模式')
 check(!page.includes('今日 20 题已读完'), '已移除“看完即奖励”的答题完成设定')
 check(!page.includes('isCompleteReward('), '已移除答题完成判定逻辑')
-check(page.includes('this.answerVisible = !isQaMode(riddle) || state.quizViewed.indexOf(idx) >= 0'), '阅读类条目进入即自动显示正文，答题类需查看后才显示')
-check(page.includes("this.answerLabel = isQaMode(riddle) ? '答案' : '正文 · ' + riddle.category"), '阅读类正文区域标注实际分类')
+check(page.includes('this.answerVisible = !this.isQaItem || state.quizViewed.indexOf(idx) >= 0'), '阅读类条目进入即自动显示正文，答题类需查看后才显示')
+check(page.includes("this.answerLabel = this.isQaItem ? '答案' : riddle.category"), '阅读类不再显示“正文 · 分类”标签，仅答题类标注“答案”')
+check(page.includes('<text class="quiz-kicker">{{quizCategory}}</text>') && /<div class="qa-mode" show="\{\{isQaItem\}\}">[\s\S]*?<div class="read-mode" show="\{\{!isQaItem\}\}">/u.test(page), '阅读类不显示顶部大标签，答题类顶部标签显示当前分类')
+check(page.includes('riddleExplain = chunks[this.detailIndex]') && page.includes("this.answerLabel = this.isQaItem ? '答案' : riddle.category"), '阅读模式不重复标题与来源，正文直接铺满')
 
 // ---- 其它原有功能保持不变 ----
 check(page.includes('state.lastDay === today.dayNumber - 1'), '实现连续签到计算')
@@ -158,7 +161,7 @@ check(page.includes('quiz-question-box') && page.includes('quiz-answer-box'), '�
 check(page.includes('quiz-actionbar') && /quiz-actionbar \{[^}]*top: 400px/u.test(page), '题目导航使用固定操作栏（底部固定），不随内容浮动')
 check(page.includes('openCalendar') && page.includes('openZodiac'), '日历与星座均提供独立详情入口，避免小卡塞大量文字')
 check(page.includes('zodiac-mask') && page.includes('closeZodiac'), '星座使用独立详情遮罩页展示名称/日期区间/月相/贴士')
-check(page.includes('exit-button') && page.includes('onclick="exitGame"') && /exit-button \{[^}]*z-index: 10/u.test(page), '退出按钮常驻可见且置顶可点击')
+check(!page.includes('class="exit-button"') && !page.includes('.exit-button'), '已移除右上角全局退出按钮，仅保留右滑退出')
 const weekCells = (page.match(/class="month-week-cell"/g) || []).length
 check(weekCells === 7, `月历星期行使用 7 个独立等宽文本（实际 ${weekCells}）`)
 const dayCells = (page.match(/class="month-cell"/g) || []).length
