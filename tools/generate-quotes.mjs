@@ -18,9 +18,9 @@ const riddles = JSON.parse(fs.readFileSync(knowledgePath, 'utf8'))
 if (riddles.length !== expectedKnowledgeCount || riddles.length > 5000) {
   throw new Error(`真实知识题库应为 ${expectedKnowledgeCount} 条，当前为 ${riddles.length} 条`)
 }
-for (const category of ['脑筋急转弯', '十万个为什么', '百科知识']) {
+for (const category of ['脑筋急转弯', '十万个为什么', '百科全书', '冷笑话', '鬼故事']) {
   const count = riddles.filter((item) => item.category === category).length
-  if (count < 400) throw new Error(`${category}不足 400 条，当前为 ${count} 条`)
+  if (!count) throw new Error(`${category}内容为空`)
 }
 if (selected.length !== expectedQuoteCount) {
   throw new Error(`真实语录应为 ${expectedQuoteCount} 条，当前为 ${selected.length} 条`)

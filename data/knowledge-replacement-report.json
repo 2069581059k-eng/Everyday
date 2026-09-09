@@ -1,5 +1,8 @@
 {
-  "total": 2023,
+  "mode": "replace",
+  "input": 2023,
+  "output": 2023,
+  "oldOnlyEntriesRetained": 0,
   "counts": {
     "脑筋急转弯": 312,
     "十万个为什么": 290,
@@ -7,11 +10,10 @@
     "冷笑话": 293,
     "鬼故事": 205
   },
-  "policy": "按用户要求仅使用最终包，完全替换旧题库。原文不改写，缺失来源不补造。",
   "archive": {
     "filename": "米环综合内容库_V2_最终完整版_2000plus.zip",
     "entry": "米环综合内容库_V2_最终完整版_2000plus/content_2000plus.json",
     "sha256": "2fa2e8d39671086e74c484030d91d4a3c7156a719a14454d8e64e8bfb2aad5d7"
   },
-  "missingExternalSource": 1711
+  "sourceValidation": "验证与用户原包的一致性，未独立核实科普事实或创作来源"
 }

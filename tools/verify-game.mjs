@@ -71,22 +71,22 @@ check(riddles.every((item) => {
   return source && source.answer === item.answer && source.explain === item.explain && source.source === item.source
 }), '每道运行时题目均与可审计导入清单一致')
 check(riddles.every((item) => Array.from(quizHelpers.knowledgeAnswer(item)).length <= 14), '答案栏短屏可读')
-check(riddles.every((item) => quizHelpers.knowledgeDetail(item).includes(item.explain) && (item.displayMode === 'card' || quizHelpers.knowledgeDetail(item).includes(item.answer))), '分页详情完整保留原答案与解析')
-const knowledgeCounts = Object.fromEntries(['脑筋急转弯', '十万个为什么', '百科知识'].map((category) => [
+check(riddles.every((item) => quizHelpers.knowledgeDetail(item).includes(item.explain) && (item.displayMode !== 'qa' || quizHelpers.knowledgeDetail(item).includes(item.answer))), '分页详情完整保留原答案与解析及故事正文')
+const knowledgeCounts = Object.fromEntries(['脑筋急转弯', '十万个为什么', '百科全书', '冷笑话', '鬼故事'].map((category) => [
   category,
   riddles.filter((item) => item.category === category).length
 ]))
-check(knowledgeCounts['脑筋急转弯'] === 400, '脑筋急转弯为 400 条真实数据')
-check(knowledgeCounts['十万个为什么'] === 750, '十万个为什么合并后为 750 条')
-check(knowledgeCounts['百科知识'] === 1147, '百科知识合并后为 1147 条')
+check(JSON.stringify(knowledgeCounts) === JSON.stringify({ '脑筋急转弯': 312, '十万个为什么': 290, '百科全书': 923, '冷笑话': 293, '鬼故事': 205 }), '五类数量逐一匹配最终包')
 check(sourceKnowledge.every((item) => item.sourceId && ((item.sourceUrl && item.sourceLicense) || (item.provenance?.archiveSha256 && item.provenance?.verification === 'source-not-provided'))), '保留公开来源或用户压缩包溯源，不伪造缺失出处')
-check(knowledgeSources.sources?.cmrc && knowledgeSources.sources?.brain?.sourcePages?.sha256 && knowledgeSources.merge?.sha256, '数据源清单记录原库与导入包哈希')
-const mergeReport = JSON.parse(fs.readFileSync(path.join(root, 'data', 'knowledge-merge-report.json'), 'utf8'))
-check(mergeReport.baseline + mergeReport.incoming - mergeReport.removed === riddles.length && mergeReport.duplicates.length === mergeReport.removed, '合并数量守恒且每条重复都有记录')
-const baselineKnowledge = JSON.parse(fs.readFileSync(path.join(root, 'data', 'merge-inputs', 'baseline-1.7.0.json'), 'utf8'))
-check(baselineKnowledge.every(r => JSON.stringify(sourceKnowledge.find(x => x.id === r.id)) === JSON.stringify(r)), '原有 2000 条数据完整保留')
-const importedKnowledge = JSON.parse(fs.readFileSync(path.join(root, 'data', 'merge-inputs', 'user-v2.json'), 'utf8'))
-check(sourceKnowledge.filter(r => r.provenance).every(r => { const raw = importedKnowledge.find(x => x.id === r.provenance.inputId); return raw && r.explain === (raw.display_mode === 'card' ? raw.content : raw.explanation || raw.answer) }), '新增内容逐条匹配用户原始数据')
+check(knowledgeSources.archive?.sha256 && knowledgeSources.total === 2023, '清单仅引用最终包及其哈希')
+const importedKnowledge = JSON.parse(fs.readFileSync(path.join(root, 'data', 'final-input.json'), 'utf8'))
+check(sourceKnowledge.length === importedKnowledge.length && sourceKnowledge.every(r => {
+  const raw = importedKnowledge.find(x => x.id === r.provenance.inputId)
+  return raw && r.id === `final:${raw.id}` && r.category === raw.category && r.displayMode === raw.display_mode &&
+    r.question === (raw.display_mode === 'qa' ? raw.question : raw.title) &&
+    r.answer === (raw.display_mode === 'qa' ? raw.answer : raw.title) &&
+    r.explain === (raw.display_mode === 'qa' ? raw.explanation || raw.answer : raw.content)
+}), '2023 条全部与最终包逐字段匹配，无旧库独有条目')
 check(riddles.every((item) => !visibleAiMarker.test(`${item.question} ${item.answer} ${item.explain} ${item.source}`)), '知识题用户可见内容不含 AI 字样')
 check(page.includes('value="知识大全"'), '主页入口按钮文案为知识大全')
 check(page.includes('<text class="quiz-kicker">知识大全</text>'), '题库详情标题已统一为知识大全')
@@ -101,13 +101,13 @@ if (quizHelpers) {
   for (const day of sampleDays) {
     const list = quizHelpers.dailyRiddles(day)
     const qs = new Set(list.map((r) => r.question))
-    const counts = Object.fromEntries(['脑筋急转弯', '十万个为什么', '百科知识'].map((category) => [
+    const counts = Object.fromEntries(['脑筋急转弯', '十万个为什么', '百科全书', '冷笑话', '鬼故事'].map((category) => [
       category,
       list.filter((item) => item.category === category).length
     ]))
-    if (list.length !== 20 || qs.size !== list.length || counts['脑筋急转弯'] !== 7 || counts['十万个为什么'] !== 6 || counts['百科知识'] !== 7) allOk = false
+    if (list.length !== 20 || qs.size !== list.length || Object.values(counts).some(n => n !== 4)) allOk = false
   }
-  check(allOk, '每天固定 20 道且按 7/6/7 覆盖脑筋急转弯、为什么和百科')
+  check(allOk, '每天固定 20 条，五类各 4 条')
   const a = quizHelpers.dailyRiddles(1).map((r) => r.question).join('|')
   const b = quizHelpers.dailyRiddles(2).map((r) => r.question).join('|')
   check(a !== b, '跨天题目选择不同（按日期区分）')

@@ -44,7 +44,7 @@ fs.copyFileSync(
 const sourceArchive = path.join(releaseDir, `${base}_Source_AGPL.zip`)
 const zip = new AdmZip()
 for (const folder of ['src', 'tools', 'data']) {
-  zip.addLocalFolder(path.join(root, folder), folder)
+  zip.addLocalFolder(path.join(root, folder), folder, (filename) => !/(^|[\\/])(merge-inputs|knowledge-merge-report\.json|riddles\.json|merge-knowledge\.mjs|import-knowledge\.mjs)([\\/]|$)/u.test(filename))
 }
 for (const filename of ['package.json', 'README.md', 'THIRD_PARTY_NOTICES.md']) {
   zip.addLocalFile(path.join(root, filename))
