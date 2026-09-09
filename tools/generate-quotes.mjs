@@ -42,7 +42,7 @@ const rows = quotes.map((quote) => {
     ', uuid: ' + JSON.stringify(quote.uuid) + ' }'
 })
 const replacement = 'const QUOTES = [\n' + rows.join(',\n') + '\n]'
-const page = fs.readFileSync(pagePath, 'utf8')
+const page = fs.readFileSync(pagePath, 'utf8').replace(/\r\n/g, '\n')
 const riddleRows = riddles.map((riddle) => {
   return '  { question: ' + JSON.stringify(riddle.question) +
     ', category: ' + JSON.stringify(riddle.category) +

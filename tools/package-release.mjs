@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import crypto from 'node:crypto'
 import AdmZip from 'adm-zip'
+import { verifyRpk } from './verify-rpk.mjs'
 
 const root = path.resolve(import.meta.dirname, '..')
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'src', 'manifest.json'), 'utf8'))
@@ -15,6 +16,7 @@ const releaseDir = path.join(root, 'release')
 const base = `DailyQuote_Band10Pro_v${version}`
 
 if (!fs.existsSync(source)) throw new Error(`未找到构建包：${source}`)
+verifyRpk(source, version)
 fs.mkdirSync(releaseDir, { recursive: true })
 
 const artifacts = []

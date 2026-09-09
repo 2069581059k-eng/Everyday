@@ -11,7 +11,7 @@ const iconPath = path.join(root, 'src', 'common', 'icon.png')
 const selectedPath = path.join(root, 'data', 'hitokoto-selected.json')
 const knowledgePath = path.join(root, 'data', 'knowledge-selected.json')
 const knowledgeSourcesPath = path.join(root, 'data', 'knowledge-sources.json')
-const page = fs.readFileSync(pagePath, 'utf8')
+const page = fs.readFileSync(pagePath, 'utf8').replace(/\r\n/g, '\n')
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
 const packageJson = JSON.parse(fs.readFileSync(packagePath, 'utf8'))
 const captureScript = fs.readFileSync(capturePath, 'utf8')
@@ -30,7 +30,7 @@ const knowledgeSources = fs.existsSync(knowledgeSourcesPath) ? JSON.parse(fs.rea
 const helperBlock = page.match(/(function mulberry32\(seed\) \{[\s\S]*?\n\}\n\nconst today =)/u)
 const helperSrc = helperBlock ? helperBlock[1].replace(/\n\nconst today =[^\n]*$/, '') : ''
 const quizHelpers = helperSrc
-  ? Function('RIDDLES', helperSrc + '\nreturn { dailyRiddles, isCompleteReward, shouldResetQuizProgress, knowledgeDetail, knowledgeAnswer };')(riddles)
+  ? Function('RIDDLES', helperSrc + '\nreturn { dailyRiddles, shouldResetQuizProgress, knowledgeDetail, knowledgeAnswer, isQaMode };')(riddles)
   : null
 
 const quoteCount = quotes.length
@@ -128,23 +128,13 @@ check(page.includes('prevQuestion') && page.includes('nextQuestion'), '支持上
 check(page.includes('quizPos') && page.includes('quizTotal'), '显示序号进度（第 X / 20 题）')
 check(page.includes('已是最后一题') && page.includes('已是第一题'), '首题与末题边界提示明确')
 
-// ---- 首次看完 20 题奖励 1 灵光（取代答对奖励） ----
-check(page.includes('isCompleteReward('), '存在“看完即奖励”的判定逻辑')
-check(page.includes('获得 1 点灵光') && page.includes('今日 20 题已读完'), '奖励文案明确：看完 20 题获得 1 点灵光')
-check(page.includes('state.quizViewed'), '本地持久化已查看进度')
-check(page.includes('shouldResetQuizProgress('), '实现日期变化重置进度')
-if (quizHelpers) {
-  const rewardOk =
-    quizHelpers.isCompleteReward(20, 20, -1, 5) === true &&
-    quizHelpers.isCompleteReward(19, 20, -1, 5) === false &&
-    quizHelpers.isCompleteReward(20, 20, 5, 5) === false &&
-    quizHelpers.isCompleteReward(20, 20, 4, 5) === true
-  check(rewardOk, '奖励逻辑真实：看完20题且当日未领才奖励，当日不重复，跨天可再领')
-  const resetOk =
-    quizHelpers.shouldResetQuizProgress(5, 6) === true &&
-    quizHelpers.shouldResetQuizProgress(5, 5) === false
-  check(resetOk, '进度重置逻辑真实：日期变化才重置')
-}
+// ---- 分类阅读模式：仅 脑筋急转弯/十万个为什么 保留查看答案，其余直接显示正文 ----
+check(page.includes('function isQaMode('), '提供按分类判定答题/阅读模式的辅助函数')
+check(/return record\.displayMode === 'qa' \|\| record\.category === '脑筋急转弯' \|\| record\.category === '十万个为什么'/u.test(page), '仅 脑筋急转弯 与 十万个为什么 属于答题模式')
+check(!page.includes('今日 20 题已读完'), '已移除“看完即奖励”的答题完成设定')
+check(!page.includes('isCompleteReward('), '已移除答题完成判定逻辑')
+check(page.includes('this.answerVisible = !isQaMode(riddle) || state.quizViewed.indexOf(idx) >= 0'), '阅读类条目进入即自动显示正文，答题类需查看后才显示')
+check(page.includes("this.answerLabel = isQaMode(riddle) ? '答案' : '正文 · ' + riddle.category"), '阅读类正文区域标注实际分类')
 
 // ---- 其它原有功能保持不变 ----
 check(page.includes('state.lastDay === today.dayNumber - 1'), '实现连续签到计算')
@@ -175,7 +165,7 @@ const dayCells = (page.match(/class="month-cell"/g) || []).length
 check(dayCells === 42, `月历使用 42 格（6 行×7 列，实际 ${dayCells}）`)
 check(!/\bright:\s*\d/u.test(page), '布局统一使用 left/top 定位，未使用 right（规避模拟器支持问题）')
 check(page.includes('detail-next') && page.includes('detailTotal') && page.includes('detailLabel'), '答案/解析过长时可分页（下一段按钮 + 总段数 + 动态文案）')
-check(page.includes('quiz-reward') && page.includes('rewardText'), '奖励提示使用固定位置文本，不挤占题目/答案区')
+check(!page.includes('quiz-reward') && !page.includes('rewardText'), '已移除奖励提示，题目与答案区不再被奖励文字挤占')
 const captureOrder = [
   '03-zodiac.png', '04-zodiac-next.png', '05-calendar.png',
   '06-riddle.png', '07-riddle-answer.png'

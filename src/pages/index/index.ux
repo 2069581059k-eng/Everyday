@@ -59,8 +59,6 @@
 
         <input class="quiz-reveal-btn" show="{{!answerVisible}}" type="button" value="{{revealLabel}}" onclick="revealAnswer" />
 
-        <text class="quiz-reward" show="{{!!rewardText}}">{{rewardText}}</text>
-
         <div class="quiz-answer-box" show="{{answerVisible}}">
           <text class="quiz-answer-label">{{answerLabel}}</text>
           <text class="quiz-answer-text">{{riddleAnswer}}</text>
@@ -4283,12 +4281,16 @@ function mulberry32(seed) {
 
 function knowledgeDetail(record) {
   let text = record.explain
-  if (record.displayMode === 'qa' && !text.includes(record.answer)) text = record.answer + '。' + text
+  if (isQaMode(record) && !text.includes(record.answer)) text = record.answer + '。' + text
   return text + ' 来源：' + record.source
 }
 
+function isQaMode(record) {
+  return record.displayMode === 'qa' || record.category === '脑筋急转弯' || record.category === '十万个为什么'
+}
+
 function knowledgeAnswer(record) {
-  if (record.displayMode !== 'qa') return record.category
+  if (!isQaMode(record)) return ''
   return Array.from(record.answer).length <= 14 ? record.answer : '完整答案见下方详解'
 }
 
@@ -4315,10 +4317,6 @@ function dailyRiddles(dayNumber) {
     for (let j = 0; j < picked.length; j++) daily.push(picked[j])
   }
   return shuffle(daily)
-}
-
-function isCompleteReward(viewedCount, total, awardedDay, todayDay) {
-  return viewedCount >= total && awardedDay !== todayDay
 }
 
 function shouldResetQuizProgress(savedDay, todayDay) {
@@ -4432,7 +4430,6 @@ export default {
     nextDisabled: true,
     prevLabel: '上一题',
     nextLabel: '下一题',
-    rewardText: ''
   },
 
   onInit() {
@@ -4634,11 +4631,11 @@ export default {
     this.quizTotal = len
     this.quizCategory = riddle.category
     this.riddleQuestion = riddle.question
-    this.revealLabel = riddle.displayMode === 'qa' ? '查看答案' : '阅读全文'
-    this.answerLabel = riddle.displayMode === 'qa' ? '答案' : '正文'
-    this.answerVisible = state.quizViewed.indexOf(idx) >= 0
+    this.revealLabel = isQaMode(riddle) ? '查看答案' : '展开正文'
+    this.answerLabel = isQaMode(riddle) ? '答案' : '正文 · ' + riddle.category
+    this.answerVisible = !isQaMode(riddle) || state.quizViewed.indexOf(idx) >= 0
     if (this.answerVisible) {
-      this.riddleAnswer = knowledgeAnswer(riddle)
+      this.riddleAnswer = isQaMode(riddle) ? knowledgeAnswer(riddle) : riddle.question
       this.riddleExplain = riddle.explain
       this.riddleKnowledge = riddle.knowledge || ''
     } else {
@@ -4652,7 +4649,6 @@ export default {
     this.nextDisabled = idx >= len - 1
     this.prevLabel = idx <= 0 ? '已是第一题' : '上一题'
     this.nextLabel = idx >= len - 1 ? '已是最后一题' : '下一题'
-    this.rewardText = ''
   },
 
   revealAnswer() {
@@ -4667,14 +4663,6 @@ export default {
     this.renderDetail()
     if (state.quizViewed.indexOf(idx) < 0) state.quizViewed.push(idx)
     this.pulse('short')
-    const total = dailyRiddleList.length
-    if (state.quizViewed.length >= total && isCompleteReward(state.quizViewed.length, total, state.awardedDay, today.dayNumber)) {
-      state.stars += 1
-      state.awardedDay = today.dayNumber
-      this.refreshStats()
-      this.rewardText = '今日 20 题已读完，获得 1 点灵光 ✦'
-      this.pulse('long')
-    }
     this.saveState()
   },
 
@@ -4792,21 +4780,21 @@ export default {
 
 .quiz-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: #f2eee5; }
 .quiz-panel { position: absolute; left: 12px; top: 12px; width: 312px; height: 456px; border-width: 1px; border-color: #d2c7b8; border-radius: 6px; background-color: #fffdf8; }
-.quiz-kicker { position: absolute; left: 12px; top: 18px; width: 288px; color: #a83b2d; font-size: 25px; font-weight: bold; letter-spacing: 2px; text-align: center; }
-.quiz-count { position: absolute; left: 12px; top: 50px; width: 288px; color: #94887c; font-size: 14px; text-align: center; }
-.quiz-question-box { position: absolute; left: 16px; top: 64px; width: 280px; height: 104px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fbf7f0; }
-.quiz-question { position: absolute; left: 8px; top: 10px; width: 264px; height: 84px; color: #2c2722; font-size: 23px; font-weight: bold; line-height: 28px; text-align: center; }
-.quiz-reveal-btn { position: absolute; left: 36px; top: 178px; width: 240px; height: 46px; border-radius: 4px; background-color: #a83b2d; color: #fffaf2; font-size: 19px; font-weight: bold; }
-.quiz-reward { position: absolute; left: 16px; top: 176px; width: 280px; height: 26px; color: #a43c30; font-size: 16px; font-weight: bold; line-height: 20px; text-align: center; }
-.quiz-answer-box { position: absolute; left: 16px; top: 212px; width: 280px; height: 176px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fffdf8; }
-.quiz-answer-label { position: absolute; left: 8px; top: 8px; width: 60px; color: #a83b2d; font-size: 14px; font-weight: bold; }
-.quiz-answer-text { position: absolute; left: 8px; top: 30px; width: 264px; height: 46px; color: #2c2722; font-size: 18px; font-weight: bold; line-height: 23px; }
-.quiz-explain { position: absolute; left: 8px; top: 84px; width: 264px; height: 76px; color: #776c61; font-size: 17px; line-height: 21px; }
-.detail-next { position: absolute; left: 40px; top: 142px; width: 200px; height: 28px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
+/* 知识正文优先：标题压缩为轻量顶栏，不占用题目空间。 */
+.quiz-kicker { position: absolute; left: 20px; top: 13px; width: 92px; height: 24px; line-height: 24px; color: #a83b2d; font-size: 18px; font-weight: bold; letter-spacing: 1px; }
+.quiz-count { position: absolute; left: 112px; top: 16px; width: 168px; height: 18px; line-height: 18px; color: #94887c; font-size: 12px; text-align: right; }
+.quiz-question-box { position: absolute; left: 16px; top: 48px; width: 280px; height: 132px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fbf7f0; }
+.quiz-question { position: absolute; left: 10px; top: 10px; width: 260px; height: 112px; color: #2c2722; font-size: 23px; font-weight: bold; line-height: 29px; text-align: center; }
+.quiz-reveal-btn { position: absolute; left: 36px; top: 196px; width: 240px; height: 42px; border-radius: 4px; background-color: #a83b2d; color: #fffaf2; font-size: 18px; font-weight: bold; }
+.quiz-answer-box { position: absolute; left: 16px; top: 196px; width: 280px; height: 184px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fffdf8; }
+.quiz-answer-label { position: absolute; left: 10px; top: 8px; width: 60px; color: #a83b2d; font-size: 14px; font-weight: bold; }
+.quiz-answer-text { position: absolute; left: 10px; top: 30px; width: 260px; height: 46px; color: #2c2722; font-size: 19px; font-weight: bold; line-height: 24px; }
+.quiz-explain { position: absolute; left: 10px; top: 82px; width: 260px; height: 72px; color: #776c61; font-size: 16px; line-height: 20px; }
+.detail-next { position: absolute; left: 40px; top: 148px; width: 200px; height: 28px; background-color: #f8f3e9; color: #574e45; font-size: 13px; }
 .quiz-actionbar { position: absolute; left: 16px; top: 400px; width: 280px; height: 48px; }
-.quiz-nav-btn { position: absolute; top: 0; width: 86px; height: 44px; border-width: 1px; border-color: #d4c9ba; border-radius: 4px; background-color: #f8f3e9; color: #574e45; font-size: 15px; font-weight: bold; }
+.quiz-nav-btn { position: absolute; top: 0; width: 86px; height: 44px; border-width: 1px; border-color: #d4c9ba; border-radius: 4px; background-color: #f8f3e9; color: #574e45; font-size: 14px; font-weight: bold; }
 .quiz-prev { left: 0; }
-.quiz-cancel { left: 97px; background-color: #fffdf8; color: #918579; font-size: 14px; }
+.quiz-cancel { left: 97px; background-color: #fffdf8; color: #918579; font-size: 13px; }
 .quiz-next { left: 194px; }
 
 .month-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: #fffdf8; }
