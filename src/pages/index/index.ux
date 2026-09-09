@@ -1,6 +1,6 @@
 <template>
   <div class="page" onswipe="handleSwipe">
-    <text class="brand">每日一言</text>
+    <text class="brand">Daily Spark</text>
 
     <div class="stat-row">
       <text class="stat-text">连续 {{streakText}} 天</text>
@@ -8,24 +8,14 @@
       <text class="star-text">灵光 {{starsText}}</text>
     </div>
 
-    <div class="cover-card" show="{{coverVisible}}">
-      <div class="cover-month-bar">
-        <text class="cover-month">{{monthYearText}}</text>
-      </div>
-      <text class="cover-day">{{dayText}}</text>
-      <text class="cover-weekday">{{weekdayText}}</text>
-      <div class="paper-line"></div>
-      <input class="draw-button" type="button" value="翻开今日一签" onclick="revealToday" disabled="{{!stateReady}}" />
-    </div>
-
     <div class="quote-card" show="{{quoteVisible}}">
       <div class="quote-accent"></div>
-      <text class="quote-kicker">每日一言 · {{quoteNote}}</text>
-      <text class="fortune-stamp">{{fortuneLevel}}</text>
-      <input class="favorite-button" type="button" value="{{favoriteText}}" onclick="toggleFavorite" />
+      <text class="quote-kicker">{{quoteKicker}}</text>
+      <text class="fortune-stamp" show="{{quoteDrawn}}">{{fortuneLevel}}</text>
+      <input class="favorite-button" type="button" value="{{favoriteText}}" onclick="toggleFavorite" disabled="{{!quoteDrawn}}" />
       <text class="quote-text">{{quoteText}}</text>
-      <text class="quote-source">— {{quoteSource}}</text>
-      <text class="fortune-tip">{{fortuneTip}}</text>
+      <text class="quote-source" show="{{quoteDrawn}}">— {{quoteSource}}</text>
+      <text class="fortune-tip" show="{{quoteDrawn}}">{{fortuneTip}}</text>
     </div>
 
     <div class="feature-row" show="{{quoteVisible}}">
@@ -45,7 +35,7 @@
 
     <div class="quote-actions" show="{{quoteVisible}}">
       <input class="action-button action-primary" type="button" value="知识大全" onclick="startQuiz" />
-      <input class="action-button action-secondary" type="button" value="换一句" onclick="drawAnother" />
+      <input class="action-button action-secondary" type="button" value="抽一签" onclick="drawFortune" />
     </div>
 
     <div class="quiz-mask" show="{{quizVisible}}">
@@ -93,48 +83,48 @@
       <text class="month-week-cell" style="left: 188px;">四</text>
       <text class="month-week-cell" style="left: 232px;">五</text>
       <text class="month-week-cell" style="left: 276px;">六</text>
-      <text class="month-cell" style="left: 12px; top: 130px; color: {{calToday0 ? '#a83b2d' : '#383029'}};">{{calCell0}}</text>
-<text class="month-cell" style="left: 56px; top: 130px; color: {{calToday1 ? '#a83b2d' : '#383029'}};">{{calCell1}}</text>
-<text class="month-cell" style="left: 100px; top: 130px; color: {{calToday2 ? '#a83b2d' : '#383029'}};">{{calCell2}}</text>
-<text class="month-cell" style="left: 144px; top: 130px; color: {{calToday3 ? '#a83b2d' : '#383029'}};">{{calCell3}}</text>
-<text class="month-cell" style="left: 188px; top: 130px; color: {{calToday4 ? '#a83b2d' : '#383029'}};">{{calCell4}}</text>
-<text class="month-cell" style="left: 232px; top: 130px; color: {{calToday5 ? '#a83b2d' : '#383029'}};">{{calCell5}}</text>
-<text class="month-cell" style="left: 276px; top: 130px; color: {{calToday6 ? '#a83b2d' : '#383029'}};">{{calCell6}}</text>
-<text class="month-cell" style="left: 12px; top: 169px; color: {{calToday7 ? '#a83b2d' : '#383029'}};">{{calCell7}}</text>
-<text class="month-cell" style="left: 56px; top: 169px; color: {{calToday8 ? '#a83b2d' : '#383029'}};">{{calCell8}}</text>
-<text class="month-cell" style="left: 100px; top: 169px; color: {{calToday9 ? '#a83b2d' : '#383029'}};">{{calCell9}}</text>
-<text class="month-cell" style="left: 144px; top: 169px; color: {{calToday10 ? '#a83b2d' : '#383029'}};">{{calCell10}}</text>
-<text class="month-cell" style="left: 188px; top: 169px; color: {{calToday11 ? '#a83b2d' : '#383029'}};">{{calCell11}}</text>
-<text class="month-cell" style="left: 232px; top: 169px; color: {{calToday12 ? '#a83b2d' : '#383029'}};">{{calCell12}}</text>
-<text class="month-cell" style="left: 276px; top: 169px; color: {{calToday13 ? '#a83b2d' : '#383029'}};">{{calCell13}}</text>
-<text class="month-cell" style="left: 12px; top: 208px; color: {{calToday14 ? '#a83b2d' : '#383029'}};">{{calCell14}}</text>
-<text class="month-cell" style="left: 56px; top: 208px; color: {{calToday15 ? '#a83b2d' : '#383029'}};">{{calCell15}}</text>
-<text class="month-cell" style="left: 100px; top: 208px; color: {{calToday16 ? '#a83b2d' : '#383029'}};">{{calCell16}}</text>
-<text class="month-cell" style="left: 144px; top: 208px; color: {{calToday17 ? '#a83b2d' : '#383029'}};">{{calCell17}}</text>
-<text class="month-cell" style="left: 188px; top: 208px; color: {{calToday18 ? '#a83b2d' : '#383029'}};">{{calCell18}}</text>
-<text class="month-cell" style="left: 232px; top: 208px; color: {{calToday19 ? '#a83b2d' : '#383029'}};">{{calCell19}}</text>
-<text class="month-cell" style="left: 276px; top: 208px; color: {{calToday20 ? '#a83b2d' : '#383029'}};">{{calCell20}}</text>
-<text class="month-cell" style="left: 12px; top: 247px; color: {{calToday21 ? '#a83b2d' : '#383029'}};">{{calCell21}}</text>
-<text class="month-cell" style="left: 56px; top: 247px; color: {{calToday22 ? '#a83b2d' : '#383029'}};">{{calCell22}}</text>
-<text class="month-cell" style="left: 100px; top: 247px; color: {{calToday23 ? '#a83b2d' : '#383029'}};">{{calCell23}}</text>
-<text class="month-cell" style="left: 144px; top: 247px; color: {{calToday24 ? '#a83b2d' : '#383029'}};">{{calCell24}}</text>
-<text class="month-cell" style="left: 188px; top: 247px; color: {{calToday25 ? '#a83b2d' : '#383029'}};">{{calCell25}}</text>
-<text class="month-cell" style="left: 232px; top: 247px; color: {{calToday26 ? '#a83b2d' : '#383029'}};">{{calCell26}}</text>
-<text class="month-cell" style="left: 276px; top: 247px; color: {{calToday27 ? '#a83b2d' : '#383029'}};">{{calCell27}}</text>
-<text class="month-cell" style="left: 12px; top: 286px; color: {{calToday28 ? '#a83b2d' : '#383029'}};">{{calCell28}}</text>
-<text class="month-cell" style="left: 56px; top: 286px; color: {{calToday29 ? '#a83b2d' : '#383029'}};">{{calCell29}}</text>
-<text class="month-cell" style="left: 100px; top: 286px; color: {{calToday30 ? '#a83b2d' : '#383029'}};">{{calCell30}}</text>
-<text class="month-cell" style="left: 144px; top: 286px; color: {{calToday31 ? '#a83b2d' : '#383029'}};">{{calCell31}}</text>
-<text class="month-cell" style="left: 188px; top: 286px; color: {{calToday32 ? '#a83b2d' : '#383029'}};">{{calCell32}}</text>
-<text class="month-cell" style="left: 232px; top: 286px; color: {{calToday33 ? '#a83b2d' : '#383029'}};">{{calCell33}}</text>
-<text class="month-cell" style="left: 276px; top: 286px; color: {{calToday34 ? '#a83b2d' : '#383029'}};">{{calCell34}}</text>
-<text class="month-cell" style="left: 12px; top: 325px; color: {{calToday35 ? '#a83b2d' : '#383029'}};">{{calCell35}}</text>
-<text class="month-cell" style="left: 56px; top: 325px; color: {{calToday36 ? '#a83b2d' : '#383029'}};">{{calCell36}}</text>
-<text class="month-cell" style="left: 100px; top: 325px; color: {{calToday37 ? '#a83b2d' : '#383029'}};">{{calCell37}}</text>
-<text class="month-cell" style="left: 144px; top: 325px; color: {{calToday38 ? '#a83b2d' : '#383029'}};">{{calCell38}}</text>
-<text class="month-cell" style="left: 188px; top: 325px; color: {{calToday39 ? '#a83b2d' : '#383029'}};">{{calCell39}}</text>
-<text class="month-cell" style="left: 232px; top: 325px; color: {{calToday40 ? '#a83b2d' : '#383029'}};">{{calCell40}}</text>
-<text class="month-cell" style="left: 276px; top: 325px; color: {{calToday41 ? '#a83b2d' : '#383029'}};">{{calCell41}}</text>
+      <text class="month-cell" style="left: 12px; top: 130px; color: {{calColor0}};">{{calCell0}}</text>
+<text class="month-cell" style="left: 56px; top: 130px; color: {{calColor1}};">{{calCell1}}</text>
+<text class="month-cell" style="left: 100px; top: 130px; color: {{calColor2}};">{{calCell2}}</text>
+<text class="month-cell" style="left: 144px; top: 130px; color: {{calColor3}};">{{calCell3}}</text>
+<text class="month-cell" style="left: 188px; top: 130px; color: {{calColor4}};">{{calCell4}}</text>
+<text class="month-cell" style="left: 232px; top: 130px; color: {{calColor5}};">{{calCell5}}</text>
+<text class="month-cell" style="left: 276px; top: 130px; color: {{calColor6}};">{{calCell6}}</text>
+<text class="month-cell" style="left: 12px; top: 169px; color: {{calColor7}};">{{calCell7}}</text>
+<text class="month-cell" style="left: 56px; top: 169px; color: {{calColor8}};">{{calCell8}}</text>
+<text class="month-cell" style="left: 100px; top: 169px; color: {{calColor9}};">{{calCell9}}</text>
+<text class="month-cell" style="left: 144px; top: 169px; color: {{calColor10}};">{{calCell10}}</text>
+<text class="month-cell" style="left: 188px; top: 169px; color: {{calColor11}};">{{calCell11}}</text>
+<text class="month-cell" style="left: 232px; top: 169px; color: {{calColor12}};">{{calCell12}}</text>
+<text class="month-cell" style="left: 276px; top: 169px; color: {{calColor13}};">{{calCell13}}</text>
+<text class="month-cell" style="left: 12px; top: 208px; color: {{calColor14}};">{{calCell14}}</text>
+<text class="month-cell" style="left: 56px; top: 208px; color: {{calColor15}};">{{calCell15}}</text>
+<text class="month-cell" style="left: 100px; top: 208px; color: {{calColor16}};">{{calCell16}}</text>
+<text class="month-cell" style="left: 144px; top: 208px; color: {{calColor17}};">{{calCell17}}</text>
+<text class="month-cell" style="left: 188px; top: 208px; color: {{calColor18}};">{{calCell18}}</text>
+<text class="month-cell" style="left: 232px; top: 208px; color: {{calColor19}};">{{calCell19}}</text>
+<text class="month-cell" style="left: 276px; top: 208px; color: {{calColor20}};">{{calCell20}}</text>
+<text class="month-cell" style="left: 12px; top: 247px; color: {{calColor21}};">{{calCell21}}</text>
+<text class="month-cell" style="left: 56px; top: 247px; color: {{calColor22}};">{{calCell22}}</text>
+<text class="month-cell" style="left: 100px; top: 247px; color: {{calColor23}};">{{calCell23}}</text>
+<text class="month-cell" style="left: 144px; top: 247px; color: {{calColor24}};">{{calCell24}}</text>
+<text class="month-cell" style="left: 188px; top: 247px; color: {{calColor25}};">{{calCell25}}</text>
+<text class="month-cell" style="left: 232px; top: 247px; color: {{calColor26}};">{{calCell26}}</text>
+<text class="month-cell" style="left: 276px; top: 247px; color: {{calColor27}};">{{calCell27}}</text>
+<text class="month-cell" style="left: 12px; top: 286px; color: {{calColor28}};">{{calCell28}}</text>
+<text class="month-cell" style="left: 56px; top: 286px; color: {{calColor29}};">{{calCell29}}</text>
+<text class="month-cell" style="left: 100px; top: 286px; color: {{calColor30}};">{{calCell30}}</text>
+<text class="month-cell" style="left: 144px; top: 286px; color: {{calColor31}};">{{calCell31}}</text>
+<text class="month-cell" style="left: 188px; top: 286px; color: {{calColor32}};">{{calCell32}}</text>
+<text class="month-cell" style="left: 232px; top: 286px; color: {{calColor33}};">{{calCell33}}</text>
+<text class="month-cell" style="left: 276px; top: 286px; color: {{calColor34}};">{{calCell34}}</text>
+<text class="month-cell" style="left: 12px; top: 325px; color: {{calColor35}};">{{calCell35}}</text>
+<text class="month-cell" style="left: 56px; top: 325px; color: {{calColor36}};">{{calCell36}}</text>
+<text class="month-cell" style="left: 100px; top: 325px; color: {{calColor37}};">{{calCell37}}</text>
+<text class="month-cell" style="left: 144px; top: 325px; color: {{calColor38}};">{{calCell38}}</text>
+<text class="month-cell" style="left: 188px; top: 325px; color: {{calColor39}};">{{calCell39}}</text>
+<text class="month-cell" style="left: 232px; top: 325px; color: {{calColor40}};">{{calCell40}}</text>
+<text class="month-cell" style="left: 276px; top: 325px; color: {{calColor41}};">{{calCell41}}</text>
 
       <text class="month-info">{{calendarInfo}}</text>
       <input class="month-current" type="button" value="回到本月" onclick="currentMonth" />
@@ -4195,6 +4185,32 @@ function pad(value) {
   return value < 10 ? '0' + value : String(value)
 }
 
+// 2026 中国法定节假日（官方安排）：[月, 开始日, 结束日, 名称]
+const HOLIDAYS_2026 = [
+  [1, 1, 3, '元旦'],
+  [2, 15, 23, '春节'],
+  [4, 4, 6, '清明'],
+  [5, 1, 5, '劳动节'],
+  [6, 19, 21, '端午'],
+  [9, 25, 27, '中秋'],
+  [10, 1, 7, '国庆']
+]
+function isLegalHoliday(year, month, day) {
+  if (year !== 2026) return ''
+  for (const h of HOLIDAYS_2026) {
+    if (month === h[0] && day >= h[1] && day <= h[2]) return h[3]
+  }
+  return ''
+}
+function monthHolidayText(year, month) {
+  const names = []
+  for (const h of HOLIDAYS_2026) {
+    if (year !== 2026) continue
+    if (h[0] === month) names.push(h[3] + ' ' + h[1] + '-' + h[2] + '日')
+  }
+  return names.length ? '假期 ' + names.join('、') : ''
+}
+
 const WEEKDAYS = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
 const ZODIACS = [
   { name: '白羊座', range: '03.21—04.19' },
@@ -4267,15 +4283,6 @@ function moonPhase(dayNumber) {
   return MOON_PHASES[Math.floor((age + cycle / 16) / (cycle / 8)) % 8]
 }
 
-function fortuneForDay(dayNumber) {
-  const value = ((dayNumber * 29 + 17) % 100 + 100) % 100
-  if (value < 12) return FORTUNES[0]
-  if (value < 37) return FORTUNES[1]
-  if (value < 70) return FORTUNES[2]
-  if (value < 91) return FORTUNES[3]
-  return FORTUNES[4]
-}
-
 function mulberry32(seed) {
   let a = seed >>> 0
   return function () {
@@ -4332,7 +4339,6 @@ function shouldResetQuizProgress(savedDay, todayDay) {
 
 const today = dayInfo(new Date())
 const todayIndex = quoteIndex(today.dayNumber)
-const todayFortune = fortuneForDay(today.dayNumber)
 const dailyRiddleList = dailyRiddles(today.dayNumber)
 let currentIndex = todayIndex
 let state = {
@@ -4397,6 +4403,48 @@ export default {
     calCell39: '', calToday39: false,
     calCell40: '', calToday40: false,
     calCell41: '', calToday41: false,
+    calColor0: "#383029",
+    calColor1: "#383029",
+    calColor2: "#383029",
+    calColor3: "#383029",
+    calColor4: "#383029",
+    calColor5: "#383029",
+    calColor6: "#383029",
+    calColor7: "#383029",
+    calColor8: "#383029",
+    calColor9: "#383029",
+    calColor10: "#383029",
+    calColor11: "#383029",
+    calColor12: "#383029",
+    calColor13: "#383029",
+    calColor14: "#383029",
+    calColor15: "#383029",
+    calColor16: "#383029",
+    calColor17: "#383029",
+    calColor18: "#383029",
+    calColor19: "#383029",
+    calColor20: "#383029",
+    calColor21: "#383029",
+    calColor22: "#383029",
+    calColor23: "#383029",
+    calColor24: "#383029",
+    calColor25: "#383029",
+    calColor26: "#383029",
+    calColor27: "#383029",
+    calColor28: "#383029",
+    calColor29: "#383029",
+    calColor30: "#383029",
+    calColor31: "#383029",
+    calColor32: "#383029",
+    calColor33: "#383029",
+    calColor34: "#383029",
+    calColor35: "#383029",
+    calColor36: "#383029",
+    calColor37: "#383029",
+    calColor38: "#383029",
+    calColor39: "#383029",
+    calColor40: "#383029",
+    calColor41: "#383029",
 
     streakText: '0',
     starsText: '0',
@@ -4406,20 +4454,22 @@ export default {
     dayText: pad(today.date),
     weekdayText: WEEKDAYS[today.weekday],
     yearDayText: '今年第 ' + today.dayOfYear + ' 天',
-    coverVisible: true,
-    quoteVisible: false,
+    quoteVisible: true,
     quizVisible: false,
     zodiacVisible: false,
-    quoteText: QUOTES[todayIndex].text,
-    quoteSource: '今日一言',
-    quoteNote: QUOTES[todayIndex].note,
-    fortuneLevel: todayFortune.level,
-    fortuneTip: todayFortune.tip,
+    quoteDrawn: false,
+    quoteKicker: 'Daily Spark',
+    quoteText: '轻触下方「抽一签」，看看今天与哪句话有缘。',
+    quoteSource: '',
+    quoteNote: '',
+    fortuneLevel: '',
+    fortuneTip: '',
     zodiacName: ZODIACS[state.zodiacIndex].name,
     zodiacRange: ZODIACS[state.zodiacIndex].range,
     moonText: '月相 · ' + moonPhase(today.dayNumber),
     astroTip: '',
     favoriteText: '收藏',
+    calendarHolidayText: '',
     riddleQuestion: '',
     quizCategory: '',
     quizPos: 0,
@@ -4442,7 +4492,6 @@ export default {
 
   onInit() {
     this.loadState()
-    this.applyQuote(todayIndex, true)
     this.refreshAstro()
   },
 
@@ -4477,6 +4526,7 @@ export default {
       page.refreshStats()
       page.refreshFavorite()
       page.refreshAstro()
+      page.recordToday()
     }
     try {
       storage.get({
@@ -4557,12 +4607,16 @@ export default {
     this.pulse('short')
   },
 
-  revealToday() {
+  drawFortune() {
     if (!this.stateReady) return
     this.recordToday()
-    this.applyQuote(todayIndex, true)
-    this.coverVisible = false
-    this.quoteVisible = true
+    let next = (currentIndex + 1 + Math.floor(Math.random() * (QUOTES.length - 1))) % QUOTES.length
+    if (next === currentIndex) next = (next + 1) % QUOTES.length
+    this.applyQuote(next, false)
+    const fortune = FORTUNES[Math.floor(Math.random() * FORTUNES.length)]
+    this.fortuneLevel = fortune.level
+    this.fortuneTip = fortune.tip
+    this.quoteDrawn = true
     this.pulse('short')
   },
 
@@ -4579,15 +4633,9 @@ export default {
     const quote = QUOTES[index]
     this.quoteText = quote.text
     this.quoteNote = quote.note
-    this.quoteSource = quote.source || (isToday ? '今日一言' : '随手一签')
+    this.quoteKicker = quote.note ? 'Daily Spark · ' + quote.note : 'Daily Spark'
+    this.quoteSource = quote.source || 'Daily Spark'
     this.refreshFavorite()
-  },
-
-  drawAnother() {
-    let next = (currentIndex + 7) % QUOTES.length
-    if (next === todayIndex) next = (next + 1) % QUOTES.length
-    this.applyQuote(next, false)
-    this.pulse('short')
   },
 
   openCalendar() { this.calendarVisible = true; this.renderCalendar() },
@@ -4611,10 +4659,24 @@ export default {
     const days = new Date(y, m, 0).getDate()
     this.calendarTitle = y + '年 ' + m + '月'
     this.calendarInfo = '本月 ' + days + ' 天 · 今日 ' + today.label
+    const holidayText = monthHolidayText(y, m)
+    if (holidayText) this.calendarInfo = '本月 ' + days + ' 天 · ' + holidayText
     for (let i = 0; i < 42; i++) {
       const d = i - first + 1
-      this['calCell' + i] = d > 0 && d <= days ? String(d) : ''
+      const inMonth = d > 0 && d <= days
+      this['calCell' + i] = inMonth ? String(d) : ''
       this['calToday' + i] = y === today.year && m === today.month && d === today.date
+      let color = '#d8d2c6'
+      if (inMonth) {
+        const dow = (i % 7)
+        const isWeekend = dow === 0 || dow === 6
+        const holiday = isLegalHoliday(y, m, d)
+        if (this['calToday' + i]) color = '#a83b2d'
+        else if (holiday) color = '#c0392b'
+        else if (isWeekend) color = '#3f7d46'
+        else color = '#383029'
+      }
+      this['calColor' + i] = color
     }
   },
 
@@ -4642,7 +4704,7 @@ export default {
     this.isQaItem = isQaMode(riddle)
     this.revealLabel = this.isQaItem ? '查看答案' : '展开正文'
     this.answerLabel = this.isQaItem ? '答案' : riddle.category
-    this.answerVisible = !this.isQaItem || state.quizViewed.indexOf(idx) >= 0
+    this.answerVisible = !this.isQaItem
     if (this.answerVisible) {
       this.riddleAnswer = this.isQaItem ? knowledgeAnswer(riddle) : riddle.question
       this.riddleExplain = riddle.explain
@@ -4651,6 +4713,8 @@ export default {
       this.riddleAnswer = ''
       this.riddleExplain = ''
       this.riddleKnowledge = ''
+      this.detailTotal = 1
+      this.detailLabel = ''
     }
     this.detailIndex = 0
     if (this.answerVisible) this.renderDetail()
@@ -4748,20 +4812,12 @@ export default {
 
 <style>
 .page { position: relative; width: 336px; height: 480px; background-color: #f2eee5; overflow: hidden; }
-.brand { position: absolute; left: 16px; top: 9px; width: 200px; color: #27231f; font-size: 26px; font-weight: bold; letter-spacing: 2px; }
+.brand { position: absolute; left: 0; top: 8px; width: 336px; color: #6f655a; font-size: 15px; font-weight: bold; letter-spacing: 2px; text-align: center; }
 
-.stat-row { position: absolute; left: 15px; top: 48px; width: 306px; height: 19px; border-bottom-width: 1px; border-color: #d6cec1; }
+.stat-row { position: absolute; left: 15px; top: 44px; width: 306px; height: 19px; border-bottom-width: 1px; border-color: #d6cec1; }
 .stat-text { position: absolute; left: 0; top: 0; width: 100px; color: #786e63; font-size: 14px; }
 .date-text { position: absolute; left: 113px; top: 0; width: 100px; color: #473f37; font-size: 14px; text-align: center; }
 .star-text { position: absolute; left: 236px; top: 0; width: 70px; color: #a43c30; font-size: 14px; text-align: right; }
-
-.cover-card { position: absolute; left: 29px; top: 82px; width: 278px; height: 330px; border-width: 1px; border-color: #d6cbbb; border-radius: 6px; background-color: #fffdf8; }
-.cover-month-bar { position: absolute; left: 0; top: 0; width: 276px; height: 48px; background-color: #a83b2d; }
-.cover-month { position: absolute; left: 28px; top: 14px; width: 220px; color: #fffaf2; font-size: 21px; font-weight: bold; letter-spacing: 2px; text-align: center; }
-.cover-day { position: absolute; left: 50px; top: 62px; width: 178px; color: #24201c; font-size: 114px; font-weight: bold; text-align: center; }
-.cover-weekday { position: absolute; left: 79px; top: 180px; width: 120px; color: #a83b2d; font-size: 21px; font-weight: bold; letter-spacing: 3px; text-align: center; }
-.paper-line { position: absolute; left: 34px; top: 210px; width: 210px; height: 1px; background-color: #ddd4c7; }
-.draw-button { position: absolute; left: 42px; top: 287px; width: 194px; height: 45px; border-radius: 4px; background-color: #a83b2d; color: #fffaf2; font-size: 19px; font-weight: bold; }
 
 .quote-card { position: absolute; left: 14px; top: 76px; width: 308px; height: 181px; border-width: 1px; border-color: #d7cdbf; border-radius: 6px; background-color: #fffdf8; }
 .quote-accent { position: absolute; left: 0; top: 0; width: 5px; height: 179px; background-color: #a83b2d; }
