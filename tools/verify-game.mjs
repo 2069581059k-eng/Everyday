@@ -135,9 +135,10 @@ check(/return record\.displayMode === 'qa' \|\| record\.category === '脑筋急�
 check(!page.includes('今日 20 题已读完'), '已移除“看完即奖励”的答题完成设定')
 check(!page.includes('isCompleteReward('), '已移除答题完成判定逻辑')
 check(page.includes('this.answerVisible = !this.isQaItem || state.quizViewed.indexOf(idx) >= 0'), '阅读类条目进入即自动显示正文，答题类需查看后才显示')
-check(page.includes("this.answerLabel = this.isQaItem ? '答案' : riddle.category"), '阅读类不再显示“正文 · 分类”标签，仅答题类标注“答案”')
-check(page.includes('<text class="quiz-kicker">{{quizCategory}}</text>') && /<div class="qa-mode" show="\{\{isQaItem\}\}">[\s\S]*?<div class="read-mode" show="\{\{!isQaItem\}\}">/u.test(page), '阅读类不显示顶部大标签，答题类顶部标签显示当前分类')
-check(page.includes('riddleExplain = chunks[this.detailIndex]') && page.includes("this.answerLabel = this.isQaItem ? '答案' : riddle.category"), '阅读模式不重复标题与来源，正文直接铺满')
+check(page.includes("this.answerLabel = this.isQaItem ? '答案' : riddle.category"), '仅答题类在答案框标注“答案”，正文框不再显示“正文·分类”')
+check(page.includes('<text class="quiz-kicker">{{quizCategory}}</text>') && /<div class="qa-mode" show="\{\{isQaItem\}\}">[\s\S]*?<div class="read-mode" show="\{\{!isQaItem\}\}">/u.test(page), '答题模式顶部标签显示当前分类，阅读模式独立布局')
+check(page.includes('<text class="read-kicker">{{quizCategory}}</text>') && page.includes('<text class="read-title">{{riddleQuestion}}</text>') && page.includes('<text class="read-text">{{riddleExplain}}</text>'), '阅读模式左上显示分类标签，正文含子标题与大号正文')
+check(page.includes('riddleExplain = chunks[this.detailIndex]') && page.includes("this.answerLabel = this.isQaItem ? '答案' : riddle.category"), '正文不重复“正文·分类”标签，不拼接来源')
 
 // ---- 其它原有功能保持不变 ----
 check(page.includes('state.lastDay === today.dayNumber - 1'), '实现连续签到计算')

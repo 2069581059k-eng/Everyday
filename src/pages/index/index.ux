@@ -69,7 +69,9 @@
         </div>
 
         <div class="read-mode" show="{{!isQaItem}}">
+          <text class="read-kicker">{{quizCategory}}</text>
           <text class="read-count">{{quizPos}} / {{quizTotal}}</text>
+          <text class="read-title">{{riddleQuestion}}</text>
           <text class="read-text">{{riddleExplain}}</text>
           <input class="read-next" show="{{detailTotal > 1}}" type="button" value="{{detailLabel}}" onclick="nextDetail" />
         </div>
@@ -4800,11 +4802,13 @@ export default {
 .quiz-answer-text { position: absolute; left: 10px; top: 26px; width: 260px; height: 52px; color: #2c2722; font-size: 20px; font-weight: bold; line-height: 25px; }
 .quiz-explain { position: absolute; left: 10px; top: 84px; width: 260px; height: 74px; color: #776c61; font-size: 17px; line-height: 22px; }
 .detail-next { position: absolute; left: 50px; top: 162px; width: 180px; height: 30px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
-/* 阅读模式：不显示分类大标签，直接大号正文铺满。 */
+/* 阅读模式：左上角显示分类标签，正文区含子标题 + 大号正文。 */
 .read-mode { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
-.read-count { position: absolute; left: 216px; top: 10px; width: 80px; height: 16px; line-height: 16px; color: #94887c; font-size: 11px; text-align: right; }
-.read-text { position: absolute; left: 18px; top: 34px; width: 276px; height: 322px; color: #29241f; font-size: 22px; font-weight: bold; line-height: 30px; text-align: left; }
-.read-next { position: absolute; left: 56px; top: 362px; width: 200px; height: 30px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
+.read-kicker { position: absolute; left: 16px; top: 10px; width: 150px; height: 20px; line-height: 20px; color: #a83b2d; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
+.read-count { position: absolute; left: 216px; top: 13px; width: 80px; height: 16px; line-height: 16px; color: #94887c; font-size: 11px; text-align: right; }
+.read-title { position: absolute; left: 18px; top: 36px; width: 276px; height: 58px; color: #2c2722; font-size: 19px; font-weight: bold; line-height: 24px; text-align: center; }
+.read-text { position: absolute; left: 18px; top: 102px; width: 276px; height: 248px; color: #29241f; font-size: 20px; font-weight: bold; line-height: 28px; text-align: left; }
+.read-next { position: absolute; left: 56px; top: 360px; width: 200px; height: 30px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
 .quiz-actionbar { position: absolute; left: 16px; top: 400px; width: 280px; height: 48px; }
 .quiz-nav-btn { position: absolute; top: 0; width: 86px; height: 44px; border-width: 1px; border-color: #d4c9ba; border-radius: 4px; background-color: #f8f3e9; color: #574e45; font-size: 14px; font-weight: bold; }
 .quiz-prev { left: 0; }
