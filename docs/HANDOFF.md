@@ -1,5 +1,12 @@
 # 当前交接
 
+## 2026-09-09 · WorkBuddy(agent) Release 发布
+
+- 已按用户要求把构建产物发布到 GitHub Releases：tag `v1.8.1`（提交 06bb13f，分支 agent-knux-cleanup）。
+- Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.1（预发布）
+- 附件（全部 uploaded）：BIN/RPK（各 1,023,408 B，SHA-256 b750dd19…）、sha256、源码 zip、THIRD_PARTY_NOTICES、AGPL/Apache/CC-BY-SA 许可证。
+- 说明：JSC 构建与校验通过，静态/逻辑测试通过；未模拟器/真机实测（预发布标注）。后续每次构建完请同样发布到 Releases。
+
 ## 2026-09-09 · WorkBuddy(agent) 更新
 
 - 实现提交：4fe3771（阅读类显示分类标签与子标题）、d08f23e（每日 50 条、答题答案去重），分支 agent-knux-cleanup。
