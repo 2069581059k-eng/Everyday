@@ -1,5 +1,14 @@
 # 当前交接
 
+## 2026-09-09 · WorkBuddy(agent) 1.8.6 黑屏根因修复
+
+- 分支 agent-knux-cleanup；实现 5711365（内联工具+根因记录）。
+- 根因：1.8.4/1.8.5 页面改用 `import common/*.js` 自定义模块；Vela 真机/模拟器运行时无法解析（RPK 只含页面 .jsc，不含 common/*.js），启动 onInit TypeError 黑屏。对照：1.8.3（数据内嵌、无 import）真机正常。
+- 修复：tools/inline-modules.mjs 在打包前递归把页面自定义 import 替换为模块源码（default 导出转 const），产出完全自包含页面。common/data|utils 保留为数据源。
+- 发布流程：git archive 副本 → npm run test（源仓库）→ node tools/inline-modules.mjs → aiot build --enable-jsc → verify-rpk → package:release。
+- Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.6（预发布）；BIN 1,340,247 B，SHA-256 c05699a8…。
+- 验证：5 页 jsc 自包含、构建+JSC 校验通过；尚未真机复核。
+
 ## 2026-09-09 · WorkBuddy(agent) 1.8.4 五页面架构拆分
 
 - 分支 agent-knux-cleanup；实现 a5ca672（页面拆分）→ cb8e206（版本 1.8.4/10804）。
