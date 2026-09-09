@@ -36,6 +36,12 @@
       "pages/index": {
         "component": "index"
       },
+      "pages/knowledge": {
+        "component": "knowledge"
+      },
+      "pages/calendar": {
+        "component": "calendar"
+      },
       "pages/zodiac-test": {
         "component": "zodiac-test"
       },

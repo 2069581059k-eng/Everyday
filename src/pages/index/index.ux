@@ -19,7 +19,7 @@
     </div>
 
     <div class="feature-row" show="{{quoteVisible}}">
-      <div class="calendar-card" onclick="openCalendar">
+      <div class="calendar-card" onclick="openCalendarPage">
         <text class="feature-title">今日日历</text>
         <text class="calendar-day">{{dayText}}</text>
         <text class="calendar-month">{{monthShortText}} {{weekdayText}}</text>
@@ -34,101 +34,8 @@
     </div>
 
     <div class="quote-actions" show="{{quoteVisible}}">
-      <input class="action-button action-primary" type="button" value="知识大全" onclick="startQuiz" />
+      <input class="action-button action-primary" type="button" value="知识大全" onclick="openKnowledgePage" />
       <input class="action-button action-secondary" type="button" value="抽一签" onclick="drawFortune" />
-    </div>
-
-    <div class="quiz-mask" show="{{quizVisible}}">
-      <div class="quiz-panel">
-        <div class="qa-mode" show="{{isQaItem}}">
-          <text class="quiz-kicker">{{quizCategory}}</text>
-          <text class="quiz-count">{{quizPos}} / {{quizTotal}}</text>
-
-          <div class="quiz-question-box">
-            <text class="quiz-question">{{riddleQuestion}}</text>
-          </div>
-
-          <input class="quiz-reveal-btn" show="{{!answerVisible}}" type="button" value="{{revealLabel}}" onclick="revealAnswer" />
-
-          <div class="quiz-answer-box" show="{{answerVisible}}">
-            <text class="quiz-answer-label">答案</text>
-            <text class="quiz-explain">{{riddleExplain}}</text>
-            <input class="detail-next" show="{{detailTotal > 1}}" type="button" value="{{detailLabel}}" onclick="nextDetail" />
-          </div>
-        </div>
-
-        <div class="read-mode" show="{{!isQaItem}}">
-          <text class="read-kicker">{{quizCategory}}</text>
-          <text class="read-count">{{quizPos}} / {{quizTotal}}</text>
-          <text class="read-title">{{riddleQuestion}}</text>
-          <text class="read-text">{{riddleExplain}}</text>
-          <input class="read-next" show="{{detailTotal > 1}}" type="button" value="{{detailLabel}}" onclick="nextDetail" />
-        </div>
-
-        <div class="quiz-actionbar">
-          <input class="quiz-nav-btn quiz-prev" type="button" value="{{prevLabel}}" onclick="prevQuestion" disabled="{{prevDisabled}}" />
-          <input class="quiz-nav-btn quiz-cancel" type="button" value="返回今日" onclick="closeQuiz" />
-          <input class="quiz-nav-btn quiz-next" type="button" value="{{nextLabel}}" onclick="nextQuestion" disabled="{{nextDisabled}}" />
-        </div>
-      </div>
-    </div>
-    <div class="month-mask" show="{{calendarVisible}}">
-      <text class="month-title">{{calendarTitle}}</text>
-      <input class="month-prev" type="button" value="上月" onclick="previousMonth" />
-      <input class="month-next" type="button" value="下月" onclick="nextMonth" />
-      <text class="month-week-cell" style="left: 12px;">日</text>
-      <text class="month-week-cell" style="left: 56px;">一</text>
-      <text class="month-week-cell" style="left: 100px;">二</text>
-      <text class="month-week-cell" style="left: 144px;">三</text>
-      <text class="month-week-cell" style="left: 188px;">四</text>
-      <text class="month-week-cell" style="left: 232px;">五</text>
-      <text class="month-week-cell" style="left: 276px;">六</text>
-      <text class="month-cell" style="left: 12px; top: 130px; color: {{calColor0}};">{{calCell0}}</text>
-<text class="month-cell" style="left: 56px; top: 130px; color: {{calColor1}};">{{calCell1}}</text>
-<text class="month-cell" style="left: 100px; top: 130px; color: {{calColor2}};">{{calCell2}}</text>
-<text class="month-cell" style="left: 144px; top: 130px; color: {{calColor3}};">{{calCell3}}</text>
-<text class="month-cell" style="left: 188px; top: 130px; color: {{calColor4}};">{{calCell4}}</text>
-<text class="month-cell" style="left: 232px; top: 130px; color: {{calColor5}};">{{calCell5}}</text>
-<text class="month-cell" style="left: 276px; top: 130px; color: {{calColor6}};">{{calCell6}}</text>
-<text class="month-cell" style="left: 12px; top: 169px; color: {{calColor7}};">{{calCell7}}</text>
-<text class="month-cell" style="left: 56px; top: 169px; color: {{calColor8}};">{{calCell8}}</text>
-<text class="month-cell" style="left: 100px; top: 169px; color: {{calColor9}};">{{calCell9}}</text>
-<text class="month-cell" style="left: 144px; top: 169px; color: {{calColor10}};">{{calCell10}}</text>
-<text class="month-cell" style="left: 188px; top: 169px; color: {{calColor11}};">{{calCell11}}</text>
-<text class="month-cell" style="left: 232px; top: 169px; color: {{calColor12}};">{{calCell12}}</text>
-<text class="month-cell" style="left: 276px; top: 169px; color: {{calColor13}};">{{calCell13}}</text>
-<text class="month-cell" style="left: 12px; top: 208px; color: {{calColor14}};">{{calCell14}}</text>
-<text class="month-cell" style="left: 56px; top: 208px; color: {{calColor15}};">{{calCell15}}</text>
-<text class="month-cell" style="left: 100px; top: 208px; color: {{calColor16}};">{{calCell16}}</text>
-<text class="month-cell" style="left: 144px; top: 208px; color: {{calColor17}};">{{calCell17}}</text>
-<text class="month-cell" style="left: 188px; top: 208px; color: {{calColor18}};">{{calCell18}}</text>
-<text class="month-cell" style="left: 232px; top: 208px; color: {{calColor19}};">{{calCell19}}</text>
-<text class="month-cell" style="left: 276px; top: 208px; color: {{calColor20}};">{{calCell20}}</text>
-<text class="month-cell" style="left: 12px; top: 247px; color: {{calColor21}};">{{calCell21}}</text>
-<text class="month-cell" style="left: 56px; top: 247px; color: {{calColor22}};">{{calCell22}}</text>
-<text class="month-cell" style="left: 100px; top: 247px; color: {{calColor23}};">{{calCell23}}</text>
-<text class="month-cell" style="left: 144px; top: 247px; color: {{calColor24}};">{{calCell24}}</text>
-<text class="month-cell" style="left: 188px; top: 247px; color: {{calColor25}};">{{calCell25}}</text>
-<text class="month-cell" style="left: 232px; top: 247px; color: {{calColor26}};">{{calCell26}}</text>
-<text class="month-cell" style="left: 276px; top: 247px; color: {{calColor27}};">{{calCell27}}</text>
-<text class="month-cell" style="left: 12px; top: 286px; color: {{calColor28}};">{{calCell28}}</text>
-<text class="month-cell" style="left: 56px; top: 286px; color: {{calColor29}};">{{calCell29}}</text>
-<text class="month-cell" style="left: 100px; top: 286px; color: {{calColor30}};">{{calCell30}}</text>
-<text class="month-cell" style="left: 144px; top: 286px; color: {{calColor31}};">{{calCell31}}</text>
-<text class="month-cell" style="left: 188px; top: 286px; color: {{calColor32}};">{{calCell32}}</text>
-<text class="month-cell" style="left: 232px; top: 286px; color: {{calColor33}};">{{calCell33}}</text>
-<text class="month-cell" style="left: 276px; top: 286px; color: {{calColor34}};">{{calCell34}}</text>
-<text class="month-cell" style="left: 12px; top: 325px; color: {{calColor35}};">{{calCell35}}</text>
-<text class="month-cell" style="left: 56px; top: 325px; color: {{calColor36}};">{{calCell36}}</text>
-<text class="month-cell" style="left: 100px; top: 325px; color: {{calColor37}};">{{calCell37}}</text>
-<text class="month-cell" style="left: 144px; top: 325px; color: {{calColor38}};">{{calCell38}}</text>
-<text class="month-cell" style="left: 188px; top: 325px; color: {{calColor39}};">{{calCell39}}</text>
-<text class="month-cell" style="left: 232px; top: 325px; color: {{calColor40}};">{{calCell40}}</text>
-<text class="month-cell" style="left: 276px; top: 325px; color: {{calColor41}};">{{calCell41}}</text>
-
-      <text class="month-info">{{calendarInfo}}</text>
-      <input class="month-current" type="button" value="回到本月" onclick="currentMonth" />
-      <input class="month-close" type="button" value="返回主页" onclick="closeCalendar" />
     </div>
 
     <div class="zodiac-mask" show="{{zodiacVisible}}">
@@ -144,69 +51,25 @@
     </div>
   </div>
 </template>
-
 <script>
 import app from '@system.app'
 import storage from '@system.storage'
 import vibrator from '@system.vibrator'
 import brightness from '@system.brightness'
 import router from '@system.router'
-
-import { RIDDLES } from '../../common/data/knowledge.js'
 import { QUOTES } from '../../common/data/quotes.js'
-import { pad, WEEKDAYS, dayInfo, moonPhase, isLegalHoliday, monthHolidayText } from '../../common/utils/date.js'
+import { pad, WEEKDAYS, dayInfo, moonPhase } from '../../common/utils/date.js'
 import { ZODIACS, ASTRO_ACTIONS, ASTRO_COLORS, FORTUNES, zodiacForDate } from '../../common/utils/zodiac.js'
-import { mulberry32 } from '../../common/utils/random.js'
 
 const STORAGE_KEY = 'daily_quote_state_v1'
 
-function knowledgeDetail(record) {
-  let text = record.explain
-  if (isQaMode(record) && !text.includes(record.answer)) text = record.answer + '。' + text
-  return text
-}
-
-function isQaMode(record) {
-  return record.displayMode === 'qa' || record.category === '脑筋急转弯' || record.category === '十万个为什么'
-}
-
-function knowledgeAnswer(record) {
-  if (!isQaMode(record)) return ''
-  return Array.from(record.answer).length <= 14 ? record.answer : '完整答案见下方详解'
-}
-
-function dailyRiddles(dayNumber) {
-  const rand = mulberry32((dayNumber * 2654435761) >>> 0)
-  function shuffle(items) {
-    for (let i = items.length - 1; i > 0; i--) {
-      const j = Math.floor(rand() * (i + 1))
-      const temp = items[i]; items[i] = items[j]; items[j] = temp
-    }
-    return items
-  }
-  const plan = [
-    { category: '脑筋急转弯', count: 10 },
-    { category: '十万个为什么', count: 10 },
-    { category: '百科全书', count: 10 },
-    { category: '冷笑话', count: 10 },
-    { category: '鬼故事', count: 10 }
-  ]
-  const daily = []
-  for (let i = 0; i < plan.length; i++) {
-    const group = RIDDLES.filter(function (item) { return item.category === plan[i].category })
-    const picked = shuffle(group).slice(0, plan[i].count)
-    for (let j = 0; j < picked.length; j++) daily.push(picked[j])
-  }
-  return shuffle(daily)
-}
-
-function shouldResetQuizProgress(savedDay, todayDay) {
-  return savedDay !== todayDay
+function quoteIndex(dayNumber) {
+  const value = (dayNumber * 17 + 11) % QUOTES.length
+  return value < 0 ? value + QUOTES.length : value
 }
 
 const today = dayInfo(new Date())
 const todayIndex = quoteIndex(today.dayNumber)
-const dailyRiddleList = dailyRiddles(today.dayNumber)
 let currentIndex = todayIndex
 let state = {
   lastDay: -1,
@@ -214,116 +77,25 @@ let state = {
   stars: 0,
   awardedDay: -1,
   favorites: [],
-  zodiacIndex: zodiacForDate(today.month, today.date),
-  quizSchema: 180,
-  quizDay: -1,
-  quizIndex: 0,
-  quizViewed: []
+  zodiacIndex: zodiacForDate(today.month, today.date)
 }
 
 export default {
   private: {
     stateReady: false,
-    calendarVisible: false,
-    calendarYear: today.year,
-    calendarMonth: today.month,
-    calendarTitle: '', calendarInfo: '',
-    calCell0: '', calToday0: false,
-    calCell1: '', calToday1: false,
-    calCell2: '', calToday2: false,
-    calCell3: '', calToday3: false,
-    calCell4: '', calToday4: false,
-    calCell5: '', calToday5: false,
-    calCell6: '', calToday6: false,
-    calCell7: '', calToday7: false,
-    calCell8: '', calToday8: false,
-    calCell9: '', calToday9: false,
-    calCell10: '', calToday10: false,
-    calCell11: '', calToday11: false,
-    calCell12: '', calToday12: false,
-    calCell13: '', calToday13: false,
-    calCell14: '', calToday14: false,
-    calCell15: '', calToday15: false,
-    calCell16: '', calToday16: false,
-    calCell17: '', calToday17: false,
-    calCell18: '', calToday18: false,
-    calCell19: '', calToday19: false,
-    calCell20: '', calToday20: false,
-    calCell21: '', calToday21: false,
-    calCell22: '', calToday22: false,
-    calCell23: '', calToday23: false,
-    calCell24: '', calToday24: false,
-    calCell25: '', calToday25: false,
-    calCell26: '', calToday26: false,
-    calCell27: '', calToday27: false,
-    calCell28: '', calToday28: false,
-    calCell29: '', calToday29: false,
-    calCell30: '', calToday30: false,
-    calCell31: '', calToday31: false,
-    calCell32: '', calToday32: false,
-    calCell33: '', calToday33: false,
-    calCell34: '', calToday34: false,
-    calCell35: '', calToday35: false,
-    calCell36: '', calToday36: false,
-    calCell37: '', calToday37: false,
-    calCell38: '', calToday38: false,
-    calCell39: '', calToday39: false,
-    calCell40: '', calToday40: false,
-    calCell41: '', calToday41: false,
-    calColor0: "#383029",
-    calColor1: "#383029",
-    calColor2: "#383029",
-    calColor3: "#383029",
-    calColor4: "#383029",
-    calColor5: "#383029",
-    calColor6: "#383029",
-    calColor7: "#383029",
-    calColor8: "#383029",
-    calColor9: "#383029",
-    calColor10: "#383029",
-    calColor11: "#383029",
-    calColor12: "#383029",
-    calColor13: "#383029",
-    calColor14: "#383029",
-    calColor15: "#383029",
-    calColor16: "#383029",
-    calColor17: "#383029",
-    calColor18: "#383029",
-    calColor19: "#383029",
-    calColor20: "#383029",
-    calColor21: "#383029",
-    calColor22: "#383029",
-    calColor23: "#383029",
-    calColor24: "#383029",
-    calColor25: "#383029",
-    calColor26: "#383029",
-    calColor27: "#383029",
-    calColor28: "#383029",
-    calColor29: "#383029",
-    calColor30: "#383029",
-    calColor31: "#383029",
-    calColor32: "#383029",
-    calColor33: "#383029",
-    calColor34: "#383029",
-    calColor35: "#383029",
-    calColor36: "#383029",
-    calColor37: "#383029",
-    calColor38: "#383029",
-    calColor39: "#383029",
-    calColor40: "#383029",
-    calColor41: "#383029",
-
-    streakText: '0',
-    starsText: '0',
+    zodiacVisible: false,
+    quoteVisible: true,
+    zodiacName: ZODIACS[state.zodiacIndex].name,
+    zodiacRange: ZODIACS[state.zodiacIndex].range,
+    astroTip: '',
     dateText: today.label,
-    monthYearText: today.year + '年 ' + pad(today.month) + '月',
     monthShortText: pad(today.month) + '月',
     dayText: pad(today.date),
     weekdayText: WEEKDAYS[today.weekday],
     yearDayText: '今年第 ' + today.dayOfYear + ' 天',
-    quoteVisible: true,
-    quizVisible: false,
-    zodiacVisible: false,
+    streakText: '0',
+    starsText: '0',
+    moonText: '月相 · ' + moonPhase(today.dayNumber),
     quoteDrawn: false,
     quoteKicker: 'Daily Spark',
     quoteText: '轻触下方「抽一签」，看看今天与哪句话有缘。',
@@ -331,30 +103,7 @@ export default {
     quoteNote: '',
     fortuneLevel: '',
     fortuneTip: '',
-    zodiacName: ZODIACS[state.zodiacIndex].name,
-    zodiacRange: ZODIACS[state.zodiacIndex].range,
-    moonText: '月相 · ' + moonPhase(today.dayNumber),
-    astroTip: '',
-    favoriteText: '收藏',
-    calendarHolidayText: '',
-    riddleQuestion: '',
-    quizCategory: '',
-    quizPos: 0,
-    quizTotal: 0,
-    riddleAnswer: '',
-    revealLabel: '查看答案',
-    answerLabel: '答案',
-    riddleExplain: '',
-    riddleKnowledge: '',
-    isQaItem: false,
-    detailIndex: 0,
-    detailTotal: 1,
-    detailLabel: '',
-    answerVisible: false,
-    prevDisabled: true,
-    nextDisabled: true,
-    prevLabel: '上一题',
-    nextLabel: '下一题',
+    favoriteText: '收藏'
   },
 
   onInit() {
@@ -407,23 +156,15 @@ export default {
             state.stars = Number(saved.stars) || 0
             state.awardedDay = Number(saved.awardedDay) || -1
             state.favorites = saved.favorites || []
-            state.quizDay = Number(saved.quizDay)
-            if (!Number.isFinite(state.quizDay)) state.quizDay = -1
-            state.quizIndex = Number(saved.quizIndex) || 0
-            state.quizViewed = Array.isArray(saved.quizViewed) ? saved.quizViewed : []
-            if (saved.quizSchema !== 180 || shouldResetQuizProgress(state.quizDay, today.dayNumber)) {
-              state.quizIndex = 0
-              state.quizViewed = []
-            }
             const savedZodiac = Number(saved.zodiacIndex)
             if (savedZodiac >= 0 && savedZodiac < ZODIACS.length) state.zodiacIndex = savedZodiac
           } catch (error) {
-            console.log('每日一言存档解析失败: ' + error)
+            console.log('首页存档解析失败: ' + error)
           }
           finishLoad()
         },
         fail(data, code) {
-          console.log('每日一言存档读取失败: ' + code)
+          console.log('首页存档读取失败: ' + code)
           finishLoad()
         }
       })
@@ -439,7 +180,7 @@ export default {
       storage.set({
         key: STORAGE_KEY,
         value: JSON.stringify(state),
-        fail(data, code) { console.log('每日一言存档保存失败: ' + code) }
+        fail(data, code) { console.log('首页存档保存失败: ' + code) }
       })
     } catch (error) {
       console.log('存储模块不可用: ' + error)
@@ -474,8 +215,19 @@ export default {
     this.pulse('short')
   },
 
+  openZodiac() { this.zodiacVisible = true },
+  closeZodiac() { this.zodiacVisible = false },
+
   startZodiacTest() {
     router.replace({ uri: 'pages/zodiac-test/zodiac-test' })
+  },
+
+  openCalendarPage() {
+    router.replace({ uri: 'pages/calendar/calendar' })
+  },
+
+  openKnowledgePage() {
+    router.replace({ uri: 'pages/knowledge/knowledge' })
   },
 
   drawFortune() {
@@ -483,7 +235,7 @@ export default {
     this.recordToday()
     let next = (currentIndex + 1 + Math.floor(Math.random() * (QUOTES.length - 1))) % QUOTES.length
     if (next === currentIndex) next = (next + 1) % QUOTES.length
-    this.applyQuote(next, false)
+    this.applyQuote(next)
     const fortune = FORTUNES[Math.floor(Math.random() * FORTUNES.length)]
     this.fortuneLevel = fortune.level
     this.fortuneTip = fortune.tip
@@ -499,7 +251,7 @@ export default {
     this.saveState()
   },
 
-  applyQuote(index, isToday) {
+  applyQuote(index) {
     currentIndex = index
     const quote = QUOTES[index]
     this.quoteText = quote.text
@@ -507,145 +259,6 @@ export default {
     this.quoteKicker = quote.note ? 'Daily Spark · ' + quote.note : 'Daily Spark'
     this.quoteSource = quote.source || 'Daily Spark'
     this.refreshFavorite()
-  },
-
-  openCalendar() { this.calendarVisible = true; this.renderCalendar() },
-  closeCalendar() { this.calendarVisible = false },
-  openZodiac() { this.zodiacVisible = true },
-  closeZodiac() { this.zodiacVisible = false },
-  previousMonth() {
-    this.calendarMonth -= 1
-    if (this.calendarMonth < 1) { this.calendarMonth = 12; this.calendarYear -= 1 }
-    this.renderCalendar()
-  },
-  nextMonth() {
-    this.calendarMonth += 1
-    if (this.calendarMonth > 12) { this.calendarMonth = 1; this.calendarYear += 1 }
-    this.renderCalendar()
-  },
-  currentMonth() { this.calendarYear = today.year; this.calendarMonth = today.month; this.renderCalendar() },
-  renderCalendar() {
-    const y = this.calendarYear; const m = this.calendarMonth
-    const first = new Date(y, m - 1, 1).getDay()
-    const days = new Date(y, m, 0).getDate()
-    this.calendarTitle = y + '年 ' + m + '月'
-    this.calendarInfo = '本月 ' + days + ' 天 · 今日 ' + today.label
-    const holidayText = monthHolidayText(y, m)
-    if (holidayText) this.calendarInfo = '本月 ' + days + ' 天 · ' + holidayText
-    for (let i = 0; i < 42; i++) {
-      const d = i - first + 1
-      const inMonth = d > 0 && d <= days
-      this['calCell' + i] = inMonth ? String(d) : ''
-      this['calToday' + i] = y === today.year && m === today.month && d === today.date
-      let color = '#d8d2c6'
-      if (inMonth) {
-        const dow = (i % 7)
-        const isWeekend = dow === 0 || dow === 6
-        const holiday = isLegalHoliday(y, m, d)
-        if (this['calToday' + i]) color = '#a83b2d'
-        else if (holiday) color = '#c0392b'
-        else if (isWeekend) color = '#3f7d46'
-        else color = '#383029'
-      }
-      this['calColor' + i] = color
-    }
-  },
-
-  startQuiz() {
-    this.recordToday()
-    if (state.quizDay !== today.dayNumber) {
-      state.quizDay = today.dayNumber
-      state.quizIndex = 0
-      state.quizViewed = []
-    }
-    this.quizVisible = true
-    this.renderQuiz()
-    this.pulse('short')
-  },
-
-  renderQuiz() {
-    const list = dailyRiddleList
-    const idx = state.quizIndex
-    const len = list.length
-    const riddle = list[idx]
-    this.quizPos = idx + 1
-    this.quizTotal = len
-    this.quizCategory = riddle.category
-    this.riddleQuestion = riddle.question
-    this.isQaItem = isQaMode(riddle)
-    this.revealLabel = this.isQaItem ? '查看答案' : '展开正文'
-    this.answerLabel = this.isQaItem ? '答案' : riddle.category
-    this.answerVisible = !this.isQaItem
-    if (this.answerVisible) {
-      this.riddleAnswer = this.isQaItem ? knowledgeAnswer(riddle) : riddle.question
-      this.riddleExplain = riddle.explain
-      this.riddleKnowledge = riddle.knowledge || ''
-    } else {
-      this.riddleAnswer = ''
-      this.riddleExplain = ''
-      this.riddleKnowledge = ''
-      this.detailTotal = 1
-      this.detailLabel = ''
-    }
-    this.detailIndex = 0
-    if (this.answerVisible) this.renderDetail()
-    this.prevDisabled = idx <= 0
-    this.nextDisabled = idx >= len - 1
-    this.prevLabel = idx <= 0 ? '已是第一题' : '上一题'
-    this.nextLabel = idx >= len - 1 ? '已是最后一题' : '下一题'
-  },
-
-  revealAnswer() {
-    if (this.answerVisible) return
-    const idx = state.quizIndex
-    const riddle = dailyRiddleList[idx]
-    this.riddleAnswer = knowledgeAnswer(riddle)
-    this.riddleExplain = riddle.explain
-    this.riddleKnowledge = riddle.knowledge || ''
-    this.answerVisible = true
-    this.detailIndex = 0
-    this.renderDetail()
-    if (state.quizViewed.indexOf(idx) < 0) state.quizViewed.push(idx)
-    this.pulse('short')
-    this.saveState()
-  },
-
-  renderDetail() {
-    const r = dailyRiddleList[state.quizIndex]
-    const text = knowledgeDetail(r)
-    const step = isQaMode(r) ? 32 : 84
-    const chunks = []
-    const chars = Array.from(text)
-    for (let i = 0; i < chars.length; i += step) chunks.push(chars.slice(i, i + step).join(''))
-    this.detailTotal = chunks.length || 1
-    this.riddleExplain = chunks[this.detailIndex] || ''
-    this.detailLabel = '继续 ' + (this.detailIndex + 1) + '/' + this.detailTotal
-  },
-
-  nextDetail() {
-    this.detailIndex = (this.detailIndex + 1) % this.detailTotal
-    this.renderDetail()
-  },
-
-  prevQuestion() {
-    if (state.quizIndex <= 0) return
-    state.quizIndex -= 1
-    this.renderQuiz()
-    this.saveState()
-    this.pulse('short')
-  },
-
-  nextQuestion() {
-    if (state.quizIndex >= dailyRiddleList.length - 1) return
-    state.quizIndex += 1
-    this.renderQuiz()
-    this.saveState()
-    this.pulse('short')
-  },
-
-  closeQuiz() {
-    this.quizVisible = false
-    this.saveState()
   },
 
   toggleFavorite() {
@@ -713,42 +326,6 @@ export default {
 .action-button { position: absolute; top: 0; width: 140px; height: 34px; border-radius: 4px; font-size: 17px; font-weight: bold; }
 .action-primary { left: 0; background-color: #a83b2d; color: #fffaf2; }
 .action-secondary { left: 168px; border-width: 1px; border-color: #cfc4b5; background-color: #fffdf8; color: #574e45; }
-
-.quiz-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: #f2eee5; }
-.quiz-panel { position: absolute; left: 12px; top: 12px; width: 312px; height: 456px; border-width: 1px; border-color: #d2c7b8; border-radius: 6px; background-color: #fffdf8; }
-/* 答题模式：分类标签轻量置顶，题目/答案/解析区域加大。 */
-.qa-mode { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
-.quiz-kicker { position: absolute; left: 16px; top: 10px; width: 150px; height: 20px; line-height: 20px; color: #a83b2d; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
-.quiz-count { position: absolute; left: 170px; top: 13px; width: 126px; height: 16px; line-height: 16px; color: #94887c; font-size: 11px; text-align: right; }
-.quiz-question-box { position: absolute; left: 16px; top: 40px; width: 280px; height: 130px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fbf7f0; }
-.quiz-question { position: absolute; left: 10px; top: 8px; width: 260px; height: 114px; color: #2c2722; font-size: 23px; font-weight: bold; line-height: 29px; text-align: center; }
-.quiz-reveal-btn { position: absolute; left: 36px; top: 190px; width: 240px; height: 44px; border-radius: 4px; background-color: #a83b2d; color: #fffaf2; font-size: 18px; font-weight: bold; }
-.quiz-answer-box { position: absolute; left: 16px; top: 182px; width: 280px; height: 204px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fffdf8; }
-.quiz-answer-label { position: absolute; left: 10px; top: 8px; width: 60px; color: #a83b2d; font-size: 15px; font-weight: bold; }
-.quiz-explain { position: absolute; left: 10px; top: 32px; width: 260px; height: 132px; color: #29241f; font-size: 18px; font-weight: bold; line-height: 24px; }
-.detail-next { position: absolute; left: 50px; top: 168px; width: 180px; height: 30px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
-/* 阅读模式：左上角显示分类标签，正文区含子标题 + 大号正文。 */
-.read-mode { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
-.read-kicker { position: absolute; left: 16px; top: 10px; width: 150px; height: 20px; line-height: 20px; color: #a83b2d; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
-.read-count { position: absolute; left: 216px; top: 13px; width: 80px; height: 16px; line-height: 16px; color: #94887c; font-size: 11px; text-align: right; }
-.read-title { position: absolute; left: 18px; top: 36px; width: 276px; height: 58px; color: #2c2722; font-size: 19px; font-weight: bold; line-height: 24px; text-align: center; }
-.read-text { position: absolute; left: 18px; top: 102px; width: 276px; height: 248px; color: #29241f; font-size: 20px; font-weight: bold; line-height: 28px; text-align: left; }
-.read-next { position: absolute; left: 56px; top: 360px; width: 200px; height: 30px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
-.quiz-actionbar { position: absolute; left: 16px; top: 400px; width: 280px; height: 48px; }
-.quiz-nav-btn { position: absolute; top: 0; width: 86px; height: 44px; border-width: 1px; border-color: #d4c9ba; border-radius: 4px; background-color: #f8f3e9; color: #574e45; font-size: 14px; font-weight: bold; }
-.quiz-prev { left: 0; }
-.quiz-cancel { left: 97px; background-color: #fffdf8; color: #918579; font-size: 13px; }
-.quiz-next { left: 194px; }
-
-.month-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: #fffdf8; }
-.month-title { position: absolute; left: 16px; top: 18px; width: 304px; font-size: 26px; color: #383029; text-align: center; }
-.month-prev, .month-next { position: absolute; top: 60px; width: 90px; height: 36px; font-size: 18px; background-color: #eee5d8; color: #574e45; }
-.month-prev { left: 16px; } .month-next { left: 230px; }
-.month-week-cell { position: absolute; top: 103px; width: 42px; height: 20px; font-size: 16px; color: #776c61; text-align: center; }
-.month-cell { position: absolute; width: 42px; height: 36px; font-size: 22px; text-align: center; }
-.month-info { position: absolute; left: 12px; top: 372px; width: 312px; font-size: 16px; color: #776c61; text-align: center; }
-.month-current, .month-close { position: absolute; top: 420px; width: 140px; height: 40px; font-size: 18px; background-color: #a83b2d; color: #fffdf8; }
-.month-current { left: 18px; } .month-close { left: 178px; }
 
 .zodiac-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: #fffdf8; }
 .zodiac-title { position: absolute; left: 16px; top: 18px; width: 304px; font-size: 26px; color: #383029; text-align: center; }

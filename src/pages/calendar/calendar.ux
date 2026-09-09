@@ -1,0 +1,181 @@
+<template>
+  <div class="month-mask">
+    <text class="month-title">{{calendarTitle}}</text>
+    <input class="month-prev" type="button" value="上月" onclick="previousMonth" />
+    <input class="month-next" type="button" value="下月" onclick="nextMonth" />
+    <text class="month-week-cell" style="left: 12px;">日</text>
+    <text class="month-week-cell" style="left: 56px;">一</text>
+    <text class="month-week-cell" style="left: 100px;">二</text>
+    <text class="month-week-cell" style="left: 144px;">三</text>
+    <text class="month-week-cell" style="left: 188px;">四</text>
+    <text class="month-week-cell" style="left: 232px;">五</text>
+    <text class="month-week-cell" style="left: 276px;">六</text>
+    <text class="month-cell" style="left: 12px; top: 130px; color: {{calColor0}};">{{calCell0}}</text>
+<text class="month-cell" style="left: 56px; top: 130px; color: {{calColor1}};">{{calCell1}}</text>
+<text class="month-cell" style="left: 100px; top: 130px; color: {{calColor2}};">{{calCell2}}</text>
+<text class="month-cell" style="left: 144px; top: 130px; color: {{calColor3}};">{{calCell3}}</text>
+<text class="month-cell" style="left: 188px; top: 130px; color: {{calColor4}};">{{calCell4}}</text>
+<text class="month-cell" style="left: 232px; top: 130px; color: {{calColor5}};">{{calCell5}}</text>
+<text class="month-cell" style="left: 276px; top: 130px; color: {{calColor6}};">{{calCell6}}</text>
+<text class="month-cell" style="left: 12px; top: 169px; color: {{calColor7}};">{{calCell7}}</text>
+<text class="month-cell" style="left: 56px; top: 169px; color: {{calColor8}};">{{calCell8}}</text>
+<text class="month-cell" style="left: 100px; top: 169px; color: {{calColor9}};">{{calCell9}}</text>
+<text class="month-cell" style="left: 144px; top: 169px; color: {{calColor10}};">{{calCell10}}</text>
+<text class="month-cell" style="left: 188px; top: 169px; color: {{calColor11}};">{{calCell11}}</text>
+<text class="month-cell" style="left: 232px; top: 169px; color: {{calColor12}};">{{calCell12}}</text>
+<text class="month-cell" style="left: 276px; top: 169px; color: {{calColor13}};">{{calCell13}}</text>
+<text class="month-cell" style="left: 12px; top: 208px; color: {{calColor14}};">{{calCell14}}</text>
+<text class="month-cell" style="left: 56px; top: 208px; color: {{calColor15}};">{{calCell15}}</text>
+<text class="month-cell" style="left: 100px; top: 208px; color: {{calColor16}};">{{calCell16}}</text>
+<text class="month-cell" style="left: 144px; top: 208px; color: {{calColor17}};">{{calCell17}}</text>
+<text class="month-cell" style="left: 188px; top: 208px; color: {{calColor18}};">{{calCell18}}</text>
+<text class="month-cell" style="left: 232px; top: 208px; color: {{calColor19}};">{{calCell19}}</text>
+<text class="month-cell" style="left: 276px; top: 208px; color: {{calColor20}};">{{calCell20}}</text>
+<text class="month-cell" style="left: 12px; top: 247px; color: {{calColor21}};">{{calCell21}}</text>
+<text class="month-cell" style="left: 56px; top: 247px; color: {{calColor22}};">{{calCell22}}</text>
+<text class="month-cell" style="left: 100px; top: 247px; color: {{calColor23}};">{{calCell23}}</text>
+<text class="month-cell" style="left: 144px; top: 247px; color: {{calColor24}};">{{calCell24}}</text>
+<text class="month-cell" style="left: 188px; top: 247px; color: {{calColor25}};">{{calCell25}}</text>
+<text class="month-cell" style="left: 232px; top: 247px; color: {{calColor26}};">{{calCell26}}</text>
+<text class="month-cell" style="left: 276px; top: 247px; color: {{calColor27}};">{{calCell27}}</text>
+<text class="month-cell" style="left: 12px; top: 286px; color: {{calColor28}};">{{calCell28}}</text>
+<text class="month-cell" style="left: 56px; top: 286px; color: {{calColor29}};">{{calCell29}}</text>
+<text class="month-cell" style="left: 100px; top: 286px; color: {{calColor30}};">{{calCell30}}</text>
+<text class="month-cell" style="left: 144px; top: 286px; color: {{calColor31}};">{{calCell31}}</text>
+<text class="month-cell" style="left: 188px; top: 286px; color: {{calColor32}};">{{calCell32}}</text>
+<text class="month-cell" style="left: 232px; top: 286px; color: {{calColor33}};">{{calCell33}}</text>
+<text class="month-cell" style="left: 276px; top: 286px; color: {{calColor34}};">{{calCell34}}</text>
+<text class="month-cell" style="left: 12px; top: 325px; color: {{calColor35}};">{{calCell35}}</text>
+<text class="month-cell" style="left: 56px; top: 325px; color: {{calColor36}};">{{calCell36}}</text>
+<text class="month-cell" style="left: 100px; top: 325px; color: {{calColor37}};">{{calCell37}}</text>
+<text class="month-cell" style="left: 144px; top: 325px; color: {{calColor38}};">{{calCell38}}</text>
+<text class="month-cell" style="left: 188px; top: 325px; color: {{calColor39}};">{{calCell39}}</text>
+<text class="month-cell" style="left: 232px; top: 325px; color: {{calColor40}};">{{calCell40}}</text>
+<text class="month-cell" style="left: 276px; top: 325px; color: {{calColor41}};">{{calCell41}}</text>
+    <text class="month-info">{{calendarInfo}}</text>
+    <input class="month-current" type="button" value="回到本月" onclick="currentMonth" />
+    <input class="month-close" type="button" value="返回主页" onclick="goHome" />
+  </div>
+</template>
+
+<script>
+import router from '@system.router'
+import { dayInfo, isLegalHoliday, monthHolidayText } from '../../common/utils/date.js'
+
+const today = dayInfo(new Date())
+
+export default {
+  calendarYear: today.year,
+  calendarMonth: today.month,
+  calendarTitle: '',
+  calendarInfo: '',
+  calCell0: '', calColor0: '#383029',
+  calCell1: '', calColor1: '#383029',
+  calCell2: '', calColor2: '#383029',
+  calCell3: '', calColor3: '#383029',
+  calCell4: '', calColor4: '#383029',
+  calCell5: '', calColor5: '#383029',
+  calCell6: '', calColor6: '#383029',
+  calCell7: '', calColor7: '#383029',
+  calCell8: '', calColor8: '#383029',
+  calCell9: '', calColor9: '#383029',
+  calCell10: '', calColor10: '#383029',
+  calCell11: '', calColor11: '#383029',
+  calCell12: '', calColor12: '#383029',
+  calCell13: '', calColor13: '#383029',
+  calCell14: '', calColor14: '#383029',
+  calCell15: '', calColor15: '#383029',
+  calCell16: '', calColor16: '#383029',
+  calCell17: '', calColor17: '#383029',
+  calCell18: '', calColor18: '#383029',
+  calCell19: '', calColor19: '#383029',
+  calCell20: '', calColor20: '#383029',
+  calCell21: '', calColor21: '#383029',
+  calCell22: '', calColor22: '#383029',
+  calCell23: '', calColor23: '#383029',
+  calCell24: '', calColor24: '#383029',
+  calCell25: '', calColor25: '#383029',
+  calCell26: '', calColor26: '#383029',
+  calCell27: '', calColor27: '#383029',
+  calCell28: '', calColor28: '#383029',
+  calCell29: '', calColor29: '#383029',
+  calCell30: '', calColor30: '#383029',
+  calCell31: '', calColor31: '#383029',
+  calCell32: '', calColor32: '#383029',
+  calCell33: '', calColor33: '#383029',
+  calCell34: '', calColor34: '#383029',
+  calCell35: '', calColor35: '#383029',
+  calCell36: '', calColor36: '#383029',
+  calCell37: '', calColor37: '#383029',
+  calCell38: '', calColor38: '#383029',
+  calCell39: '', calColor39: '#383029',
+  calCell40: '', calColor40: '#383029',
+  calCell41: '', calColor41: '#383029',
+
+  onInit() {
+    this.renderCalendar()
+  },
+
+  previousMonth() {
+    this.calendarMonth -= 1
+    if (this.calendarMonth < 1) { this.calendarMonth = 12; this.calendarYear -= 1 }
+    this.renderCalendar()
+  },
+
+  nextMonth() {
+    this.calendarMonth += 1
+    if (this.calendarMonth > 12) { this.calendarMonth = 1; this.calendarYear += 1 }
+    this.renderCalendar()
+  },
+
+  currentMonth() {
+    this.calendarYear = today.year
+    this.calendarMonth = today.month
+    this.renderCalendar()
+  },
+
+  renderCalendar() {
+    const y = this.calendarYear
+    const m = this.calendarMonth
+    const first = new Date(y, m - 1, 1).getDay()
+    const days = new Date(y, m, 0).getDate()
+    this.calendarTitle = y + '年 ' + m + '月'
+    this.calendarInfo = '本月 ' + days + ' 天 · 今日 ' + today.label
+    const holidayText = monthHolidayText(y, m)
+    if (holidayText) this.calendarInfo = '本月 ' + days + ' 天 · ' + holidayText
+    for (let i = 0; i < 42; i++) {
+      const d = i - first + 1
+      const inMonth = d > 0 && d <= days
+      this['calCell' + i] = inMonth ? String(d) : ''
+      let color = '#d8d2c6'
+      if (inMonth) {
+        const isToday = y === today.year && m === today.month && d === today.date
+        const dow = (i % 7)
+        const isWeekend = dow === 0 || dow === 6
+        const holiday = isLegalHoliday(y, m, d)
+        if (isToday) color = '#a83b2d'
+        else if (holiday) color = '#c0392b'
+        else if (isWeekend) color = '#3f7d46'
+        else color = '#383029'
+      }
+      this['calColor' + i] = color
+    }
+  },
+
+  goHome() {
+    router.replace({ uri: 'pages/index/index' })
+  }
+}
+</script>
+
+<style>
+.month-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: #fffdf8; }
+.month-title { position: absolute; left: 16px; top: 18px; width: 304px; font-size: 26px; color: #383029; text-align: center; }
+.month-prev, .month-next { position: absolute; top: 60px; width: 90px; height: 36px; font-size: 18px; background-color: #eee5d8; color: #574e45; }
+.month-prev { left: 16px; } .month-next { left: 230px; }
+.month-week-cell { position: absolute; top: 103px; width: 42px; height: 20px; font-size: 16px; color: #776c61; text-align: center; }
+.month-cell { position: absolute; width: 42px; height: 36px; font-size: 22px; text-align: center; }
+.month-info { position: absolute; left: 12px; top: 372px; width: 312px; font-size: 16px; color: #776c61; text-align: center; }
+.month-current, .month-close { position: absolute; top: 420px; width: 140px; height: 40px; font-size: 18px; background-color: #a83b2d; color: #fffdf8; }
+.month-current { left: 18px; } .month-close { left: 178px; }
+</style>

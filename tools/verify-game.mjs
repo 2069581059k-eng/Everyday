@@ -4,6 +4,8 @@ import path from 'node:path'
 const root = path.resolve(import.meta.dirname, '..')
 const expectedQuoteCount = 2000
 const pagePath = path.join(root, 'src', 'pages', 'index', 'index.ux')
+const knowledgePagePath = path.join(root, 'src', 'pages', 'knowledge', 'knowledge.ux')
+const calendarPagePath = path.join(root, 'src', 'pages', 'calendar', 'calendar.ux')
 const manifestPath = path.join(root, 'src', 'manifest.json')
 const packagePath = path.join(root, 'package.json')
 const capturePath = path.join(root, 'tools', 'capture-vvd.mjs')
@@ -12,6 +14,8 @@ const selectedPath = path.join(root, 'data', 'hitokoto-selected.json')
 const knowledgePath = path.join(root, 'data', 'knowledge-selected.json')
 const knowledgeSourcesPath = path.join(root, 'data', 'knowledge-sources.json')
 const page = fs.readFileSync(pagePath, 'utf8').replace(/\r\n/g, '\n')
+const knowledgePage = fs.existsSync(knowledgePagePath) ? fs.readFileSync(knowledgePagePath, 'utf8').replace(/\r\n/g, '\n') : ''
+const calendarPage = fs.existsSync(calendarPagePath) ? fs.readFileSync(calendarPagePath, 'utf8').replace(/\r\n/g, '\n') : ''
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
 const packageJson = JSON.parse(fs.readFileSync(packagePath, 'utf8'))
 const captureScript = fs.readFileSync(capturePath, 'utf8')
@@ -32,14 +36,15 @@ const knowledgeSources = fs.existsSync(knowledgeSourcesPath) ? JSON.parse(fs.rea
 const randomUtilsPath = path.join(root, 'src', 'common', 'utils', 'random.js')
 const dateUtilsPath = path.join(root, 'src', 'common', 'utils', 'date.js')
 const zodiacUtilsPath = path.join(root, 'src', 'common', 'utils', 'zodiac.js')
+const knowledgeUtilsPath = path.join(root, 'src', 'common', 'utils', 'knowledge.js')
 const dateUtils = fs.existsSync(dateUtilsPath) ? fs.readFileSync(dateUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
 const randomUtils = fs.existsSync(randomUtilsPath) ? fs.readFileSync(randomUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
 const zodiacUtils = fs.existsSync(zodiacUtilsPath) ? fs.readFileSync(zodiacUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
-const helperMulberry = (randomUtils.match(/function mulberry32\(seed\) \{[\s\S]*?\n\}/u) || [''])[0]
-const helperBlock = page.match(/(function knowledgeDetail\(record\) \{[\s\S]*?\n\}\n\nconst today =)/u)
-const helperSrc = (helperMulberry ? helperMulberry + '\n' : '') + (helperBlock ? helperBlock[1].replace(/\n\nconst today =[^\n]*$/, '') : '')
-const quizHelpers = helperSrc
-  ? Function('RIDDLES', helperSrc + '\nreturn { dailyRiddles, shouldResetQuizProgress, knowledgeDetail, knowledgeAnswer, isQaMode };')(riddles)
+const knowledgeUtils = fs.existsSync(knowledgeUtilsPath) ? fs.readFileSync(knowledgeUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
+// 知识逻辑已抽为共享模块：直接取其函数体与 mulberry32，注入 RIDDLES 运行逻辑测试
+const knowledgeFnSrc = knowledgeUtils.match(/function (isQaMode|knowledgeDetail|knowledgeAnswer|dailyRiddles|shouldResetQuizProgress|mulberry32)\([\s\S]*?\n\}/gu) || []
+const quizHelpers = knowledgeFnSrc.length
+  ? Function('RIDDLES', knowledgeFnSrc.join('\n') + '\nreturn { dailyRiddles, shouldResetQuizProgress, knowledgeDetail, knowledgeAnswer, isQaMode };')(riddles)
   : null
 
 const quoteCount = quotes.length
@@ -98,17 +103,17 @@ check(sourceKnowledge.length === importedKnowledge.length && sourceKnowledge.eve
 }), '2023 条全部与最终包逐字段匹配，无旧库独有条目')
 check(riddles.every((item) => !visibleAiMarker.test(`${item.question} ${item.answer} ${item.explain} ${item.source}`)), '知识题用户可见内容不含 AI 字样')
 check(page.includes('value="知识大全"'), '主页入口按钮文案为知识大全')
-check(page.includes('<text class="quiz-kicker">{{quizCategory}}</text>'), '知识面板顶部标签改为当前分类名（如 百科全书/脑筋急转弯）')
+check(knowledgePage.includes('<text class="quiz-kicker">{{quizCategory}}</text>'), '知识面板顶部标签改为当前分类名（如 百科全书/脑筋急转弯）')
 
-// ---- 每日固定 50 道不重复（新机制，真实逻辑） ----
+// ---- 每日固定 50 道不重复（新机制，真实逻辑，位于共享知识模块） ----
 check(!!quizHelpers, '页面包含按日期选題的辅助函数')
-check(page.includes('dailyRiddles(') && page.includes('const dailyRiddleList = dailyRiddles('), '按本地日期固定生成每日题目列表')
+check(knowledgeUtils.includes('function dailyRiddles(') && knowledgePage.includes('dailyRiddles(RIDDLES, today.dayNumber)'), '按本地日期固定生成每日题目列表')
 check(dateUtils.includes('Date.UTC') && page.includes('quoteIndex(today.dayNumber)'), '日期工具基于 UTC 稳定计算，每日内容按本地日期稳定选择')
 if (quizHelpers) {
   const sampleDays = [1, 2, 31, 100, 365, 1000, 20260207, 20261231]
   let allOk = true
   for (const day of sampleDays) {
-    const list = quizHelpers.dailyRiddles(day)
+    const list = quizHelpers.dailyRiddles(riddles, day)
     const qs = new Set(list.map((r) => r.question))
     const counts = Object.fromEntries(['脑筋急转弯', '十万个为什么', '百科全书', '冷笑话', '鬼故事'].map((category) => [
       category,
@@ -117,37 +122,37 @@ if (quizHelpers) {
     if (list.length !== 50 || qs.size !== list.length || Object.values(counts).some(n => n !== 10)) allOk = false
   }
   check(allOk, '每天固定 50 条，五类各 10 条')
-  const a = quizHelpers.dailyRiddles(1).map((r) => r.question).join('|')
-  const b = quizHelpers.dailyRiddles(2).map((r) => r.question).join('|')
+  const a = quizHelpers.dailyRiddles(riddles, 1).map((r) => r.question).join('|')
+  const b = quizHelpers.dailyRiddles(riddles, 2).map((r) => r.question).join('|')
   check(a !== b, '跨天题目选择不同（按日期区分）')
-  const same1 = quizHelpers.dailyRiddles(7).map((r) => r.question).join('|')
-  const same2 = quizHelpers.dailyRiddles(7).map((r) => r.question).join('|')
+  const same1 = quizHelpers.dailyRiddles(riddles, 7).map((r) => r.question).join('|')
+  const same2 = quizHelpers.dailyRiddles(riddles, 7).map((r) => r.question).join('|')
   check(same1 === same2, '同一天多次进入选择稳定一致')
 }
 
-// ---- 不显示答案选项、点击查看答案才显示 ----
-check(!page.includes('choiceOneText') && !page.includes('chooseOne') && !page.includes('finishQuiz'), '已移除旧版答案选项与答对奖励逻辑')
-check(page.includes('revealAnswer') && page.includes('answerVisible'), '提供“查看答案”按钮，点击后才显示答案')
-check(/quiz-reveal-btn" show="\{\{!answerVisible\}\}"/u.test(page), '未查看答案时显示“查看答案”按钮，查看后隐藏')
-check(/quiz-answer-box" show="\{\{answerVisible\}\}"/u.test(page), '查看答案后才显示答案与解析区')
-check(page.includes('knowledgeDetail(r)') && page.includes('detail-next') && page.includes('quiz-explain'), '答案区显示原始解析且支持分页浏览（不再拼接来源）')
-check(!page.includes("+ ' 来源：' + record.source"), '正文与解析不再拼接“来源”尾巴')
+// ---- 不显示答案选项、点击查看答案才显示（知识页） ----
+check(!knowledgePage.includes('choiceOneText') && !knowledgePage.includes('chooseOne') && !knowledgePage.includes('finishQuiz'), '已移除旧版答案选项与答对奖励逻辑')
+check(knowledgePage.includes('revealAnswer') && knowledgePage.includes('answerVisible'), '提供“查看答案”按钮，点击后才显示答案')
+check(/quiz-reveal-btn" show="\{\{!answerVisible\}\}"/u.test(knowledgePage), '未查看答案时显示“查看答案”按钮，查看后隐藏')
+check(/quiz-answer-box" show="\{\{answerVisible\}\}"/u.test(knowledgePage), '查看答案后才显示答案与解析区')
+check(knowledgePage.includes('detail-next') && knowledgePage.includes('quiz-explain'), '答案区显示原始解析且支持分页浏览（不再拼接来源）')
+check(!knowledgePage.includes("+ ' 来源：' + record.source"), '正文与解析不再拼接“来源”尾巴')
 
 // ---- 上一题/下一题、序号进度、末题边界 ----
-check(page.includes('prevQuestion') && page.includes('nextQuestion'), '支持上一题与下一题')
-check(page.includes('quizPos') && page.includes('quizTotal'), '显示序号进度（第 X / 50 题）')
-check(page.includes('已是最后一题') && page.includes('已是第一题'), '首题与末题边界提示明确')
+check(knowledgePage.includes('prevQuestion') && knowledgePage.includes('nextQuestion'), '支持上一题与下一题')
+check(knowledgePage.includes('quizPos') && knowledgePage.includes('quizTotal'), '显示序号进度（第 X / 50 题）')
+check(knowledgePage.includes('已是最后一题') && knowledgePage.includes('已是第一题'), '首题与末题边界提示明确')
 
 // ---- 分类阅读模式：仅 脑筋急转弯/十万个为什么 保留查看答案，其余直接显示正文 ----
-check(page.includes('function isQaMode('), '提供按分类判定答题/阅读模式的辅助函数')
-check(/return record\.displayMode === 'qa' \|\| record\.category === '脑筋急转弯' \|\| record\.category === '十万个为什么'/u.test(page), '仅 脑筋急转弯 与 十万个为什么 属于答题模式')
-check(!page.includes('今日 20 题已读完'), '已移除“看完即奖励”的答题完成设定')
-check(!page.includes('isCompleteReward('), '已移除答题完成判定逻辑')
-check(page.includes('this.answerVisible = !this.isQaItem'), '阅读类条目进入即自动显示正文，答题类每次进入都收起（不再记忆展开状态）')
-check(page.includes("this.answerLabel = this.isQaItem ? '答案' : riddle.category"), '仅答题类在答案框标注“答案”，正文框不再显示“正文·分类”')
-check(page.includes('<text class="quiz-kicker">{{quizCategory}}</text>') && /<div class="qa-mode" show="\{\{isQaItem\}\}">[\s\S]*?<div class="read-mode" show="\{\{!isQaItem\}\}">/u.test(page), '答题模式顶部标签显示当前分类，阅读模式独立布局')
-check(page.includes('<text class="read-kicker">{{quizCategory}}</text>') && page.includes('<text class="read-title">{{riddleQuestion}}</text>') && page.includes('<text class="read-text">{{riddleExplain}}</text>'), '阅读模式左上显示分类标签，正文含子标题与大号正文')
-check(page.includes('riddleExplain = chunks[this.detailIndex]') && page.includes("this.answerLabel = this.isQaItem ? '答案' : riddle.category"), '正文不重复“正文·分类”标签，不拼接来源')
+check(knowledgeUtils.includes('function isQaMode('), '提供按分类判定答题/阅读模式的辅助函数')
+check(/return record\.displayMode === 'qa' \|\| record\.category === '脑筋急转弯' \|\| record\.category === '十万个为什么'/u.test(knowledgeUtils), '仅 脑筋急转弯 与 十万个为什么 属于答题模式')
+check(!knowledgePage.includes('今日 20 题已读完'), '已移除“看完即奖励”的答题完成设定')
+check(!knowledgePage.includes('isCompleteReward('), '已移除答题完成判定逻辑')
+check(knowledgePage.includes('this.answerVisible = !this.isQaItem'), '阅读类条目进入即自动显示正文，答题类每次进入都收起（不再记忆展开状态）')
+check(knowledgePage.includes("this.answerLabel = this.isQaItem ? '答案' : riddle.category"), '仅答题类在答案框标注“答案”，正文框不再显示“正文·分类”')
+check(knowledgePage.includes('<text class="quiz-kicker">{{quizCategory}}</text>') && /<div class="qa-mode" show="\{\{isQaItem\}\}">[\s\S]*?<div class="read-mode" show="\{\{!isQaItem\}\}">/u.test(knowledgePage), '答题模式顶部标签显示当前分类，阅读模式独立布局')
+check(knowledgePage.includes('<text class="read-kicker">{{quizCategory}}</text>') && knowledgePage.includes('<text class="read-title">{{riddleQuestion}}</text>') && knowledgePage.includes('<text class="read-text">{{riddleExplain}}</text>'), '阅读模式左上显示分类标签，正文含子标题与大号正文')
+check(knowledgePage.includes('riddleExplain = chunks[this.detailIndex]') && knowledgePage.includes("this.answerLabel = this.isQaItem ? '答案' : riddle.category"), '正文不重复“正文·分类”标签，不拼接来源')
 
 // ---- 其它原有功能保持不变 ----
 check(page.includes('state.lastDay === today.dayNumber - 1'), '实现连续签到计算')
@@ -160,7 +165,7 @@ check(page.includes('Math.random() * FORTUNES.length') && page.includes('drawFor
 check(!page.includes('fortuneForDay(today.dayNumber)'), '已移除按日期固定的自动签级')
 check(!page.includes('星象与签运为趣味参考'), '界面不再显示提示性免责声明')
 check(page.includes('<text class="brand">Daily Spark</text>'), '品牌已更名 Daily Spark')
-check(dateUtils.includes('HOLIDAYS_2026') && page.includes('monthHolidayText(y, m)') && page.includes('#3f7d46') && page.includes('#c0392b'), '月历内置 2026 法定节假日与周末配色')
+check(dateUtils.includes('HOLIDAYS_2026') && calendarPage.includes('monthHolidayText(y, m)') && calendarPage.includes('#3f7d46') && calendarPage.includes('#c0392b'), '月历内置 2026 法定节假日与周末配色')
 check(page.includes('background-color: #f2eee5') && !page.includes('glow-one'), '主题已改为无光效的暖色纸质日历风格')
 check(page.includes('onswipe="handleSwipe"') && page.includes("event.direction === 'right'"), '支持右滑退出')
 check(page.includes('.page { position: relative; width: 336px; height: 480px;'), '页面完整适配 336×480')
@@ -168,20 +173,22 @@ check(page.includes('brightness.setKeepScreenOn'), '保留常亮（保持屏幕�
 check(page.includes('stateReady: false') && page.includes('drawFortune()') && page.includes('if (!this.stateReady) return'), '存档读取完成前禁止抽签与相关操作')
 check(page.includes('const finishLoad = function') && page.includes('if (!this.stateReady) return'), '存档成功、失败或不可用时均结束加载，未完成时禁止保存')
 
-// ---- 1.7.0 布局重构验收：减密度、固定父容器、无重叠、统一 left/top ----
-check(page.includes('quiz-panel') && /quiz-panel \{[^}]*width: 312px; height: 456px/u.test(page), '知识面板使用固定尺寸父容器（312×456 居中）')
-check(page.includes('quiz-question-box') && page.includes('quiz-answer-box'), '题目与答案各自拥有明确大小的固定父容器，互不重叠')
-check(page.includes('quiz-actionbar') && /quiz-actionbar \{[^}]*top: 400px/u.test(page), '题目导航使用固定操作栏（底部固定），不随内容浮动')
-check(page.includes('openCalendar') && page.includes('openZodiac'), '日历与星座均提供独立详情入口，避免小卡塞大量文字')
+// ---- 1.7.0 布局重构验收：减密度、固定父容器、无重叠、统一 left/top（知识页 / 日历页） ----
+check(knowledgePage.includes('quiz-panel') && /quiz-panel \{[^}]*width: 312px; height: 456px/u.test(knowledgePage), '知识面板使用固定尺寸父容器（312×456 居中）')
+check(knowledgePage.includes('quiz-question-box') && knowledgePage.includes('quiz-answer-box'), '题目与答案各自拥有明确大小的固定父容器，互不重叠')
+check(knowledgePage.includes('quiz-actionbar') && /quiz-actionbar \{[^}]*top: 400px/u.test(knowledgePage), '题目导航使用固定操作栏（底部固定），不随内容浮动')
+check(page.includes('openCalendarPage') && page.includes('openZodiac'), '首页提供日历页与星座详情入口')
 check(page.includes('zodiac-mask') && page.includes('closeZodiac'), '星座使用独立详情遮罩页展示名称/日期区间/月相/贴士')
 check(!page.includes('class="exit-button"') && !page.includes('.exit-button'), '已移除右上角全局退出按钮，仅保留右滑退出')
-const weekCells = (page.match(/class="month-week-cell"/g) || []).length
+const weekCells = (calendarPage.match(/class="month-week-cell"/g) || []).length
 check(weekCells === 7, `月历星期行使用 7 个独立等宽文本（实际 ${weekCells}）`)
-const dayCells = (page.match(/class="month-cell"/g) || []).length
+const dayCells = (calendarPage.match(/class="month-cell"/g) || []).length
 check(dayCells === 42, `月历使用 42 格（6 行×7 列，实际 ${dayCells}）`)
-check(!/\bright:\s*\d/u.test(page), '布局统一使用 left/top 定位，未使用 right（规避模拟器支持问题）')
-check(page.includes('detail-next') && page.includes('detailTotal') && page.includes('detailLabel'), '答案/解析过长时可分页（下一段按钮 + 总段数 + 动态文案）')
-check(!page.includes('quiz-reward') && !page.includes('rewardText'), '已移除奖励提示，题目与答案区不再被奖励文字挤占')
+for (const text of [page, knowledgePage, calendarPage]) {
+  check(!/\bright:\s*\d/u.test(text), '布局统一使用 left/top 定位，未使用 right（规避模拟器支持问题）')
+}
+check(knowledgePage.includes('detail-next') && knowledgePage.includes('detailTotal') && knowledgePage.includes('detailLabel'), '答案/解析过长时可分页（下一段按钮 + 总段数 + 动态文案）')
+check(!knowledgePage.includes('quiz-reward') && !knowledgePage.includes('rewardText'), '已移除奖励提示，题目与答案区不再被奖励文字挤占')
 const captureOrder = [
   '03-zodiac.png', '04-zodiac-next.png', '05-calendar.png',
   '06-riddle.png', '07-riddle-answer.png'
@@ -209,9 +216,14 @@ check(page.includes('value="形象分析 ›"') && page.includes('startZodiacTes
 
 check(fs.existsSync(path.join(root, 'src', 'common', 'utils', 'date.js')), '日期工具位于 common/utils/date.js')
 check(fs.existsSync(path.join(root, 'src', 'common', 'utils', 'random.js')), '随机工具位于 common/utils/random.js')
-check(fs.existsSync(path.join(root, 'src', 'common', 'utils', 'zodiac.js')), '星座工具位于 common/utils/zodiac.js')
+check(fs.existsSync(path.join(root, 'src', 'common', 'utils', 'knowledge.js')), '知识逻辑工具位于 common/utils/knowledge.js')
 check(page.includes("import { pad, WEEKDAYS, dayInfo, moonPhase") && page.includes("common/utils/date.js"), '主页面从 common/utils 导入日期工具')
-check(page.includes("import { mulberry32 } from") && page.includes("common/utils/random.js"), '主页面从 common/utils 导入随机工具')
+check(knowledgeUtils.includes('function mulberry32(') && knowledgePage.includes('common/utils/knowledge.js'), '随机与知识逻辑经共享模块供题库复用')
 check(page.includes("common/utils/zodiac.js") && page.includes('zodiacForDate'), '主页面从 common/utils 导入星座工具')
+check(manifestPages.includes('pages/knowledge') && manifestPages.includes('pages/calendar'), 'manifest 注册知识大全与日历独立页')
+check(knowledgePage.includes('goHome') && knowledgePage.includes("uri: 'pages/index/index'"), '知识页提供返回主页跳转')
+check(calendarPage.includes('goHome') && calendarPage.includes("uri: 'pages/index/index'"), '日历页提供返回主页跳转')
+check(page.includes('openKnowledgePage') && page.includes("uri: 'pages/knowledge/knowledge'"), '首页知识大全入口跳转独立知识页')
+check(page.includes('openCalendarPage') && page.includes("uri: 'pages/calendar/calendar'"), '首页今日日历入口跳转独立日历页')
 
 console.log(`\n每日一言静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)  
