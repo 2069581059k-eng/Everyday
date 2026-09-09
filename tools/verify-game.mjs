@@ -29,8 +29,15 @@ const quotes = quoteBlock ? Function('return (' + quoteBlock[1] + ')')() : []
 const riddles = riddleBlock ? Function('return (' + riddleBlock[1] + ')')() : []
 const sourceKnowledge = fs.existsSync(knowledgePath) ? JSON.parse(fs.readFileSync(knowledgePath, 'utf8')) : []
 const knowledgeSources = fs.existsSync(knowledgeSourcesPath) ? JSON.parse(fs.readFileSync(knowledgeSourcesPath, 'utf8')) : {}
-const helperBlock = page.match(/(function mulberry32\(seed\) \{[\s\S]*?\n\}\n\nconst today =)/u)
-const helperSrc = helperBlock ? helperBlock[1].replace(/\n\nconst today =[^\n]*$/, '') : ''
+const randomUtilsPath = path.join(root, 'src', 'common', 'utils', 'random.js')
+const dateUtilsPath = path.join(root, 'src', 'common', 'utils', 'date.js')
+const zodiacUtilsPath = path.join(root, 'src', 'common', 'utils', 'zodiac.js')
+const dateUtils = fs.existsSync(dateUtilsPath) ? fs.readFileSync(dateUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
+const randomUtils = fs.existsSync(randomUtilsPath) ? fs.readFileSync(randomUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
+const zodiacUtils = fs.existsSync(zodiacUtilsPath) ? fs.readFileSync(zodiacUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
+const helperMulberry = (randomUtils.match(/function mulberry32\(seed\) \{[\s\S]*?\n\}/u) || [''])[0]
+const helperBlock = page.match(/(function knowledgeDetail\(record\) \{[\s\S]*?\n\}\n\nconst today =)/u)
+const helperSrc = (helperMulberry ? helperMulberry + '\n' : '') + (helperBlock ? helperBlock[1].replace(/\n\nconst today =[^\n]*$/, '') : '')
 const quizHelpers = helperSrc
   ? Function('RIDDLES', helperSrc + '\nreturn { dailyRiddles, shouldResetQuizProgress, knowledgeDetail, knowledgeAnswer, isQaMode };')(riddles)
   : null
@@ -96,7 +103,7 @@ check(page.includes('<text class="quiz-kicker">{{quizCategory}}</text>'), '知�
 // ---- 每日固定 50 道不重复（新机制，真实逻辑） ----
 check(!!quizHelpers, '页面包含按日期选題的辅助函数')
 check(page.includes('dailyRiddles(') && page.includes('const dailyRiddleList = dailyRiddles('), '按本地日期固定生成每日题目列表')
-check(page.includes('Date.UTC') && page.includes('quoteIndex(today.dayNumber)'), '按本地日期稳定选择每日内容')
+check(dateUtils.includes('Date.UTC') && page.includes('quoteIndex(today.dayNumber)'), '日期工具基于 UTC 稳定计算，每日内容按本地日期稳定选择')
 if (quizHelpers) {
   const sampleDays = [1, 2, 31, 100, 365, 1000, 20260207, 20261231]
   let allOk = true
@@ -148,12 +155,12 @@ check(page.includes('toggleFavorite()') && page.includes('favorites'), '实现�
 check(page.includes('今日日历') && page.includes('yearDayText'), '主页面包含真实日期日历信息')
 check(page.includes('ZODIACS') && page.includes('previousZodiac()') && page.includes('nextZodiac()'), '支持十二星座切换与本地保存')
 check(page.includes('moonPhase(today.dayNumber)'), '显示按日期计算的近似月相')
-check(page.includes("'上上签'") && page.includes("'上签'") && page.includes("'中签'") && page.includes("'下签'") && page.includes("'下下签'"), '抽签包含五个签级')
+check(zodiacUtils.includes("'上上签'") && zodiacUtils.includes("'上签'") && zodiacUtils.includes("'中签'") && zodiacUtils.includes("'下签'") && zodiacUtils.includes("'下下签'"), '抽签包含五个签级')
 check(page.includes('Math.random() * FORTUNES.length') && page.includes('drawFortune()'), '抽一签为随机抽取，不再按日期固定自动派签')
 check(!page.includes('fortuneForDay(today.dayNumber)'), '已移除按日期固定的自动签级')
 check(!page.includes('星象与签运为趣味参考'), '界面不再显示提示性免责声明')
 check(page.includes('<text class="brand">Daily Spark</text>'), '品牌已更名 Daily Spark')
-check(page.includes('HOLIDAYS_2026') && page.includes('isLegalHoliday(') && page.includes('#3f7d46') && page.includes('#c0392b'), '月历内置 2026 法定节假日与周末配色')
+check(dateUtils.includes('HOLIDAYS_2026') && page.includes('monthHolidayText(y, m)') && page.includes('#3f7d46') && page.includes('#c0392b'), '月历内置 2026 法定节假日与周末配色')
 check(page.includes('background-color: #f2eee5') && !page.includes('glow-one'), '主题已改为无光效的暖色纸质日历风格')
 check(page.includes('onswipe="handleSwipe"') && page.includes("event.direction === 'right'"), '支持右滑退出')
 check(page.includes('.page { position: relative; width: 336px; height: 480px;'), '页面完整适配 336×480')
@@ -200,4 +207,11 @@ for (const dataFile of ['zodiac_questions.js', 'zodiac_profiles.js', 'zodiac_tem
 }
 check(page.includes('value="形象分析 ›"') && page.includes('startZodiacTest()') && page.includes("uri: 'pages/zodiac-test/zodiac-test'"), '趣味星象内提供形象分析入口并跳转答题页')
 
-console.log(`\n每日一言静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`) 
+check(fs.existsSync(path.join(root, 'src', 'common', 'utils', 'date.js')), '日期工具位于 common/utils/date.js')
+check(fs.existsSync(path.join(root, 'src', 'common', 'utils', 'random.js')), '随机工具位于 common/utils/random.js')
+check(fs.existsSync(path.join(root, 'src', 'common', 'utils', 'zodiac.js')), '星座工具位于 common/utils/zodiac.js')
+check(page.includes("import { pad, WEEKDAYS, dayInfo, moonPhase") && page.includes("common/utils/date.js"), '主页面从 common/utils 导入日期工具')
+check(page.includes("import { mulberry32 } from") && page.includes("common/utils/random.js"), '主页面从 common/utils 导入随机工具')
+check(page.includes("common/utils/zodiac.js") && page.includes('zodiacForDate'), '主页面从 common/utils 导入星座工具')
+
+console.log(`\n每日一言静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)  
