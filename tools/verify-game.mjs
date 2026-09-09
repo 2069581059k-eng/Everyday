@@ -21,9 +21,11 @@ function check(condition, message) {
   console.log('PASS  ' + message)
 }
 
-const quoteBlock = page.match(/const QUOTES = (\[[\s\S]*?\])\n\nfunction pad/u)
+const quotesModulePath = path.join(root, 'src', 'common', 'data', 'quotes.js')
+const knowledgeModulePath = path.join(root, 'src', 'common', 'data', 'knowledge.js')
+const quoteBlock = fs.readFileSync(quotesModulePath, 'utf8').match(/const QUOTES = (\[[\s\S]*?\n\])/u)
+const riddleBlock = fs.readFileSync(knowledgeModulePath, 'utf8').match(/const RIDDLES = (\[[\s\S]*?\n\])/u)
 const quotes = quoteBlock ? Function('return (' + quoteBlock[1] + ')')() : []
-const riddleBlock = page.match(/const RIDDLES = (\[[\s\S]*?\])\n\nconst QUOTES/u)
 const riddles = riddleBlock ? Function('return (' + riddleBlock[1] + ')')() : []
 const sourceKnowledge = fs.existsSync(knowledgePath) ? JSON.parse(fs.readFileSync(knowledgePath, 'utf8')) : []
 const knowledgeSources = fs.existsSync(knowledgeSourcesPath) ? JSON.parse(fs.readFileSync(knowledgeSourcesPath, 'utf8')) : {}

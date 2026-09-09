@@ -54,12 +54,28 @@ const riddleRows = riddles.map((riddle) => {
 const riddleReplacement = 'const RIDDLES = [\n' + riddleRows.join(',\n') + '\n]'
 const riddlePattern = /const RIDDLES = \[[\s\S]*?\](?=\n\nconst QUOTES)/u
 const quotePattern = /const QUOTES = \[[\s\S]*?\n\]\n\nfunction pad/u
-if (!riddlePattern.test(page)) throw new Error('没有找到 index.ux 中的 RIDDLES 数据段')
-if (!quotePattern.test(page)) throw new Error('没有找到 index.ux 中的 QUOTES 数据段')
-const next = page
-  .replace(riddlePattern, riddleReplacement)
-  .replace(quotePattern, replacement + '\n\nfunction pad')
-if (next !== page) fs.writeFileSync(pagePath, next, 'utf8')
-console.log(next === page
-  ? `米环运行页面中的 ${expectedQuoteCount} 条真实语录和 ${expectedKnowledgeCount} 条真实知识题已是最新。`
-  : `已将 ${expectedQuoteCount} 条真实语录和 ${expectedKnowledgeCount} 条真实知识题内联到米环运行页面。`)
+const knowledgeModulePath = path.join(root, 'src', 'common', 'data', 'knowledge.js')
+const quotesModulePath = path.join(root, 'src', 'common', 'data', 'quotes.js')
+if (riddlePattern.test(page) || quotePattern.test(page)) {
+  // 旧版单页内嵌数据：一次性迁移为 common/data import
+  const next = page
+    .replace(riddlePattern, "import { RIDDLES } from '../../common/data/knowledge.js'")
+    .replace(quotePattern, "import { QUOTES } from '../../common/data/quotes.js'\n\nfunction pad")
+  if (next !== page) fs.writeFileSync(pagePath, next, 'utf8')
+}
+if (!page.includes("import { RIDDLES } from '../../common/data/knowledge.js'") && !fs.existsSync(knowledgeModulePath)) {
+  throw new Error('index.ux 未引用 common/data 知识模块')
+}
+if (!page.includes("import { QUOTES } from '../../common/data/quotes.js'") && !fs.existsSync(quotesModulePath)) {
+  throw new Error('index.ux 未引用 common/data 语录模块')
+}
+
+const knowledgeModule = '// 由 tools/generate-quotes.mjs 生成的离线知识题库（只读，勿手改）\nconst RIDDLES = [\n' + riddleRows.join(',\n') + '\n]\n\nexport { RIDDLES }\n'
+const quotesModule = '// 由 tools/generate-quotes.mjs 生成的离线语录库（只读，勿手改）\nconst QUOTES = [\n' + rows.join(',\n') + '\n]\n\nexport { QUOTES }\n'
+const knowledgeChanged = fs.readFileSync(knowledgeModulePath, 'utf8').replace(/\r\n/g, '\n') !== knowledgeModule
+const quotesChanged = fs.readFileSync(quotesModulePath, 'utf8').replace(/\r\n/g, '\n') !== quotesModule
+if (knowledgeChanged) fs.writeFileSync(knowledgeModulePath, knowledgeModule, 'utf8')
+if (quotesChanged) fs.writeFileSync(quotesModulePath, quotesModule, 'utf8')
+console.log(knowledgeChanged || quotesChanged
+  ? `已将 ${expectedQuoteCount} 条真实语录与 ${expectedKnowledgeCount} 条真实知识题写入 common/data 模块。`
+  : `common/data 中的 ${expectedQuoteCount} 条语录与 ${expectedKnowledgeCount} 条知识题已是最新。`)
