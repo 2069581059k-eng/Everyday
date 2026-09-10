@@ -212,7 +212,7 @@ check(fs.existsSync(path.join(root, 'src', 'common', 'scripts', 'zodiac-scoring.
 for (const dataFile of ['zodiac_questions.js', 'zodiac_profiles.js', 'zodiac_templates.js']) {
   check(fs.existsSync(path.join(root, 'src', 'common', 'data', dataFile)), `离线数据 ${dataFile} 位于 common/data`)
 }
-check(page.includes('value="形象分析 ›"') && page.includes('startZodiacTest()') && page.includes("uri: 'pages/zodiactest/zodiactest'"), '趣味星象内提供形象分析入口并跳转答题页')
+check(page.includes('value="形象分析 ›"') && page.includes('startZodiacTest()') && page.includes("uri: '/pages/zodiactest'"), '趣味星象内提供形象分析入口并跳转答题页')
 
 check(fs.existsSync(path.join(root, 'src', 'common', 'utils', 'date.js')), '日期工具位于 common/utils/date.js')
 check(fs.existsSync(path.join(root, 'src', 'common', 'utils', 'random.js')), '随机工具位于 common/utils/random.js')
@@ -221,9 +221,14 @@ check(page.includes("import { pad, WEEKDAYS, dayInfo, moonPhase") && page.includ
 check(knowledgeUtils.includes('function mulberry32(') && knowledgePage.includes('common/utils/knowledge.js'), '随机与知识逻辑经共享模块供题库复用')
 check(page.includes("common/utils/zodiac.js") && page.includes('zodiacForDate'), '主页面从 common/utils 导入星座工具')
 check(manifestPages.includes('pages/knowledge') && manifestPages.includes('pages/calendar'), 'manifest 注册知识大全与日历独立页')
-check(knowledgePage.includes('goHome') && knowledgePage.includes("uri: 'pages/index/index'"), '知识页提供返回主页跳转')
-check(calendarPage.includes('goHome') && calendarPage.includes("uri: 'pages/index/index'"), '日历页提供返回主页跳转')
-check(page.includes('openKnowledgePage') && page.includes("uri: 'pages/knowledge/knowledge'"), '首页知识大全入口跳转独立知识页')
-check(page.includes('openCalendarPage') && page.includes("uri: 'pages/calendar/calendar'"), '首页今日日历入口跳转独立日历页')
+check(knowledgePage.includes('goHome') && knowledgePage.includes("uri: '/pages/index'"), '知识页提供返回主页跳转')
+check(calendarPage.includes('goHome') && calendarPage.includes("uri: '/pages/index'"), '日历页提供返回主页跳转')
+check(page.includes('openKnowledgePage') && page.includes("uri: '/pages/knowledge'"), '首页知识大全入口跳转独立知识页')
+check(page.includes('openCalendarPage') && page.includes("uri: '/pages/calendar'"), '首页今日日历入口跳转独立日历页')
+// Vela 固件只接受 /pages/xxx 前导斜杠路径；pages/xxx/xxx 三段格式会被判 invalid pagename 静默失败
+for (const uxFile of [page, knowledgePage, calendarPage, zodiacTest, zodiacResult]) {
+  check(!uxFile.includes("uri: 'pages/"), '路由 URI 必须使用 /pages/xxx 前导斜杠格式（固件拒绝三段格式）')
+  check(!uxFile.includes('uri: "pages/'), '路由 URI 必须使用 /pages/xxx 前导斜杠格式（固件拒绝三段格式）')
+}
 
 console.log(`\n每日一言静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)  

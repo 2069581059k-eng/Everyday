@@ -32,16 +32,18 @@ const STORAGE_KEY = 'zodiac_profile_result_v1'
 const TOTAL = 30
 
 export default {
-  currentIndex: 0,
-  answers: [],
-  currentQuestion: '',
-  currentScene: '',
-  optionA: '',
-  optionB: '',
-  optionC: '',
-  optionD: '',
-  progressText: '01 / 30',
-  progressPct: 3,
+  private: {
+    currentIndex: 0,
+    answers: [],
+    currentQuestion: '',
+    currentScene: '',
+    optionA: '',
+    optionB: '',
+    optionC: '',
+    optionD: '',
+    progressText: '01 / 30',
+    progressPct: 3
+  },
 
   onInit() {
     this.answers = []
@@ -90,7 +92,7 @@ export default {
 
   goResult() {
     router.replace({
-      uri: 'pages/zodiacresult/zodiacresult',
+      uri: '/pages/zodiacresult',
       fail(error) { console.log('zodiacresult route fail: ' + JSON.stringify(error)) }
     })
   },

@@ -60,23 +60,25 @@ function dimName(key) {
 }
 
 export default {
-  primaryName: '',
-  primaryMatch: '',
-  secondaryName: '',
-  secondaryMatch: '',
-  thirdName: '',
-  thirdMatch: '',
-  styleText: '',
-  mainText: '',
-  pairText: '',
-  dimRows: [],
-  dimTexts: [],
-  hasContrast: false,
-  contrastText: '',
-  sceneTexts: [],
-  summaryText: '',
-  adviceTexts: [],
-  ready: false,
+  private: {
+    primaryName: '',
+    primaryMatch: '',
+    secondaryName: '',
+    secondaryMatch: '',
+    thirdName: '',
+    thirdMatch: '',
+    styleText: '',
+    mainText: '',
+    pairText: '',
+    dimRows: [],
+    dimTexts: [],
+    hasContrast: false,
+    contrastText: '',
+    sceneTexts: [],
+    summaryText: '',
+    adviceTexts: [],
+    ready: false
+  },
 
   onInit() {
     const page = this
@@ -125,14 +127,14 @@ export default {
 
   goHome() {
     router.replace({
-      uri: 'pages/index/index',
+      uri: '/pages/index',
       fail(error) { console.log('index route fail: ' + JSON.stringify(error)) }
     })
   },
 
   retest() {
     router.replace({
-      uri: 'pages/zodiactest/zodiactest',
+      uri: '/pages/zodiactest',
       fail(error) { console.log('zodiactest route fail: ' + JSON.stringify(error)) }
     })
   }

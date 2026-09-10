@@ -52,22 +52,26 @@ const dailyRiddleList = dailyRiddles(RIDDLES, today.dayNumber)
 let quizState = { quizDay: -1, quizIndex: 0, quizViewed: [] }
 
 export default {
-  stateReady: false,
-  quizCategory: '',
-  quizPos: 0,
-  quizTotal: 0,
-  riddleQuestion: '',
-  isQaItem: false,
-  revealLabel: '查看答案',
-  answerLabel: '答案',
-  answerVisible: false,
-  detailIndex: 0,
-  detailTotal: 1,
-  detailLabel: '',
-  prevDisabled: true,
-  nextDisabled: true,
-  prevLabel: '已是第一题',
-  nextLabel: '下一题',
+  private: {
+    stateReady: false,
+    quizCategory: '',
+    quizPos: 0,
+    quizTotal: 0,
+    riddleQuestion: '',
+    riddleExplain: '',
+    riddleAnswer: '',
+    isQaItem: false,
+    revealLabel: '查看答案',
+    answerLabel: '答案',
+    answerVisible: false,
+    detailIndex: 0,
+    detailTotal: 1,
+    detailLabel: '',
+    prevDisabled: true,
+    nextDisabled: true,
+    prevLabel: '已是第一题',
+    nextLabel: '下一题'
+  },
 
   onInit() {
     this.setAwake(true)
@@ -204,7 +208,7 @@ export default {
 
   goHome() {
     this.saveState()
-    router.replace({ uri: 'pages/index/index' })
+    router.replace({ uri: '/pages/index' })
   },
 
   pulse(mode) {
