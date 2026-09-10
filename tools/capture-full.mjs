@@ -77,16 +77,24 @@ function hasRedBlock(image) {
 const require = createRequire(import.meta.url)
 const { createGrpcClient } = require('@aiot-toolkit/emulator/lib/vvd/grpc')
 const projectRoot = path.resolve(import.meta.dirname, '..')
-const sdkHome = 'C:\\Users\\20695\\Documents\\NEWPRO~1\\CODEX_~1\\VELA-H~1\\VELA~1\\sdk'
-const vvdHome = 'C:\\Users\\20695\\Documents\\NEWPRO~1\\CODEX_~1\\VELA-H~1\\VELA~1\\vvd'
-const vvdName = 'Vela_Band10Pro_UI'
+// 环境隔离：SDK 只读共享（可用 WB_VELA_SDK 覆盖），AVD 数据与实例名独立在 D 盘
+const sdkHome = process.env.WB_VELA_SDK || 'D:\\AGI\\WorkBuddy\\Simulator\\sdk'
+const vvdHome = process.env.WB_VELA_AVD_HOME || 'D:\\AGI\\WorkBuddy\\Simulator\\vvd'
+// 注意：Vela 模拟器对 VVD 实例名有白名单，自定义名会报 Unknown VVD name；
+// 因此隔离靠“独立数据目录 + 独立端口 + 仅子进程环境变量”，实例名沿用受支持名。
+const vvdName = process.env.WB_VELA_AVD || 'WorkBuddy_Band10Pro'
+// 独立端口（避免与 Codex/Trae 实例冲突）：模拟器 5580 → adb serial emulator-5580，grpc 8580，hostfwd 10081
+const emuPort = Number(process.env.WB_EMU_PORT || 5580)
+const emuSerial = `emulator-${emuPort}`
+const emuForward = Number(process.env.WB_EMU_FORWARD || 10081)
+
 const packageName = 'com.dailyquote.band10pro'
 const adbPath = 'C:\\Windows\\System32\\adb.exe'
 const emulatorPath = path.join(sdkHome, 'emulator', 'windows-x86_64', 'emulator.exe')
 const manifest = JSON.parse(fs.readFileSync(path.join(projectRoot, 'src', 'manifest.json'), 'utf8'))
 const rpkPath = process.env.VELA_RPK || path.join(projectRoot, 'dist', `${packageName}.debug.${manifest.versionName}.rpk`)
 const outputDir = path.join(projectRoot, process.env.QA_DIR || 'qa-full')
-let serial = 'emulator-5554'
+let serial = `emulator-${Number(process.env.WB_EMU_PORT || 5580)}`
 let startedHere = false
 let lastLum = 226   // 最近一次截图平均亮度（用于点击前自动唤醒）
 const runtimeLog = []
@@ -104,8 +112,10 @@ function run(file, args, timeout = 30000) {
 
 function deviceSerial() {
   const result = spawnSync(adbPath, ['devices'], { encoding: 'utf8', timeout: 5000, windowsHide: true })
-  const m = (result.stdout || '').match(/(emulator-\d+)\s+device/)
-  return m ? m[1] : null
+  const ids = (result.stdout || '').split(/\r?\n/).map((l) => l.trim()).filter((l) => /\sdevice$/.test(l)).map((l) => l.split(/\s+/)[0])
+  // 只认自己的实例端口，避免连到其它工具（Codex/Trae）的模拟器
+  const mine = `emulator-${emuPort}`
+  return ids.includes(mine) ? mine : null
 }
 
 function deviceReady() {
@@ -113,16 +123,26 @@ function deviceReady() {
 }
 
 function readRunningConfig() {
-  const runningDir = path.join(os.tmpdir(), 'avd', 'running')
-  if (!fs.existsSync(runningDir)) return null
-  for (const name of fs.readdirSync(runningDir)) {
-    if (!name.endsWith('.ini')) continue
-    const config = {}
-    for (const line of fs.readFileSync(path.join(runningDir, name), 'utf8').split(/\r?\n/u)) {
-      const i = line.indexOf('=')
-      if (i > 0) config[line.slice(0, i)] = line.slice(i + 1)
+  const expectedDir = path.join(vvdHome, vvdName + '.vvd').toLowerCase()
+  const candidates = [
+    path.join(os.tmpdir(), 'avd', 'running'),
+    path.join(process.env.LOCALAPPDATA || '', 'Temp', 'avd', 'running'),
+    'C:\\Users\\20695\\AppData\\Local\\Temp\\avd\\running'
+  ]
+  for (const runningDir of candidates) {
+    if (!fs.existsSync(runningDir)) continue
+    for (const name of fs.readdirSync(runningDir)) {
+      if (!name.endsWith('.ini')) continue
+      const config = {}
+      for (const line of fs.readFileSync(path.join(runningDir, name), 'utf8').split(/\r?\n/u)) {
+        const i = line.indexOf('=')
+        if (i > 0) config[line.slice(0, i)] = line.slice(i + 1)
+      }
+      if (!config['avd.dir'] || !config['grpc.port']) continue
+      // 精确匹配自己的数据目录，避免选到 Codex/Trae 的实例
+      if (config['avd.dir'].toLowerCase() !== expectedDir) continue
+      return config
     }
-    if (config['avd.name'] === vvdName && config['grpc.port']) return config
   }
   return null
 }
@@ -226,11 +246,11 @@ async function main() {
   if (!deviceReady()) {
     startedHere = true
     const child = spawn(emulatorPath, [
-      '-vela', '-avd', vvdName, '-show-kernel',
-      '-network-user-mode-options', 'hostfwd=tcp:127.0.0.1:10055-10.0.2.15:101',
+      '-vela', '-avd', vvdName, '-port', String(emuPort), '-grpc', String(emuPort + 3000), '-show-kernel',
+      '-network-user-mode-options', `hostfwd=tcp:127.0.0.1:${emuForward}-10.0.2.15:101`,
       '-qt-hide-window', '-qemu', '-device', 'virtio-snd,bus=virtio-mmio-bus.2',
       '-allow-host-audio', '-semihosting'
-    ], { cwd: sdkHome, env: { ...process.env, ANDROID_AVD_HOME: vvdHome, ANDROID_SDK_HOME: path.dirname(vvdHome) }, stdio: ['ignore', 'pipe', 'pipe'], windowsHide: true })
+    ], { cwd: sdkHome, env: { ...process.env, ANDROID_AVD_HOME: process.env.WB_VELA_REGISTRY || 'C:\\Users\\20695\\Documents\\New project\\.codex_tmp\\vela-home\\.vela\\vvd', ANDROID_SDK_HOME: path.dirname(sdkHome) }, stdio: ['ignore', 'pipe', 'pipe'], windowsHide: true })
     child.stdout.on('data', (d) => runtimeLog.push(String(d)))
     child.stderr.on('data', (d) => runtimeLog.push(String(d)))
   }
@@ -238,6 +258,7 @@ async function main() {
   serial = deviceSerial() || serial
   console.log('模拟器串口：' + serial)
   runtimeLog.push('serial=' + serial)
+  if (serial !== emuSerial) throw new Error(`串口不符：期望 WorkBuddy 自己的 ${emuSerial}，实际 ${serial}（可能存在其它实例）`)
 
   const remoteRpk = `/data/quickapp/app/${packageName}.rpk`
   try {
