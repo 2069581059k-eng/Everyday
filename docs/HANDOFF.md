@@ -15,6 +15,12 @@
 - 建议：真机验证优先用 WorkBuddy v1.8.10（已发布已验证）；本分支的增量价值为 verify-game 更严断言（URI 格式/flex 方向/分页）、zodiac 数据多行化、去连字符目录，可经 PR 整合或保留备用
 - 遗留：若继续本分支，结果页须改为固定槽位 + 脚本替换文案方案（参照 c82a8a3），重建复验
 
+## 2026-09-10 · Trae Code 审查确认（本分支封存）
+
+- main 已合并 1.8.10 为共同基线：a78520a（docs）含 c82a8a3（实现），标签 v1.8.10 已进入 main；AGENTS.md 新规则要求 Trae Code 后续任务用 `trae/<任务>` 分支前缀并从最新 origin/main 开始。
+- Trae 在干净 main 上复验 `npm test` 全绿（108 条断言 + 无未定义引用），基线健康；未重新执行设备验证（沿用 WorkBuddy 模拟器证据与 Release）。
+- 本分支 agent/zodiac-fix 封存为历史/交叉验证记录，不再开发；其增量候选（URI/分页断言、zodiac 数据多行化——main 的 zodiac_templates.js 仍为 67635 字符单行、for 动态 class 崩溃教训）留待用户决定是否经新分支整合进 main。
+
 ## 2026-09-10 · Kimi(agent) 星象分析真机修复 1.8.9
 
 - 基线：bd357b6（v1.8.8 黑屏真因修复；用户真机确认 1.8.8 不黑屏，首页/知识/日历正常）。
