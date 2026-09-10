@@ -1,5 +1,20 @@
 # 当前交接
 
+## 2026-09-10 · WorkBuddy(agent) 1.8.10 星象分析布局与绑定修复
+
+- 分支 agent-knux-cleanup；提交 c82a8a3。
+- **关键根因（AIoT/Vela 硬规则）**：页面数据必须声明在 `export default` 的 `private: {}` 内。knowledge / calendar / zodiac-test / zodiac-result 四页把数据写在顶层 → 框架不识别为模板数据源 → **所有 `{{}}` 绑定为空**（文字全空）。index 页原本用 private 所以正常。
+  - 定位手法：模拟器截图里按钮静态文案（返回主页/再测一次）能渲染、绑定文案（pageLabel）为空 → 判定为数据源未注册。
+- 另外两处修复：
+  - 答题页 4 个选项原用 flex+margin → 被压缩成一行重叠；改**绝对定位**（top 190/244/298/352，高 48），并压缩高度避免溢出 480。
+  - 结果页原内容超长被截断且不渲染；重写为**全绝对定位 + 固定 3 槽位 + 分页翻页**。
+- 新增 `tools/analyze-layout.mjs`：无依赖 PNG 像素分析，用「按钮边框线数量」判定选项是否纵向堆叠（4 选项=8 条线）。
+- 新增 `tools/capture-zodiac.mjs`：星象链路专用模拟器验收（首页→遮罩→答题→结果→翻页）。
+- verify-game.mjs 新增断言：5 个页面数据必须声明在 private 中。
+- 模拟器实测 1.8.10：选项边框线 y=190/237、244/291、298/345、352/399（纵向堆叠✓）；答题页标题/进度/场景/题干齐全；结果页 4 页内容各异（60086/57580/56138/55905 字节）。
+- Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.10；BIN 1,341,491 B，SHA-256 2daa2305…
+- **Vela 开发要点（务必遵守）**：①页面数据放 private；②布局一律绝对定位，不要用 flex+margin 堆叠；③router uri 用 manifest 键名（pages/xxx），不是文件路径；④改完必须模拟器实测（tools/capture-zodiac.mjs + analyze-layout.mjs）。
+
 ## 2026-09-10 · WorkBuddy(agent) 1.8.9 星象分析可用 + 文案修正
 
 - 分支 agent-knux-cleanup；提交 900c4e4。
