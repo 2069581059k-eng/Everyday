@@ -1,5 +1,18 @@
 # 当前交接
 
+## 2026-09-10 · WorkBuddy(agent) 发布 1.8.11 并切换为后续更新基准
+
+- 分支 agent-knux-cleanup；构建快照提交 `dd62eb7`（含修复 81bfe5f）；tag `v1.8.11`；main 已普通 push 前进到本分支（无 force）。
+- **基准切换：后续开发以 1.8.11 为基准**（原 1.8.10）。所有工具（WorkBuddy / Trae Code / Codex）请先 `git fetch` 并在 `dd62eb7` 或其后的提交上继续。
+- Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.11
+  - BIN / RPK：1,341,503 B，SHA-256 `57916230c31cbbefdbb6e26859a882a4145413c05f5b3dc141b079e0464e4dc7`
+  - 源码包：`DailyQuote_Band10Pro_v1.8.11_Source_AGPL.zip`（3,026,041 B，SHA-256 `b88251bb…`）
+  - 另附 sha256 校验文件、THIRD_PARTY_NOTICES、AGPL/Apache/CC-BY-SA 许可证
+- 验证范围：**Vela Band10 Pro 模拟器全功能验收通过**（94/96；2 项为已知 P1「退出测试 router.back() 离开应用」与模拟器尾部截图偏暗）；**真机未验**，故按流程标注验证范围（未标预发布，是否预发布由用户决定）。
+- 已知问题（P1，未修）：星象答题页「退出测试」直接离开应用；建议改 `router.replace({ uri: 'pages/index' })`，修复后需重新构建 + 模拟器验收（属运行代码变更）。
+- 本轮提交：`81bfe5f`(修复) · `dd62eb7`(验收工具，构建快照) · `28af984`(验收报告+工具加固) · `754fbf1`(验收记录) · 合并 main 门槛文档及本发布记录。
+- 证据：`qa-1.8.11/`（30 张 + logcat/error-lines/runtime.log）、`qa-1.8.10/`（27 张）；报告 `docs/VERIFY-1.8.10-1.8.11.md`。
+
 ## 2026-09-10 · WorkBuddy(agent) 1.8.11 知识大全文字修复 + 1.8.10 模拟器全功能验收
 
 - 分支 agent-knux-cleanup；实现提交 81bfe5f（修复）、dd62eb7（验收工具）；基线 f290df0（已含 main a78520a）。本轮按用户要求「用 1.8.10 在模拟器完成全部功能验收」执行。

@@ -1,14 +1,16 @@
 # 版本记录
 
-## 1.8.11（本地构建 + 模拟器验收，未发布）
+## 1.8.11（当前共同基准）
 
+- 发布源码/构建快照：`dd62eb7`（含 81bfe5f 修复）；tag `v1.8.11`；Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.11
 - 修复知识大全文字不显示：`knowledge.ux` 的 `riddleExplain` / `riddleAnswer` 未在 `private` 声明，导致**阅读类正文与答题答案渲染为空**。
 - 新增 `tools/check-private-data.mjs`（页面 `this.X` 赋值必须在 `private` 声明）并接入 `npm test` 防回归。
 - 新增全功能模拟器验收链路：`capture-full.mjs`（含屏幕唤醒重试/亮度校验）+ `analyze-full.mjs`（像素级断言），配套 `inspect-png` / `band-report` / `color-census` / `dump-knowledge-daily`。
 - 模拟器全功能验收：94 项通过、2 项未通过（均属"退出测试直接离开应用"，P1 未修）；详见 `docs/VERIFY-1.8.10-1.8.11.md`。
-- RPK 1,341,503 B，SHA-256 `57916230…`；未创建 GitHub Release，真机未验。
+- RPK/BIN 1,341,503 B，SHA-256 `57916230c31cbbefdbb6e26859a882a4145413c05f5b3dc141b079e0464e4dc7`。
+- **后续开发以 1.8.11 为基准**（原基准 1.8.10）；真机未验，模拟器验证通过。
 
-## 1.8.10（当前共同基准）
+## 1.8.10（历史基准）
 
 - 发布源码：c82a8a3（v1.8.10）；2026-09-10 同步至 main，供 WorkBuddy、Trae Code 和 Codex 继续开发。
 - 知识、日历、星象答题及结果页的数据移入 private，修复模板绑定为空。
