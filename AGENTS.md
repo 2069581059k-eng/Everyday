@@ -1,4 +1,6 @@
-# Everyday 双工具协作规则
+# Everyday 多工具协作规则
+
+当前共同开发基准为 1.8.10（发布标签 v1.8.10，源码提交 c82a8a3）。参与工具为 WorkBuddy、Trae Code 和 Codex。后续任务从包含该提交的最新 origin/main 开始，不得把旧工作目录整体覆盖到主分支；新的功能或修复从此基准递增版本。
 
 适用于本仓库所有编码助手。每次任务先阅读本文件、docs/COLLABORATION.md 和 docs/HANDOFF.md。用户当次明确指令优先；只读审查不自动授权修改或发布。
 
@@ -7,7 +9,7 @@
 1. 运行 git status -sb、git remote -v、git log -5 --oneline，确认目录、分支、未提交内容和远端。
 2. git fetch origin --prune 后比较 HEAD 与 origin/main。干净的 main 可以 git pull --ff-only；脏工作区不得强行拉取、重置、覆盖或自动丢弃改动。
 3. 查看上一次交接之后的 git log、git show 和 git diff，先理解另一工具已经改了什么。HANDOFF 是提示，Git 提交和当前文件才是事实依据。
-4. 同时开发必须使用不同 clone/工作目录、不同功能分支。Codex 使用 codex/<任务>；另一工具可使用 agent/<任务>。同一个工作目录只允许一个工具修改或构建。
+4. 同时开发必须使用不同 clone/工作目录、不同功能分支。Codex 使用 codex/<任务>，WorkBuddy 使用 workbuddy/<任务>，Trae Code 使用 trae/<任务>；已有 agent/* 分支保留历史。交接注明实际工具名称。同一个工作目录只允许一个工具修改或构建。
 
 ## 修改、提交、同步
 
