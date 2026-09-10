@@ -1,8 +1,8 @@
 {
   "package": "com.dailyquote.band10pro",
   "name": "每日一言",
-  "versionName": "1.8.13",
-  "versionCode": 10813,
+  "versionName": "1.8.14",
+  "versionCode": 10814,
   "minPlatformVersion": 1000,
   "icon": "/common/icon.png",
   "simulationVersion": "default",
@@ -47,6 +47,9 @@
       },
       "pages/zodiac-result": {
         "component": "zodiac-result"
+      },
+      "pages/favorites": {
+        "component": "favorites"
       }
     }
   },

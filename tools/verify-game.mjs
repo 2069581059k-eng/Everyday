@@ -6,6 +6,7 @@ const expectedQuoteCount = 2000
 const pagePath = path.join(root, 'src', 'pages', 'index', 'index.ux')
 const knowledgePagePath = path.join(root, 'src', 'pages', 'knowledge', 'knowledge.ux')
 const calendarPagePath = path.join(root, 'src', 'pages', 'calendar', 'calendar.ux')
+const favoritesPagePath = path.join(root, 'src', 'pages', 'favorites', 'favorites.ux')
 const manifestPath = path.join(root, 'src', 'manifest.json')
 const packagePath = path.join(root, 'package.json')
 const capturePath = path.join(root, 'tools', 'capture-vvd.mjs')
@@ -16,6 +17,7 @@ const knowledgeSourcesPath = path.join(root, 'data', 'knowledge-sources.json')
 const page = fs.readFileSync(pagePath, 'utf8').replace(/\r\n/g, '\n')
 const knowledgePage = fs.existsSync(knowledgePagePath) ? fs.readFileSync(knowledgePagePath, 'utf8').replace(/\r\n/g, '\n') : ''
 const calendarPage = fs.existsSync(calendarPagePath) ? fs.readFileSync(calendarPagePath, 'utf8').replace(/\r\n/g, '\n') : ''
+const favoritesPage = fs.existsSync(favoritesPagePath) ? fs.readFileSync(favoritesPagePath, 'utf8').replace(/\r\n/g, '\n') : ''
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
 const packageJson = JSON.parse(fs.readFileSync(packagePath, 'utf8'))
 const captureScript = fs.readFileSync(capturePath, 'utf8')
@@ -39,11 +41,15 @@ const moonUtilsPath = path.join(root, 'src', 'common', 'utils', 'moon.js')
 const holidayUtilsPath = path.join(root, 'src', 'common', 'utils', 'holiday.js')
 const zodiacUtilsPath = path.join(root, 'src', 'common', 'utils', 'zodiac.js')
 const knowledgeUtilsPath = path.join(root, 'src', 'common', 'utils', 'knowledge.js')
+const favoritesUtilsPath = path.join(root, 'src', 'common', 'utils', 'favorites.js')
+const fortuneTemplatesPath = path.join(root, 'src', 'common', 'data', 'fortune_templates.js')
 const zodiacScoringPath = path.join(root, 'src', 'common', 'scripts', 'zodiac-scoring.js')
 const dateUtils = fs.existsSync(dateUtilsPath) ? fs.readFileSync(dateUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
 const moonUtils = fs.existsSync(moonUtilsPath) ? fs.readFileSync(moonUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
 const holidayUtils = fs.existsSync(holidayUtilsPath) ? fs.readFileSync(holidayUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
 const zodiacScoring = fs.existsSync(zodiacScoringPath) ? fs.readFileSync(zodiacScoringPath, 'utf8').replace(/\r\n/g, '\n') : ''
+const favoritesUtils = fs.existsSync(favoritesUtilsPath) ? fs.readFileSync(favoritesUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
+const fortuneTemplates = fs.existsSync(fortuneTemplatesPath) ? fs.readFileSync(fortuneTemplatesPath, 'utf8').replace(/\r\n/g, '\n') : ''
 const randomUtils = fs.existsSync(randomUtilsPath) ? fs.readFileSync(randomUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
 const zodiacUtils = fs.existsSync(zodiacUtilsPath) ? fs.readFileSync(zodiacUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
 const knowledgeUtils = fs.existsSync(knowledgeUtilsPath) ? fs.readFileSync(knowledgeUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
@@ -90,7 +96,7 @@ check(riddles.every((item) => {
   const source = sourceKnowledgeByQuestion.get(item.question)
   return source && source.answer === item.answer && source.explain === item.explain && source.source === item.source
 }), '每道运行时题目均与可审计导入清单一致')
-check(riddles.every((item) => Array.from(quizHelpers.knowledgeAnswer(item)).length <= 14), '答案栏短屏可读')
+check(riddles.every((item) => Array.from(quizHelpers.knowledgeAnswer(item)).length <= 20), '答案栏短屏可读（答案在分页文本区多行显示，v2 题库最长 19 字）')
 check(riddles.every((item) => quizHelpers.knowledgeDetail(item).includes(item.explain) && (item.displayMode !== 'qa' || quizHelpers.knowledgeDetail(item).includes(item.answer))), '分页详情完整保留原答案与解析及故事正文')
 const knowledgeCounts = Object.fromEntries(['脑筋急转弯', '十万个为什么', '百科全书', '冷笑话', '鬼故事'].map((category) => [
   category,
@@ -108,7 +114,7 @@ check(sourceKnowledge.length === importedKnowledge.length && sourceKnowledge.eve
     r.explain === (raw.display_mode === 'qa' ? raw.explanation || raw.answer : raw.content)
 }), '2023 条全部与最终包逐字段匹配，无旧库独有条目')
 check(riddles.every((item) => !visibleAiMarker.test(`${item.question} ${item.answer} ${item.explain} ${item.source}`)), '知识题用户可见内容不含 AI 字样')
-check(page.includes('value="知识大全"'), '主页入口按钮文案为知识大全')
+check(page.includes('知识大全') && page.includes('openKnowledgePage'), '主页提供知识大全入口')
 check(knowledgePage.includes('<text class="quiz-kicker">{{quizCategory}}</text>'), '知识面板顶部标签改为当前分类名（如 百科全书/脑筋急转弯）')
 
 // ---- 每日固定 50 道不重复（新机制，真实逻辑，位于共享知识模块） ----
@@ -166,7 +172,7 @@ check(page.includes('toggleFavorite()') && page.includes('favorites'), '实现�
 check(page.includes('今日日历') && page.includes('dayText') && page.includes('monthShortText') && page.includes('weekdayText'), '首页今日日历卡片显示真实日期信息（月/日/星期）')
 check(page.includes('ZODIACS') && page.includes('previousZodiac()') && page.includes('nextZodiac()'), '支持十二星座切换与本地保存')
 check(page.includes('moonPhase(today.dayNumber)'), '显示按日期计算的近似月相')
-check(zodiacUtils.includes("'上上签'") && zodiacUtils.includes("'上签'") && zodiacUtils.includes("'中签'") && zodiacUtils.includes("'下签'") && zodiacUtils.includes("'下下签'"), '抽签包含五个签级')
+check(fortuneTemplates.includes("'上上签'") && fortuneTemplates.includes("'上签'") && fortuneTemplates.includes("'中签'") && fortuneTemplates.includes("'下签'") && fortuneTemplates.includes("'下下签'"), '抽签包含五个签级')
 check(page.includes('Math.random() * FORTUNES.length') && page.includes('drawFortune()'), '抽一签为随机抽取，不再按日期固定自动派签')
 check(!page.includes('fortuneForDay(today.dayNumber)'), '已移除按日期固定的自动签级')
 check(!page.includes('星象与签运为趣味参考'), '界面不再显示提示性免责声明')
@@ -190,7 +196,7 @@ const weekCells = (calendarPage.match(/class="month-week-cell"/g) || []).length
 check(weekCells === 7, `月历星期行使用 7 个独立等宽文本（实际 ${weekCells}）`)
 const dayCells = (calendarPage.match(/class="month-cell"/g) || []).length
 check(dayCells === 42, `月历使用 42 格（6 行×7 列，实际 ${dayCells}）`)
-for (const text of [page, knowledgePage, calendarPage]) {
+for (const text of [page, knowledgePage, calendarPage, favoritesPage]) {
   check(!/\bright:\s*\d/u.test(text), '布局统一使用 left/top 定位，未使用 right（规避模拟器支持问题）')
 }
 check(knowledgePage.includes('detail-next') && knowledgePage.includes('detailTotal') && knowledgePage.includes('detailLabel'), '答案/解析过长时可分页（下一段按钮 + 总段数 + 动态文案）')
@@ -254,5 +260,39 @@ check(!zodiacScoring.includes('getZodiacByDate'), '计分脚本不再包含未�
 check(fs.existsSync(moonUtilsPath) && fs.existsSync(holidayUtilsPath), '月相与节假日工具已拆分至 common/utils')
 check(!dateUtils.includes('HOLIDAYS_2026') && !dateUtils.includes('isLegalHoliday') && !dateUtils.includes('moonPhase') && !dateUtils.includes('WEEKDAYS'), 'date.js 仅保留日期核心（节假日/月相不再混入）')
 check(calendarPage.includes("import { dayInfo } from '../../common/utils/date.js'") && calendarPage.includes("import { isLegalHoliday, monthHolidayText } from '../../common/utils/holiday.js'"), '日历页仅导入日期核心与节假日工具（不带月相死代码）')
+
+// ---- 1.8.14 题库 v2 / 收藏室 / 首页改版 / 宜模板扩充 / 灵光清理 ----
+// 题库 v2：脑筋急转弯 312 条中 107 条为优化重写（qualityScore/optimized 元数据随条目保留）
+const brainTeasers = riddles.filter((item) => item.category === '脑筋急转弯')
+check(brainTeasers.length === 312, '脑筋急转弯保持 312 条（v2 优化版整体替换）')
+check(brainTeasers.filter((item) => item.optimized === true).length === 107, 'v2 题库 107 条优化重写条目已入库')
+check(brainTeasers.every((item) => item.qualityScore === undefined || (item.qualityScore >= 3 && item.qualityScore <= 5)), '优化条目质量评分在 3-5 区间')
+check(sourceKnowledge.filter((item) => item.category === '脑筋急转弯' && item.optimized === true).length === 107, '可审计清单与运行时优化条目一致')
+// 换一句 / 抽签 职能拆分
+check(page.includes('value="换一句"') && page.includes('changeQuote()'), '「换一句」独立按钮：仅切换每日一言')
+check(page.includes('value="抽签"') && page.includes('drawFortune()'), '「抽签」独立按钮：仅触发签运')
+check(!page.includes('value="抽一签"'), '旧的「抽一签」混合按钮已移除')
+// 爱心收藏
+check(page.includes('value="♡"') && page.includes('value="♥"'), '首页爱心图标：空心 ♡ / 实心 ♥ 双状态切换')
+check(knowledgePage.includes('value="♡"') && knowledgePage.includes('value="♥"') && knowledgePage.includes('toggleFavorite()'), '知识页提供爱心收藏当前题目')
+check(favoritesUtils.includes('FAVORITES_KEY') && favoritesUtils.includes('makeKnowledgeFavorite') && page.includes('FAVORITES_KEY') && knowledgePage.includes('FAVORITES_KEY') && favoritesPage.includes('FAVORITES_KEY'), '收藏统一走 common/utils/favorites.js 数据层（三页共享存储键）')
+check(page.includes('migrateOldFavorites'), '旧版语录收藏自动迁移到收藏室 v2')
+check(page.includes('legacyMigrated') && page.includes('迁移完成后回写 v1 存档'), '旧版收藏迁移完成后回写清除 v1 下标数组（避免删除后在下次启动复活）')
+// 收藏室独立页
+check(manifestPages.includes('pages/favorites'), 'manifest 注册收藏室独立页')
+check(favoritesPage.includes('还没有收藏内容'), '收藏室提供空状态提示')
+check(favoritesPage.includes('removeFavorite') && favoritesPage.includes('backToList') && favoritesPage.includes('openDetail'), '收藏室支持查看详情、取消收藏与返回列表')
+check(favoritesPage.includes('fav-pager') && favoritesPage.includes('prevPage') && favoritesPage.includes('nextPage'), '收藏室列表分页浏览')
+check(favoritesPage.includes('nextDetailChunk'), '收藏室详情长文分页')
+check(!favoritesPage.includes('RIDDLES') && !favoritesPage.includes('QUOTES'), '收藏室使用快照数据，不导入题库（独立于题库架构）')
+// 灵光彻底移除
+check(!page.includes('灵光') && !page.includes('starsText') && !page.includes('stars') && !page.includes('awardedDay'), '「灵光」UI、状态与存储字段已全部移除')
+// 宜模板扩充（独立数据区）
+check(fs.existsSync(fortuneTemplatesPath), '宜/签运模板独立位于 common/data/fortune_templates.js')
+check(page.includes("import { ASTRO_ACTIONS, ASTRO_COLORS, FORTUNES } from '../../common/data/fortune_templates.js'"), '首页从数据区导入宜/签运模板')
+const yiCount = (fortuneTemplates.match(/'[^']{2,8}',?$/gmu) || []).length
+const astroActionsMatch = fortuneTemplates.match(/const ASTRO_ACTIONS = \[([\s\S]*?)\]/u)
+check(astroActionsMatch && (astroActionsMatch[1].match(/'/g) || []).length >= 80, `宜行动模板明显扩充（≥40 条）`)
+check(!zodiacUtils.includes('ASTRO_ACTIONS') && !zodiacUtils.includes('FORTUNES'), '宜/签运模板已从 zodiac.js 工具中迁出（数据与工具分离）')
 
 console.log(`\n每日一言静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)  

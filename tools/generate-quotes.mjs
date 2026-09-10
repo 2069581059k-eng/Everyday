@@ -44,12 +44,16 @@ const rows = quotes.map((quote) => {
 const replacement = 'const QUOTES = [\n' + rows.join(',\n') + '\n]'
 const page = fs.readFileSync(pagePath, 'utf8').replace(/\r\n/g, '\n')
 const riddleRows = riddles.map((riddle) => {
+  // 1.8.14：脑筋急转弯 v2 题库携带 qualityScore / optimized 元数据，随条目透传（其他分类无此字段）
+  const meta = riddle.qualityScore !== undefined
+    ? ', qualityScore: ' + JSON.stringify(riddle.qualityScore) + ', optimized: ' + JSON.stringify(riddle.optimized)
+    : ''
   return '  { question: ' + JSON.stringify(riddle.question) +
     ', category: ' + JSON.stringify(riddle.category) +
     ', answer: ' + JSON.stringify(riddle.answer) +
     ', explain: ' + JSON.stringify(riddle.explain) +
     ', source: ' + JSON.stringify(riddle.source) +
-    ', displayMode: ' + JSON.stringify(riddle.displayMode || 'qa') + ' }'
+    ', displayMode: ' + JSON.stringify(riddle.displayMode || 'qa') + meta + ' }'
 })
 const riddleReplacement = 'const RIDDLES = [\n' + riddleRows.join(',\n') + '\n]'
 const riddlePattern = /const RIDDLES = \[[\s\S]*?\](?=\n\nconst QUOTES)/u

@@ -1,0 +1,299 @@
+<template>
+  <div class="fav-mask">
+    <div class="fav-panel">
+      <div class="fav-list-view" show="{{listVisible}}">
+        <text class="fav-kicker">收藏室</text>
+        <text class="fav-count">{{countText}}</text>
+        <input class="fav-home" type="button" value="返回主页" onclick="goHome" />
+
+        <div class="fav-slot" show="{{slotVisible1}}" onclick="openDetail(0)">
+          <text class="fav-slot-badge">{{slotBadge1}}</text>
+          <text class="fav-slot-text">{{slotText1}}</text>
+        </div>
+        <div class="fav-slot fav-slot-2" show="{{slotVisible2}}" onclick="openDetail(1)">
+          <text class="fav-slot-badge">{{slotBadge2}}</text>
+          <text class="fav-slot-text">{{slotText2}}</text>
+        </div>
+        <div class="fav-slot fav-slot-3" show="{{slotVisible3}}" onclick="openDetail(2)">
+          <text class="fav-slot-badge">{{slotBadge3}}</text>
+          <text class="fav-slot-text">{{slotText3}}</text>
+        </div>
+        <div class="fav-slot fav-slot-4" show="{{slotVisible4}}" onclick="openDetail(3)">
+          <text class="fav-slot-badge">{{slotBadge4}}</text>
+          <text class="fav-slot-text">{{slotText4}}</text>
+        </div>
+
+        <div class="fav-pager">
+          <input class="fav-page-btn fav-prev" type="button" value="上一页" onclick="prevPage" disabled="{{prevDisabled}}" />
+          <text class="fav-page-label">{{pageLabel}}</text>
+          <input class="fav-page-btn fav-next" type="button" value="下一页" onclick="nextPage" disabled="{{nextDisabled}}" />
+        </div>
+      </div>
+
+      <div class="fav-empty" show="{{emptyVisible}}">
+        <text class="fav-empty-title">还没有收藏内容</text>
+        <text class="fav-empty-hint">在首页或知识大全点亮 ♥ 即可收藏</text>
+        <input class="fav-empty-home" type="button" value="返回主页" onclick="goHome" />
+      </div>
+
+      <div class="fav-detail-view" show="{{detailVisible}}">
+        <text class="fav-kicker">{{detailBadge}}</text>
+        <input class="fav-home" type="button" value="返回主页" onclick="goHome" />
+
+        <text class="fav-detail-text">{{detailText}}</text>
+        <text class="fav-detail-sub">{{detailSub}}</text>
+
+        <div class="fav-detail-box">
+          <text class="fav-detail-body">{{detailBody}}</text>
+          <input class="fav-detail-next" show="{{detailNextVisible}}" type="button" value="{{detailNextLabel}}" onclick="nextDetailChunk" />
+        </div>
+
+        <div class="fav-detail-actions">
+          <input class="fav-remove-btn" type="button" value="取消收藏 ♥" onclick="removeFavorite" />
+          <input class="fav-back-btn" type="button" value="返回列表" onclick="backToList" />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import router from '@system.router'
+import storage from '@system.storage'
+import vibrator from '@system.vibrator'
+import brightness from '@system.brightness'
+import { FAVORITES_KEY } from '../../common/utils/favorites.js'
+
+const PAGE_SIZE = 4
+const CHUNK_CHARS = 24
+
+let favoritesItems = []
+let pageIndex = 0
+let detailIndex = -1
+let detailChunks = []
+let detailChunkIndex = 0
+
+export default {
+  // AIoT/Vela 页面数据必须放在 private 中，顶层属性不会被当作模板数据源
+  private: {
+    stateReady: false,
+    listVisible: false,
+    emptyVisible: false,
+    detailVisible: false,
+    countText: '',
+    pageLabel: '',
+    prevDisabled: true,
+    nextDisabled: true,
+    slotVisible1: false,
+    slotVisible2: false,
+    slotVisible3: false,
+    slotVisible4: false,
+    slotBadge1: '',
+    slotBadge2: '',
+    slotBadge3: '',
+    slotBadge4: '',
+    slotText1: '',
+    slotText2: '',
+    slotText3: '',
+    slotText4: '',
+    detailBadge: '',
+    detailText: '',
+    detailSub: '',
+    detailBody: '',
+    detailNextVisible: false,
+    detailNextLabel: '',
+  },
+
+  onInit() {
+    this.setAwake(true)
+    const page = this
+    const finishLoad = function () {
+      page.stateReady = true
+      page.renderList()
+    }
+    try {
+      storage.get({
+        key: FAVORITES_KEY,
+        default: '',
+        success(data) {
+          if (data) try {
+            const saved = JSON.parse(data)
+            if (saved && Array.isArray(saved.items)) favoritesItems = saved.items
+          } catch (error) {
+            console.log('收藏室存档解析失败: ' + error)
+          }
+          finishLoad()
+        },
+        fail() { finishLoad() }
+      })
+    } catch (error) { finishLoad() }
+  },
+
+  onShow() { this.setAwake(true) },
+  onHide() { this.setAwake(false) },
+  onDestroy() { this.setAwake(false) },
+
+  setAwake(enabled) {
+    try {
+      brightness.setKeepScreenOn({
+        keepScreenOn: enabled,
+        success() {},
+        fail(data, code) { console.log('keepScreenOn failed: ' + code) }
+      })
+    } catch (error) {}
+  },
+
+  saveFavorites() {
+    try {
+      storage.set({
+        key: FAVORITES_KEY,
+        value: JSON.stringify({ items: favoritesItems }),
+        fail(data, code) { console.log('收藏室存档保存失败: ' + code) }
+      })
+    } catch (error) { console.log('存储模块不可用: ' + error) }
+  },
+
+  previewText(text) {
+    const chars = Array.from(String(text || ''))
+    return chars.length > 32 ? chars.slice(0, 31).join('') + '…' : chars.join('')
+  },
+
+  renderList() {
+    const total = favoritesItems.length
+    this.detailVisible = false
+    this.emptyVisible = total === 0
+    this.listVisible = total > 0
+    this.countText = '共 ' + total + ' 条'
+    if (total === 0) return
+
+    const pages = Math.ceil(total / PAGE_SIZE)
+    if (pageIndex >= pages) pageIndex = pages - 1
+    if (pageIndex < 0) pageIndex = 0
+    this.pageLabel = (pageIndex + 1) + ' / ' + pages
+    this.prevDisabled = pageIndex <= 0
+    this.nextDisabled = pageIndex >= pages - 1
+
+    const start = pageIndex * PAGE_SIZE
+    const badges = [this.slotBadge1, this.slotBadge2, this.slotBadge3, this.slotBadge4]
+    const texts = [this.slotText1, this.slotText2, this.slotText3, this.slotText4]
+    for (let i = 0; i < PAGE_SIZE; i++) {
+      const item = favoritesItems[start + i]
+      badges[i] = item ? item.type : ''
+      texts[i] = item ? this.previewText(item.text) : ''
+      if (i === 0) { this.slotVisible1 = !!item; this.slotBadge1 = badges[i]; this.slotText1 = texts[i] }
+      if (i === 1) { this.slotVisible2 = !!item; this.slotBadge2 = badges[i]; this.slotText2 = texts[i] }
+      if (i === 2) { this.slotVisible3 = !!item; this.slotBadge3 = badges[i]; this.slotText3 = texts[i] }
+      if (i === 3) { this.slotVisible4 = !!item; this.slotBadge4 = badges[i]; this.slotText4 = texts[i] }
+    }
+  },
+
+  prevPage() {
+    if (pageIndex <= 0) return
+    pageIndex -= 1
+    this.renderList()
+    this.pulse('short')
+  },
+
+  nextPage() {
+    pageIndex += 1
+    this.renderList()
+    this.pulse('short')
+  },
+
+  openDetail(slot) {
+    const itemIndex = pageIndex * PAGE_SIZE + slot
+    if (itemIndex >= favoritesItems.length) return
+    detailIndex = itemIndex
+    this.renderDetail()
+    this.pulse('short')
+  },
+
+  renderDetail() {
+    const item = favoritesItems[detailIndex]
+    if (!item) { this.renderList(); return }
+    this.listVisible = false
+    this.emptyVisible = false
+    this.detailVisible = true
+    this.detailBadge = item.type
+    this.detailText = item.text
+    this.detailSub = item.sub
+    detailChunks = []
+    const chars = Array.from(String(item.detail || ''))
+    for (let i = 0; i < chars.length; i += CHUNK_CHARS) detailChunks.push(chars.slice(i, i + CHUNK_CHARS).join(''))
+    if (detailChunks.length === 0) detailChunks = ['']
+    detailChunkIndex = 0
+    this.renderDetailChunk()
+  },
+
+  renderDetailChunk() {
+    this.detailBody = detailChunks[detailChunkIndex] || ''
+    this.detailNextVisible = detailChunks.length > 1
+    this.detailNextLabel = '继续 ' + (detailChunkIndex + 1) + '/' + detailChunks.length
+  },
+
+  nextDetailChunk() {
+    detailChunkIndex = (detailChunkIndex + 1) % detailChunks.length
+    this.renderDetailChunk()
+  },
+
+  removeFavorite() {
+    if (detailIndex < 0 || detailIndex >= favoritesItems.length) return
+    favoritesItems.splice(detailIndex, 1)
+    detailIndex = -1
+    this.saveFavorites()
+    this.renderList()
+    this.pulse('short')
+  },
+
+  backToList() {
+    this.renderList()
+    this.pulse('short')
+  },
+
+  goHome() {
+    router.replace({ uri: 'pages/index' })
+  },
+
+  pulse(mode) {
+    try { vibrator.vibrate({ mode: mode }) } catch (error) {}
+  }
+}
+</script>
+
+<style>
+.fav-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: #f2eee5; }
+.fav-panel { position: absolute; left: 12px; top: 12px; width: 312px; height: 456px; border-width: 1px; border-color: #d2c7b8; border-radius: 6px; background-color: #fffdf8; }
+.fav-kicker { position: absolute; left: 16px; top: 10px; width: 130px; height: 20px; line-height: 20px; color: #a83b2d; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
+.fav-count { position: absolute; left: 148px; top: 13px; width: 74px; height: 16px; line-height: 16px; color: #94887c; font-size: 11px; text-align: right; }
+.fav-home { position: absolute; left: 232px; top: 7px; width: 70px; height: 30px; border-width: 1px; border-color: #cfc4b5; border-radius: 4px; background-color: #f8f3e9; color: #766c61; font-size: 14px; }
+
+.fav-list-view { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
+.fav-slot { position: absolute; left: 16px; top: 48px; width: 280px; height: 76px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fbf7f0; }
+.fav-slot-2 { top: 132px; }
+.fav-slot-3 { top: 216px; }
+.fav-slot-4 { top: 300px; }
+.fav-slot-badge { position: absolute; left: 10px; top: 8px; width: 120px; height: 16px; line-height: 16px; color: #a83b2d; font-size: 12px; font-weight: bold; }
+.fav-slot-text { position: absolute; left: 10px; top: 28px; width: 260px; height: 42px; color: #29241f; font-size: 15px; line-height: 21px; }
+
+.fav-pager { position: absolute; left: 16px; top: 396px; width: 280px; height: 40px; }
+.fav-page-btn { position: absolute; top: 0; width: 80px; height: 40px; border-width: 1px; border-color: #d4c9ba; border-radius: 4px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
+.fav-prev { left: 0; }
+.fav-next { left: 200px; }
+.fav-page-label { position: absolute; left: 88px; top: 11px; width: 104px; height: 18px; line-height: 18px; color: #786e63; font-size: 14px; text-align: center; }
+
+.fav-empty { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
+.fav-empty-title { position: absolute; left: 16px; top: 170px; width: 280px; color: #6f655a; font-size: 19px; font-weight: bold; text-align: center; }
+.fav-empty-hint { position: absolute; left: 16px; top: 208px; width: 280px; color: #93877a; font-size: 14px; text-align: center; }
+.fav-empty-home { position: absolute; left: 91px; top: 268px; width: 130px; height: 38px; border-radius: 4px; background-color: #a83b2d; color: #fffaf2; font-size: 16px; }
+
+.fav-detail-view { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
+.fav-detail-text { position: absolute; left: 16px; top: 48px; width: 280px; height: 96px; color: #2c2722; font-size: 20px; font-weight: bold; line-height: 26px; }
+.fav-detail-sub { position: absolute; left: 16px; top: 150px; width: 280px; height: 18px; line-height: 18px; color: #85796c; font-size: 14px; }
+.fav-detail-box { position: absolute; left: 16px; top: 178px; width: 280px; height: 196px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fbf7f0; }
+.fav-detail-body { position: absolute; left: 10px; top: 10px; width: 260px; height: 140px; color: #29241f; font-size: 16px; line-height: 22px; }
+.fav-detail-next { position: absolute; left: 50px; top: 154px; width: 180px; height: 30px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
+
+.fav-detail-actions { position: absolute; left: 16px; top: 396px; width: 280px; height: 40px; }
+.fav-remove-btn { position: absolute; left: 0; top: 0; width: 130px; height: 40px; border-width: 1px; border-color: #a83b2d; border-radius: 4px; background-color: #fffdf8; color: #a83b2d; font-size: 15px; font-weight: bold; }
+.fav-back-btn { position: absolute; left: 150px; top: 0; width: 130px; height: 40px; border-radius: 4px; background-color: #f8f3e9; color: #574e45; font-size: 15px; }
+</style>
