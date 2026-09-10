@@ -121,7 +121,8 @@ export default {
             if (!Number.isFinite(quizState.quizDay)) quizState.quizDay = -1
             quizState.quizIndex = Number(saved.quizIndex) || 0
             quizState.quizViewed = Array.isArray(saved.quizViewed) ? saved.quizViewed : []
-            if (saved.quizSchema !== 180 || shouldResetQuizProgress(quizState.quizDay, today.dayNumber)) {
+            // 1.8.15：quizSchema 181 = 脑筋急转弯每日 10 题含 ≥6 条 v2 优化条目（qualityScore 优先选题）
+            if (saved.quizSchema !== 181 || shouldResetQuizProgress(quizState.quizDay, today.dayNumber)) {
               quizState.quizDay = today.dayNumber
               quizState.quizIndex = 0
               quizState.quizViewed = []
@@ -155,7 +156,7 @@ export default {
     try {
       storage.set({
         key: STORAGE_KEY,
-        value: JSON.stringify({ quizSchema: 180, quizDay: quizState.quizDay, quizIndex: quizState.quizIndex, quizViewed: quizState.quizViewed }),
+        value: JSON.stringify({ quizSchema: 181, quizDay: quizState.quizDay, quizIndex: quizState.quizIndex, quizViewed: quizState.quizViewed }),
         fail(data, code) { console.log('知识进度保存失败: ' + code) }
       })
     } catch (error) { console.log('知识进度保存不可用: ' + error) }

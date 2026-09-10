@@ -1,5 +1,20 @@
 # 当前交接
 
+## 2026-09-10 · Trae Code 1.8.15 功能增强：收藏筛选 + 签运持久化 + qualityScore 优先选题（分支 trae/v1.8.15-enhancements）
+
+- 任务（用户选定方向 B）：①收藏室类型筛选；②抽签历史持久化；③v2 题库 qualityScore 高分优先选题。
+- 改动文件：
+  - 修改：`src/pages/favorites/favorites.ux`（四档筛选栏 + slot 布局下移 + 筛选空提示 + 按 id 删除映射）、`src/pages/index/index.ux`（签运持久化 state.fortune/fortuneHistory、换一句不清签、遮罩页今日签/近签两行、爱心收藏与签运解耦）、`src/common/utils/knowledge.js`（pickDaily 优先选题）、`src/pages/knowledge/knowledge.ux`（quizSchema 181）、`src/manifest.json` / `package.json` / `package-lock.json`（1.8.15/10815）、`tools/verify-game.mjs`（13 条新断言，quizHelpers 注入正则含 pickDaily）
+- **修复（验收发现的行为退化）**：签运持久化使 `fortuneDrawn` 恒为 true → 爱心收藏恒被标记「抽签」类型、「每日一言」类型无法产生；修复为 `makeQuoteFavorite(currentIndex, quote, '', '')` 解耦（旧「抽签」条目收藏室筛选仍兼容）。
+- **验收记录（按模拟器验收门槛）**：
+  - 验收时间：2026-09-10 22:35–22:42（GMT+8）
+  - 模拟器：Trae_AGI（Vela Band 10 Pro，336×480，端口 5578 / gRPC 8578），验收前冷重启（规避 AOD 坏帧）
+  - 源码快照：`Temp\build-1.8.15-trae-20260910`（npm test 全绿 → inline → aiot build --enable-jsc；node_modules 复制自 1.8.14b 快照，首次复制有文件缺失经 robocopy /E 增量补齐）
+  - 安装包：`dist/com.dailyquote.band10pro.debug.1.8.15.rpk`，1,069,951 B，SHA-256 `A53BC716B83786C8AFD672165A38709C35E1E86A0AD0A8AC5A6A5A46BF7E3738`；verify-rpk 通过
+  - 用例与结果：ALL-PASS（`tools/capture-1815.mjs`，证据 `qa-1.8.15/`）——前置清理 → 抽签 → **重启后首页哈希级一致（今日语录+今日签章完整恢复）** → 换一句保留今日签 → 遮罩页签运行（今日签 dark=399 / 近签 dark=208，像素级）→ 爱心收藏（一言+知识）→ **筛选四态（全部 2 条 → 一言 1 条 → 抽签 0 条+空提示 → 知识 1 条 → 全部恢复哈希级一致）** → 筛选态删除（按 id 映射：一言已删、知识条目完好）→ 清空回空态 → 日历翻月 → 星象 30 题 → 结果页 4 页 → 退出测试 P1 回归（今日签保留）；logcat 0 错误行
+  - 环境备忘（新增教训）：①**AOD 坏帧假阳性变体**：模拟器长期运行后 gRPC 截图返回「暖色纯屏」帧（colors=32/warm=155281），warm 判定无法识别——shotAwake 已加 colors≥200 防护；②**Vela 渲染怪癖**：父容器（zodiac-mask show）隐藏期间修改子元素 show 状态，父容器显示后子 show 不重算——子元素显隐改用空内容替代 show；③小号中文（12-14px）抗锯齿后核心暗像素稀少，浅灰 #93877a 小字判定需宽阈值（190/180/170）或产品侧加深颜色（本次选择后者，可读性更好）；④并行编辑竞争吞改动本会话再现多次（index.ux private/refreshMaskFortune、verify 断言块、capture 脚本函数），**同文件多处修改必须串行编辑并 grep 核验**。
+- 待办：①用户真机验证（重点：收藏筛选、今日签跨重启保留、抽签后爱心收藏类型）；②PR 合入 main；③发布 v1.8.15 Release（约束：≥1.8.15/10815）。
+
 ## 2026-09-10 · Trae Code 1.8.14 题库v2 + 收藏室 + 首页改版 + 宜模板扩充（分支 trae/v1.8.14-revamp）
 
 - 任务（用户要求）：①脑筋急转弯题库替换为优化后 v2（312 题 JSON）；②收藏改爱心交互 + 新增收藏室；③首页布局重做（换一句/抽签拆分为独立按钮，突出每日一言）；④「宜」模板明显扩充；⑤「灵光」功能与代码全量移除；⑥保持多页面架构，index 不回退为巨石页面。
