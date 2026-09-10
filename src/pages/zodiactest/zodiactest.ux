@@ -89,7 +89,10 @@ export default {
   },
 
   goResult() {
-    router.replace({ uri: 'pages/zodiac-result/zodiac-result' })
+    router.replace({
+      uri: 'pages/zodiacresult/zodiacresult',
+      fail(error) { console.log('zodiacresult route fail: ' + JSON.stringify(error)) }
+    })
   },
 
   quitTest() {

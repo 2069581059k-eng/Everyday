@@ -198,10 +198,10 @@ check(captureScript.includes('/data/app/${packageName}/manifest-watch.json') && 
 
 // ---- 1.8.3 架构拆分：多页面路由 + 星座形象分析 ----
 const manifestPages = Object.keys(manifest.router?.pages || {})
-check(manifestPages.includes('pages/zodiac-test') && manifestPages.includes('pages/zodiac-result'), `manifest 注册形象分析答题与结果页（实际 ${manifestPages.join(', ')}）`)
+check(manifestPages.includes('pages/zodiactest') && manifestPages.includes('pages/zodiacresult'), `manifest 注册形象分析答题与结果页（实际 ${manifestPages.join(', ')}）`)
 check(manifestPages.includes('pages/index'), 'manifest 保留首页入口')
-const zodiacTestPath = path.join(root, 'src', 'pages', 'zodiac-test', 'zodiac-test.ux')
-const zodiacResultPath = path.join(root, 'src', 'pages', 'zodiac-result', 'zodiac-result.ux')
+const zodiacTestPath = path.join(root, 'src', 'pages', 'zodiactest', 'zodiactest.ux')
+const zodiacResultPath = path.join(root, 'src', 'pages', 'zodiacresult', 'zodiacresult.ux')
 const zodiacTest = fs.readFileSync(zodiacTestPath, 'utf8')
 const zodiacResult = fs.readFileSync(zodiacResultPath, 'utf8')
 check(zodiacTest.includes('zodiac_questions.js') && zodiacTest.includes('scoreAnswers') && zodiacTest.includes('rankZodiacs') && zodiacTest.includes('buildAnalysis'), '答题页读取离线题库并完成计分/匹配/分析')
@@ -212,7 +212,7 @@ check(fs.existsSync(path.join(root, 'src', 'common', 'scripts', 'zodiac-scoring.
 for (const dataFile of ['zodiac_questions.js', 'zodiac_profiles.js', 'zodiac_templates.js']) {
   check(fs.existsSync(path.join(root, 'src', 'common', 'data', dataFile)), `离线数据 ${dataFile} 位于 common/data`)
 }
-check(page.includes('value="形象分析 ›"') && page.includes('startZodiacTest()') && page.includes("uri: 'pages/zodiac-test/zodiac-test'"), '趣味星象内提供形象分析入口并跳转答题页')
+check(page.includes('value="形象分析 ›"') && page.includes('startZodiacTest()') && page.includes("uri: 'pages/zodiactest/zodiactest'"), '趣味星象内提供形象分析入口并跳转答题页')
 
 check(fs.existsSync(path.join(root, 'src', 'common', 'utils', 'date.js')), '日期工具位于 common/utils/date.js')
 check(fs.existsSync(path.join(root, 'src', 'common', 'utils', 'random.js')), '随机工具位于 common/utils/random.js')

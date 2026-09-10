@@ -481,7 +481,10 @@ export default {
   },
 
   startZodiacTest() {
-    router.replace({ uri: 'pages/zodiac-test/zodiac-test' })
+    router.replace({
+      uri: 'pages/zodiactest/zodiactest',
+      fail(error) { console.log('zodiactest route fail: ' + JSON.stringify(error)) }
+    })
   },
 
   openKnowledgePage() {

@@ -1,1 +1,3355 @@
-export default {"meta":{"version":"1.0.0","disclaimer":"本测试仅用于娱乐与自我探索，不属于心理诊断、人格测评或科学占星结论。","total_fragments":534},"main_templates":[{"id":"main_aries_观察型","zodiac":"aries","style":"观察型","text":"你的主气质接近白羊座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出直接、热烈的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_aries_理性型","zodiac":"aries","style":"理性型","text":"你的主气质接近白羊座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出直接、热烈的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_aries_感受型","zodiac":"aries","style":"感受型","text":"你的主气质接近白羊座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出直接、热烈的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_aries_行动型","zodiac":"aries","style":"行动型","text":"你的主气质接近白羊座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出直接、热烈的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_aries_独立型","zodiac":"aries","style":"独立型","text":"你的主气质接近白羊座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出直接、热烈的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_aries_关系型","zodiac":"aries","style":"关系型","text":"你的主气质接近白羊座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出直接、热烈的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_taurus_观察型","zodiac":"taurus","style":"观察型","text":"你的主气质接近金牛座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出稳定、务实的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_taurus_理性型","zodiac":"taurus","style":"理性型","text":"你的主气质接近金牛座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出稳定、务实的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_taurus_感受型","zodiac":"taurus","style":"感受型","text":"你的主气质接近金牛座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出稳定、务实的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_taurus_行动型","zodiac":"taurus","style":"行动型","text":"你的主气质接近金牛座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出稳定、务实的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_taurus_独立型","zodiac":"taurus","style":"独立型","text":"你的主气质接近金牛座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出稳定、务实的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_taurus_关系型","zodiac":"taurus","style":"关系型","text":"你的主气质接近金牛座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出稳定、务实的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_gemini_观察型","zodiac":"gemini","style":"观察型","text":"你的主气质接近双子座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出灵活、好奇的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_gemini_理性型","zodiac":"gemini","style":"理性型","text":"你的主气质接近双子座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出灵活、好奇的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_gemini_感受型","zodiac":"gemini","style":"感受型","text":"你的主气质接近双子座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出灵活、好奇的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_gemini_行动型","zodiac":"gemini","style":"行动型","text":"你的主气质接近双子座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出灵活、好奇的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_gemini_独立型","zodiac":"gemini","style":"独立型","text":"你的主气质接近双子座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出灵活、好奇的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_gemini_关系型","zodiac":"gemini","style":"关系型","text":"你的主气质接近双子座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出灵活、好奇的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_cancer_观察型","zodiac":"cancer","style":"观察型","text":"你的主气质接近巨蟹座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出细腻、顾家的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_cancer_理性型","zodiac":"cancer","style":"理性型","text":"你的主气质接近巨蟹座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出细腻、顾家的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_cancer_感受型","zodiac":"cancer","style":"感受型","text":"你的主气质接近巨蟹座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出细腻、顾家的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_cancer_行动型","zodiac":"cancer","style":"行动型","text":"你的主气质接近巨蟹座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出细腻、顾家的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_cancer_独立型","zodiac":"cancer","style":"独立型","text":"你的主气质接近巨蟹座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出细腻、顾家的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_cancer_关系型","zodiac":"cancer","style":"关系型","text":"你的主气质接近巨蟹座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出细腻、顾家的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_leo_观察型","zodiac":"leo","style":"观察型","text":"你的主气质接近狮子座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出自信、热情的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_leo_理性型","zodiac":"leo","style":"理性型","text":"你的主气质接近狮子座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出自信、热情的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_leo_感受型","zodiac":"leo","style":"感受型","text":"你的主气质接近狮子座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出自信、热情的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_leo_行动型","zodiac":"leo","style":"行动型","text":"你的主气质接近狮子座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出自信、热情的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_leo_独立型","zodiac":"leo","style":"独立型","text":"你的主气质接近狮子座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出自信、热情的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_leo_关系型","zodiac":"leo","style":"关系型","text":"你的主气质接近狮子座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出自信、热情的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_virgo_观察型","zodiac":"virgo","style":"观察型","text":"你的主气质接近处女座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出细致、理性的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_virgo_理性型","zodiac":"virgo","style":"理性型","text":"你的主气质接近处女座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出细致、理性的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_virgo_感受型","zodiac":"virgo","style":"感受型","text":"你的主气质接近处女座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出细致、理性的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_virgo_行动型","zodiac":"virgo","style":"行动型","text":"你的主气质接近处女座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出细致、理性的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_virgo_独立型","zodiac":"virgo","style":"独立型","text":"你的主气质接近处女座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出细致、理性的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_virgo_关系型","zodiac":"virgo","style":"关系型","text":"你的主气质接近处女座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出细致、理性的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_libra_观察型","zodiac":"libra","style":"观察型","text":"你的主气质接近天秤座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出平衡、审美的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_libra_理性型","zodiac":"libra","style":"理性型","text":"你的主气质接近天秤座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出平衡、审美的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_libra_感受型","zodiac":"libra","style":"感受型","text":"你的主气质接近天秤座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出平衡、审美的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_libra_行动型","zodiac":"libra","style":"行动型","text":"你的主气质接近天秤座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出平衡、审美的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_libra_独立型","zodiac":"libra","style":"独立型","text":"你的主气质接近天秤座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出平衡、审美的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_libra_关系型","zodiac":"libra","style":"关系型","text":"你的主气质接近天秤座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出平衡、审美的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_scorpio_观察型","zodiac":"scorpio","style":"观察型","text":"你的主气质接近天蝎座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出敏锐、坚定的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_scorpio_理性型","zodiac":"scorpio","style":"理性型","text":"你的主气质接近天蝎座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出敏锐、坚定的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_scorpio_感受型","zodiac":"scorpio","style":"感受型","text":"你的主气质接近天蝎座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出敏锐、坚定的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_scorpio_行动型","zodiac":"scorpio","style":"行动型","text":"你的主气质接近天蝎座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出敏锐、坚定的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_scorpio_独立型","zodiac":"scorpio","style":"独立型","text":"你的主气质接近天蝎座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出敏锐、坚定的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_scorpio_关系型","zodiac":"scorpio","style":"关系型","text":"你的主气质接近天蝎座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出敏锐、坚定的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_sagittarius_观察型","zodiac":"sagittarius","style":"观察型","text":"你的主气质接近射手座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出自由、探索的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_sagittarius_理性型","zodiac":"sagittarius","style":"理性型","text":"你的主气质接近射手座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出自由、探索的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_sagittarius_感受型","zodiac":"sagittarius","style":"感受型","text":"你的主气质接近射手座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出自由、探索的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_sagittarius_行动型","zodiac":"sagittarius","style":"行动型","text":"你的主气质接近射手座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出自由、探索的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_sagittarius_独立型","zodiac":"sagittarius","style":"独立型","text":"你的主气质接近射手座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出自由、探索的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_sagittarius_关系型","zodiac":"sagittarius","style":"关系型","text":"你的主气质接近射手座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出自由、探索的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_capricorn_观察型","zodiac":"capricorn","style":"观察型","text":"你的主气质接近摩羯座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出克制、目标的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_capricorn_理性型","zodiac":"capricorn","style":"理性型","text":"你的主气质接近摩羯座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出克制、目标的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_capricorn_感受型","zodiac":"capricorn","style":"感受型","text":"你的主气质接近摩羯座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出克制、目标的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_capricorn_行动型","zodiac":"capricorn","style":"行动型","text":"你的主气质接近摩羯座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出克制、目标的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_capricorn_独立型","zodiac":"capricorn","style":"独立型","text":"你的主气质接近摩羯座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出克制、目标的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_capricorn_关系型","zodiac":"capricorn","style":"关系型","text":"你的主气质接近摩羯座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出克制、目标的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_aquarius_观察型","zodiac":"aquarius","style":"观察型","text":"你的主气质接近水瓶座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出独立、新奇的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_aquarius_理性型","zodiac":"aquarius","style":"理性型","text":"你的主气质接近水瓶座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出独立、新奇的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_aquarius_感受型","zodiac":"aquarius","style":"感受型","text":"你的主气质接近水瓶座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出独立、新奇的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_aquarius_行动型","zodiac":"aquarius","style":"行动型","text":"你的主气质接近水瓶座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出独立、新奇的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_aquarius_独立型","zodiac":"aquarius","style":"独立型","text":"你的主气质接近水瓶座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出独立、新奇的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_aquarius_关系型","zodiac":"aquarius","style":"关系型","text":"你的主气质接近水瓶座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出独立、新奇的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_pisces_观察型","zodiac":"pisces","style":"观察型","text":"你的主气质接近双鱼座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出浪漫、敏感的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_pisces_理性型","zodiac":"pisces","style":"理性型","text":"你的主气质接近双鱼座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出浪漫、敏感的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_pisces_感受型","zodiac":"pisces","style":"感受型","text":"你的主气质接近双鱼座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出浪漫、敏感的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_pisces_行动型","zodiac":"pisces","style":"行动型","text":"你的主气质接近双鱼座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出浪漫、敏感的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_pisces_独立型","zodiac":"pisces","style":"独立型","text":"你的主气质接近双鱼座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出浪漫、敏感的一面，但并不等于传统意义上的单一星座性格。"},{"id":"main_pisces_关系型","zodiac":"pisces","style":"关系型","text":"你的主气质接近双鱼座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出浪漫、敏感的一面，但并不等于传统意义上的单一星座性格。"}],"pair_templates":[{"id":"pair_aries_taurus","primary":"aries","secondary":"taurus","text":"白羊座 × 金牛座：你同时带有“直接”与“稳定”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_aries_gemini","primary":"aries","secondary":"gemini","text":"白羊座 × 双子座：你同时带有“直接”与“灵活”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_aries_cancer","primary":"aries","secondary":"cancer","text":"白羊座 × 巨蟹座：你同时带有“直接”与“细腻”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_aries_leo","primary":"aries","secondary":"leo","text":"白羊座 × 狮子座：你同时带有“直接”与“自信”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_aries_virgo","primary":"aries","secondary":"virgo","text":"白羊座 × 处女座：你同时带有“直接”与“细致”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_aries_libra","primary":"aries","secondary":"libra","text":"白羊座 × 天秤座：你同时带有“直接”与“平衡”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_aries_scorpio","primary":"aries","secondary":"scorpio","text":"白羊座 × 天蝎座：你同时带有“直接”与“敏锐”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_aries_sagittarius","primary":"aries","secondary":"sagittarius","text":"白羊座 × 射手座：你同时带有“直接”与“自由”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_aries_capricorn","primary":"aries","secondary":"capricorn","text":"白羊座 × 摩羯座：你同时带有“直接”与“克制”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_aries_aquarius","primary":"aries","secondary":"aquarius","text":"白羊座 × 水瓶座：你同时带有“直接”与“独立”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_aries_pisces","primary":"aries","secondary":"pisces","text":"白羊座 × 双鱼座：你同时带有“直接”与“浪漫”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_taurus_aries","primary":"taurus","secondary":"aries","text":"金牛座 × 白羊座：你同时带有“稳定”与“直接”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_taurus_gemini","primary":"taurus","secondary":"gemini","text":"金牛座 × 双子座：你同时带有“稳定”与“灵活”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_taurus_cancer","primary":"taurus","secondary":"cancer","text":"金牛座 × 巨蟹座：你同时带有“稳定”与“细腻”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_taurus_leo","primary":"taurus","secondary":"leo","text":"金牛座 × 狮子座：你同时带有“稳定”与“自信”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_taurus_virgo","primary":"taurus","secondary":"virgo","text":"金牛座 × 处女座：你同时带有“稳定”与“细致”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_taurus_libra","primary":"taurus","secondary":"libra","text":"金牛座 × 天秤座：你同时带有“稳定”与“平衡”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_taurus_scorpio","primary":"taurus","secondary":"scorpio","text":"金牛座 × 天蝎座：你同时带有“稳定”与“敏锐”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_taurus_sagittarius","primary":"taurus","secondary":"sagittarius","text":"金牛座 × 射手座：你同时带有“稳定”与“自由”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_taurus_capricorn","primary":"taurus","secondary":"capricorn","text":"金牛座 × 摩羯座：你同时带有“稳定”与“克制”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_taurus_aquarius","primary":"taurus","secondary":"aquarius","text":"金牛座 × 水瓶座：你同时带有“稳定”与“独立”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_taurus_pisces","primary":"taurus","secondary":"pisces","text":"金牛座 × 双鱼座：你同时带有“稳定”与“浪漫”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_gemini_aries","primary":"gemini","secondary":"aries","text":"双子座 × 白羊座：你同时带有“灵活”与“直接”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_gemini_taurus","primary":"gemini","secondary":"taurus","text":"双子座 × 金牛座：你同时带有“灵活”与“稳定”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_gemini_cancer","primary":"gemini","secondary":"cancer","text":"双子座 × 巨蟹座：你同时带有“灵活”与“细腻”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_gemini_leo","primary":"gemini","secondary":"leo","text":"双子座 × 狮子座：你同时带有“灵活”与“自信”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_gemini_virgo","primary":"gemini","secondary":"virgo","text":"双子座 × 处女座：你同时带有“灵活”与“细致”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_gemini_libra","primary":"gemini","secondary":"libra","text":"双子座 × 天秤座：你同时带有“灵活”与“平衡”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_gemini_scorpio","primary":"gemini","secondary":"scorpio","text":"双子座 × 天蝎座：你同时带有“灵活”与“敏锐”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_gemini_sagittarius","primary":"gemini","secondary":"sagittarius","text":"双子座 × 射手座：你同时带有“灵活”与“自由”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_gemini_capricorn","primary":"gemini","secondary":"capricorn","text":"双子座 × 摩羯座：你同时带有“灵活”与“克制”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_gemini_aquarius","primary":"gemini","secondary":"aquarius","text":"双子座 × 水瓶座：你同时带有“灵活”与“独立”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_gemini_pisces","primary":"gemini","secondary":"pisces","text":"双子座 × 双鱼座：你同时带有“灵活”与“浪漫”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_cancer_aries","primary":"cancer","secondary":"aries","text":"巨蟹座 × 白羊座：你同时带有“细腻”与“直接”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_cancer_taurus","primary":"cancer","secondary":"taurus","text":"巨蟹座 × 金牛座：你同时带有“细腻”与“稳定”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_cancer_gemini","primary":"cancer","secondary":"gemini","text":"巨蟹座 × 双子座：你同时带有“细腻”与“灵活”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_cancer_leo","primary":"cancer","secondary":"leo","text":"巨蟹座 × 狮子座：你同时带有“细腻”与“自信”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_cancer_virgo","primary":"cancer","secondary":"virgo","text":"巨蟹座 × 处女座：你同时带有“细腻”与“细致”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_cancer_libra","primary":"cancer","secondary":"libra","text":"巨蟹座 × 天秤座：你同时带有“细腻”与“平衡”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_cancer_scorpio","primary":"cancer","secondary":"scorpio","text":"巨蟹座 × 天蝎座：你同时带有“细腻”与“敏锐”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_cancer_sagittarius","primary":"cancer","secondary":"sagittarius","text":"巨蟹座 × 射手座：你同时带有“细腻”与“自由”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_cancer_capricorn","primary":"cancer","secondary":"capricorn","text":"巨蟹座 × 摩羯座：你同时带有“细腻”与“克制”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_cancer_aquarius","primary":"cancer","secondary":"aquarius","text":"巨蟹座 × 水瓶座：你同时带有“细腻”与“独立”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_cancer_pisces","primary":"cancer","secondary":"pisces","text":"巨蟹座 × 双鱼座：你同时带有“细腻”与“浪漫”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_leo_aries","primary":"leo","secondary":"aries","text":"狮子座 × 白羊座：你同时带有“自信”与“直接”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_leo_taurus","primary":"leo","secondary":"taurus","text":"狮子座 × 金牛座：你同时带有“自信”与“稳定”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_leo_gemini","primary":"leo","secondary":"gemini","text":"狮子座 × 双子座：你同时带有“自信”与“灵活”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_leo_cancer","primary":"leo","secondary":"cancer","text":"狮子座 × 巨蟹座：你同时带有“自信”与“细腻”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_leo_virgo","primary":"leo","secondary":"virgo","text":"狮子座 × 处女座：你同时带有“自信”与“细致”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_leo_libra","primary":"leo","secondary":"libra","text":"狮子座 × 天秤座：你同时带有“自信”与“平衡”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_leo_scorpio","primary":"leo","secondary":"scorpio","text":"狮子座 × 天蝎座：你同时带有“自信”与“敏锐”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_leo_sagittarius","primary":"leo","secondary":"sagittarius","text":"狮子座 × 射手座：你同时带有“自信”与“自由”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_leo_capricorn","primary":"leo","secondary":"capricorn","text":"狮子座 × 摩羯座：你同时带有“自信”与“克制”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_leo_aquarius","primary":"leo","secondary":"aquarius","text":"狮子座 × 水瓶座：你同时带有“自信”与“独立”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_leo_pisces","primary":"leo","secondary":"pisces","text":"狮子座 × 双鱼座：你同时带有“自信”与“浪漫”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_virgo_aries","primary":"virgo","secondary":"aries","text":"处女座 × 白羊座：你同时带有“细致”与“直接”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_virgo_taurus","primary":"virgo","secondary":"taurus","text":"处女座 × 金牛座：你同时带有“细致”与“稳定”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_virgo_gemini","primary":"virgo","secondary":"gemini","text":"处女座 × 双子座：你同时带有“细致”与“灵活”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_virgo_cancer","primary":"virgo","secondary":"cancer","text":"处女座 × 巨蟹座：你同时带有“细致”与“细腻”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_virgo_leo","primary":"virgo","secondary":"leo","text":"处女座 × 狮子座：你同时带有“细致”与“自信”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_virgo_libra","primary":"virgo","secondary":"libra","text":"处女座 × 天秤座：你同时带有“细致”与“平衡”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_virgo_scorpio","primary":"virgo","secondary":"scorpio","text":"处女座 × 天蝎座：你同时带有“细致”与“敏锐”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_virgo_sagittarius","primary":"virgo","secondary":"sagittarius","text":"处女座 × 射手座：你同时带有“细致”与“自由”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_virgo_capricorn","primary":"virgo","secondary":"capricorn","text":"处女座 × 摩羯座：你同时带有“细致”与“克制”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_virgo_aquarius","primary":"virgo","secondary":"aquarius","text":"处女座 × 水瓶座：你同时带有“细致”与“独立”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_virgo_pisces","primary":"virgo","secondary":"pisces","text":"处女座 × 双鱼座：你同时带有“细致”与“浪漫”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_libra_aries","primary":"libra","secondary":"aries","text":"天秤座 × 白羊座：你同时带有“平衡”与“直接”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_libra_taurus","primary":"libra","secondary":"taurus","text":"天秤座 × 金牛座：你同时带有“平衡”与“稳定”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_libra_gemini","primary":"libra","secondary":"gemini","text":"天秤座 × 双子座：你同时带有“平衡”与“灵活”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_libra_cancer","primary":"libra","secondary":"cancer","text":"天秤座 × 巨蟹座：你同时带有“平衡”与“细腻”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_libra_leo","primary":"libra","secondary":"leo","text":"天秤座 × 狮子座：你同时带有“平衡”与“自信”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_libra_virgo","primary":"libra","secondary":"virgo","text":"天秤座 × 处女座：你同时带有“平衡”与“细致”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_libra_scorpio","primary":"libra","secondary":"scorpio","text":"天秤座 × 天蝎座：你同时带有“平衡”与“敏锐”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_libra_sagittarius","primary":"libra","secondary":"sagittarius","text":"天秤座 × 射手座：你同时带有“平衡”与“自由”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_libra_capricorn","primary":"libra","secondary":"capricorn","text":"天秤座 × 摩羯座：你同时带有“平衡”与“克制”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_libra_aquarius","primary":"libra","secondary":"aquarius","text":"天秤座 × 水瓶座：你同时带有“平衡”与“独立”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_libra_pisces","primary":"libra","secondary":"pisces","text":"天秤座 × 双鱼座：你同时带有“平衡”与“浪漫”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_scorpio_aries","primary":"scorpio","secondary":"aries","text":"天蝎座 × 白羊座：你同时带有“敏锐”与“直接”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_scorpio_taurus","primary":"scorpio","secondary":"taurus","text":"天蝎座 × 金牛座：你同时带有“敏锐”与“稳定”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_scorpio_gemini","primary":"scorpio","secondary":"gemini","text":"天蝎座 × 双子座：你同时带有“敏锐”与“灵活”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_scorpio_cancer","primary":"scorpio","secondary":"cancer","text":"天蝎座 × 巨蟹座：你同时带有“敏锐”与“细腻”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_scorpio_leo","primary":"scorpio","secondary":"leo","text":"天蝎座 × 狮子座：你同时带有“敏锐”与“自信”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_scorpio_virgo","primary":"scorpio","secondary":"virgo","text":"天蝎座 × 处女座：你同时带有“敏锐”与“细致”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_scorpio_libra","primary":"scorpio","secondary":"libra","text":"天蝎座 × 天秤座：你同时带有“敏锐”与“平衡”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_scorpio_sagittarius","primary":"scorpio","secondary":"sagittarius","text":"天蝎座 × 射手座：你同时带有“敏锐”与“自由”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_scorpio_capricorn","primary":"scorpio","secondary":"capricorn","text":"天蝎座 × 摩羯座：你同时带有“敏锐”与“克制”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_scorpio_aquarius","primary":"scorpio","secondary":"aquarius","text":"天蝎座 × 水瓶座：你同时带有“敏锐”与“独立”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_scorpio_pisces","primary":"scorpio","secondary":"pisces","text":"天蝎座 × 双鱼座：你同时带有“敏锐”与“浪漫”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_sagittarius_aries","primary":"sagittarius","secondary":"aries","text":"射手座 × 白羊座：你同时带有“自由”与“直接”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_sagittarius_taurus","primary":"sagittarius","secondary":"taurus","text":"射手座 × 金牛座：你同时带有“自由”与“稳定”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_sagittarius_gemini","primary":"sagittarius","secondary":"gemini","text":"射手座 × 双子座：你同时带有“自由”与“灵活”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_sagittarius_cancer","primary":"sagittarius","secondary":"cancer","text":"射手座 × 巨蟹座：你同时带有“自由”与“细腻”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_sagittarius_leo","primary":"sagittarius","secondary":"leo","text":"射手座 × 狮子座：你同时带有“自由”与“自信”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_sagittarius_virgo","primary":"sagittarius","secondary":"virgo","text":"射手座 × 处女座：你同时带有“自由”与“细致”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_sagittarius_libra","primary":"sagittarius","secondary":"libra","text":"射手座 × 天秤座：你同时带有“自由”与“平衡”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_sagittarius_scorpio","primary":"sagittarius","secondary":"scorpio","text":"射手座 × 天蝎座：你同时带有“自由”与“敏锐”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_sagittarius_capricorn","primary":"sagittarius","secondary":"capricorn","text":"射手座 × 摩羯座：你同时带有“自由”与“克制”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_sagittarius_aquarius","primary":"sagittarius","secondary":"aquarius","text":"射手座 × 水瓶座：你同时带有“自由”与“独立”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_sagittarius_pisces","primary":"sagittarius","secondary":"pisces","text":"射手座 × 双鱼座：你同时带有“自由”与“浪漫”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_capricorn_aries","primary":"capricorn","secondary":"aries","text":"摩羯座 × 白羊座：你同时带有“克制”与“直接”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_capricorn_taurus","primary":"capricorn","secondary":"taurus","text":"摩羯座 × 金牛座：你同时带有“克制”与“稳定”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_capricorn_gemini","primary":"capricorn","secondary":"gemini","text":"摩羯座 × 双子座：你同时带有“克制”与“灵活”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_capricorn_cancer","primary":"capricorn","secondary":"cancer","text":"摩羯座 × 巨蟹座：你同时带有“克制”与“细腻”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_capricorn_leo","primary":"capricorn","secondary":"leo","text":"摩羯座 × 狮子座：你同时带有“克制”与“自信”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_capricorn_virgo","primary":"capricorn","secondary":"virgo","text":"摩羯座 × 处女座：你同时带有“克制”与“细致”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_capricorn_libra","primary":"capricorn","secondary":"libra","text":"摩羯座 × 天秤座：你同时带有“克制”与“平衡”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_capricorn_scorpio","primary":"capricorn","secondary":"scorpio","text":"摩羯座 × 天蝎座：你同时带有“克制”与“敏锐”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_capricorn_sagittarius","primary":"capricorn","secondary":"sagittarius","text":"摩羯座 × 射手座：你同时带有“克制”与“自由”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_capricorn_aquarius","primary":"capricorn","secondary":"aquarius","text":"摩羯座 × 水瓶座：你同时带有“克制”与“独立”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_capricorn_pisces","primary":"capricorn","secondary":"pisces","text":"摩羯座 × 双鱼座：你同时带有“克制”与“浪漫”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_aquarius_aries","primary":"aquarius","secondary":"aries","text":"水瓶座 × 白羊座：你同时带有“独立”与“直接”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_aquarius_taurus","primary":"aquarius","secondary":"taurus","text":"水瓶座 × 金牛座：你同时带有“独立”与“稳定”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_aquarius_gemini","primary":"aquarius","secondary":"gemini","text":"水瓶座 × 双子座：你同时带有“独立”与“灵活”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_aquarius_cancer","primary":"aquarius","secondary":"cancer","text":"水瓶座 × 巨蟹座：你同时带有“独立”与“细腻”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_aquarius_leo","primary":"aquarius","secondary":"leo","text":"水瓶座 × 狮子座：你同时带有“独立”与“自信”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_aquarius_virgo","primary":"aquarius","secondary":"virgo","text":"水瓶座 × 处女座：你同时带有“独立”与“细致”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_aquarius_libra","primary":"aquarius","secondary":"libra","text":"水瓶座 × 天秤座：你同时带有“独立”与“平衡”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_aquarius_scorpio","primary":"aquarius","secondary":"scorpio","text":"水瓶座 × 天蝎座：你同时带有“独立”与“敏锐”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_aquarius_sagittarius","primary":"aquarius","secondary":"sagittarius","text":"水瓶座 × 射手座：你同时带有“独立”与“自由”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_aquarius_capricorn","primary":"aquarius","secondary":"capricorn","text":"水瓶座 × 摩羯座：你同时带有“独立”与“克制”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_aquarius_pisces","primary":"aquarius","secondary":"pisces","text":"水瓶座 × 双鱼座：你同时带有“独立”与“浪漫”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_pisces_aries","primary":"pisces","secondary":"aries","text":"双鱼座 × 白羊座：你同时带有“浪漫”与“直接”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_pisces_taurus","primary":"pisces","secondary":"taurus","text":"双鱼座 × 金牛座：你同时带有“浪漫”与“稳定”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_pisces_gemini","primary":"pisces","secondary":"gemini","text":"双鱼座 × 双子座：你同时带有“浪漫”与“灵活”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_pisces_cancer","primary":"pisces","secondary":"cancer","text":"双鱼座 × 巨蟹座：你同时带有“浪漫”与“细腻”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_pisces_leo","primary":"pisces","secondary":"leo","text":"双鱼座 × 狮子座：你同时带有“浪漫”与“自信”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_pisces_virgo","primary":"pisces","secondary":"virgo","text":"双鱼座 × 处女座：你同时带有“浪漫”与“细致”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_pisces_libra","primary":"pisces","secondary":"libra","text":"双鱼座 × 天秤座：你同时带有“浪漫”与“平衡”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"},{"id":"pair_pisces_scorpio","primary":"pisces","secondary":"scorpio","text":"双鱼座 × 天蝎座：你同时带有“浪漫”与“敏锐”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"},{"id":"pair_pisces_sagittarius","primary":"pisces","secondary":"sagittarius","text":"双鱼座 × 射手座：你同时带有“浪漫”与“自由”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"},{"id":"pair_pisces_capricorn","primary":"pisces","secondary":"capricorn","text":"双鱼座 × 摩羯座：你同时带有“浪漫”与“克制”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"},{"id":"pair_pisces_aquarius","primary":"pisces","secondary":"aquarius","text":"双鱼座 × 水瓶座：你同时带有“浪漫”与“独立”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"}],"dimension_templates":[{"id":"dim_action_very_low","dimension":"action","band":"very_low","range":[0,29],"text":"行动力很低：你不喜欢为了“快”而快，更愿意等信息足够、状态合适以后再动。"},{"id":"dim_action_low","dimension":"action","band":"low","range":[30,44],"text":"行动力偏低：你不喜欢为了“快”而快，更愿意等信息足够、状态合适以后再动。"},{"id":"dim_action_mid","dimension":"action","band":"mid","range":[45,59],"text":"行动力处于中间区间：你会根据场景切换方式，并不固定站在某一端。"},{"id":"dim_action_high","dimension":"action","band":"high","range":[60,79],"text":"行动力偏高：你更愿意用行动减少不确定感，做起来之后反而更容易想清楚。"},{"id":"dim_action_very_high","dimension":"action","band":"very_high","range":[80,100],"text":"行动力很高：你更愿意用行动减少不确定感，做起来之后反而更容易想清楚。"},{"id":"dim_social_very_low","dimension":"social","band":"very_low","range":[0,29],"text":"社交性很低：你不需要持续互动来证明存在感，熟悉、少量而高质量的关系更适合你。"},{"id":"dim_social_low","dimension":"social","band":"low","range":[30,44],"text":"社交性偏低：你不需要持续互动来证明存在感，熟悉、少量而高质量的关系更适合你。"},{"id":"dim_social_mid","dimension":"social","band":"mid","range":[45,59],"text":"社交性处于中间区间：你会根据场景切换方式，并不固定站在某一端。"},{"id":"dim_social_high","dimension":"social","band":"high","range":[60,79],"text":"社交性偏高：你通常能较快进入互动状态，也愿意通过交流获得信息和能量。"},{"id":"dim_social_very_high","dimension":"social","band":"very_high","range":[80,100],"text":"社交性很高：你通常能较快进入互动状态，也愿意通过交流获得信息和能量。"},{"id":"dim_rational_very_low","dimension":"rational","band":"very_low","range":[0,29],"text":"理性很低：你并不总想把一切解释得非常清楚，直觉、体验和感觉对你同样重要。"},{"id":"dim_rational_low","dimension":"rational","band":"low","range":[30,44],"text":"理性偏低：你并不总想把一切解释得非常清楚，直觉、体验和感觉对你同样重要。"},{"id":"dim_rational_mid","dimension":"rational","band":"mid","range":[45,59],"text":"理性处于中间区间：你会根据场景切换方式，并不固定站在某一端。"},{"id":"dim_rational_high","dimension":"rational","band":"high","range":[60,79],"text":"理性偏高：你习惯拆解问题、比较依据，再形成判断，不太喜欢只凭气氛做决定。"},{"id":"dim_rational_very_high","dimension":"rational","band":"very_high","range":[80,100],"text":"理性很高：你习惯拆解问题、比较依据，再形成判断，不太喜欢只凭气氛做决定。"},{"id":"dim_emotional_very_low","dimension":"emotional","band":"very_low","range":[0,29],"text":"感性很低：你的情绪波动通常不会长期占据注意力，更容易把感受放回事情本身。"},{"id":"dim_emotional_low","dimension":"emotional","band":"low","range":[30,44],"text":"感性偏低：你的情绪波动通常不会长期占据注意力，更容易把感受放回事情本身。"},{"id":"dim_emotional_mid","dimension":"emotional","band":"mid","range":[45,59],"text":"感性处于中间区间：你会根据场景切换方式，并不固定站在某一端。"},{"id":"dim_emotional_high","dimension":"emotional","band":"high","range":[60,79],"text":"感性偏高：你的情绪感受细，很多细节会被你记住，并影响你对人和事的判断。"},{"id":"dim_emotional_very_high","dimension":"emotional","band":"very_high","range":[80,100],"text":"感性很高：你的情绪感受细，很多细节会被你记住，并影响你对人和事的判断。"},{"id":"dim_stability_very_low","dimension":"stability","band":"very_low","range":[0,29],"text":"稳定性很低：你对固定模式的依赖较低，比起稳定，你更愿意给变化留下空间。"},{"id":"dim_stability_low","dimension":"stability","band":"low","range":[30,44],"text":"稳定性偏低：你对固定模式的依赖较低，比起稳定，你更愿意给变化留下空间。"},{"id":"dim_stability_mid","dimension":"stability","band":"mid","range":[45,59],"text":"稳定性处于中间区间：你会根据场景切换方式，并不固定站在某一端。"},{"id":"dim_stability_high","dimension":"stability","band":"high","range":[60,79],"text":"稳定性偏高：你重视秩序、兑现和可预期性。稳定感往往能显著提升你的状态。"},{"id":"dim_stability_very_high","dimension":"stability","band":"very_high","range":[80,100],"text":"稳定性很高：你重视秩序、兑现和可预期性。稳定感往往能显著提升你的状态。"},{"id":"dim_curiosity_very_low","dimension":"curiosity","band":"very_low","range":[0,29],"text":"好奇心很低：你更偏向把精力投入确定有价值的事情，而不是因为“新”就去尝试。"},{"id":"dim_curiosity_low","dimension":"curiosity","band":"low","range":[30,44],"text":"好奇心偏低：你更偏向把精力投入确定有价值的事情，而不是因为“新”就去尝试。"},{"id":"dim_curiosity_mid","dimension":"curiosity","band":"mid","range":[45,59],"text":"好奇心处于中间区间：你会根据场景切换方式，并不固定站在某一端。"},{"id":"dim_curiosity_high","dimension":"curiosity","band":"high","range":[60,79],"text":"好奇心偏高：新鲜事物很容易勾起你的探索欲，你愿意花时间理解陌生领域。"},{"id":"dim_curiosity_very_high","dimension":"curiosity","band":"very_high","range":[80,100],"text":"好奇心很高：新鲜事物很容易勾起你的探索欲，你愿意花时间理解陌生领域。"},{"id":"dim_independence_very_low","dimension":"independence","band":"very_low","range":[0,29],"text":"独立性很低：重要决定时你愿意参考可信任的人，也不排斥让关系参与到选择中。"},{"id":"dim_independence_low","dimension":"independence","band":"low","range":[30,44],"text":"独立性偏低：重要决定时你愿意参考可信任的人，也不排斥让关系参与到选择中。"},{"id":"dim_independence_mid","dimension":"independence","band":"mid","range":[45,59],"text":"独立性处于中间区间：你会根据场景切换方式，并不固定站在某一端。"},{"id":"dim_independence_high","dimension":"independence","band":"high","range":[60,79],"text":"独立性偏高：你需要保留自己的判断权和空间，不喜欢被过度安排或定义。"},{"id":"dim_independence_very_high","dimension":"independence","band":"very_high","range":[80,100],"text":"独立性很高：你需要保留自己的判断权和空间，不喜欢被过度安排或定义。"},{"id":"dim_empathy_very_low","dimension":"empathy","band":"very_low","range":[0,29],"text":"共情力很低：你更习惯从事实和边界理解问题，不会自动把别人的情绪都接到自己身上。"},{"id":"dim_empathy_low","dimension":"empathy","band":"low","range":[30,44],"text":"共情力偏低：你更习惯从事实和边界理解问题，不会自动把别人的情绪都接到自己身上。"},{"id":"dim_empathy_mid","dimension":"empathy","band":"mid","range":[45,59],"text":"共情力处于中间区间：你会根据场景切换方式，并不固定站在某一端。"},{"id":"dim_empathy_high","dimension":"empathy","band":"high","range":[60,79],"text":"共情力偏高：你很容易察觉别人状态变化，也会自然考虑对方的感受和处境。"},{"id":"dim_empathy_very_high","dimension":"empathy","band":"very_high","range":[80,100],"text":"共情力很高：你很容易察觉别人状态变化，也会自然考虑对方的感受和处境。"},{"id":"dim_competitiveness_very_low","dimension":"competitiveness","band":"very_low","range":[0,29],"text":"竞争性很低：你对输赢本身并不敏感，更在意事情是否值得、过程是否舒服。"},{"id":"dim_competitiveness_low","dimension":"competitiveness","band":"low","range":[30,44],"text":"竞争性偏低：你对输赢本身并不敏感，更在意事情是否值得、过程是否舒服。"},{"id":"dim_competitiveness_mid","dimension":"competitiveness","band":"mid","range":[45,59],"text":"竞争性处于中间区间：你会根据场景切换方式，并不固定站在某一端。"},{"id":"dim_competitiveness_high","dimension":"competitiveness","band":"high","range":[60,79],"text":"竞争性偏高：目标和比较会明显激活你的动力，你不太愿意在真正重视的事情上随便认输。"},{"id":"dim_competitiveness_very_high","dimension":"competitiveness","band":"very_high","range":[80,100],"text":"竞争性很高：目标和比较会明显激活你的动力，你不太愿意在真正重视的事情上随便认输。"},{"id":"dim_adaptability_very_low","dimension":"adaptability","band":"very_low","range":[0,29],"text":"适应性很低：变化需要你一点消化时间。你更擅长在稳定结构中把事情持续做好。"},{"id":"dim_adaptability_low","dimension":"adaptability","band":"low","range":[30,44],"text":"适应性偏低：变化需要你一点消化时间。你更擅长在稳定结构中把事情持续做好。"},{"id":"dim_adaptability_mid","dimension":"adaptability","band":"mid","range":[45,59],"text":"适应性处于中间区间：你会根据场景切换方式，并不固定站在某一端。"},{"id":"dim_adaptability_high","dimension":"adaptability","band":"high","range":[60,79],"text":"适应性偏高：变化本身不太容易把你困住，你往往能很快找到新的节奏和替代方案。"},{"id":"dim_adaptability_very_high","dimension":"adaptability","band":"very_high","range":[80,100],"text":"适应性很高：变化本身不太容易把你困住，你往往能很快找到新的节奏和替代方案。"}],"contrast_templates":[{"id":"contrast_01_hh","a":"rational","b":"emotional","a_band":"high","b_band":"high","text":"你既敏感又理性：会先感受到很多东西，但通常不会停在情绪里，而会继续寻找原因和解释。"},{"id":"contrast_01_hl","a":"rational","b":"emotional","a_band":"high","b_band":"low","text":"理性明显强于感性：你更容易从“理性”这一侧处理问题，另一侧通常只在特定场景才出现。"},{"id":"contrast_01_lh","a":"rational","b":"emotional","a_band":"low","b_band":"high","text":"感性明显强于理性：你更自然地依赖“感性”来判断和行动。"},{"id":"contrast_01_mh","a":"rational","b":"emotional","a_band":"mid","b_band":"high","text":"理性较灵活，而感性更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"},{"id":"contrast_02_hh","a":"independence","b":"empathy","a_band":"high","b_band":"high","text":"你能理解别人，但并不意味着会顺从别人。你通常能把共情和边界同时保留下来。"},{"id":"contrast_02_hl","a":"independence","b":"empathy","a_band":"high","b_band":"low","text":"独立性明显强于共情力：你更容易从“独立性”这一侧处理问题，另一侧通常只在特定场景才出现。"},{"id":"contrast_02_lh","a":"independence","b":"empathy","a_band":"low","b_band":"high","text":"共情力明显强于独立性：你更自然地依赖“共情力”来判断和行动。"},{"id":"contrast_02_mh","a":"independence","b":"empathy","a_band":"mid","b_band":"high","text":"独立性较灵活，而共情力更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"},{"id":"contrast_03_hh","a":"action","b":"stability","a_band":"high","b_band":"high","text":"你不是冲动型行动派。方向越明确、规则越清楚，你反而越容易快速推进。"},{"id":"contrast_03_hl","a":"action","b":"stability","a_band":"high","b_band":"low","text":"行动力明显强于稳定性：你更容易从“行动力”这一侧处理问题，另一侧通常只在特定场景才出现。"},{"id":"contrast_03_lh","a":"action","b":"stability","a_band":"low","b_band":"high","text":"稳定性明显强于行动力：你更自然地依赖“稳定性”来判断和行动。"},{"id":"contrast_03_mh","a":"action","b":"stability","a_band":"mid","b_band":"high","text":"行动力较灵活，而稳定性更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"},{"id":"contrast_04_hh","a":"curiosity","b":"stability","a_band":"high","b_band":"high","text":"你既想探索新东西，又希望底层秩序可控。最适合你的不是完全冒险，而是“有安全网的变化”。"},{"id":"contrast_04_hl","a":"curiosity","b":"stability","a_band":"high","b_band":"low","text":"好奇心明显强于稳定性：你更容易从“好奇心”这一侧处理问题，另一侧通常只在特定场景才出现。"},{"id":"contrast_04_lh","a":"curiosity","b":"stability","a_band":"low","b_band":"high","text":"稳定性明显强于好奇心：你更自然地依赖“稳定性”来判断和行动。"},{"id":"contrast_04_mh","a":"curiosity","b":"stability","a_band":"mid","b_band":"high","text":"好奇心较灵活，而稳定性更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"},{"id":"contrast_05_hh","a":"social","b":"independence","a_band":"high","b_band":"high","text":"你可以很会社交，但仍需要明确的个人空间。热闹和独处对你不是二选一。"},{"id":"contrast_05_hl","a":"social","b":"independence","a_band":"high","b_band":"low","text":"社交性明显强于独立性：你更容易从“社交性”这一侧处理问题，另一侧通常只在特定场景才出现。"},{"id":"contrast_05_lh","a":"social","b":"independence","a_band":"low","b_band":"high","text":"独立性明显强于社交性：你更自然地依赖“独立性”来判断和行动。"},{"id":"contrast_05_mh","a":"social","b":"independence","a_band":"mid","b_band":"high","text":"社交性较灵活，而独立性更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"},{"id":"contrast_06_hh","a":"competitiveness","b":"empathy","a_band":"high","b_band":"high","text":"你有胜负心，但通常不会只看输赢。你更容易在“不伤关系”和“把事做好”之间找平衡。"},{"id":"contrast_06_hl","a":"competitiveness","b":"empathy","a_band":"high","b_band":"low","text":"竞争性明显强于共情力：你更容易从“竞争性”这一侧处理问题，另一侧通常只在特定场景才出现。"},{"id":"contrast_06_lh","a":"competitiveness","b":"empathy","a_band":"low","b_band":"high","text":"共情力明显强于竞争性：你更自然地依赖“共情力”来判断和行动。"},{"id":"contrast_06_mh","a":"competitiveness","b":"empathy","a_band":"mid","b_band":"high","text":"竞争性较灵活，而共情力更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"},{"id":"contrast_07_hh","a":"rational","b":"adaptability","a_band":"high","b_band":"high","text":"你不是死守计划的理性派。你会快速更新信息，并在新条件下重新计算最佳路径。"},{"id":"contrast_07_hl","a":"rational","b":"adaptability","a_band":"high","b_band":"low","text":"理性明显强于适应性：你更容易从“理性”这一侧处理问题，另一侧通常只在特定场景才出现。"},{"id":"contrast_07_lh","a":"rational","b":"adaptability","a_band":"low","b_band":"high","text":"适应性明显强于理性：你更自然地依赖“适应性”来判断和行动。"},{"id":"contrast_07_mh","a":"rational","b":"adaptability","a_band":"mid","b_band":"high","text":"理性较灵活，而适应性更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"},{"id":"contrast_08_hh","a":"emotional","b":"stability","a_band":"high","b_band":"high","text":"你感受很深，因此也更需要稳定。关系是否可靠、事情是否有确定性，会显著影响你的状态。"},{"id":"contrast_08_hl","a":"emotional","b":"stability","a_band":"high","b_band":"low","text":"感性明显强于稳定性：你更容易从“感性”这一侧处理问题，另一侧通常只在特定场景才出现。"},{"id":"contrast_08_lh","a":"emotional","b":"stability","a_band":"low","b_band":"high","text":"稳定性明显强于感性：你更自然地依赖“稳定性”来判断和行动。"},{"id":"contrast_08_mh","a":"emotional","b":"stability","a_band":"mid","b_band":"high","text":"感性较灵活，而稳定性更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"},{"id":"contrast_09_hh","a":"curiosity","b":"independence","a_band":"high","b_band":"high","text":"你对陌生事物的兴趣往往来自真正的自主探索，而不是为了跟随潮流。"},{"id":"contrast_09_hl","a":"curiosity","b":"independence","a_band":"high","b_band":"low","text":"好奇心明显强于独立性：你更容易从“好奇心”这一侧处理问题，另一侧通常只在特定场景才出现。"},{"id":"contrast_09_lh","a":"curiosity","b":"independence","a_band":"low","b_band":"high","text":"独立性明显强于好奇心：你更自然地依赖“独立性”来判断和行动。"},{"id":"contrast_09_mh","a":"curiosity","b":"independence","a_band":"mid","b_band":"high","text":"好奇心较灵活，而独立性更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"},{"id":"contrast_10_hh","a":"action","b":"empathy","a_band":"high","b_band":"high","text":"看到别人需要帮助时，你更容易直接做点什么，而不是只停留在安慰。"},{"id":"contrast_10_hl","a":"action","b":"empathy","a_band":"high","b_band":"low","text":"行动力明显强于共情力：你更容易从“行动力”这一侧处理问题，另一侧通常只在特定场景才出现。"},{"id":"contrast_10_lh","a":"action","b":"empathy","a_band":"low","b_band":"high","text":"共情力明显强于行动力：你更自然地依赖“共情力”来判断和行动。"},{"id":"contrast_10_mh","a":"action","b":"empathy","a_band":"mid","b_band":"high","text":"行动力较灵活，而共情力更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"}],"scene_templates":[{"id":"scene_社交方式_action","scene":"社交方式","dominant_dimension":"action","text":"在社交中，你更愿意用行动减少不确定感，做起来之后反而更容易想清楚。"},{"id":"scene_社交方式_social","scene":"社交方式","dominant_dimension":"social","text":"在社交中，你通常能较快进入互动状态，也愿意通过交流获得信息和能量。"},{"id":"scene_社交方式_rational","scene":"社交方式","dominant_dimension":"rational","text":"在社交中，你习惯拆解问题、比较依据，再形成判断，不太喜欢只凭气氛做决定。"},{"id":"scene_社交方式_emotional","scene":"社交方式","dominant_dimension":"emotional","text":"在社交中，你的情绪感受细，很多细节会被你记住，并影响你对人和事的判断。"},{"id":"scene_社交方式_stability","scene":"社交方式","dominant_dimension":"stability","text":"在社交中，你重视秩序、兑现和可预期性。稳定感往往能显著提升你的状态。"},{"id":"scene_社交方式_curiosity","scene":"社交方式","dominant_dimension":"curiosity","text":"在社交中，新鲜事物很容易勾起你的探索欲，你愿意花时间理解陌生领域。"},{"id":"scene_社交方式_independence","scene":"社交方式","dominant_dimension":"independence","text":"在社交中，你需要保留自己的判断权和空间，不喜欢被过度安排或定义。"},{"id":"scene_社交方式_empathy","scene":"社交方式","dominant_dimension":"empathy","text":"在社交中，你很容易察觉别人状态变化，也会自然考虑对方的感受和处境。"},{"id":"scene_社交方式_competitiveness","scene":"社交方式","dominant_dimension":"competitiveness","text":"在社交中，目标和比较会明显激活你的动力，你不太愿意在真正重视的事情上随便认输。"},{"id":"scene_社交方式_adaptability","scene":"社交方式","dominant_dimension":"adaptability","text":"在社交中，变化本身不太容易把你困住，你往往能很快找到新的节奏和替代方案。"},{"id":"scene_亲密关系_action","scene":"亲密关系","dominant_dimension":"action","text":"在亲密关系里，你更愿意用行动减少不确定感，做起来之后反而更容易想清楚。"},{"id":"scene_亲密关系_social","scene":"亲密关系","dominant_dimension":"social","text":"在亲密关系里，你通常能较快进入互动状态，也愿意通过交流获得信息和能量。"},{"id":"scene_亲密关系_rational","scene":"亲密关系","dominant_dimension":"rational","text":"在亲密关系里，你习惯拆解问题、比较依据，再形成判断，不太喜欢只凭气氛做决定。"},{"id":"scene_亲密关系_emotional","scene":"亲密关系","dominant_dimension":"emotional","text":"在亲密关系里，你的情绪感受细，很多细节会被你记住，并影响你对人和事的判断。"},{"id":"scene_亲密关系_stability","scene":"亲密关系","dominant_dimension":"stability","text":"在亲密关系里，你重视秩序、兑现和可预期性。稳定感往往能显著提升你的状态。"},{"id":"scene_亲密关系_curiosity","scene":"亲密关系","dominant_dimension":"curiosity","text":"在亲密关系里，新鲜事物很容易勾起你的探索欲，你愿意花时间理解陌生领域。"},{"id":"scene_亲密关系_independence","scene":"亲密关系","dominant_dimension":"independence","text":"在亲密关系里，你需要保留自己的判断权和空间，不喜欢被过度安排或定义。"},{"id":"scene_亲密关系_empathy","scene":"亲密关系","dominant_dimension":"empathy","text":"在亲密关系里，你很容易察觉别人状态变化，也会自然考虑对方的感受和处境。"},{"id":"scene_亲密关系_competitiveness","scene":"亲密关系","dominant_dimension":"competitiveness","text":"在亲密关系里，目标和比较会明显激活你的动力，你不太愿意在真正重视的事情上随便认输。"},{"id":"scene_亲密关系_adaptability","scene":"亲密关系","dominant_dimension":"adaptability","text":"在亲密关系里，变化本身不太容易把你困住，你往往能很快找到新的节奏和替代方案。"},{"id":"scene_工作学习_action","scene":"工作学习","dominant_dimension":"action","text":"在工作或学习中，你更愿意用行动减少不确定感，做起来之后反而更容易想清楚。"},{"id":"scene_工作学习_social","scene":"工作学习","dominant_dimension":"social","text":"在工作或学习中，你通常能较快进入互动状态，也愿意通过交流获得信息和能量。"},{"id":"scene_工作学习_rational","scene":"工作学习","dominant_dimension":"rational","text":"在工作或学习中，你习惯拆解问题、比较依据，再形成判断，不太喜欢只凭气氛做决定。"},{"id":"scene_工作学习_emotional","scene":"工作学习","dominant_dimension":"emotional","text":"在工作或学习中，你的情绪感受细，很多细节会被你记住，并影响你对人和事的判断。"},{"id":"scene_工作学习_stability","scene":"工作学习","dominant_dimension":"stability","text":"在工作或学习中，你重视秩序、兑现和可预期性。稳定感往往能显著提升你的状态。"},{"id":"scene_工作学习_curiosity","scene":"工作学习","dominant_dimension":"curiosity","text":"在工作或学习中，新鲜事物很容易勾起你的探索欲，你愿意花时间理解陌生领域。"},{"id":"scene_工作学习_independence","scene":"工作学习","dominant_dimension":"independence","text":"在工作或学习中，你需要保留自己的判断权和空间，不喜欢被过度安排或定义。"},{"id":"scene_工作学习_empathy","scene":"工作学习","dominant_dimension":"empathy","text":"在工作或学习中，你很容易察觉别人状态变化，也会自然考虑对方的感受和处境。"},{"id":"scene_工作学习_competitiveness","scene":"工作学习","dominant_dimension":"competitiveness","text":"在工作或学习中，目标和比较会明显激活你的动力，你不太愿意在真正重视的事情上随便认输。"},{"id":"scene_工作学习_adaptability","scene":"工作学习","dominant_dimension":"adaptability","text":"在工作或学习中，变化本身不太容易把你困住，你往往能很快找到新的节奏和替代方案。"},{"id":"scene_压力反应_action","scene":"压力反应","dominant_dimension":"action","text":"在压力上升时，你更愿意用行动减少不确定感，做起来之后反而更容易想清楚。"},{"id":"scene_压力反应_social","scene":"压力反应","dominant_dimension":"social","text":"在压力上升时，你通常能较快进入互动状态，也愿意通过交流获得信息和能量。"},{"id":"scene_压力反应_rational","scene":"压力反应","dominant_dimension":"rational","text":"在压力上升时，你习惯拆解问题、比较依据，再形成判断，不太喜欢只凭气氛做决定。"},{"id":"scene_压力反应_emotional","scene":"压力反应","dominant_dimension":"emotional","text":"在压力上升时，你的情绪感受细，很多细节会被你记住，并影响你对人和事的判断。"},{"id":"scene_压力反应_stability","scene":"压力反应","dominant_dimension":"stability","text":"在压力上升时，你重视秩序、兑现和可预期性。稳定感往往能显著提升你的状态。"},{"id":"scene_压力反应_curiosity","scene":"压力反应","dominant_dimension":"curiosity","text":"在压力上升时，新鲜事物很容易勾起你的探索欲，你愿意花时间理解陌生领域。"},{"id":"scene_压力反应_independence","scene":"压力反应","dominant_dimension":"independence","text":"在压力上升时，你需要保留自己的判断权和空间，不喜欢被过度安排或定义。"},{"id":"scene_压力反应_empathy","scene":"压力反应","dominant_dimension":"empathy","text":"在压力上升时，你很容易察觉别人状态变化，也会自然考虑对方的感受和处境。"},{"id":"scene_压力反应_competitiveness","scene":"压力反应","dominant_dimension":"competitiveness","text":"在压力上升时，目标和比较会明显激活你的动力，你不太愿意在真正重视的事情上随便认输。"},{"id":"scene_压力反应_adaptability","scene":"压力反应","dominant_dimension":"adaptability","text":"在压力上升时，变化本身不太容易把你困住，你往往能很快找到新的节奏和替代方案。"},{"id":"scene_决策方式_action","scene":"决策方式","dominant_dimension":"action","text":"面对重要决定时，你更愿意用行动减少不确定感，做起来之后反而更容易想清楚。"},{"id":"scene_决策方式_social","scene":"决策方式","dominant_dimension":"social","text":"面对重要决定时，你通常能较快进入互动状态，也愿意通过交流获得信息和能量。"},{"id":"scene_决策方式_rational","scene":"决策方式","dominant_dimension":"rational","text":"面对重要决定时，你习惯拆解问题、比较依据，再形成判断，不太喜欢只凭气氛做决定。"},{"id":"scene_决策方式_emotional","scene":"决策方式","dominant_dimension":"emotional","text":"面对重要决定时，你的情绪感受细，很多细节会被你记住，并影响你对人和事的判断。"},{"id":"scene_决策方式_stability","scene":"决策方式","dominant_dimension":"stability","text":"面对重要决定时，你重视秩序、兑现和可预期性。稳定感往往能显著提升你的状态。"},{"id":"scene_决策方式_curiosity","scene":"决策方式","dominant_dimension":"curiosity","text":"面对重要决定时，新鲜事物很容易勾起你的探索欲，你愿意花时间理解陌生领域。"},{"id":"scene_决策方式_independence","scene":"决策方式","dominant_dimension":"independence","text":"面对重要决定时，你需要保留自己的判断权和空间，不喜欢被过度安排或定义。"},{"id":"scene_决策方式_empathy","scene":"决策方式","dominant_dimension":"empathy","text":"面对重要决定时，你很容易察觉别人状态变化，也会自然考虑对方的感受和处境。"},{"id":"scene_决策方式_competitiveness","scene":"决策方式","dominant_dimension":"competitiveness","text":"面对重要决定时，目标和比较会明显激活你的动力，你不太愿意在真正重视的事情上随便认输。"},{"id":"scene_决策方式_adaptability","scene":"决策方式","dominant_dimension":"adaptability","text":"面对重要决定时，变化本身不太容易把你困住，你往往能很快找到新的节奏和替代方案。"},{"id":"scene_隐藏一面_action","scene":"隐藏一面","dominant_dimension":"action","text":"别人不一定第一眼看得出的地方是，你更愿意用行动减少不确定感，做起来之后反而更容易想清楚。"},{"id":"scene_隐藏一面_social","scene":"隐藏一面","dominant_dimension":"social","text":"别人不一定第一眼看得出的地方是，你通常能较快进入互动状态，也愿意通过交流获得信息和能量。"},{"id":"scene_隐藏一面_rational","scene":"隐藏一面","dominant_dimension":"rational","text":"别人不一定第一眼看得出的地方是，你习惯拆解问题、比较依据，再形成判断，不太喜欢只凭气氛做决定。"},{"id":"scene_隐藏一面_emotional","scene":"隐藏一面","dominant_dimension":"emotional","text":"别人不一定第一眼看得出的地方是，你的情绪感受细，很多细节会被你记住，并影响你对人和事的判断。"},{"id":"scene_隐藏一面_stability","scene":"隐藏一面","dominant_dimension":"stability","text":"别人不一定第一眼看得出的地方是，你重视秩序、兑现和可预期性。稳定感往往能显著提升你的状态。"},{"id":"scene_隐藏一面_curiosity","scene":"隐藏一面","dominant_dimension":"curiosity","text":"别人不一定第一眼看得出的地方是，新鲜事物很容易勾起你的探索欲，你愿意花时间理解陌生领域。"},{"id":"scene_隐藏一面_independence","scene":"隐藏一面","dominant_dimension":"independence","text":"别人不一定第一眼看得出的地方是，你需要保留自己的判断权和空间，不喜欢被过度安排或定义。"},{"id":"scene_隐藏一面_empathy","scene":"隐藏一面","dominant_dimension":"empathy","text":"别人不一定第一眼看得出的地方是，你很容易察觉别人状态变化，也会自然考虑对方的感受和处境。"},{"id":"scene_隐藏一面_competitiveness","scene":"隐藏一面","dominant_dimension":"competitiveness","text":"别人不一定第一眼看得出的地方是，目标和比较会明显激活你的动力，你不太愿意在真正重视的事情上随便认输。"},{"id":"scene_隐藏一面_adaptability","scene":"隐藏一面","dominant_dimension":"adaptability","text":"别人不一定第一眼看得出的地方是，变化本身不太容易把你困住，你往往能很快找到新的节奏和替代方案。"}],"summary_templates":[{"id":"summary_001","dimension":"action","text":"你真正需要的不是被定义，而是尽快把想法落到现实里，用实际进展换取安心。"},{"id":"summary_002","dimension":"social","text":"你真正需要的不是被定义，而是在高质量互动里确认信息、关系和自己的位置。"},{"id":"summary_003","dimension":"rational","text":"你真正需要的不是被定义，而是让事情变得可理解、可解释，并尽量减少模糊。"},{"id":"summary_004","dimension":"emotional","text":"你真正需要的不是被定义，而是允许真实感受被看见，而不是把它们全部压成“应该”。"},{"id":"summary_005","dimension":"stability","text":"你真正需要的不是被定义，而是让重要的人和事保持连续、可靠，并能长期积累。"},{"id":"summary_006","dimension":"curiosity","text":"你真正需要的不是被定义，而是持续发现新的可能，不让生活只剩重复。"},{"id":"summary_007","dimension":"independence","text":"你真正需要的不是被定义，而是保留选择权，按照自己认可的方式生活。"},{"id":"summary_008","dimension":"empathy","text":"你真正需要的不是被定义，而是在理解别人和保护自己之间找到柔软的边界。"},{"id":"summary_009","dimension":"competitiveness","text":"你真正需要的不是被定义，而是给自己一个值得投入的目标，然后不断验证能力。"},{"id":"summary_010","dimension":"adaptability","text":"你真正需要的不是被定义，而是不被单一剧本绑住，在变化里迅速重新找到方向。"},{"id":"summary_011","dimension":"action","text":"你看起来最鲜明的一面是尽快把想法落到现实里，用实际进展换取安心。"},{"id":"summary_012","dimension":"social","text":"你看起来最鲜明的一面是在高质量互动里确认信息、关系和自己的位置。"},{"id":"summary_013","dimension":"rational","text":"你看起来最鲜明的一面是让事情变得可理解、可解释，并尽量减少模糊。"},{"id":"summary_014","dimension":"emotional","text":"你看起来最鲜明的一面是允许真实感受被看见，而不是把它们全部压成“应该”。"},{"id":"summary_015","dimension":"stability","text":"你看起来最鲜明的一面是让重要的人和事保持连续、可靠，并能长期积累。"},{"id":"summary_016","dimension":"curiosity","text":"你看起来最鲜明的一面是持续发现新的可能，不让生活只剩重复。"},{"id":"summary_017","dimension":"independence","text":"你看起来最鲜明的一面是保留选择权，按照自己认可的方式生活。"},{"id":"summary_018","dimension":"empathy","text":"你看起来最鲜明的一面是在理解别人和保护自己之间找到柔软的边界。"},{"id":"summary_019","dimension":"competitiveness","text":"你看起来最鲜明的一面是给自己一个值得投入的目标，然后不断验证能力。"},{"id":"summary_020","dimension":"adaptability","text":"你看起来最鲜明的一面是不被单一剧本绑住，在变化里迅速重新找到方向。"},{"id":"summary_021","dimension":"action","text":"比起“像哪个星座”，你更明显的特征其实是尽快把想法落到现实里，用实际进展换取安心。"},{"id":"summary_022","dimension":"social","text":"比起“像哪个星座”，你更明显的特征其实是在高质量互动里确认信息、关系和自己的位置。"},{"id":"summary_023","dimension":"rational","text":"比起“像哪个星座”，你更明显的特征其实是让事情变得可理解、可解释，并尽量减少模糊。"},{"id":"summary_024","dimension":"emotional","text":"比起“像哪个星座”，你更明显的特征其实是允许真实感受被看见，而不是把它们全部压成“应该”。"},{"id":"summary_025","dimension":"stability","text":"比起“像哪个星座”，你更明显的特征其实是让重要的人和事保持连续、可靠，并能长期积累。"},{"id":"summary_026","dimension":"curiosity","text":"比起“像哪个星座”，你更明显的特征其实是持续发现新的可能，不让生活只剩重复。"},{"id":"summary_027","dimension":"independence","text":"比起“像哪个星座”，你更明显的特征其实是保留选择权，按照自己认可的方式生活。"},{"id":"summary_028","dimension":"empathy","text":"比起“像哪个星座”，你更明显的特征其实是在理解别人和保护自己之间找到柔软的边界。"},{"id":"summary_029","dimension":"competitiveness","text":"比起“像哪个星座”，你更明显的特征其实是给自己一个值得投入的目标，然后不断验证能力。"},{"id":"summary_030","dimension":"adaptability","text":"比起“像哪个星座”，你更明显的特征其实是不被单一剧本绑住，在变化里迅速重新找到方向。"},{"id":"summary_031","dimension":"action","text":"当你状态最好时，你往往会尽快把想法落到现实里，用实际进展换取安心。"},{"id":"summary_032","dimension":"social","text":"当你状态最好时，你往往会在高质量互动里确认信息、关系和自己的位置。"},{"id":"summary_033","dimension":"rational","text":"当你状态最好时，你往往会让事情变得可理解、可解释，并尽量减少模糊。"},{"id":"summary_034","dimension":"emotional","text":"当你状态最好时，你往往会允许真实感受被看见，而不是把它们全部压成“应该”。"},{"id":"summary_035","dimension":"stability","text":"当你状态最好时，你往往会让重要的人和事保持连续、可靠，并能长期积累。"},{"id":"summary_036","dimension":"curiosity","text":"当你状态最好时，你往往会持续发现新的可能，不让生活只剩重复。"},{"id":"summary_037","dimension":"independence","text":"当你状态最好时，你往往会保留选择权，按照自己认可的方式生活。"},{"id":"summary_038","dimension":"empathy","text":"当你状态最好时，你往往会在理解别人和保护自己之间找到柔软的边界。"},{"id":"summary_039","dimension":"competitiveness","text":"当你状态最好时，你往往会给自己一个值得投入的目标，然后不断验证能力。"},{"id":"summary_040","dimension":"adaptability","text":"当你状态最好时，你往往会不被单一剧本绑住，在变化里迅速重新找到方向。"},{"id":"summary_041","dimension":"action","text":"你不太喜欢别人替你决定，因为尽快把想法落到现实里，用实际进展换取安心。"},{"id":"summary_042","dimension":"social","text":"你不太喜欢别人替你决定，因为在高质量互动里确认信息、关系和自己的位置。"},{"id":"summary_043","dimension":"rational","text":"你不太喜欢别人替你决定，因为让事情变得可理解、可解释，并尽量减少模糊。"},{"id":"summary_044","dimension":"emotional","text":"你不太喜欢别人替你决定，因为允许真实感受被看见，而不是把它们全部压成“应该”。"},{"id":"summary_045","dimension":"stability","text":"你不太喜欢别人替你决定，因为让重要的人和事保持连续、可靠，并能长期积累。"},{"id":"summary_046","dimension":"curiosity","text":"你不太喜欢别人替你决定，因为持续发现新的可能，不让生活只剩重复。"},{"id":"summary_047","dimension":"independence","text":"你不太喜欢别人替你决定，因为保留选择权，按照自己认可的方式生活。"},{"id":"summary_048","dimension":"empathy","text":"你不太喜欢别人替你决定，因为在理解别人和保护自己之间找到柔软的边界。"},{"id":"summary_049","dimension":"competitiveness","text":"你不太喜欢别人替你决定，因为给自己一个值得投入的目标，然后不断验证能力。"},{"id":"summary_050","dimension":"adaptability","text":"你不太喜欢别人替你决定，因为不被单一剧本绑住，在变化里迅速重新找到方向。"},{"id":"summary_051","dimension":"action","text":"让你舒服的关系通常建立在尽快把想法落到现实里，用实际进展换取安心。"},{"id":"summary_052","dimension":"social","text":"让你舒服的关系通常建立在在高质量互动里确认信息、关系和自己的位置。"},{"id":"summary_053","dimension":"rational","text":"让你舒服的关系通常建立在让事情变得可理解、可解释，并尽量减少模糊。"},{"id":"summary_054","dimension":"emotional","text":"让你舒服的关系通常建立在允许真实感受被看见，而不是把它们全部压成“应该”。"},{"id":"summary_055","dimension":"stability","text":"让你舒服的关系通常建立在让重要的人和事保持连续、可靠，并能长期积累。"},{"id":"summary_056","dimension":"curiosity","text":"让你舒服的关系通常建立在持续发现新的可能，不让生活只剩重复。"},{"id":"summary_057","dimension":"independence","text":"让你舒服的关系通常建立在保留选择权，按照自己认可的方式生活。"},{"id":"summary_058","dimension":"empathy","text":"让你舒服的关系通常建立在在理解别人和保护自己之间找到柔软的边界。"},{"id":"summary_059","dimension":"competitiveness","text":"让你舒服的关系通常建立在给自己一个值得投入的目标，然后不断验证能力。"},{"id":"summary_060","dimension":"adaptability","text":"让你舒服的关系通常建立在不被单一剧本绑住，在变化里迅速重新找到方向。"},{"id":"summary_061","dimension":"action","text":"你最容易被低估的一点是尽快把想法落到现实里，用实际进展换取安心。"},{"id":"summary_062","dimension":"social","text":"你最容易被低估的一点是在高质量互动里确认信息、关系和自己的位置。"},{"id":"summary_063","dimension":"rational","text":"你最容易被低估的一点是让事情变得可理解、可解释，并尽量减少模糊。"},{"id":"summary_064","dimension":"emotional","text":"你最容易被低估的一点是允许真实感受被看见，而不是把它们全部压成“应该”。"},{"id":"summary_065","dimension":"stability","text":"你最容易被低估的一点是让重要的人和事保持连续、可靠，并能长期积累。"},{"id":"summary_066","dimension":"curiosity","text":"你最容易被低估的一点是持续发现新的可能，不让生活只剩重复。"},{"id":"summary_067","dimension":"independence","text":"你最容易被低估的一点是保留选择权，按照自己认可的方式生活。"},{"id":"summary_068","dimension":"empathy","text":"你最容易被低估的一点是在理解别人和保护自己之间找到柔软的边界。"},{"id":"summary_069","dimension":"competitiveness","text":"你最容易被低估的一点是给自己一个值得投入的目标，然后不断验证能力。"},{"id":"summary_070","dimension":"adaptability","text":"你最容易被低估的一点是不被单一剧本绑住，在变化里迅速重新找到方向。"},{"id":"summary_071","dimension":"action","text":"你面对变化时最有优势的地方在于尽快把想法落到现实里，用实际进展换取安心。"},{"id":"summary_072","dimension":"social","text":"你面对变化时最有优势的地方在于在高质量互动里确认信息、关系和自己的位置。"},{"id":"summary_073","dimension":"rational","text":"你面对变化时最有优势的地方在于让事情变得可理解、可解释，并尽量减少模糊。"},{"id":"summary_074","dimension":"emotional","text":"你面对变化时最有优势的地方在于允许真实感受被看见，而不是把它们全部压成“应该”。"},{"id":"summary_075","dimension":"stability","text":"你面对变化时最有优势的地方在于让重要的人和事保持连续、可靠，并能长期积累。"},{"id":"summary_076","dimension":"curiosity","text":"你面对变化时最有优势的地方在于持续发现新的可能，不让生活只剩重复。"},{"id":"summary_077","dimension":"independence","text":"你面对变化时最有优势的地方在于保留选择权，按照自己认可的方式生活。"},{"id":"summary_078","dimension":"empathy","text":"你面对变化时最有优势的地方在于在理解别人和保护自己之间找到柔软的边界。"},{"id":"summary_079","dimension":"competitiveness","text":"你面对变化时最有优势的地方在于给自己一个值得投入的目标，然后不断验证能力。"},{"id":"summary_080","dimension":"adaptability","text":"你面对变化时最有优势的地方在于不被单一剧本绑住，在变化里迅速重新找到方向。"},{"id":"summary_081","dimension":"action","text":"你做决定时真正看重的是尽快把想法落到现实里，用实际进展换取安心。"},{"id":"summary_082","dimension":"social","text":"你做决定时真正看重的是在高质量互动里确认信息、关系和自己的位置。"},{"id":"summary_083","dimension":"rational","text":"你做决定时真正看重的是让事情变得可理解、可解释，并尽量减少模糊。"},{"id":"summary_084","dimension":"emotional","text":"你做决定时真正看重的是允许真实感受被看见，而不是把它们全部压成“应该”。"},{"id":"summary_085","dimension":"stability","text":"你做决定时真正看重的是让重要的人和事保持连续、可靠，并能长期积累。"},{"id":"summary_086","dimension":"curiosity","text":"你做决定时真正看重的是持续发现新的可能，不让生活只剩重复。"},{"id":"summary_087","dimension":"independence","text":"你做决定时真正看重的是保留选择权，按照自己认可的方式生活。"},{"id":"summary_088","dimension":"empathy","text":"你做决定时真正看重的是在理解别人和保护自己之间找到柔软的边界。"},{"id":"summary_089","dimension":"competitiveness","text":"你做决定时真正看重的是给自己一个值得投入的目标，然后不断验证能力。"},{"id":"summary_090","dimension":"adaptability","text":"你做决定时真正看重的是不被单一剧本绑住，在变化里迅速重新找到方向。"},{"id":"summary_091","dimension":"action","text":"别人可能先看到你的表面，但更深一层是尽快把想法落到现实里，用实际进展换取安心。"},{"id":"summary_092","dimension":"social","text":"别人可能先看到你的表面，但更深一层是在高质量互动里确认信息、关系和自己的位置。"},{"id":"summary_093","dimension":"rational","text":"别人可能先看到你的表面，但更深一层是让事情变得可理解、可解释，并尽量减少模糊。"},{"id":"summary_094","dimension":"emotional","text":"别人可能先看到你的表面，但更深一层是允许真实感受被看见，而不是把它们全部压成“应该”。"},{"id":"summary_095","dimension":"stability","text":"别人可能先看到你的表面，但更深一层是让重要的人和事保持连续、可靠，并能长期积累。"},{"id":"summary_096","dimension":"curiosity","text":"别人可能先看到你的表面，但更深一层是持续发现新的可能，不让生活只剩重复。"},{"id":"summary_097","dimension":"independence","text":"别人可能先看到你的表面，但更深一层是保留选择权，按照自己认可的方式生活。"},{"id":"summary_098","dimension":"empathy","text":"别人可能先看到你的表面，但更深一层是在理解别人和保护自己之间找到柔软的边界。"},{"id":"summary_099","dimension":"competitiveness","text":"别人可能先看到你的表面，但更深一层是给自己一个值得投入的目标，然后不断验证能力。"},{"id":"summary_100","dimension":"adaptability","text":"别人可能先看到你的表面，但更深一层是不被单一剧本绑住，在变化里迅速重新找到方向。"},{"id":"summary_101","dimension":"action","text":"你并不是简单的外向或内向，而更像尽快把想法落到现实里，用实际进展换取安心。"},{"id":"summary_102","dimension":"social","text":"你并不是简单的外向或内向，而更像在高质量互动里确认信息、关系和自己的位置。"},{"id":"summary_103","dimension":"rational","text":"你并不是简单的外向或内向，而更像让事情变得可理解、可解释，并尽量减少模糊。"},{"id":"summary_104","dimension":"emotional","text":"你并不是简单的外向或内向，而更像允许真实感受被看见，而不是把它们全部压成“应该”。"},{"id":"summary_105","dimension":"stability","text":"你并不是简单的外向或内向，而更像让重要的人和事保持连续、可靠，并能长期积累。"},{"id":"summary_106","dimension":"curiosity","text":"你并不是简单的外向或内向，而更像持续发现新的可能，不让生活只剩重复。"},{"id":"summary_107","dimension":"independence","text":"你并不是简单的外向或内向，而更像保留选择权，按照自己认可的方式生活。"},{"id":"summary_108","dimension":"empathy","text":"你并不是简单的外向或内向，而更像在理解别人和保护自己之间找到柔软的边界。"},{"id":"summary_109","dimension":"competitiveness","text":"你并不是简单的外向或内向，而更像给自己一个值得投入的目标，然后不断验证能力。"},{"id":"summary_110","dimension":"adaptability","text":"你并不是简单的外向或内向，而更像不被单一剧本绑住，在变化里迅速重新找到方向。"},{"id":"summary_111","dimension":"action","text":"你最稳定的内在驱动力来自尽快把想法落到现实里，用实际进展换取安心。"},{"id":"summary_112","dimension":"social","text":"你最稳定的内在驱动力来自在高质量互动里确认信息、关系和自己的位置。"},{"id":"summary_113","dimension":"rational","text":"你最稳定的内在驱动力来自让事情变得可理解、可解释，并尽量减少模糊。"},{"id":"summary_114","dimension":"emotional","text":"你最稳定的内在驱动力来自允许真实感受被看见，而不是把它们全部压成“应该”。"},{"id":"summary_115","dimension":"stability","text":"你最稳定的内在驱动力来自让重要的人和事保持连续、可靠，并能长期积累。"},{"id":"summary_116","dimension":"curiosity","text":"你最稳定的内在驱动力来自持续发现新的可能，不让生活只剩重复。"},{"id":"summary_117","dimension":"independence","text":"你最稳定的内在驱动力来自保留选择权，按照自己认可的方式生活。"},{"id":"summary_118","dimension":"empathy","text":"你最稳定的内在驱动力来自在理解别人和保护自己之间找到柔软的边界。"},{"id":"summary_119","dimension":"competitiveness","text":"你最稳定的内在驱动力来自给自己一个值得投入的目标，然后不断验证能力。"},{"id":"summary_120","dimension":"adaptability","text":"你最稳定的内在驱动力来自不被单一剧本绑住，在变化里迅速重新找到方向。"},{"id":"summary_121","dimension":"action","text":"当事情变得重要时，你会更明显地表现出尽快把想法落到现实里，用实际进展换取安心。"},{"id":"summary_122","dimension":"social","text":"当事情变得重要时，你会更明显地表现出在高质量互动里确认信息、关系和自己的位置。"},{"id":"summary_123","dimension":"rational","text":"当事情变得重要时，你会更明显地表现出让事情变得可理解、可解释，并尽量减少模糊。"},{"id":"summary_124","dimension":"emotional","text":"当事情变得重要时，你会更明显地表现出允许真实感受被看见，而不是把它们全部压成“应该”。"},{"id":"summary_125","dimension":"stability","text":"当事情变得重要时，你会更明显地表现出让重要的人和事保持连续、可靠，并能长期积累。"},{"id":"summary_126","dimension":"curiosity","text":"当事情变得重要时，你会更明显地表现出持续发现新的可能，不让生活只剩重复。"},{"id":"summary_127","dimension":"independence","text":"当事情变得重要时，你会更明显地表现出保留选择权，按照自己认可的方式生活。"},{"id":"summary_128","dimension":"empathy","text":"当事情变得重要时，你会更明显地表现出在理解别人和保护自己之间找到柔软的边界。"},{"id":"summary_129","dimension":"competitiveness","text":"当事情变得重要时，你会更明显地表现出给自己一个值得投入的目标，然后不断验证能力。"},{"id":"summary_130","dimension":"adaptability","text":"当事情变得重要时，你会更明显地表现出不被单一剧本绑住，在变化里迅速重新找到方向。"},{"id":"summary_131","dimension":"action","text":"你最需要保护的心理空间是尽快把想法落到现实里，用实际进展换取安心。"},{"id":"summary_132","dimension":"social","text":"你最需要保护的心理空间是在高质量互动里确认信息、关系和自己的位置。"},{"id":"summary_133","dimension":"rational","text":"你最需要保护的心理空间是让事情变得可理解、可解释，并尽量减少模糊。"},{"id":"summary_134","dimension":"emotional","text":"你最需要保护的心理空间是允许真实感受被看见，而不是把它们全部压成“应该”。"},{"id":"summary_135","dimension":"stability","text":"你最需要保护的心理空间是让重要的人和事保持连续、可靠，并能长期积累。"},{"id":"summary_136","dimension":"curiosity","text":"你最需要保护的心理空间是持续发现新的可能，不让生活只剩重复。"},{"id":"summary_137","dimension":"independence","text":"你最需要保护的心理空间是保留选择权，按照自己认可的方式生活。"},{"id":"summary_138","dimension":"empathy","text":"你最需要保护的心理空间是在理解别人和保护自己之间找到柔软的边界。"},{"id":"summary_139","dimension":"competitiveness","text":"你最需要保护的心理空间是给自己一个值得投入的目标，然后不断验证能力。"},{"id":"summary_140","dimension":"adaptability","text":"你最需要保护的心理空间是不被单一剧本绑住，在变化里迅速重新找到方向。"},{"id":"summary_141","dimension":"action","text":"如果用一句话概括你的测试画像，那就是尽快把想法落到现实里，用实际进展换取安心。"},{"id":"summary_142","dimension":"social","text":"如果用一句话概括你的测试画像，那就是在高质量互动里确认信息、关系和自己的位置。"},{"id":"summary_143","dimension":"rational","text":"如果用一句话概括你的测试画像，那就是让事情变得可理解、可解释，并尽量减少模糊。"},{"id":"summary_144","dimension":"emotional","text":"如果用一句话概括你的测试画像，那就是允许真实感受被看见，而不是把它们全部压成“应该”。"},{"id":"summary_145","dimension":"stability","text":"如果用一句话概括你的测试画像，那就是让重要的人和事保持连续、可靠，并能长期积累。"},{"id":"summary_146","dimension":"curiosity","text":"如果用一句话概括你的测试画像，那就是持续发现新的可能，不让生活只剩重复。"},{"id":"summary_147","dimension":"independence","text":"如果用一句话概括你的测试画像，那就是保留选择权，按照自己认可的方式生活。"},{"id":"summary_148","dimension":"empathy","text":"如果用一句话概括你的测试画像，那就是在理解别人和保护自己之间找到柔软的边界。"},{"id":"summary_149","dimension":"competitiveness","text":"如果用一句话概括你的测试画像，那就是给自己一个值得投入的目标，然后不断验证能力。"},{"id":"summary_150","dimension":"adaptability","text":"如果用一句话概括你的测试画像，那就是不被单一剧本绑住，在变化里迅速重新找到方向。"}],"advice_templates":[{"id":"advice_action_1","dimension":"action","level":"high","text":"行动力较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"},{"id":"advice_action_2","dimension":"action","level":"mid","text":"行动力处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"},{"id":"advice_action_3","dimension":"action","level":"low","text":"行动力较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"},{"id":"advice_social_1","dimension":"social","level":"high","text":"社交性较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"},{"id":"advice_social_2","dimension":"social","level":"mid","text":"社交性处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"},{"id":"advice_social_3","dimension":"social","level":"low","text":"社交性较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"},{"id":"advice_rational_1","dimension":"rational","level":"high","text":"理性较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"},{"id":"advice_rational_2","dimension":"rational","level":"mid","text":"理性处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"},{"id":"advice_rational_3","dimension":"rational","level":"low","text":"理性较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"},{"id":"advice_emotional_1","dimension":"emotional","level":"high","text":"感性较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"},{"id":"advice_emotional_2","dimension":"emotional","level":"mid","text":"感性处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"},{"id":"advice_emotional_3","dimension":"emotional","level":"low","text":"感性较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"},{"id":"advice_stability_1","dimension":"stability","level":"high","text":"稳定性较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"},{"id":"advice_stability_2","dimension":"stability","level":"mid","text":"稳定性处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"},{"id":"advice_stability_3","dimension":"stability","level":"low","text":"稳定性较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"},{"id":"advice_curiosity_1","dimension":"curiosity","level":"high","text":"好奇心较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"},{"id":"advice_curiosity_2","dimension":"curiosity","level":"mid","text":"好奇心处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"},{"id":"advice_curiosity_3","dimension":"curiosity","level":"low","text":"好奇心较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"},{"id":"advice_independence_1","dimension":"independence","level":"high","text":"独立性较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"},{"id":"advice_independence_2","dimension":"independence","level":"mid","text":"独立性处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"},{"id":"advice_independence_3","dimension":"independence","level":"low","text":"独立性较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"},{"id":"advice_empathy_1","dimension":"empathy","level":"high","text":"共情力较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"},{"id":"advice_empathy_2","dimension":"empathy","level":"mid","text":"共情力处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"},{"id":"advice_empathy_3","dimension":"empathy","level":"low","text":"共情力较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"},{"id":"advice_competitiveness_1","dimension":"competitiveness","level":"high","text":"竞争性较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"},{"id":"advice_competitiveness_2","dimension":"competitiveness","level":"mid","text":"竞争性处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"},{"id":"advice_competitiveness_3","dimension":"competitiveness","level":"low","text":"竞争性较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"},{"id":"advice_adaptability_1","dimension":"adaptability","level":"high","text":"适应性较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"},{"id":"advice_adaptability_2","dimension":"adaptability","level":"mid","text":"适应性处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"},{"id":"advice_adaptability_3","dimension":"adaptability","level":"low","text":"适应性较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"}]}
+export default {
+  "meta": {
+    "version": "1.0.0",
+    "disclaimer": "本测试仅用于娱乐与自我探索，不属于心理诊断、人格测评或科学占星结论。",
+    "total_fragments": 534
+  },
+  "main_templates": [
+    {
+      "id": "main_aries_观察型",
+      "zodiac": "aries",
+      "style": "观察型",
+      "text": "你的主气质接近白羊座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出直接、热烈的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_aries_理性型",
+      "zodiac": "aries",
+      "style": "理性型",
+      "text": "你的主气质接近白羊座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出直接、热烈的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_aries_感受型",
+      "zodiac": "aries",
+      "style": "感受型",
+      "text": "你的主气质接近白羊座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出直接、热烈的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_aries_行动型",
+      "zodiac": "aries",
+      "style": "行动型",
+      "text": "你的主气质接近白羊座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出直接、热烈的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_aries_独立型",
+      "zodiac": "aries",
+      "style": "独立型",
+      "text": "你的主气质接近白羊座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出直接、热烈的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_aries_关系型",
+      "zodiac": "aries",
+      "style": "关系型",
+      "text": "你的主气质接近白羊座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出直接、热烈的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_taurus_观察型",
+      "zodiac": "taurus",
+      "style": "观察型",
+      "text": "你的主气质接近金牛座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出稳定、务实的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_taurus_理性型",
+      "zodiac": "taurus",
+      "style": "理性型",
+      "text": "你的主气质接近金牛座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出稳定、务实的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_taurus_感受型",
+      "zodiac": "taurus",
+      "style": "感受型",
+      "text": "你的主气质接近金牛座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出稳定、务实的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_taurus_行动型",
+      "zodiac": "taurus",
+      "style": "行动型",
+      "text": "你的主气质接近金牛座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出稳定、务实的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_taurus_独立型",
+      "zodiac": "taurus",
+      "style": "独立型",
+      "text": "你的主气质接近金牛座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出稳定、务实的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_taurus_关系型",
+      "zodiac": "taurus",
+      "style": "关系型",
+      "text": "你的主气质接近金牛座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出稳定、务实的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_gemini_观察型",
+      "zodiac": "gemini",
+      "style": "观察型",
+      "text": "你的主气质接近双子座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出灵活、好奇的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_gemini_理性型",
+      "zodiac": "gemini",
+      "style": "理性型",
+      "text": "你的主气质接近双子座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出灵活、好奇的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_gemini_感受型",
+      "zodiac": "gemini",
+      "style": "感受型",
+      "text": "你的主气质接近双子座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出灵活、好奇的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_gemini_行动型",
+      "zodiac": "gemini",
+      "style": "行动型",
+      "text": "你的主气质接近双子座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出灵活、好奇的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_gemini_独立型",
+      "zodiac": "gemini",
+      "style": "独立型",
+      "text": "你的主气质接近双子座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出灵活、好奇的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_gemini_关系型",
+      "zodiac": "gemini",
+      "style": "关系型",
+      "text": "你的主气质接近双子座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出灵活、好奇的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_cancer_观察型",
+      "zodiac": "cancer",
+      "style": "观察型",
+      "text": "你的主气质接近巨蟹座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出细腻、顾家的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_cancer_理性型",
+      "zodiac": "cancer",
+      "style": "理性型",
+      "text": "你的主气质接近巨蟹座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出细腻、顾家的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_cancer_感受型",
+      "zodiac": "cancer",
+      "style": "感受型",
+      "text": "你的主气质接近巨蟹座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出细腻、顾家的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_cancer_行动型",
+      "zodiac": "cancer",
+      "style": "行动型",
+      "text": "你的主气质接近巨蟹座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出细腻、顾家的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_cancer_独立型",
+      "zodiac": "cancer",
+      "style": "独立型",
+      "text": "你的主气质接近巨蟹座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出细腻、顾家的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_cancer_关系型",
+      "zodiac": "cancer",
+      "style": "关系型",
+      "text": "你的主气质接近巨蟹座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出细腻、顾家的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_leo_观察型",
+      "zodiac": "leo",
+      "style": "观察型",
+      "text": "你的主气质接近狮子座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出自信、热情的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_leo_理性型",
+      "zodiac": "leo",
+      "style": "理性型",
+      "text": "你的主气质接近狮子座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出自信、热情的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_leo_感受型",
+      "zodiac": "leo",
+      "style": "感受型",
+      "text": "你的主气质接近狮子座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出自信、热情的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_leo_行动型",
+      "zodiac": "leo",
+      "style": "行动型",
+      "text": "你的主气质接近狮子座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出自信、热情的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_leo_独立型",
+      "zodiac": "leo",
+      "style": "独立型",
+      "text": "你的主气质接近狮子座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出自信、热情的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_leo_关系型",
+      "zodiac": "leo",
+      "style": "关系型",
+      "text": "你的主气质接近狮子座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出自信、热情的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_virgo_观察型",
+      "zodiac": "virgo",
+      "style": "观察型",
+      "text": "你的主气质接近处女座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出细致、理性的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_virgo_理性型",
+      "zodiac": "virgo",
+      "style": "理性型",
+      "text": "你的主气质接近处女座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出细致、理性的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_virgo_感受型",
+      "zodiac": "virgo",
+      "style": "感受型",
+      "text": "你的主气质接近处女座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出细致、理性的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_virgo_行动型",
+      "zodiac": "virgo",
+      "style": "行动型",
+      "text": "你的主气质接近处女座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出细致、理性的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_virgo_独立型",
+      "zodiac": "virgo",
+      "style": "独立型",
+      "text": "你的主气质接近处女座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出细致、理性的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_virgo_关系型",
+      "zodiac": "virgo",
+      "style": "关系型",
+      "text": "你的主气质接近处女座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出细致、理性的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_libra_观察型",
+      "zodiac": "libra",
+      "style": "观察型",
+      "text": "你的主气质接近天秤座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出平衡、审美的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_libra_理性型",
+      "zodiac": "libra",
+      "style": "理性型",
+      "text": "你的主气质接近天秤座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出平衡、审美的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_libra_感受型",
+      "zodiac": "libra",
+      "style": "感受型",
+      "text": "你的主气质接近天秤座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出平衡、审美的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_libra_行动型",
+      "zodiac": "libra",
+      "style": "行动型",
+      "text": "你的主气质接近天秤座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出平衡、审美的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_libra_独立型",
+      "zodiac": "libra",
+      "style": "独立型",
+      "text": "你的主气质接近天秤座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出平衡、审美的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_libra_关系型",
+      "zodiac": "libra",
+      "style": "关系型",
+      "text": "你的主气质接近天秤座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出平衡、审美的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_scorpio_观察型",
+      "zodiac": "scorpio",
+      "style": "观察型",
+      "text": "你的主气质接近天蝎座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出敏锐、坚定的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_scorpio_理性型",
+      "zodiac": "scorpio",
+      "style": "理性型",
+      "text": "你的主气质接近天蝎座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出敏锐、坚定的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_scorpio_感受型",
+      "zodiac": "scorpio",
+      "style": "感受型",
+      "text": "你的主气质接近天蝎座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出敏锐、坚定的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_scorpio_行动型",
+      "zodiac": "scorpio",
+      "style": "行动型",
+      "text": "你的主气质接近天蝎座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出敏锐、坚定的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_scorpio_独立型",
+      "zodiac": "scorpio",
+      "style": "独立型",
+      "text": "你的主气质接近天蝎座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出敏锐、坚定的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_scorpio_关系型",
+      "zodiac": "scorpio",
+      "style": "关系型",
+      "text": "你的主气质接近天蝎座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出敏锐、坚定的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_sagittarius_观察型",
+      "zodiac": "sagittarius",
+      "style": "观察型",
+      "text": "你的主气质接近射手座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出自由、探索的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_sagittarius_理性型",
+      "zodiac": "sagittarius",
+      "style": "理性型",
+      "text": "你的主气质接近射手座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出自由、探索的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_sagittarius_感受型",
+      "zodiac": "sagittarius",
+      "style": "感受型",
+      "text": "你的主气质接近射手座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出自由、探索的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_sagittarius_行动型",
+      "zodiac": "sagittarius",
+      "style": "行动型",
+      "text": "你的主气质接近射手座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出自由、探索的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_sagittarius_独立型",
+      "zodiac": "sagittarius",
+      "style": "独立型",
+      "text": "你的主气质接近射手座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出自由、探索的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_sagittarius_关系型",
+      "zodiac": "sagittarius",
+      "style": "关系型",
+      "text": "你的主气质接近射手座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出自由、探索的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_capricorn_观察型",
+      "zodiac": "capricorn",
+      "style": "观察型",
+      "text": "你的主气质接近摩羯座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出克制、目标的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_capricorn_理性型",
+      "zodiac": "capricorn",
+      "style": "理性型",
+      "text": "你的主气质接近摩羯座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出克制、目标的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_capricorn_感受型",
+      "zodiac": "capricorn",
+      "style": "感受型",
+      "text": "你的主气质接近摩羯座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出克制、目标的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_capricorn_行动型",
+      "zodiac": "capricorn",
+      "style": "行动型",
+      "text": "你的主气质接近摩羯座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出克制、目标的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_capricorn_独立型",
+      "zodiac": "capricorn",
+      "style": "独立型",
+      "text": "你的主气质接近摩羯座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出克制、目标的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_capricorn_关系型",
+      "zodiac": "capricorn",
+      "style": "关系型",
+      "text": "你的主气质接近摩羯座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出克制、目标的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_aquarius_观察型",
+      "zodiac": "aquarius",
+      "style": "观察型",
+      "text": "你的主气质接近水瓶座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出独立、新奇的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_aquarius_理性型",
+      "zodiac": "aquarius",
+      "style": "理性型",
+      "text": "你的主气质接近水瓶座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出独立、新奇的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_aquarius_感受型",
+      "zodiac": "aquarius",
+      "style": "感受型",
+      "text": "你的主气质接近水瓶座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出独立、新奇的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_aquarius_行动型",
+      "zodiac": "aquarius",
+      "style": "行动型",
+      "text": "你的主气质接近水瓶座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出独立、新奇的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_aquarius_独立型",
+      "zodiac": "aquarius",
+      "style": "独立型",
+      "text": "你的主气质接近水瓶座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出独立、新奇的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_aquarius_关系型",
+      "zodiac": "aquarius",
+      "style": "关系型",
+      "text": "你的主气质接近水瓶座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出独立、新奇的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_pisces_观察型",
+      "zodiac": "pisces",
+      "style": "观察型",
+      "text": "你的主气质接近双鱼座的“观察型”版本。你更习惯先读懂局势，再决定投入多少。你不急着表达全部态度，但往往能捕捉别人忽略的细节。 这会让你呈现出浪漫、敏感的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_pisces_理性型",
+      "zodiac": "pisces",
+      "style": "理性型",
+      "text": "你的主气质接近双鱼座的“理性型”版本。你会把直觉和情绪放进逻辑框架里检验。对你而言，理解一件事的运行方式，比单纯接受结论更重要。 这会让你呈现出浪漫、敏感的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_pisces_感受型",
+      "zodiac": "pisces",
+      "style": "感受型",
+      "text": "你的主气质接近双鱼座的“感受型”版本。你的判断经常从细微感受开始。你对氛围、语气和关系变化很敏感，也更容易记住那些有情绪重量的瞬间。 这会让你呈现出浪漫、敏感的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_pisces_行动型",
+      "zodiac": "pisces",
+      "style": "行动型",
+      "text": "你的主气质接近双鱼座的“行动型”版本。你不喜欢在原地耗太久。方向一旦足够清晰，你通常愿意先迈出一步，再在过程中修正。 这会让你呈现出浪漫、敏感的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_pisces_独立型",
+      "zodiac": "pisces",
+      "style": "独立型",
+      "text": "你的主气质接近双鱼座的“独立型”版本。你很重视自己的判断和节奏。即使身边人意见一致，你也需要亲自确认这是不是自己真正想要的。 这会让你呈现出浪漫、敏感的一面，但并不等于传统意义上的单一星座性格。"
+    },
+    {
+      "id": "main_pisces_关系型",
+      "zodiac": "pisces",
+      "style": "关系型",
+      "text": "你的主气质接近双鱼座的“关系型”版本。你看重人与人之间是否舒服、可靠、能互相理解。很多决定不只看结果，也会考虑它对关系的影响。 这会让你呈现出浪漫、敏感的一面，但并不等于传统意义上的单一星座性格。"
+    }
+  ],
+  "pair_templates": [
+    {
+      "id": "pair_aries_taurus",
+      "primary": "aries",
+      "secondary": "taurus",
+      "text": "白羊座 × 金牛座：你同时带有“直接”与“稳定”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_aries_gemini",
+      "primary": "aries",
+      "secondary": "gemini",
+      "text": "白羊座 × 双子座：你同时带有“直接”与“灵活”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_aries_cancer",
+      "primary": "aries",
+      "secondary": "cancer",
+      "text": "白羊座 × 巨蟹座：你同时带有“直接”与“细腻”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_aries_leo",
+      "primary": "aries",
+      "secondary": "leo",
+      "text": "白羊座 × 狮子座：你同时带有“直接”与“自信”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_aries_virgo",
+      "primary": "aries",
+      "secondary": "virgo",
+      "text": "白羊座 × 处女座：你同时带有“直接”与“细致”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_aries_libra",
+      "primary": "aries",
+      "secondary": "libra",
+      "text": "白羊座 × 天秤座：你同时带有“直接”与“平衡”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_aries_scorpio",
+      "primary": "aries",
+      "secondary": "scorpio",
+      "text": "白羊座 × 天蝎座：你同时带有“直接”与“敏锐”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_aries_sagittarius",
+      "primary": "aries",
+      "secondary": "sagittarius",
+      "text": "白羊座 × 射手座：你同时带有“直接”与“自由”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_aries_capricorn",
+      "primary": "aries",
+      "secondary": "capricorn",
+      "text": "白羊座 × 摩羯座：你同时带有“直接”与“克制”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_aries_aquarius",
+      "primary": "aries",
+      "secondary": "aquarius",
+      "text": "白羊座 × 水瓶座：你同时带有“直接”与“独立”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_aries_pisces",
+      "primary": "aries",
+      "secondary": "pisces",
+      "text": "白羊座 × 双鱼座：你同时带有“直接”与“浪漫”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_taurus_aries",
+      "primary": "taurus",
+      "secondary": "aries",
+      "text": "金牛座 × 白羊座：你同时带有“稳定”与“直接”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_taurus_gemini",
+      "primary": "taurus",
+      "secondary": "gemini",
+      "text": "金牛座 × 双子座：你同时带有“稳定”与“灵活”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_taurus_cancer",
+      "primary": "taurus",
+      "secondary": "cancer",
+      "text": "金牛座 × 巨蟹座：你同时带有“稳定”与“细腻”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_taurus_leo",
+      "primary": "taurus",
+      "secondary": "leo",
+      "text": "金牛座 × 狮子座：你同时带有“稳定”与“自信”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_taurus_virgo",
+      "primary": "taurus",
+      "secondary": "virgo",
+      "text": "金牛座 × 处女座：你同时带有“稳定”与“细致”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_taurus_libra",
+      "primary": "taurus",
+      "secondary": "libra",
+      "text": "金牛座 × 天秤座：你同时带有“稳定”与“平衡”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_taurus_scorpio",
+      "primary": "taurus",
+      "secondary": "scorpio",
+      "text": "金牛座 × 天蝎座：你同时带有“稳定”与“敏锐”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_taurus_sagittarius",
+      "primary": "taurus",
+      "secondary": "sagittarius",
+      "text": "金牛座 × 射手座：你同时带有“稳定”与“自由”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_taurus_capricorn",
+      "primary": "taurus",
+      "secondary": "capricorn",
+      "text": "金牛座 × 摩羯座：你同时带有“稳定”与“克制”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_taurus_aquarius",
+      "primary": "taurus",
+      "secondary": "aquarius",
+      "text": "金牛座 × 水瓶座：你同时带有“稳定”与“独立”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_taurus_pisces",
+      "primary": "taurus",
+      "secondary": "pisces",
+      "text": "金牛座 × 双鱼座：你同时带有“稳定”与“浪漫”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_gemini_aries",
+      "primary": "gemini",
+      "secondary": "aries",
+      "text": "双子座 × 白羊座：你同时带有“灵活”与“直接”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_gemini_taurus",
+      "primary": "gemini",
+      "secondary": "taurus",
+      "text": "双子座 × 金牛座：你同时带有“灵活”与“稳定”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_gemini_cancer",
+      "primary": "gemini",
+      "secondary": "cancer",
+      "text": "双子座 × 巨蟹座：你同时带有“灵活”与“细腻”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_gemini_leo",
+      "primary": "gemini",
+      "secondary": "leo",
+      "text": "双子座 × 狮子座：你同时带有“灵活”与“自信”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_gemini_virgo",
+      "primary": "gemini",
+      "secondary": "virgo",
+      "text": "双子座 × 处女座：你同时带有“灵活”与“细致”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_gemini_libra",
+      "primary": "gemini",
+      "secondary": "libra",
+      "text": "双子座 × 天秤座：你同时带有“灵活”与“平衡”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_gemini_scorpio",
+      "primary": "gemini",
+      "secondary": "scorpio",
+      "text": "双子座 × 天蝎座：你同时带有“灵活”与“敏锐”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_gemini_sagittarius",
+      "primary": "gemini",
+      "secondary": "sagittarius",
+      "text": "双子座 × 射手座：你同时带有“灵活”与“自由”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_gemini_capricorn",
+      "primary": "gemini",
+      "secondary": "capricorn",
+      "text": "双子座 × 摩羯座：你同时带有“灵活”与“克制”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_gemini_aquarius",
+      "primary": "gemini",
+      "secondary": "aquarius",
+      "text": "双子座 × 水瓶座：你同时带有“灵活”与“独立”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_gemini_pisces",
+      "primary": "gemini",
+      "secondary": "pisces",
+      "text": "双子座 × 双鱼座：你同时带有“灵活”与“浪漫”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_cancer_aries",
+      "primary": "cancer",
+      "secondary": "aries",
+      "text": "巨蟹座 × 白羊座：你同时带有“细腻”与“直接”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_cancer_taurus",
+      "primary": "cancer",
+      "secondary": "taurus",
+      "text": "巨蟹座 × 金牛座：你同时带有“细腻”与“稳定”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_cancer_gemini",
+      "primary": "cancer",
+      "secondary": "gemini",
+      "text": "巨蟹座 × 双子座：你同时带有“细腻”与“灵活”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_cancer_leo",
+      "primary": "cancer",
+      "secondary": "leo",
+      "text": "巨蟹座 × 狮子座：你同时带有“细腻”与“自信”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_cancer_virgo",
+      "primary": "cancer",
+      "secondary": "virgo",
+      "text": "巨蟹座 × 处女座：你同时带有“细腻”与“细致”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_cancer_libra",
+      "primary": "cancer",
+      "secondary": "libra",
+      "text": "巨蟹座 × 天秤座：你同时带有“细腻”与“平衡”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_cancer_scorpio",
+      "primary": "cancer",
+      "secondary": "scorpio",
+      "text": "巨蟹座 × 天蝎座：你同时带有“细腻”与“敏锐”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_cancer_sagittarius",
+      "primary": "cancer",
+      "secondary": "sagittarius",
+      "text": "巨蟹座 × 射手座：你同时带有“细腻”与“自由”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_cancer_capricorn",
+      "primary": "cancer",
+      "secondary": "capricorn",
+      "text": "巨蟹座 × 摩羯座：你同时带有“细腻”与“克制”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_cancer_aquarius",
+      "primary": "cancer",
+      "secondary": "aquarius",
+      "text": "巨蟹座 × 水瓶座：你同时带有“细腻”与“独立”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_cancer_pisces",
+      "primary": "cancer",
+      "secondary": "pisces",
+      "text": "巨蟹座 × 双鱼座：你同时带有“细腻”与“浪漫”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_leo_aries",
+      "primary": "leo",
+      "secondary": "aries",
+      "text": "狮子座 × 白羊座：你同时带有“自信”与“直接”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_leo_taurus",
+      "primary": "leo",
+      "secondary": "taurus",
+      "text": "狮子座 × 金牛座：你同时带有“自信”与“稳定”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_leo_gemini",
+      "primary": "leo",
+      "secondary": "gemini",
+      "text": "狮子座 × 双子座：你同时带有“自信”与“灵活”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_leo_cancer",
+      "primary": "leo",
+      "secondary": "cancer",
+      "text": "狮子座 × 巨蟹座：你同时带有“自信”与“细腻”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_leo_virgo",
+      "primary": "leo",
+      "secondary": "virgo",
+      "text": "狮子座 × 处女座：你同时带有“自信”与“细致”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_leo_libra",
+      "primary": "leo",
+      "secondary": "libra",
+      "text": "狮子座 × 天秤座：你同时带有“自信”与“平衡”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_leo_scorpio",
+      "primary": "leo",
+      "secondary": "scorpio",
+      "text": "狮子座 × 天蝎座：你同时带有“自信”与“敏锐”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_leo_sagittarius",
+      "primary": "leo",
+      "secondary": "sagittarius",
+      "text": "狮子座 × 射手座：你同时带有“自信”与“自由”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_leo_capricorn",
+      "primary": "leo",
+      "secondary": "capricorn",
+      "text": "狮子座 × 摩羯座：你同时带有“自信”与“克制”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_leo_aquarius",
+      "primary": "leo",
+      "secondary": "aquarius",
+      "text": "狮子座 × 水瓶座：你同时带有“自信”与“独立”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_leo_pisces",
+      "primary": "leo",
+      "secondary": "pisces",
+      "text": "狮子座 × 双鱼座：你同时带有“自信”与“浪漫”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_virgo_aries",
+      "primary": "virgo",
+      "secondary": "aries",
+      "text": "处女座 × 白羊座：你同时带有“细致”与“直接”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_virgo_taurus",
+      "primary": "virgo",
+      "secondary": "taurus",
+      "text": "处女座 × 金牛座：你同时带有“细致”与“稳定”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_virgo_gemini",
+      "primary": "virgo",
+      "secondary": "gemini",
+      "text": "处女座 × 双子座：你同时带有“细致”与“灵活”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_virgo_cancer",
+      "primary": "virgo",
+      "secondary": "cancer",
+      "text": "处女座 × 巨蟹座：你同时带有“细致”与“细腻”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_virgo_leo",
+      "primary": "virgo",
+      "secondary": "leo",
+      "text": "处女座 × 狮子座：你同时带有“细致”与“自信”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_virgo_libra",
+      "primary": "virgo",
+      "secondary": "libra",
+      "text": "处女座 × 天秤座：你同时带有“细致”与“平衡”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_virgo_scorpio",
+      "primary": "virgo",
+      "secondary": "scorpio",
+      "text": "处女座 × 天蝎座：你同时带有“细致”与“敏锐”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_virgo_sagittarius",
+      "primary": "virgo",
+      "secondary": "sagittarius",
+      "text": "处女座 × 射手座：你同时带有“细致”与“自由”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_virgo_capricorn",
+      "primary": "virgo",
+      "secondary": "capricorn",
+      "text": "处女座 × 摩羯座：你同时带有“细致”与“克制”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_virgo_aquarius",
+      "primary": "virgo",
+      "secondary": "aquarius",
+      "text": "处女座 × 水瓶座：你同时带有“细致”与“独立”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_virgo_pisces",
+      "primary": "virgo",
+      "secondary": "pisces",
+      "text": "处女座 × 双鱼座：你同时带有“细致”与“浪漫”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_libra_aries",
+      "primary": "libra",
+      "secondary": "aries",
+      "text": "天秤座 × 白羊座：你同时带有“平衡”与“直接”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_libra_taurus",
+      "primary": "libra",
+      "secondary": "taurus",
+      "text": "天秤座 × 金牛座：你同时带有“平衡”与“稳定”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_libra_gemini",
+      "primary": "libra",
+      "secondary": "gemini",
+      "text": "天秤座 × 双子座：你同时带有“平衡”与“灵活”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_libra_cancer",
+      "primary": "libra",
+      "secondary": "cancer",
+      "text": "天秤座 × 巨蟹座：你同时带有“平衡”与“细腻”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_libra_leo",
+      "primary": "libra",
+      "secondary": "leo",
+      "text": "天秤座 × 狮子座：你同时带有“平衡”与“自信”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_libra_virgo",
+      "primary": "libra",
+      "secondary": "virgo",
+      "text": "天秤座 × 处女座：你同时带有“平衡”与“细致”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_libra_scorpio",
+      "primary": "libra",
+      "secondary": "scorpio",
+      "text": "天秤座 × 天蝎座：你同时带有“平衡”与“敏锐”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_libra_sagittarius",
+      "primary": "libra",
+      "secondary": "sagittarius",
+      "text": "天秤座 × 射手座：你同时带有“平衡”与“自由”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_libra_capricorn",
+      "primary": "libra",
+      "secondary": "capricorn",
+      "text": "天秤座 × 摩羯座：你同时带有“平衡”与“克制”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_libra_aquarius",
+      "primary": "libra",
+      "secondary": "aquarius",
+      "text": "天秤座 × 水瓶座：你同时带有“平衡”与“独立”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_libra_pisces",
+      "primary": "libra",
+      "secondary": "pisces",
+      "text": "天秤座 × 双鱼座：你同时带有“平衡”与“浪漫”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_scorpio_aries",
+      "primary": "scorpio",
+      "secondary": "aries",
+      "text": "天蝎座 × 白羊座：你同时带有“敏锐”与“直接”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_scorpio_taurus",
+      "primary": "scorpio",
+      "secondary": "taurus",
+      "text": "天蝎座 × 金牛座：你同时带有“敏锐”与“稳定”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_scorpio_gemini",
+      "primary": "scorpio",
+      "secondary": "gemini",
+      "text": "天蝎座 × 双子座：你同时带有“敏锐”与“灵活”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_scorpio_cancer",
+      "primary": "scorpio",
+      "secondary": "cancer",
+      "text": "天蝎座 × 巨蟹座：你同时带有“敏锐”与“细腻”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_scorpio_leo",
+      "primary": "scorpio",
+      "secondary": "leo",
+      "text": "天蝎座 × 狮子座：你同时带有“敏锐”与“自信”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_scorpio_virgo",
+      "primary": "scorpio",
+      "secondary": "virgo",
+      "text": "天蝎座 × 处女座：你同时带有“敏锐”与“细致”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_scorpio_libra",
+      "primary": "scorpio",
+      "secondary": "libra",
+      "text": "天蝎座 × 天秤座：你同时带有“敏锐”与“平衡”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_scorpio_sagittarius",
+      "primary": "scorpio",
+      "secondary": "sagittarius",
+      "text": "天蝎座 × 射手座：你同时带有“敏锐”与“自由”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_scorpio_capricorn",
+      "primary": "scorpio",
+      "secondary": "capricorn",
+      "text": "天蝎座 × 摩羯座：你同时带有“敏锐”与“克制”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_scorpio_aquarius",
+      "primary": "scorpio",
+      "secondary": "aquarius",
+      "text": "天蝎座 × 水瓶座：你同时带有“敏锐”与“独立”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_scorpio_pisces",
+      "primary": "scorpio",
+      "secondary": "pisces",
+      "text": "天蝎座 × 双鱼座：你同时带有“敏锐”与“浪漫”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_sagittarius_aries",
+      "primary": "sagittarius",
+      "secondary": "aries",
+      "text": "射手座 × 白羊座：你同时带有“自由”与“直接”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_sagittarius_taurus",
+      "primary": "sagittarius",
+      "secondary": "taurus",
+      "text": "射手座 × 金牛座：你同时带有“自由”与“稳定”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_sagittarius_gemini",
+      "primary": "sagittarius",
+      "secondary": "gemini",
+      "text": "射手座 × 双子座：你同时带有“自由”与“灵活”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_sagittarius_cancer",
+      "primary": "sagittarius",
+      "secondary": "cancer",
+      "text": "射手座 × 巨蟹座：你同时带有“自由”与“细腻”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_sagittarius_leo",
+      "primary": "sagittarius",
+      "secondary": "leo",
+      "text": "射手座 × 狮子座：你同时带有“自由”与“自信”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_sagittarius_virgo",
+      "primary": "sagittarius",
+      "secondary": "virgo",
+      "text": "射手座 × 处女座：你同时带有“自由”与“细致”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_sagittarius_libra",
+      "primary": "sagittarius",
+      "secondary": "libra",
+      "text": "射手座 × 天秤座：你同时带有“自由”与“平衡”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_sagittarius_scorpio",
+      "primary": "sagittarius",
+      "secondary": "scorpio",
+      "text": "射手座 × 天蝎座：你同时带有“自由”与“敏锐”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_sagittarius_capricorn",
+      "primary": "sagittarius",
+      "secondary": "capricorn",
+      "text": "射手座 × 摩羯座：你同时带有“自由”与“克制”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_sagittarius_aquarius",
+      "primary": "sagittarius",
+      "secondary": "aquarius",
+      "text": "射手座 × 水瓶座：你同时带有“自由”与“独立”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_sagittarius_pisces",
+      "primary": "sagittarius",
+      "secondary": "pisces",
+      "text": "射手座 × 双鱼座：你同时带有“自由”与“浪漫”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_capricorn_aries",
+      "primary": "capricorn",
+      "secondary": "aries",
+      "text": "摩羯座 × 白羊座：你同时带有“克制”与“直接”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_capricorn_taurus",
+      "primary": "capricorn",
+      "secondary": "taurus",
+      "text": "摩羯座 × 金牛座：你同时带有“克制”与“稳定”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_capricorn_gemini",
+      "primary": "capricorn",
+      "secondary": "gemini",
+      "text": "摩羯座 × 双子座：你同时带有“克制”与“灵活”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_capricorn_cancer",
+      "primary": "capricorn",
+      "secondary": "cancer",
+      "text": "摩羯座 × 巨蟹座：你同时带有“克制”与“细腻”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_capricorn_leo",
+      "primary": "capricorn",
+      "secondary": "leo",
+      "text": "摩羯座 × 狮子座：你同时带有“克制”与“自信”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_capricorn_virgo",
+      "primary": "capricorn",
+      "secondary": "virgo",
+      "text": "摩羯座 × 处女座：你同时带有“克制”与“细致”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_capricorn_libra",
+      "primary": "capricorn",
+      "secondary": "libra",
+      "text": "摩羯座 × 天秤座：你同时带有“克制”与“平衡”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_capricorn_scorpio",
+      "primary": "capricorn",
+      "secondary": "scorpio",
+      "text": "摩羯座 × 天蝎座：你同时带有“克制”与“敏锐”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_capricorn_sagittarius",
+      "primary": "capricorn",
+      "secondary": "sagittarius",
+      "text": "摩羯座 × 射手座：你同时带有“克制”与“自由”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_capricorn_aquarius",
+      "primary": "capricorn",
+      "secondary": "aquarius",
+      "text": "摩羯座 × 水瓶座：你同时带有“克制”与“独立”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_capricorn_pisces",
+      "primary": "capricorn",
+      "secondary": "pisces",
+      "text": "摩羯座 × 双鱼座：你同时带有“克制”与“浪漫”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_aquarius_aries",
+      "primary": "aquarius",
+      "secondary": "aries",
+      "text": "水瓶座 × 白羊座：你同时带有“独立”与“直接”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_aquarius_taurus",
+      "primary": "aquarius",
+      "secondary": "taurus",
+      "text": "水瓶座 × 金牛座：你同时带有“独立”与“稳定”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_aquarius_gemini",
+      "primary": "aquarius",
+      "secondary": "gemini",
+      "text": "水瓶座 × 双子座：你同时带有“独立”与“灵活”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_aquarius_cancer",
+      "primary": "aquarius",
+      "secondary": "cancer",
+      "text": "水瓶座 × 巨蟹座：你同时带有“独立”与“细腻”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_aquarius_leo",
+      "primary": "aquarius",
+      "secondary": "leo",
+      "text": "水瓶座 × 狮子座：你同时带有“独立”与“自信”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_aquarius_virgo",
+      "primary": "aquarius",
+      "secondary": "virgo",
+      "text": "水瓶座 × 处女座：你同时带有“独立”与“细致”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_aquarius_libra",
+      "primary": "aquarius",
+      "secondary": "libra",
+      "text": "水瓶座 × 天秤座：你同时带有“独立”与“平衡”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_aquarius_scorpio",
+      "primary": "aquarius",
+      "secondary": "scorpio",
+      "text": "水瓶座 × 天蝎座：你同时带有“独立”与“敏锐”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_aquarius_sagittarius",
+      "primary": "aquarius",
+      "secondary": "sagittarius",
+      "text": "水瓶座 × 射手座：你同时带有“独立”与“自由”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_aquarius_capricorn",
+      "primary": "aquarius",
+      "secondary": "capricorn",
+      "text": "水瓶座 × 摩羯座：你同时带有“独立”与“克制”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_aquarius_pisces",
+      "primary": "aquarius",
+      "secondary": "pisces",
+      "text": "水瓶座 × 双鱼座：你同时带有“独立”与“浪漫”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_pisces_aries",
+      "primary": "pisces",
+      "secondary": "aries",
+      "text": "双鱼座 × 白羊座：你同时带有“浪漫”与“直接”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_pisces_taurus",
+      "primary": "pisces",
+      "secondary": "taurus",
+      "text": "双鱼座 × 金牛座：你同时带有“浪漫”与“稳定”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_pisces_gemini",
+      "primary": "pisces",
+      "secondary": "gemini",
+      "text": "双鱼座 × 双子座：你同时带有“浪漫”与“灵活”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_pisces_cancer",
+      "primary": "pisces",
+      "secondary": "cancer",
+      "text": "双鱼座 × 巨蟹座：你同时带有“浪漫”与“细腻”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_pisces_leo",
+      "primary": "pisces",
+      "secondary": "leo",
+      "text": "双鱼座 × 狮子座：你同时带有“浪漫”与“自信”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_pisces_virgo",
+      "primary": "pisces",
+      "secondary": "virgo",
+      "text": "双鱼座 × 处女座：你同时带有“浪漫”与“细致”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_pisces_libra",
+      "primary": "pisces",
+      "secondary": "libra",
+      "text": "双鱼座 × 天秤座：你同时带有“浪漫”与“平衡”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    },
+    {
+      "id": "pair_pisces_scorpio",
+      "primary": "pisces",
+      "secondary": "scorpio",
+      "text": "双鱼座 × 天蝎座：你同时带有“浪漫”与“敏锐”两种色彩。前者决定你面对事情时最自然的起点，后者常在关键选择里补上一层不同的处理方式。"
+    },
+    {
+      "id": "pair_pisces_sagittarius",
+      "primary": "pisces",
+      "secondary": "sagittarius",
+      "text": "双鱼座 × 射手座：你同时带有“浪漫”与“自由”两种色彩。这两种气质放在一起，会让你既有鲜明的第一反应，也保留第二套应对策略。"
+    },
+    {
+      "id": "pair_pisces_capricorn",
+      "primary": "pisces",
+      "secondary": "capricorn",
+      "text": "双鱼座 × 摩羯座：你同时带有“浪漫”与“克制”两种色彩。你并不是典型的单一风格，而是在两种倾向之间形成自己的平衡。"
+    },
+    {
+      "id": "pair_pisces_aquarius",
+      "primary": "pisces",
+      "secondary": "aquarius",
+      "text": "双鱼座 × 水瓶座：你同时带有“浪漫”与“独立”两种色彩。当环境安全时你更像前者，压力变大或事情变重要时，后者的特征往往会更明显。"
+    }
+  ],
+  "dimension_templates": [
+    {
+      "id": "dim_action_very_low",
+      "dimension": "action",
+      "band": "very_low",
+      "range": [
+        0,
+        29
+      ],
+      "text": "行动力很低：你不喜欢为了“快”而快，更愿意等信息足够、状态合适以后再动。"
+    },
+    {
+      "id": "dim_action_low",
+      "dimension": "action",
+      "band": "low",
+      "range": [
+        30,
+        44
+      ],
+      "text": "行动力偏低：你不喜欢为了“快”而快，更愿意等信息足够、状态合适以后再动。"
+    },
+    {
+      "id": "dim_action_mid",
+      "dimension": "action",
+      "band": "mid",
+      "range": [
+        45,
+        59
+      ],
+      "text": "行动力处于中间区间：你会根据场景切换方式，并不固定站在某一端。"
+    },
+    {
+      "id": "dim_action_high",
+      "dimension": "action",
+      "band": "high",
+      "range": [
+        60,
+        79
+      ],
+      "text": "行动力偏高：你更愿意用行动减少不确定感，做起来之后反而更容易想清楚。"
+    },
+    {
+      "id": "dim_action_very_high",
+      "dimension": "action",
+      "band": "very_high",
+      "range": [
+        80,
+        100
+      ],
+      "text": "行动力很高：你更愿意用行动减少不确定感，做起来之后反而更容易想清楚。"
+    },
+    {
+      "id": "dim_social_very_low",
+      "dimension": "social",
+      "band": "very_low",
+      "range": [
+        0,
+        29
+      ],
+      "text": "社交性很低：你不需要持续互动来证明存在感，熟悉、少量而高质量的关系更适合你。"
+    },
+    {
+      "id": "dim_social_low",
+      "dimension": "social",
+      "band": "low",
+      "range": [
+        30,
+        44
+      ],
+      "text": "社交性偏低：你不需要持续互动来证明存在感，熟悉、少量而高质量的关系更适合你。"
+    },
+    {
+      "id": "dim_social_mid",
+      "dimension": "social",
+      "band": "mid",
+      "range": [
+        45,
+        59
+      ],
+      "text": "社交性处于中间区间：你会根据场景切换方式，并不固定站在某一端。"
+    },
+    {
+      "id": "dim_social_high",
+      "dimension": "social",
+      "band": "high",
+      "range": [
+        60,
+        79
+      ],
+      "text": "社交性偏高：你通常能较快进入互动状态，也愿意通过交流获得信息和能量。"
+    },
+    {
+      "id": "dim_social_very_high",
+      "dimension": "social",
+      "band": "very_high",
+      "range": [
+        80,
+        100
+      ],
+      "text": "社交性很高：你通常能较快进入互动状态，也愿意通过交流获得信息和能量。"
+    },
+    {
+      "id": "dim_rational_very_low",
+      "dimension": "rational",
+      "band": "very_low",
+      "range": [
+        0,
+        29
+      ],
+      "text": "理性很低：你并不总想把一切解释得非常清楚，直觉、体验和感觉对你同样重要。"
+    },
+    {
+      "id": "dim_rational_low",
+      "dimension": "rational",
+      "band": "low",
+      "range": [
+        30,
+        44
+      ],
+      "text": "理性偏低：你并不总想把一切解释得非常清楚，直觉、体验和感觉对你同样重要。"
+    },
+    {
+      "id": "dim_rational_mid",
+      "dimension": "rational",
+      "band": "mid",
+      "range": [
+        45,
+        59
+      ],
+      "text": "理性处于中间区间：你会根据场景切换方式，并不固定站在某一端。"
+    },
+    {
+      "id": "dim_rational_high",
+      "dimension": "rational",
+      "band": "high",
+      "range": [
+        60,
+        79
+      ],
+      "text": "理性偏高：你习惯拆解问题、比较依据，再形成判断，不太喜欢只凭气氛做决定。"
+    },
+    {
+      "id": "dim_rational_very_high",
+      "dimension": "rational",
+      "band": "very_high",
+      "range": [
+        80,
+        100
+      ],
+      "text": "理性很高：你习惯拆解问题、比较依据，再形成判断，不太喜欢只凭气氛做决定。"
+    },
+    {
+      "id": "dim_emotional_very_low",
+      "dimension": "emotional",
+      "band": "very_low",
+      "range": [
+        0,
+        29
+      ],
+      "text": "感性很低：你的情绪波动通常不会长期占据注意力，更容易把感受放回事情本身。"
+    },
+    {
+      "id": "dim_emotional_low",
+      "dimension": "emotional",
+      "band": "low",
+      "range": [
+        30,
+        44
+      ],
+      "text": "感性偏低：你的情绪波动通常不会长期占据注意力，更容易把感受放回事情本身。"
+    },
+    {
+      "id": "dim_emotional_mid",
+      "dimension": "emotional",
+      "band": "mid",
+      "range": [
+        45,
+        59
+      ],
+      "text": "感性处于中间区间：你会根据场景切换方式，并不固定站在某一端。"
+    },
+    {
+      "id": "dim_emotional_high",
+      "dimension": "emotional",
+      "band": "high",
+      "range": [
+        60,
+        79
+      ],
+      "text": "感性偏高：你的情绪感受细，很多细节会被你记住，并影响你对人和事的判断。"
+    },
+    {
+      "id": "dim_emotional_very_high",
+      "dimension": "emotional",
+      "band": "very_high",
+      "range": [
+        80,
+        100
+      ],
+      "text": "感性很高：你的情绪感受细，很多细节会被你记住，并影响你对人和事的判断。"
+    },
+    {
+      "id": "dim_stability_very_low",
+      "dimension": "stability",
+      "band": "very_low",
+      "range": [
+        0,
+        29
+      ],
+      "text": "稳定性很低：你对固定模式的依赖较低，比起稳定，你更愿意给变化留下空间。"
+    },
+    {
+      "id": "dim_stability_low",
+      "dimension": "stability",
+      "band": "low",
+      "range": [
+        30,
+        44
+      ],
+      "text": "稳定性偏低：你对固定模式的依赖较低，比起稳定，你更愿意给变化留下空间。"
+    },
+    {
+      "id": "dim_stability_mid",
+      "dimension": "stability",
+      "band": "mid",
+      "range": [
+        45,
+        59
+      ],
+      "text": "稳定性处于中间区间：你会根据场景切换方式，并不固定站在某一端。"
+    },
+    {
+      "id": "dim_stability_high",
+      "dimension": "stability",
+      "band": "high",
+      "range": [
+        60,
+        79
+      ],
+      "text": "稳定性偏高：你重视秩序、兑现和可预期性。稳定感往往能显著提升你的状态。"
+    },
+    {
+      "id": "dim_stability_very_high",
+      "dimension": "stability",
+      "band": "very_high",
+      "range": [
+        80,
+        100
+      ],
+      "text": "稳定性很高：你重视秩序、兑现和可预期性。稳定感往往能显著提升你的状态。"
+    },
+    {
+      "id": "dim_curiosity_very_low",
+      "dimension": "curiosity",
+      "band": "very_low",
+      "range": [
+        0,
+        29
+      ],
+      "text": "好奇心很低：你更偏向把精力投入确定有价值的事情，而不是因为“新”就去尝试。"
+    },
+    {
+      "id": "dim_curiosity_low",
+      "dimension": "curiosity",
+      "band": "low",
+      "range": [
+        30,
+        44
+      ],
+      "text": "好奇心偏低：你更偏向把精力投入确定有价值的事情，而不是因为“新”就去尝试。"
+    },
+    {
+      "id": "dim_curiosity_mid",
+      "dimension": "curiosity",
+      "band": "mid",
+      "range": [
+        45,
+        59
+      ],
+      "text": "好奇心处于中间区间：你会根据场景切换方式，并不固定站在某一端。"
+    },
+    {
+      "id": "dim_curiosity_high",
+      "dimension": "curiosity",
+      "band": "high",
+      "range": [
+        60,
+        79
+      ],
+      "text": "好奇心偏高：新鲜事物很容易勾起你的探索欲，你愿意花时间理解陌生领域。"
+    },
+    {
+      "id": "dim_curiosity_very_high",
+      "dimension": "curiosity",
+      "band": "very_high",
+      "range": [
+        80,
+        100
+      ],
+      "text": "好奇心很高：新鲜事物很容易勾起你的探索欲，你愿意花时间理解陌生领域。"
+    },
+    {
+      "id": "dim_independence_very_low",
+      "dimension": "independence",
+      "band": "very_low",
+      "range": [
+        0,
+        29
+      ],
+      "text": "独立性很低：重要决定时你愿意参考可信任的人，也不排斥让关系参与到选择中。"
+    },
+    {
+      "id": "dim_independence_low",
+      "dimension": "independence",
+      "band": "low",
+      "range": [
+        30,
+        44
+      ],
+      "text": "独立性偏低：重要决定时你愿意参考可信任的人，也不排斥让关系参与到选择中。"
+    },
+    {
+      "id": "dim_independence_mid",
+      "dimension": "independence",
+      "band": "mid",
+      "range": [
+        45,
+        59
+      ],
+      "text": "独立性处于中间区间：你会根据场景切换方式，并不固定站在某一端。"
+    },
+    {
+      "id": "dim_independence_high",
+      "dimension": "independence",
+      "band": "high",
+      "range": [
+        60,
+        79
+      ],
+      "text": "独立性偏高：你需要保留自己的判断权和空间，不喜欢被过度安排或定义。"
+    },
+    {
+      "id": "dim_independence_very_high",
+      "dimension": "independence",
+      "band": "very_high",
+      "range": [
+        80,
+        100
+      ],
+      "text": "独立性很高：你需要保留自己的判断权和空间，不喜欢被过度安排或定义。"
+    },
+    {
+      "id": "dim_empathy_very_low",
+      "dimension": "empathy",
+      "band": "very_low",
+      "range": [
+        0,
+        29
+      ],
+      "text": "共情力很低：你更习惯从事实和边界理解问题，不会自动把别人的情绪都接到自己身上。"
+    },
+    {
+      "id": "dim_empathy_low",
+      "dimension": "empathy",
+      "band": "low",
+      "range": [
+        30,
+        44
+      ],
+      "text": "共情力偏低：你更习惯从事实和边界理解问题，不会自动把别人的情绪都接到自己身上。"
+    },
+    {
+      "id": "dim_empathy_mid",
+      "dimension": "empathy",
+      "band": "mid",
+      "range": [
+        45,
+        59
+      ],
+      "text": "共情力处于中间区间：你会根据场景切换方式，并不固定站在某一端。"
+    },
+    {
+      "id": "dim_empathy_high",
+      "dimension": "empathy",
+      "band": "high",
+      "range": [
+        60,
+        79
+      ],
+      "text": "共情力偏高：你很容易察觉别人状态变化，也会自然考虑对方的感受和处境。"
+    },
+    {
+      "id": "dim_empathy_very_high",
+      "dimension": "empathy",
+      "band": "very_high",
+      "range": [
+        80,
+        100
+      ],
+      "text": "共情力很高：你很容易察觉别人状态变化，也会自然考虑对方的感受和处境。"
+    },
+    {
+      "id": "dim_competitiveness_very_low",
+      "dimension": "competitiveness",
+      "band": "very_low",
+      "range": [
+        0,
+        29
+      ],
+      "text": "竞争性很低：你对输赢本身并不敏感，更在意事情是否值得、过程是否舒服。"
+    },
+    {
+      "id": "dim_competitiveness_low",
+      "dimension": "competitiveness",
+      "band": "low",
+      "range": [
+        30,
+        44
+      ],
+      "text": "竞争性偏低：你对输赢本身并不敏感，更在意事情是否值得、过程是否舒服。"
+    },
+    {
+      "id": "dim_competitiveness_mid",
+      "dimension": "competitiveness",
+      "band": "mid",
+      "range": [
+        45,
+        59
+      ],
+      "text": "竞争性处于中间区间：你会根据场景切换方式，并不固定站在某一端。"
+    },
+    {
+      "id": "dim_competitiveness_high",
+      "dimension": "competitiveness",
+      "band": "high",
+      "range": [
+        60,
+        79
+      ],
+      "text": "竞争性偏高：目标和比较会明显激活你的动力，你不太愿意在真正重视的事情上随便认输。"
+    },
+    {
+      "id": "dim_competitiveness_very_high",
+      "dimension": "competitiveness",
+      "band": "very_high",
+      "range": [
+        80,
+        100
+      ],
+      "text": "竞争性很高：目标和比较会明显激活你的动力，你不太愿意在真正重视的事情上随便认输。"
+    },
+    {
+      "id": "dim_adaptability_very_low",
+      "dimension": "adaptability",
+      "band": "very_low",
+      "range": [
+        0,
+        29
+      ],
+      "text": "适应性很低：变化需要你一点消化时间。你更擅长在稳定结构中把事情持续做好。"
+    },
+    {
+      "id": "dim_adaptability_low",
+      "dimension": "adaptability",
+      "band": "low",
+      "range": [
+        30,
+        44
+      ],
+      "text": "适应性偏低：变化需要你一点消化时间。你更擅长在稳定结构中把事情持续做好。"
+    },
+    {
+      "id": "dim_adaptability_mid",
+      "dimension": "adaptability",
+      "band": "mid",
+      "range": [
+        45,
+        59
+      ],
+      "text": "适应性处于中间区间：你会根据场景切换方式，并不固定站在某一端。"
+    },
+    {
+      "id": "dim_adaptability_high",
+      "dimension": "adaptability",
+      "band": "high",
+      "range": [
+        60,
+        79
+      ],
+      "text": "适应性偏高：变化本身不太容易把你困住，你往往能很快找到新的节奏和替代方案。"
+    },
+    {
+      "id": "dim_adaptability_very_high",
+      "dimension": "adaptability",
+      "band": "very_high",
+      "range": [
+        80,
+        100
+      ],
+      "text": "适应性很高：变化本身不太容易把你困住，你往往能很快找到新的节奏和替代方案。"
+    }
+  ],
+  "contrast_templates": [
+    {
+      "id": "contrast_01_hh",
+      "a": "rational",
+      "b": "emotional",
+      "a_band": "high",
+      "b_band": "high",
+      "text": "你既敏感又理性：会先感受到很多东西，但通常不会停在情绪里，而会继续寻找原因和解释。"
+    },
+    {
+      "id": "contrast_01_hl",
+      "a": "rational",
+      "b": "emotional",
+      "a_band": "high",
+      "b_band": "low",
+      "text": "理性明显强于感性：你更容易从“理性”这一侧处理问题，另一侧通常只在特定场景才出现。"
+    },
+    {
+      "id": "contrast_01_lh",
+      "a": "rational",
+      "b": "emotional",
+      "a_band": "low",
+      "b_band": "high",
+      "text": "感性明显强于理性：你更自然地依赖“感性”来判断和行动。"
+    },
+    {
+      "id": "contrast_01_mh",
+      "a": "rational",
+      "b": "emotional",
+      "a_band": "mid",
+      "b_band": "high",
+      "text": "理性较灵活，而感性更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"
+    },
+    {
+      "id": "contrast_02_hh",
+      "a": "independence",
+      "b": "empathy",
+      "a_band": "high",
+      "b_band": "high",
+      "text": "你能理解别人，但并不意味着会顺从别人。你通常能把共情和边界同时保留下来。"
+    },
+    {
+      "id": "contrast_02_hl",
+      "a": "independence",
+      "b": "empathy",
+      "a_band": "high",
+      "b_band": "low",
+      "text": "独立性明显强于共情力：你更容易从“独立性”这一侧处理问题，另一侧通常只在特定场景才出现。"
+    },
+    {
+      "id": "contrast_02_lh",
+      "a": "independence",
+      "b": "empathy",
+      "a_band": "low",
+      "b_band": "high",
+      "text": "共情力明显强于独立性：你更自然地依赖“共情力”来判断和行动。"
+    },
+    {
+      "id": "contrast_02_mh",
+      "a": "independence",
+      "b": "empathy",
+      "a_band": "mid",
+      "b_band": "high",
+      "text": "独立性较灵活，而共情力更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"
+    },
+    {
+      "id": "contrast_03_hh",
+      "a": "action",
+      "b": "stability",
+      "a_band": "high",
+      "b_band": "high",
+      "text": "你不是冲动型行动派。方向越明确、规则越清楚，你反而越容易快速推进。"
+    },
+    {
+      "id": "contrast_03_hl",
+      "a": "action",
+      "b": "stability",
+      "a_band": "high",
+      "b_band": "low",
+      "text": "行动力明显强于稳定性：你更容易从“行动力”这一侧处理问题，另一侧通常只在特定场景才出现。"
+    },
+    {
+      "id": "contrast_03_lh",
+      "a": "action",
+      "b": "stability",
+      "a_band": "low",
+      "b_band": "high",
+      "text": "稳定性明显强于行动力：你更自然地依赖“稳定性”来判断和行动。"
+    },
+    {
+      "id": "contrast_03_mh",
+      "a": "action",
+      "b": "stability",
+      "a_band": "mid",
+      "b_band": "high",
+      "text": "行动力较灵活，而稳定性更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"
+    },
+    {
+      "id": "contrast_04_hh",
+      "a": "curiosity",
+      "b": "stability",
+      "a_band": "high",
+      "b_band": "high",
+      "text": "你既想探索新东西，又希望底层秩序可控。最适合你的不是完全冒险，而是“有安全网的变化”。"
+    },
+    {
+      "id": "contrast_04_hl",
+      "a": "curiosity",
+      "b": "stability",
+      "a_band": "high",
+      "b_band": "low",
+      "text": "好奇心明显强于稳定性：你更容易从“好奇心”这一侧处理问题，另一侧通常只在特定场景才出现。"
+    },
+    {
+      "id": "contrast_04_lh",
+      "a": "curiosity",
+      "b": "stability",
+      "a_band": "low",
+      "b_band": "high",
+      "text": "稳定性明显强于好奇心：你更自然地依赖“稳定性”来判断和行动。"
+    },
+    {
+      "id": "contrast_04_mh",
+      "a": "curiosity",
+      "b": "stability",
+      "a_band": "mid",
+      "b_band": "high",
+      "text": "好奇心较灵活，而稳定性更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"
+    },
+    {
+      "id": "contrast_05_hh",
+      "a": "social",
+      "b": "independence",
+      "a_band": "high",
+      "b_band": "high",
+      "text": "你可以很会社交，但仍需要明确的个人空间。热闹和独处对你不是二选一。"
+    },
+    {
+      "id": "contrast_05_hl",
+      "a": "social",
+      "b": "independence",
+      "a_band": "high",
+      "b_band": "low",
+      "text": "社交性明显强于独立性：你更容易从“社交性”这一侧处理问题，另一侧通常只在特定场景才出现。"
+    },
+    {
+      "id": "contrast_05_lh",
+      "a": "social",
+      "b": "independence",
+      "a_band": "low",
+      "b_band": "high",
+      "text": "独立性明显强于社交性：你更自然地依赖“独立性”来判断和行动。"
+    },
+    {
+      "id": "contrast_05_mh",
+      "a": "social",
+      "b": "independence",
+      "a_band": "mid",
+      "b_band": "high",
+      "text": "社交性较灵活，而独立性更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"
+    },
+    {
+      "id": "contrast_06_hh",
+      "a": "competitiveness",
+      "b": "empathy",
+      "a_band": "high",
+      "b_band": "high",
+      "text": "你有胜负心，但通常不会只看输赢。你更容易在“不伤关系”和“把事做好”之间找平衡。"
+    },
+    {
+      "id": "contrast_06_hl",
+      "a": "competitiveness",
+      "b": "empathy",
+      "a_band": "high",
+      "b_band": "low",
+      "text": "竞争性明显强于共情力：你更容易从“竞争性”这一侧处理问题，另一侧通常只在特定场景才出现。"
+    },
+    {
+      "id": "contrast_06_lh",
+      "a": "competitiveness",
+      "b": "empathy",
+      "a_band": "low",
+      "b_band": "high",
+      "text": "共情力明显强于竞争性：你更自然地依赖“共情力”来判断和行动。"
+    },
+    {
+      "id": "contrast_06_mh",
+      "a": "competitiveness",
+      "b": "empathy",
+      "a_band": "mid",
+      "b_band": "high",
+      "text": "竞争性较灵活，而共情力更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"
+    },
+    {
+      "id": "contrast_07_hh",
+      "a": "rational",
+      "b": "adaptability",
+      "a_band": "high",
+      "b_band": "high",
+      "text": "你不是死守计划的理性派。你会快速更新信息，并在新条件下重新计算最佳路径。"
+    },
+    {
+      "id": "contrast_07_hl",
+      "a": "rational",
+      "b": "adaptability",
+      "a_band": "high",
+      "b_band": "low",
+      "text": "理性明显强于适应性：你更容易从“理性”这一侧处理问题，另一侧通常只在特定场景才出现。"
+    },
+    {
+      "id": "contrast_07_lh",
+      "a": "rational",
+      "b": "adaptability",
+      "a_band": "low",
+      "b_band": "high",
+      "text": "适应性明显强于理性：你更自然地依赖“适应性”来判断和行动。"
+    },
+    {
+      "id": "contrast_07_mh",
+      "a": "rational",
+      "b": "adaptability",
+      "a_band": "mid",
+      "b_band": "high",
+      "text": "理性较灵活，而适应性更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"
+    },
+    {
+      "id": "contrast_08_hh",
+      "a": "emotional",
+      "b": "stability",
+      "a_band": "high",
+      "b_band": "high",
+      "text": "你感受很深，因此也更需要稳定。关系是否可靠、事情是否有确定性，会显著影响你的状态。"
+    },
+    {
+      "id": "contrast_08_hl",
+      "a": "emotional",
+      "b": "stability",
+      "a_band": "high",
+      "b_band": "low",
+      "text": "感性明显强于稳定性：你更容易从“感性”这一侧处理问题，另一侧通常只在特定场景才出现。"
+    },
+    {
+      "id": "contrast_08_lh",
+      "a": "emotional",
+      "b": "stability",
+      "a_band": "low",
+      "b_band": "high",
+      "text": "稳定性明显强于感性：你更自然地依赖“稳定性”来判断和行动。"
+    },
+    {
+      "id": "contrast_08_mh",
+      "a": "emotional",
+      "b": "stability",
+      "a_band": "mid",
+      "b_band": "high",
+      "text": "感性较灵活，而稳定性更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"
+    },
+    {
+      "id": "contrast_09_hh",
+      "a": "curiosity",
+      "b": "independence",
+      "a_band": "high",
+      "b_band": "high",
+      "text": "你对陌生事物的兴趣往往来自真正的自主探索，而不是为了跟随潮流。"
+    },
+    {
+      "id": "contrast_09_hl",
+      "a": "curiosity",
+      "b": "independence",
+      "a_band": "high",
+      "b_band": "low",
+      "text": "好奇心明显强于独立性：你更容易从“好奇心”这一侧处理问题，另一侧通常只在特定场景才出现。"
+    },
+    {
+      "id": "contrast_09_lh",
+      "a": "curiosity",
+      "b": "independence",
+      "a_band": "low",
+      "b_band": "high",
+      "text": "独立性明显强于好奇心：你更自然地依赖“独立性”来判断和行动。"
+    },
+    {
+      "id": "contrast_09_mh",
+      "a": "curiosity",
+      "b": "independence",
+      "a_band": "mid",
+      "b_band": "high",
+      "text": "好奇心较灵活，而独立性更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"
+    },
+    {
+      "id": "contrast_10_hh",
+      "a": "action",
+      "b": "empathy",
+      "a_band": "high",
+      "b_band": "high",
+      "text": "看到别人需要帮助时，你更容易直接做点什么，而不是只停留在安慰。"
+    },
+    {
+      "id": "contrast_10_hl",
+      "a": "action",
+      "b": "empathy",
+      "a_band": "high",
+      "b_band": "low",
+      "text": "行动力明显强于共情力：你更容易从“行动力”这一侧处理问题，另一侧通常只在特定场景才出现。"
+    },
+    {
+      "id": "contrast_10_lh",
+      "a": "action",
+      "b": "empathy",
+      "a_band": "low",
+      "b_band": "high",
+      "text": "共情力明显强于行动力：你更自然地依赖“共情力”来判断和行动。"
+    },
+    {
+      "id": "contrast_10_mh",
+      "a": "action",
+      "b": "empathy",
+      "a_band": "mid",
+      "b_band": "high",
+      "text": "行动力较灵活，而共情力更稳定地主导你的反应，因此你的表现会随场景变化，但核心倾向很清楚。"
+    }
+  ],
+  "scene_templates": [
+    {
+      "id": "scene_社交方式_action",
+      "scene": "社交方式",
+      "dominant_dimension": "action",
+      "text": "在社交中，你更愿意用行动减少不确定感，做起来之后反而更容易想清楚。"
+    },
+    {
+      "id": "scene_社交方式_social",
+      "scene": "社交方式",
+      "dominant_dimension": "social",
+      "text": "在社交中，你通常能较快进入互动状态，也愿意通过交流获得信息和能量。"
+    },
+    {
+      "id": "scene_社交方式_rational",
+      "scene": "社交方式",
+      "dominant_dimension": "rational",
+      "text": "在社交中，你习惯拆解问题、比较依据，再形成判断，不太喜欢只凭气氛做决定。"
+    },
+    {
+      "id": "scene_社交方式_emotional",
+      "scene": "社交方式",
+      "dominant_dimension": "emotional",
+      "text": "在社交中，你的情绪感受细，很多细节会被你记住，并影响你对人和事的判断。"
+    },
+    {
+      "id": "scene_社交方式_stability",
+      "scene": "社交方式",
+      "dominant_dimension": "stability",
+      "text": "在社交中，你重视秩序、兑现和可预期性。稳定感往往能显著提升你的状态。"
+    },
+    {
+      "id": "scene_社交方式_curiosity",
+      "scene": "社交方式",
+      "dominant_dimension": "curiosity",
+      "text": "在社交中，新鲜事物很容易勾起你的探索欲，你愿意花时间理解陌生领域。"
+    },
+    {
+      "id": "scene_社交方式_independence",
+      "scene": "社交方式",
+      "dominant_dimension": "independence",
+      "text": "在社交中，你需要保留自己的判断权和空间，不喜欢被过度安排或定义。"
+    },
+    {
+      "id": "scene_社交方式_empathy",
+      "scene": "社交方式",
+      "dominant_dimension": "empathy",
+      "text": "在社交中，你很容易察觉别人状态变化，也会自然考虑对方的感受和处境。"
+    },
+    {
+      "id": "scene_社交方式_competitiveness",
+      "scene": "社交方式",
+      "dominant_dimension": "competitiveness",
+      "text": "在社交中，目标和比较会明显激活你的动力，你不太愿意在真正重视的事情上随便认输。"
+    },
+    {
+      "id": "scene_社交方式_adaptability",
+      "scene": "社交方式",
+      "dominant_dimension": "adaptability",
+      "text": "在社交中，变化本身不太容易把你困住，你往往能很快找到新的节奏和替代方案。"
+    },
+    {
+      "id": "scene_亲密关系_action",
+      "scene": "亲密关系",
+      "dominant_dimension": "action",
+      "text": "在亲密关系里，你更愿意用行动减少不确定感，做起来之后反而更容易想清楚。"
+    },
+    {
+      "id": "scene_亲密关系_social",
+      "scene": "亲密关系",
+      "dominant_dimension": "social",
+      "text": "在亲密关系里，你通常能较快进入互动状态，也愿意通过交流获得信息和能量。"
+    },
+    {
+      "id": "scene_亲密关系_rational",
+      "scene": "亲密关系",
+      "dominant_dimension": "rational",
+      "text": "在亲密关系里，你习惯拆解问题、比较依据，再形成判断，不太喜欢只凭气氛做决定。"
+    },
+    {
+      "id": "scene_亲密关系_emotional",
+      "scene": "亲密关系",
+      "dominant_dimension": "emotional",
+      "text": "在亲密关系里，你的情绪感受细，很多细节会被你记住，并影响你对人和事的判断。"
+    },
+    {
+      "id": "scene_亲密关系_stability",
+      "scene": "亲密关系",
+      "dominant_dimension": "stability",
+      "text": "在亲密关系里，你重视秩序、兑现和可预期性。稳定感往往能显著提升你的状态。"
+    },
+    {
+      "id": "scene_亲密关系_curiosity",
+      "scene": "亲密关系",
+      "dominant_dimension": "curiosity",
+      "text": "在亲密关系里，新鲜事物很容易勾起你的探索欲，你愿意花时间理解陌生领域。"
+    },
+    {
+      "id": "scene_亲密关系_independence",
+      "scene": "亲密关系",
+      "dominant_dimension": "independence",
+      "text": "在亲密关系里，你需要保留自己的判断权和空间，不喜欢被过度安排或定义。"
+    },
+    {
+      "id": "scene_亲密关系_empathy",
+      "scene": "亲密关系",
+      "dominant_dimension": "empathy",
+      "text": "在亲密关系里，你很容易察觉别人状态变化，也会自然考虑对方的感受和处境。"
+    },
+    {
+      "id": "scene_亲密关系_competitiveness",
+      "scene": "亲密关系",
+      "dominant_dimension": "competitiveness",
+      "text": "在亲密关系里，目标和比较会明显激活你的动力，你不太愿意在真正重视的事情上随便认输。"
+    },
+    {
+      "id": "scene_亲密关系_adaptability",
+      "scene": "亲密关系",
+      "dominant_dimension": "adaptability",
+      "text": "在亲密关系里，变化本身不太容易把你困住，你往往能很快找到新的节奏和替代方案。"
+    },
+    {
+      "id": "scene_工作学习_action",
+      "scene": "工作学习",
+      "dominant_dimension": "action",
+      "text": "在工作或学习中，你更愿意用行动减少不确定感，做起来之后反而更容易想清楚。"
+    },
+    {
+      "id": "scene_工作学习_social",
+      "scene": "工作学习",
+      "dominant_dimension": "social",
+      "text": "在工作或学习中，你通常能较快进入互动状态，也愿意通过交流获得信息和能量。"
+    },
+    {
+      "id": "scene_工作学习_rational",
+      "scene": "工作学习",
+      "dominant_dimension": "rational",
+      "text": "在工作或学习中，你习惯拆解问题、比较依据，再形成判断，不太喜欢只凭气氛做决定。"
+    },
+    {
+      "id": "scene_工作学习_emotional",
+      "scene": "工作学习",
+      "dominant_dimension": "emotional",
+      "text": "在工作或学习中，你的情绪感受细，很多细节会被你记住，并影响你对人和事的判断。"
+    },
+    {
+      "id": "scene_工作学习_stability",
+      "scene": "工作学习",
+      "dominant_dimension": "stability",
+      "text": "在工作或学习中，你重视秩序、兑现和可预期性。稳定感往往能显著提升你的状态。"
+    },
+    {
+      "id": "scene_工作学习_curiosity",
+      "scene": "工作学习",
+      "dominant_dimension": "curiosity",
+      "text": "在工作或学习中，新鲜事物很容易勾起你的探索欲，你愿意花时间理解陌生领域。"
+    },
+    {
+      "id": "scene_工作学习_independence",
+      "scene": "工作学习",
+      "dominant_dimension": "independence",
+      "text": "在工作或学习中，你需要保留自己的判断权和空间，不喜欢被过度安排或定义。"
+    },
+    {
+      "id": "scene_工作学习_empathy",
+      "scene": "工作学习",
+      "dominant_dimension": "empathy",
+      "text": "在工作或学习中，你很容易察觉别人状态变化，也会自然考虑对方的感受和处境。"
+    },
+    {
+      "id": "scene_工作学习_competitiveness",
+      "scene": "工作学习",
+      "dominant_dimension": "competitiveness",
+      "text": "在工作或学习中，目标和比较会明显激活你的动力，你不太愿意在真正重视的事情上随便认输。"
+    },
+    {
+      "id": "scene_工作学习_adaptability",
+      "scene": "工作学习",
+      "dominant_dimension": "adaptability",
+      "text": "在工作或学习中，变化本身不太容易把你困住，你往往能很快找到新的节奏和替代方案。"
+    },
+    {
+      "id": "scene_压力反应_action",
+      "scene": "压力反应",
+      "dominant_dimension": "action",
+      "text": "在压力上升时，你更愿意用行动减少不确定感，做起来之后反而更容易想清楚。"
+    },
+    {
+      "id": "scene_压力反应_social",
+      "scene": "压力反应",
+      "dominant_dimension": "social",
+      "text": "在压力上升时，你通常能较快进入互动状态，也愿意通过交流获得信息和能量。"
+    },
+    {
+      "id": "scene_压力反应_rational",
+      "scene": "压力反应",
+      "dominant_dimension": "rational",
+      "text": "在压力上升时，你习惯拆解问题、比较依据，再形成判断，不太喜欢只凭气氛做决定。"
+    },
+    {
+      "id": "scene_压力反应_emotional",
+      "scene": "压力反应",
+      "dominant_dimension": "emotional",
+      "text": "在压力上升时，你的情绪感受细，很多细节会被你记住，并影响你对人和事的判断。"
+    },
+    {
+      "id": "scene_压力反应_stability",
+      "scene": "压力反应",
+      "dominant_dimension": "stability",
+      "text": "在压力上升时，你重视秩序、兑现和可预期性。稳定感往往能显著提升你的状态。"
+    },
+    {
+      "id": "scene_压力反应_curiosity",
+      "scene": "压力反应",
+      "dominant_dimension": "curiosity",
+      "text": "在压力上升时，新鲜事物很容易勾起你的探索欲，你愿意花时间理解陌生领域。"
+    },
+    {
+      "id": "scene_压力反应_independence",
+      "scene": "压力反应",
+      "dominant_dimension": "independence",
+      "text": "在压力上升时，你需要保留自己的判断权和空间，不喜欢被过度安排或定义。"
+    },
+    {
+      "id": "scene_压力反应_empathy",
+      "scene": "压力反应",
+      "dominant_dimension": "empathy",
+      "text": "在压力上升时，你很容易察觉别人状态变化，也会自然考虑对方的感受和处境。"
+    },
+    {
+      "id": "scene_压力反应_competitiveness",
+      "scene": "压力反应",
+      "dominant_dimension": "competitiveness",
+      "text": "在压力上升时，目标和比较会明显激活你的动力，你不太愿意在真正重视的事情上随便认输。"
+    },
+    {
+      "id": "scene_压力反应_adaptability",
+      "scene": "压力反应",
+      "dominant_dimension": "adaptability",
+      "text": "在压力上升时，变化本身不太容易把你困住，你往往能很快找到新的节奏和替代方案。"
+    },
+    {
+      "id": "scene_决策方式_action",
+      "scene": "决策方式",
+      "dominant_dimension": "action",
+      "text": "面对重要决定时，你更愿意用行动减少不确定感，做起来之后反而更容易想清楚。"
+    },
+    {
+      "id": "scene_决策方式_social",
+      "scene": "决策方式",
+      "dominant_dimension": "social",
+      "text": "面对重要决定时，你通常能较快进入互动状态，也愿意通过交流获得信息和能量。"
+    },
+    {
+      "id": "scene_决策方式_rational",
+      "scene": "决策方式",
+      "dominant_dimension": "rational",
+      "text": "面对重要决定时，你习惯拆解问题、比较依据，再形成判断，不太喜欢只凭气氛做决定。"
+    },
+    {
+      "id": "scene_决策方式_emotional",
+      "scene": "决策方式",
+      "dominant_dimension": "emotional",
+      "text": "面对重要决定时，你的情绪感受细，很多细节会被你记住，并影响你对人和事的判断。"
+    },
+    {
+      "id": "scene_决策方式_stability",
+      "scene": "决策方式",
+      "dominant_dimension": "stability",
+      "text": "面对重要决定时，你重视秩序、兑现和可预期性。稳定感往往能显著提升你的状态。"
+    },
+    {
+      "id": "scene_决策方式_curiosity",
+      "scene": "决策方式",
+      "dominant_dimension": "curiosity",
+      "text": "面对重要决定时，新鲜事物很容易勾起你的探索欲，你愿意花时间理解陌生领域。"
+    },
+    {
+      "id": "scene_决策方式_independence",
+      "scene": "决策方式",
+      "dominant_dimension": "independence",
+      "text": "面对重要决定时，你需要保留自己的判断权和空间，不喜欢被过度安排或定义。"
+    },
+    {
+      "id": "scene_决策方式_empathy",
+      "scene": "决策方式",
+      "dominant_dimension": "empathy",
+      "text": "面对重要决定时，你很容易察觉别人状态变化，也会自然考虑对方的感受和处境。"
+    },
+    {
+      "id": "scene_决策方式_competitiveness",
+      "scene": "决策方式",
+      "dominant_dimension": "competitiveness",
+      "text": "面对重要决定时，目标和比较会明显激活你的动力，你不太愿意在真正重视的事情上随便认输。"
+    },
+    {
+      "id": "scene_决策方式_adaptability",
+      "scene": "决策方式",
+      "dominant_dimension": "adaptability",
+      "text": "面对重要决定时，变化本身不太容易把你困住，你往往能很快找到新的节奏和替代方案。"
+    },
+    {
+      "id": "scene_隐藏一面_action",
+      "scene": "隐藏一面",
+      "dominant_dimension": "action",
+      "text": "别人不一定第一眼看得出的地方是，你更愿意用行动减少不确定感，做起来之后反而更容易想清楚。"
+    },
+    {
+      "id": "scene_隐藏一面_social",
+      "scene": "隐藏一面",
+      "dominant_dimension": "social",
+      "text": "别人不一定第一眼看得出的地方是，你通常能较快进入互动状态，也愿意通过交流获得信息和能量。"
+    },
+    {
+      "id": "scene_隐藏一面_rational",
+      "scene": "隐藏一面",
+      "dominant_dimension": "rational",
+      "text": "别人不一定第一眼看得出的地方是，你习惯拆解问题、比较依据，再形成判断，不太喜欢只凭气氛做决定。"
+    },
+    {
+      "id": "scene_隐藏一面_emotional",
+      "scene": "隐藏一面",
+      "dominant_dimension": "emotional",
+      "text": "别人不一定第一眼看得出的地方是，你的情绪感受细，很多细节会被你记住，并影响你对人和事的判断。"
+    },
+    {
+      "id": "scene_隐藏一面_stability",
+      "scene": "隐藏一面",
+      "dominant_dimension": "stability",
+      "text": "别人不一定第一眼看得出的地方是，你重视秩序、兑现和可预期性。稳定感往往能显著提升你的状态。"
+    },
+    {
+      "id": "scene_隐藏一面_curiosity",
+      "scene": "隐藏一面",
+      "dominant_dimension": "curiosity",
+      "text": "别人不一定第一眼看得出的地方是，新鲜事物很容易勾起你的探索欲，你愿意花时间理解陌生领域。"
+    },
+    {
+      "id": "scene_隐藏一面_independence",
+      "scene": "隐藏一面",
+      "dominant_dimension": "independence",
+      "text": "别人不一定第一眼看得出的地方是，你需要保留自己的判断权和空间，不喜欢被过度安排或定义。"
+    },
+    {
+      "id": "scene_隐藏一面_empathy",
+      "scene": "隐藏一面",
+      "dominant_dimension": "empathy",
+      "text": "别人不一定第一眼看得出的地方是，你很容易察觉别人状态变化，也会自然考虑对方的感受和处境。"
+    },
+    {
+      "id": "scene_隐藏一面_competitiveness",
+      "scene": "隐藏一面",
+      "dominant_dimension": "competitiveness",
+      "text": "别人不一定第一眼看得出的地方是，目标和比较会明显激活你的动力，你不太愿意在真正重视的事情上随便认输。"
+    },
+    {
+      "id": "scene_隐藏一面_adaptability",
+      "scene": "隐藏一面",
+      "dominant_dimension": "adaptability",
+      "text": "别人不一定第一眼看得出的地方是，变化本身不太容易把你困住，你往往能很快找到新的节奏和替代方案。"
+    }
+  ],
+  "summary_templates": [
+    {
+      "id": "summary_001",
+      "dimension": "action",
+      "text": "你真正需要的不是被定义，而是尽快把想法落到现实里，用实际进展换取安心。"
+    },
+    {
+      "id": "summary_002",
+      "dimension": "social",
+      "text": "你真正需要的不是被定义，而是在高质量互动里确认信息、关系和自己的位置。"
+    },
+    {
+      "id": "summary_003",
+      "dimension": "rational",
+      "text": "你真正需要的不是被定义，而是让事情变得可理解、可解释，并尽量减少模糊。"
+    },
+    {
+      "id": "summary_004",
+      "dimension": "emotional",
+      "text": "你真正需要的不是被定义，而是允许真实感受被看见，而不是把它们全部压成“应该”。"
+    },
+    {
+      "id": "summary_005",
+      "dimension": "stability",
+      "text": "你真正需要的不是被定义，而是让重要的人和事保持连续、可靠，并能长期积累。"
+    },
+    {
+      "id": "summary_006",
+      "dimension": "curiosity",
+      "text": "你真正需要的不是被定义，而是持续发现新的可能，不让生活只剩重复。"
+    },
+    {
+      "id": "summary_007",
+      "dimension": "independence",
+      "text": "你真正需要的不是被定义，而是保留选择权，按照自己认可的方式生活。"
+    },
+    {
+      "id": "summary_008",
+      "dimension": "empathy",
+      "text": "你真正需要的不是被定义，而是在理解别人和保护自己之间找到柔软的边界。"
+    },
+    {
+      "id": "summary_009",
+      "dimension": "competitiveness",
+      "text": "你真正需要的不是被定义，而是给自己一个值得投入的目标，然后不断验证能力。"
+    },
+    {
+      "id": "summary_010",
+      "dimension": "adaptability",
+      "text": "你真正需要的不是被定义，而是不被单一剧本绑住，在变化里迅速重新找到方向。"
+    },
+    {
+      "id": "summary_011",
+      "dimension": "action",
+      "text": "你看起来最鲜明的一面是尽快把想法落到现实里，用实际进展换取安心。"
+    },
+    {
+      "id": "summary_012",
+      "dimension": "social",
+      "text": "你看起来最鲜明的一面是在高质量互动里确认信息、关系和自己的位置。"
+    },
+    {
+      "id": "summary_013",
+      "dimension": "rational",
+      "text": "你看起来最鲜明的一面是让事情变得可理解、可解释，并尽量减少模糊。"
+    },
+    {
+      "id": "summary_014",
+      "dimension": "emotional",
+      "text": "你看起来最鲜明的一面是允许真实感受被看见，而不是把它们全部压成“应该”。"
+    },
+    {
+      "id": "summary_015",
+      "dimension": "stability",
+      "text": "你看起来最鲜明的一面是让重要的人和事保持连续、可靠，并能长期积累。"
+    },
+    {
+      "id": "summary_016",
+      "dimension": "curiosity",
+      "text": "你看起来最鲜明的一面是持续发现新的可能，不让生活只剩重复。"
+    },
+    {
+      "id": "summary_017",
+      "dimension": "independence",
+      "text": "你看起来最鲜明的一面是保留选择权，按照自己认可的方式生活。"
+    },
+    {
+      "id": "summary_018",
+      "dimension": "empathy",
+      "text": "你看起来最鲜明的一面是在理解别人和保护自己之间找到柔软的边界。"
+    },
+    {
+      "id": "summary_019",
+      "dimension": "competitiveness",
+      "text": "你看起来最鲜明的一面是给自己一个值得投入的目标，然后不断验证能力。"
+    },
+    {
+      "id": "summary_020",
+      "dimension": "adaptability",
+      "text": "你看起来最鲜明的一面是不被单一剧本绑住，在变化里迅速重新找到方向。"
+    },
+    {
+      "id": "summary_021",
+      "dimension": "action",
+      "text": "比起“像哪个星座”，你更明显的特征其实是尽快把想法落到现实里，用实际进展换取安心。"
+    },
+    {
+      "id": "summary_022",
+      "dimension": "social",
+      "text": "比起“像哪个星座”，你更明显的特征其实是在高质量互动里确认信息、关系和自己的位置。"
+    },
+    {
+      "id": "summary_023",
+      "dimension": "rational",
+      "text": "比起“像哪个星座”，你更明显的特征其实是让事情变得可理解、可解释，并尽量减少模糊。"
+    },
+    {
+      "id": "summary_024",
+      "dimension": "emotional",
+      "text": "比起“像哪个星座”，你更明显的特征其实是允许真实感受被看见，而不是把它们全部压成“应该”。"
+    },
+    {
+      "id": "summary_025",
+      "dimension": "stability",
+      "text": "比起“像哪个星座”，你更明显的特征其实是让重要的人和事保持连续、可靠，并能长期积累。"
+    },
+    {
+      "id": "summary_026",
+      "dimension": "curiosity",
+      "text": "比起“像哪个星座”，你更明显的特征其实是持续发现新的可能，不让生活只剩重复。"
+    },
+    {
+      "id": "summary_027",
+      "dimension": "independence",
+      "text": "比起“像哪个星座”，你更明显的特征其实是保留选择权，按照自己认可的方式生活。"
+    },
+    {
+      "id": "summary_028",
+      "dimension": "empathy",
+      "text": "比起“像哪个星座”，你更明显的特征其实是在理解别人和保护自己之间找到柔软的边界。"
+    },
+    {
+      "id": "summary_029",
+      "dimension": "competitiveness",
+      "text": "比起“像哪个星座”，你更明显的特征其实是给自己一个值得投入的目标，然后不断验证能力。"
+    },
+    {
+      "id": "summary_030",
+      "dimension": "adaptability",
+      "text": "比起“像哪个星座”，你更明显的特征其实是不被单一剧本绑住，在变化里迅速重新找到方向。"
+    },
+    {
+      "id": "summary_031",
+      "dimension": "action",
+      "text": "当你状态最好时，你往往会尽快把想法落到现实里，用实际进展换取安心。"
+    },
+    {
+      "id": "summary_032",
+      "dimension": "social",
+      "text": "当你状态最好时，你往往会在高质量互动里确认信息、关系和自己的位置。"
+    },
+    {
+      "id": "summary_033",
+      "dimension": "rational",
+      "text": "当你状态最好时，你往往会让事情变得可理解、可解释，并尽量减少模糊。"
+    },
+    {
+      "id": "summary_034",
+      "dimension": "emotional",
+      "text": "当你状态最好时，你往往会允许真实感受被看见，而不是把它们全部压成“应该”。"
+    },
+    {
+      "id": "summary_035",
+      "dimension": "stability",
+      "text": "当你状态最好时，你往往会让重要的人和事保持连续、可靠，并能长期积累。"
+    },
+    {
+      "id": "summary_036",
+      "dimension": "curiosity",
+      "text": "当你状态最好时，你往往会持续发现新的可能，不让生活只剩重复。"
+    },
+    {
+      "id": "summary_037",
+      "dimension": "independence",
+      "text": "当你状态最好时，你往往会保留选择权，按照自己认可的方式生活。"
+    },
+    {
+      "id": "summary_038",
+      "dimension": "empathy",
+      "text": "当你状态最好时，你往往会在理解别人和保护自己之间找到柔软的边界。"
+    },
+    {
+      "id": "summary_039",
+      "dimension": "competitiveness",
+      "text": "当你状态最好时，你往往会给自己一个值得投入的目标，然后不断验证能力。"
+    },
+    {
+      "id": "summary_040",
+      "dimension": "adaptability",
+      "text": "当你状态最好时，你往往会不被单一剧本绑住，在变化里迅速重新找到方向。"
+    },
+    {
+      "id": "summary_041",
+      "dimension": "action",
+      "text": "你不太喜欢别人替你决定，因为尽快把想法落到现实里，用实际进展换取安心。"
+    },
+    {
+      "id": "summary_042",
+      "dimension": "social",
+      "text": "你不太喜欢别人替你决定，因为在高质量互动里确认信息、关系和自己的位置。"
+    },
+    {
+      "id": "summary_043",
+      "dimension": "rational",
+      "text": "你不太喜欢别人替你决定，因为让事情变得可理解、可解释，并尽量减少模糊。"
+    },
+    {
+      "id": "summary_044",
+      "dimension": "emotional",
+      "text": "你不太喜欢别人替你决定，因为允许真实感受被看见，而不是把它们全部压成“应该”。"
+    },
+    {
+      "id": "summary_045",
+      "dimension": "stability",
+      "text": "你不太喜欢别人替你决定，因为让重要的人和事保持连续、可靠，并能长期积累。"
+    },
+    {
+      "id": "summary_046",
+      "dimension": "curiosity",
+      "text": "你不太喜欢别人替你决定，因为持续发现新的可能，不让生活只剩重复。"
+    },
+    {
+      "id": "summary_047",
+      "dimension": "independence",
+      "text": "你不太喜欢别人替你决定，因为保留选择权，按照自己认可的方式生活。"
+    },
+    {
+      "id": "summary_048",
+      "dimension": "empathy",
+      "text": "你不太喜欢别人替你决定，因为在理解别人和保护自己之间找到柔软的边界。"
+    },
+    {
+      "id": "summary_049",
+      "dimension": "competitiveness",
+      "text": "你不太喜欢别人替你决定，因为给自己一个值得投入的目标，然后不断验证能力。"
+    },
+    {
+      "id": "summary_050",
+      "dimension": "adaptability",
+      "text": "你不太喜欢别人替你决定，因为不被单一剧本绑住，在变化里迅速重新找到方向。"
+    },
+    {
+      "id": "summary_051",
+      "dimension": "action",
+      "text": "让你舒服的关系通常建立在尽快把想法落到现实里，用实际进展换取安心。"
+    },
+    {
+      "id": "summary_052",
+      "dimension": "social",
+      "text": "让你舒服的关系通常建立在在高质量互动里确认信息、关系和自己的位置。"
+    },
+    {
+      "id": "summary_053",
+      "dimension": "rational",
+      "text": "让你舒服的关系通常建立在让事情变得可理解、可解释，并尽量减少模糊。"
+    },
+    {
+      "id": "summary_054",
+      "dimension": "emotional",
+      "text": "让你舒服的关系通常建立在允许真实感受被看见，而不是把它们全部压成“应该”。"
+    },
+    {
+      "id": "summary_055",
+      "dimension": "stability",
+      "text": "让你舒服的关系通常建立在让重要的人和事保持连续、可靠，并能长期积累。"
+    },
+    {
+      "id": "summary_056",
+      "dimension": "curiosity",
+      "text": "让你舒服的关系通常建立在持续发现新的可能，不让生活只剩重复。"
+    },
+    {
+      "id": "summary_057",
+      "dimension": "independence",
+      "text": "让你舒服的关系通常建立在保留选择权，按照自己认可的方式生活。"
+    },
+    {
+      "id": "summary_058",
+      "dimension": "empathy",
+      "text": "让你舒服的关系通常建立在在理解别人和保护自己之间找到柔软的边界。"
+    },
+    {
+      "id": "summary_059",
+      "dimension": "competitiveness",
+      "text": "让你舒服的关系通常建立在给自己一个值得投入的目标，然后不断验证能力。"
+    },
+    {
+      "id": "summary_060",
+      "dimension": "adaptability",
+      "text": "让你舒服的关系通常建立在不被单一剧本绑住，在变化里迅速重新找到方向。"
+    },
+    {
+      "id": "summary_061",
+      "dimension": "action",
+      "text": "你最容易被低估的一点是尽快把想法落到现实里，用实际进展换取安心。"
+    },
+    {
+      "id": "summary_062",
+      "dimension": "social",
+      "text": "你最容易被低估的一点是在高质量互动里确认信息、关系和自己的位置。"
+    },
+    {
+      "id": "summary_063",
+      "dimension": "rational",
+      "text": "你最容易被低估的一点是让事情变得可理解、可解释，并尽量减少模糊。"
+    },
+    {
+      "id": "summary_064",
+      "dimension": "emotional",
+      "text": "你最容易被低估的一点是允许真实感受被看见，而不是把它们全部压成“应该”。"
+    },
+    {
+      "id": "summary_065",
+      "dimension": "stability",
+      "text": "你最容易被低估的一点是让重要的人和事保持连续、可靠，并能长期积累。"
+    },
+    {
+      "id": "summary_066",
+      "dimension": "curiosity",
+      "text": "你最容易被低估的一点是持续发现新的可能，不让生活只剩重复。"
+    },
+    {
+      "id": "summary_067",
+      "dimension": "independence",
+      "text": "你最容易被低估的一点是保留选择权，按照自己认可的方式生活。"
+    },
+    {
+      "id": "summary_068",
+      "dimension": "empathy",
+      "text": "你最容易被低估的一点是在理解别人和保护自己之间找到柔软的边界。"
+    },
+    {
+      "id": "summary_069",
+      "dimension": "competitiveness",
+      "text": "你最容易被低估的一点是给自己一个值得投入的目标，然后不断验证能力。"
+    },
+    {
+      "id": "summary_070",
+      "dimension": "adaptability",
+      "text": "你最容易被低估的一点是不被单一剧本绑住，在变化里迅速重新找到方向。"
+    },
+    {
+      "id": "summary_071",
+      "dimension": "action",
+      "text": "你面对变化时最有优势的地方在于尽快把想法落到现实里，用实际进展换取安心。"
+    },
+    {
+      "id": "summary_072",
+      "dimension": "social",
+      "text": "你面对变化时最有优势的地方在于在高质量互动里确认信息、关系和自己的位置。"
+    },
+    {
+      "id": "summary_073",
+      "dimension": "rational",
+      "text": "你面对变化时最有优势的地方在于让事情变得可理解、可解释，并尽量减少模糊。"
+    },
+    {
+      "id": "summary_074",
+      "dimension": "emotional",
+      "text": "你面对变化时最有优势的地方在于允许真实感受被看见，而不是把它们全部压成“应该”。"
+    },
+    {
+      "id": "summary_075",
+      "dimension": "stability",
+      "text": "你面对变化时最有优势的地方在于让重要的人和事保持连续、可靠，并能长期积累。"
+    },
+    {
+      "id": "summary_076",
+      "dimension": "curiosity",
+      "text": "你面对变化时最有优势的地方在于持续发现新的可能，不让生活只剩重复。"
+    },
+    {
+      "id": "summary_077",
+      "dimension": "independence",
+      "text": "你面对变化时最有优势的地方在于保留选择权，按照自己认可的方式生活。"
+    },
+    {
+      "id": "summary_078",
+      "dimension": "empathy",
+      "text": "你面对变化时最有优势的地方在于在理解别人和保护自己之间找到柔软的边界。"
+    },
+    {
+      "id": "summary_079",
+      "dimension": "competitiveness",
+      "text": "你面对变化时最有优势的地方在于给自己一个值得投入的目标，然后不断验证能力。"
+    },
+    {
+      "id": "summary_080",
+      "dimension": "adaptability",
+      "text": "你面对变化时最有优势的地方在于不被单一剧本绑住，在变化里迅速重新找到方向。"
+    },
+    {
+      "id": "summary_081",
+      "dimension": "action",
+      "text": "你做决定时真正看重的是尽快把想法落到现实里，用实际进展换取安心。"
+    },
+    {
+      "id": "summary_082",
+      "dimension": "social",
+      "text": "你做决定时真正看重的是在高质量互动里确认信息、关系和自己的位置。"
+    },
+    {
+      "id": "summary_083",
+      "dimension": "rational",
+      "text": "你做决定时真正看重的是让事情变得可理解、可解释，并尽量减少模糊。"
+    },
+    {
+      "id": "summary_084",
+      "dimension": "emotional",
+      "text": "你做决定时真正看重的是允许真实感受被看见，而不是把它们全部压成“应该”。"
+    },
+    {
+      "id": "summary_085",
+      "dimension": "stability",
+      "text": "你做决定时真正看重的是让重要的人和事保持连续、可靠，并能长期积累。"
+    },
+    {
+      "id": "summary_086",
+      "dimension": "curiosity",
+      "text": "你做决定时真正看重的是持续发现新的可能，不让生活只剩重复。"
+    },
+    {
+      "id": "summary_087",
+      "dimension": "independence",
+      "text": "你做决定时真正看重的是保留选择权，按照自己认可的方式生活。"
+    },
+    {
+      "id": "summary_088",
+      "dimension": "empathy",
+      "text": "你做决定时真正看重的是在理解别人和保护自己之间找到柔软的边界。"
+    },
+    {
+      "id": "summary_089",
+      "dimension": "competitiveness",
+      "text": "你做决定时真正看重的是给自己一个值得投入的目标，然后不断验证能力。"
+    },
+    {
+      "id": "summary_090",
+      "dimension": "adaptability",
+      "text": "你做决定时真正看重的是不被单一剧本绑住，在变化里迅速重新找到方向。"
+    },
+    {
+      "id": "summary_091",
+      "dimension": "action",
+      "text": "别人可能先看到你的表面，但更深一层是尽快把想法落到现实里，用实际进展换取安心。"
+    },
+    {
+      "id": "summary_092",
+      "dimension": "social",
+      "text": "别人可能先看到你的表面，但更深一层是在高质量互动里确认信息、关系和自己的位置。"
+    },
+    {
+      "id": "summary_093",
+      "dimension": "rational",
+      "text": "别人可能先看到你的表面，但更深一层是让事情变得可理解、可解释，并尽量减少模糊。"
+    },
+    {
+      "id": "summary_094",
+      "dimension": "emotional",
+      "text": "别人可能先看到你的表面，但更深一层是允许真实感受被看见，而不是把它们全部压成“应该”。"
+    },
+    {
+      "id": "summary_095",
+      "dimension": "stability",
+      "text": "别人可能先看到你的表面，但更深一层是让重要的人和事保持连续、可靠，并能长期积累。"
+    },
+    {
+      "id": "summary_096",
+      "dimension": "curiosity",
+      "text": "别人可能先看到你的表面，但更深一层是持续发现新的可能，不让生活只剩重复。"
+    },
+    {
+      "id": "summary_097",
+      "dimension": "independence",
+      "text": "别人可能先看到你的表面，但更深一层是保留选择权，按照自己认可的方式生活。"
+    },
+    {
+      "id": "summary_098",
+      "dimension": "empathy",
+      "text": "别人可能先看到你的表面，但更深一层是在理解别人和保护自己之间找到柔软的边界。"
+    },
+    {
+      "id": "summary_099",
+      "dimension": "competitiveness",
+      "text": "别人可能先看到你的表面，但更深一层是给自己一个值得投入的目标，然后不断验证能力。"
+    },
+    {
+      "id": "summary_100",
+      "dimension": "adaptability",
+      "text": "别人可能先看到你的表面，但更深一层是不被单一剧本绑住，在变化里迅速重新找到方向。"
+    },
+    {
+      "id": "summary_101",
+      "dimension": "action",
+      "text": "你并不是简单的外向或内向，而更像尽快把想法落到现实里，用实际进展换取安心。"
+    },
+    {
+      "id": "summary_102",
+      "dimension": "social",
+      "text": "你并不是简单的外向或内向，而更像在高质量互动里确认信息、关系和自己的位置。"
+    },
+    {
+      "id": "summary_103",
+      "dimension": "rational",
+      "text": "你并不是简单的外向或内向，而更像让事情变得可理解、可解释，并尽量减少模糊。"
+    },
+    {
+      "id": "summary_104",
+      "dimension": "emotional",
+      "text": "你并不是简单的外向或内向，而更像允许真实感受被看见，而不是把它们全部压成“应该”。"
+    },
+    {
+      "id": "summary_105",
+      "dimension": "stability",
+      "text": "你并不是简单的外向或内向，而更像让重要的人和事保持连续、可靠，并能长期积累。"
+    },
+    {
+      "id": "summary_106",
+      "dimension": "curiosity",
+      "text": "你并不是简单的外向或内向，而更像持续发现新的可能，不让生活只剩重复。"
+    },
+    {
+      "id": "summary_107",
+      "dimension": "independence",
+      "text": "你并不是简单的外向或内向，而更像保留选择权，按照自己认可的方式生活。"
+    },
+    {
+      "id": "summary_108",
+      "dimension": "empathy",
+      "text": "你并不是简单的外向或内向，而更像在理解别人和保护自己之间找到柔软的边界。"
+    },
+    {
+      "id": "summary_109",
+      "dimension": "competitiveness",
+      "text": "你并不是简单的外向或内向，而更像给自己一个值得投入的目标，然后不断验证能力。"
+    },
+    {
+      "id": "summary_110",
+      "dimension": "adaptability",
+      "text": "你并不是简单的外向或内向，而更像不被单一剧本绑住，在变化里迅速重新找到方向。"
+    },
+    {
+      "id": "summary_111",
+      "dimension": "action",
+      "text": "你最稳定的内在驱动力来自尽快把想法落到现实里，用实际进展换取安心。"
+    },
+    {
+      "id": "summary_112",
+      "dimension": "social",
+      "text": "你最稳定的内在驱动力来自在高质量互动里确认信息、关系和自己的位置。"
+    },
+    {
+      "id": "summary_113",
+      "dimension": "rational",
+      "text": "你最稳定的内在驱动力来自让事情变得可理解、可解释，并尽量减少模糊。"
+    },
+    {
+      "id": "summary_114",
+      "dimension": "emotional",
+      "text": "你最稳定的内在驱动力来自允许真实感受被看见，而不是把它们全部压成“应该”。"
+    },
+    {
+      "id": "summary_115",
+      "dimension": "stability",
+      "text": "你最稳定的内在驱动力来自让重要的人和事保持连续、可靠，并能长期积累。"
+    },
+    {
+      "id": "summary_116",
+      "dimension": "curiosity",
+      "text": "你最稳定的内在驱动力来自持续发现新的可能，不让生活只剩重复。"
+    },
+    {
+      "id": "summary_117",
+      "dimension": "independence",
+      "text": "你最稳定的内在驱动力来自保留选择权，按照自己认可的方式生活。"
+    },
+    {
+      "id": "summary_118",
+      "dimension": "empathy",
+      "text": "你最稳定的内在驱动力来自在理解别人和保护自己之间找到柔软的边界。"
+    },
+    {
+      "id": "summary_119",
+      "dimension": "competitiveness",
+      "text": "你最稳定的内在驱动力来自给自己一个值得投入的目标，然后不断验证能力。"
+    },
+    {
+      "id": "summary_120",
+      "dimension": "adaptability",
+      "text": "你最稳定的内在驱动力来自不被单一剧本绑住，在变化里迅速重新找到方向。"
+    },
+    {
+      "id": "summary_121",
+      "dimension": "action",
+      "text": "当事情变得重要时，你会更明显地表现出尽快把想法落到现实里，用实际进展换取安心。"
+    },
+    {
+      "id": "summary_122",
+      "dimension": "social",
+      "text": "当事情变得重要时，你会更明显地表现出在高质量互动里确认信息、关系和自己的位置。"
+    },
+    {
+      "id": "summary_123",
+      "dimension": "rational",
+      "text": "当事情变得重要时，你会更明显地表现出让事情变得可理解、可解释，并尽量减少模糊。"
+    },
+    {
+      "id": "summary_124",
+      "dimension": "emotional",
+      "text": "当事情变得重要时，你会更明显地表现出允许真实感受被看见，而不是把它们全部压成“应该”。"
+    },
+    {
+      "id": "summary_125",
+      "dimension": "stability",
+      "text": "当事情变得重要时，你会更明显地表现出让重要的人和事保持连续、可靠，并能长期积累。"
+    },
+    {
+      "id": "summary_126",
+      "dimension": "curiosity",
+      "text": "当事情变得重要时，你会更明显地表现出持续发现新的可能，不让生活只剩重复。"
+    },
+    {
+      "id": "summary_127",
+      "dimension": "independence",
+      "text": "当事情变得重要时，你会更明显地表现出保留选择权，按照自己认可的方式生活。"
+    },
+    {
+      "id": "summary_128",
+      "dimension": "empathy",
+      "text": "当事情变得重要时，你会更明显地表现出在理解别人和保护自己之间找到柔软的边界。"
+    },
+    {
+      "id": "summary_129",
+      "dimension": "competitiveness",
+      "text": "当事情变得重要时，你会更明显地表现出给自己一个值得投入的目标，然后不断验证能力。"
+    },
+    {
+      "id": "summary_130",
+      "dimension": "adaptability",
+      "text": "当事情变得重要时，你会更明显地表现出不被单一剧本绑住，在变化里迅速重新找到方向。"
+    },
+    {
+      "id": "summary_131",
+      "dimension": "action",
+      "text": "你最需要保护的心理空间是尽快把想法落到现实里，用实际进展换取安心。"
+    },
+    {
+      "id": "summary_132",
+      "dimension": "social",
+      "text": "你最需要保护的心理空间是在高质量互动里确认信息、关系和自己的位置。"
+    },
+    {
+      "id": "summary_133",
+      "dimension": "rational",
+      "text": "你最需要保护的心理空间是让事情变得可理解、可解释，并尽量减少模糊。"
+    },
+    {
+      "id": "summary_134",
+      "dimension": "emotional",
+      "text": "你最需要保护的心理空间是允许真实感受被看见，而不是把它们全部压成“应该”。"
+    },
+    {
+      "id": "summary_135",
+      "dimension": "stability",
+      "text": "你最需要保护的心理空间是让重要的人和事保持连续、可靠，并能长期积累。"
+    },
+    {
+      "id": "summary_136",
+      "dimension": "curiosity",
+      "text": "你最需要保护的心理空间是持续发现新的可能，不让生活只剩重复。"
+    },
+    {
+      "id": "summary_137",
+      "dimension": "independence",
+      "text": "你最需要保护的心理空间是保留选择权，按照自己认可的方式生活。"
+    },
+    {
+      "id": "summary_138",
+      "dimension": "empathy",
+      "text": "你最需要保护的心理空间是在理解别人和保护自己之间找到柔软的边界。"
+    },
+    {
+      "id": "summary_139",
+      "dimension": "competitiveness",
+      "text": "你最需要保护的心理空间是给自己一个值得投入的目标，然后不断验证能力。"
+    },
+    {
+      "id": "summary_140",
+      "dimension": "adaptability",
+      "text": "你最需要保护的心理空间是不被单一剧本绑住，在变化里迅速重新找到方向。"
+    },
+    {
+      "id": "summary_141",
+      "dimension": "action",
+      "text": "如果用一句话概括你的测试画像，那就是尽快把想法落到现实里，用实际进展换取安心。"
+    },
+    {
+      "id": "summary_142",
+      "dimension": "social",
+      "text": "如果用一句话概括你的测试画像，那就是在高质量互动里确认信息、关系和自己的位置。"
+    },
+    {
+      "id": "summary_143",
+      "dimension": "rational",
+      "text": "如果用一句话概括你的测试画像，那就是让事情变得可理解、可解释，并尽量减少模糊。"
+    },
+    {
+      "id": "summary_144",
+      "dimension": "emotional",
+      "text": "如果用一句话概括你的测试画像，那就是允许真实感受被看见，而不是把它们全部压成“应该”。"
+    },
+    {
+      "id": "summary_145",
+      "dimension": "stability",
+      "text": "如果用一句话概括你的测试画像，那就是让重要的人和事保持连续、可靠，并能长期积累。"
+    },
+    {
+      "id": "summary_146",
+      "dimension": "curiosity",
+      "text": "如果用一句话概括你的测试画像，那就是持续发现新的可能，不让生活只剩重复。"
+    },
+    {
+      "id": "summary_147",
+      "dimension": "independence",
+      "text": "如果用一句话概括你的测试画像，那就是保留选择权，按照自己认可的方式生活。"
+    },
+    {
+      "id": "summary_148",
+      "dimension": "empathy",
+      "text": "如果用一句话概括你的测试画像，那就是在理解别人和保护自己之间找到柔软的边界。"
+    },
+    {
+      "id": "summary_149",
+      "dimension": "competitiveness",
+      "text": "如果用一句话概括你的测试画像，那就是给自己一个值得投入的目标，然后不断验证能力。"
+    },
+    {
+      "id": "summary_150",
+      "dimension": "adaptability",
+      "text": "如果用一句话概括你的测试画像，那就是不被单一剧本绑住，在变化里迅速重新找到方向。"
+    }
+  ],
+  "advice_templates": [
+    {
+      "id": "advice_action_1",
+      "dimension": "action",
+      "level": "high",
+      "text": "行动力较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"
+    },
+    {
+      "id": "advice_action_2",
+      "dimension": "action",
+      "level": "mid",
+      "text": "行动力处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"
+    },
+    {
+      "id": "advice_action_3",
+      "dimension": "action",
+      "level": "low",
+      "text": "行动力较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"
+    },
+    {
+      "id": "advice_social_1",
+      "dimension": "social",
+      "level": "high",
+      "text": "社交性较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"
+    },
+    {
+      "id": "advice_social_2",
+      "dimension": "social",
+      "level": "mid",
+      "text": "社交性处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"
+    },
+    {
+      "id": "advice_social_3",
+      "dimension": "social",
+      "level": "low",
+      "text": "社交性较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"
+    },
+    {
+      "id": "advice_rational_1",
+      "dimension": "rational",
+      "level": "high",
+      "text": "理性较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"
+    },
+    {
+      "id": "advice_rational_2",
+      "dimension": "rational",
+      "level": "mid",
+      "text": "理性处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"
+    },
+    {
+      "id": "advice_rational_3",
+      "dimension": "rational",
+      "level": "low",
+      "text": "理性较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"
+    },
+    {
+      "id": "advice_emotional_1",
+      "dimension": "emotional",
+      "level": "high",
+      "text": "感性较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"
+    },
+    {
+      "id": "advice_emotional_2",
+      "dimension": "emotional",
+      "level": "mid",
+      "text": "感性处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"
+    },
+    {
+      "id": "advice_emotional_3",
+      "dimension": "emotional",
+      "level": "low",
+      "text": "感性较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"
+    },
+    {
+      "id": "advice_stability_1",
+      "dimension": "stability",
+      "level": "high",
+      "text": "稳定性较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"
+    },
+    {
+      "id": "advice_stability_2",
+      "dimension": "stability",
+      "level": "mid",
+      "text": "稳定性处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"
+    },
+    {
+      "id": "advice_stability_3",
+      "dimension": "stability",
+      "level": "low",
+      "text": "稳定性较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"
+    },
+    {
+      "id": "advice_curiosity_1",
+      "dimension": "curiosity",
+      "level": "high",
+      "text": "好奇心较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"
+    },
+    {
+      "id": "advice_curiosity_2",
+      "dimension": "curiosity",
+      "level": "mid",
+      "text": "好奇心处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"
+    },
+    {
+      "id": "advice_curiosity_3",
+      "dimension": "curiosity",
+      "level": "low",
+      "text": "好奇心较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"
+    },
+    {
+      "id": "advice_independence_1",
+      "dimension": "independence",
+      "level": "high",
+      "text": "独立性较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"
+    },
+    {
+      "id": "advice_independence_2",
+      "dimension": "independence",
+      "level": "mid",
+      "text": "独立性处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"
+    },
+    {
+      "id": "advice_independence_3",
+      "dimension": "independence",
+      "level": "low",
+      "text": "独立性较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"
+    },
+    {
+      "id": "advice_empathy_1",
+      "dimension": "empathy",
+      "level": "high",
+      "text": "共情力较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"
+    },
+    {
+      "id": "advice_empathy_2",
+      "dimension": "empathy",
+      "level": "mid",
+      "text": "共情力处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"
+    },
+    {
+      "id": "advice_empathy_3",
+      "dimension": "empathy",
+      "level": "low",
+      "text": "共情力较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"
+    },
+    {
+      "id": "advice_competitiveness_1",
+      "dimension": "competitiveness",
+      "level": "high",
+      "text": "竞争性较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"
+    },
+    {
+      "id": "advice_competitiveness_2",
+      "dimension": "competitiveness",
+      "level": "mid",
+      "text": "竞争性处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"
+    },
+    {
+      "id": "advice_competitiveness_3",
+      "dimension": "competitiveness",
+      "level": "low",
+      "text": "竞争性较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"
+    },
+    {
+      "id": "advice_adaptability_1",
+      "dimension": "adaptability",
+      "level": "high",
+      "text": "适应性较强时，不妨偶尔给相反的做法留一点空间，避免优势变成惯性。"
+    },
+    {
+      "id": "advice_adaptability_2",
+      "dimension": "adaptability",
+      "level": "mid",
+      "text": "适应性处在中间区间时，你最大的优势是可切换。关键是根据场景主动选择，而不是被动摇摆。"
+    },
+    {
+      "id": "advice_adaptability_3",
+      "dimension": "adaptability",
+      "level": "low",
+      "text": "适应性较低并不是缺点，它更像一种偏好。需要时可以通过小步骤练习补足，但没必要强行把自己改成另一种人。"
+    }
+  ]
+}
