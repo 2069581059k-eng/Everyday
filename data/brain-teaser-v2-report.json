@@ -1,0 +1,869 @@
+{
+  "date": "2026-09-10",
+  "source": "脑筋急转弯_312题优化后题库_v2.json（用户提供：107 条低分题重写，评分 4-5；2 条转义污染经反转义与旧内容一致）",
+  "kept": 205,
+  "replaced": 107,
+  "escapeFixedIds": [
+    82,
+    152
+  ],
+  "replacedItems": [
+    {
+      "position": 3,
+      "inputId": 501,
+      "oldQuestion": "放烟火时为什么不会射到星星？",
+      "question": "什么“星”不在天上，却常在海里？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 5,
+      "inputId": 503,
+      "oldQuestion": "有爷俩，娘俩和兄妹俩，只有6个烧饼，但却每人分得了两个，这是为什么？",
+      "question": "爷爷、爸爸和儿子一起出门，明明有两个父亲、两个儿子，为什么只有三个人？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 9,
+      "inputId": 507,
+      "oldQuestion": "中国人为什么人口这么多？",
+      "question": "什么人每天都在你的眼前，却永远不会跟你说话？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 10,
+      "inputId": 508,
+      "oldQuestion": "文劭乘电梯上12楼，中间没有停，用了60秒；下楼时也没有停，却用了５分钟，为什么呢？",
+      "question": "小文上12楼坐电梯只用1分钟，下楼却用了5分钟，为什么？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 16,
+      "inputId": 514,
+      "oldQuestion": "小男孩和小女孩在一起不能玩什么游戏？",
+      "question": "两个从小一起长大的好朋友，最不适合玩什么“猜”的游戏？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 17,
+      "inputId": 515,
+      "oldQuestion": "一只羊碰到一头老虎，非但不怕，而且还把那头老虎给吃了，这是怎么回事？",
+      "question": "一只羊遇到一只老虎，不但不怕，还一口把老虎吃了，为什么？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 23,
+      "inputId": 521,
+      "oldQuestion": "印度人为什么用手抓饭吃？",
+      "question": "吃面条时，最不适合用什么“夹”？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 30,
+      "inputId": 528,
+      "oldQuestion": "尼克的法语不好，他去法国旅游时吃苦头了吗？",
+      "question": "小王一句法语都不会，去法国旅游却说自己一路没吃过“苦头”，为什么？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 31,
+      "inputId": 529,
+      "oldQuestion": "一个招牌突然由高处掉落,砸向并排行走的五个人,为什么只有三个人受伤",
+      "question": "五个人共撑一把伞走了十分钟，为什么一个人也没淋湿？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 42,
+      "inputId": 540,
+      "oldQuestion": "孔子和孟子有什么不同？",
+      "question": "孔子、孟子和老子站在一起，谁的名字听起来最年长？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 56,
+      "inputId": 554,
+      "oldQuestion": "著名歌手罗大佑有一天出现在热闹的西门町街头，为什么却没有半个人认出他来？",
+      "question": "一个著名歌手出现在街头，大家都看见了他，却没人上前要签名，为什么？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 57,
+      "inputId": 555,
+      "oldQuestion": "如果恐龙没有绝迹，世界将会变成什么样子？",
+      "question": "哪种鹿最容易“迷路”？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 60,
+      "inputId": 558,
+      "oldQuestion": "为什么很多学生上课会打瞌睡？",
+      "question": "小明上课一直闭着眼，老师为什么没有批评他？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 61,
+      "inputId": 559,
+      "oldQuestion": "为什么养长颈鹿最不花钱？",
+      "question": "长颈鹿为什么脖子那么长？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 63,
+      "inputId": 561,
+      "oldQuestion": "有两个棋友在一天中共下了9盘棋，在没有和局的情况下他俩赢的次数相同，这是怎么一回事？",
+      "question": "两个棋友一天一共下了9盘棋，没有和局，两人的胜局数却一样，为什么？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 64,
+      "inputId": 562,
+      "oldQuestion": "共汽车上，两个人正在热烈的交谈，可围观的人却一句话也听不到，这是因为什么？",
+      "question": "公交车上两个人聊得很热烈，旁边的人为什么一句也听不到？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 66,
+      "inputId": 564,
+      "oldQuestion": "小胖上完厕所为什么不洗手？",
+      "question": "小胖从厕所出来却没有洗手，为什么？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 67,
+      "inputId": 565,
+      "oldQuestion": "某人用面条上吊，结果真的死了。为什么？",
+      "question": "什么“面”永远不能当饭吃？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 70,
+      "inputId": 568,
+      "oldQuestion": "许仙遇见白蛇后，发生了什么事？",
+      "question": "许仙和白娘子的故事，为什么大家都说“传”得很广？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 71,
+      "inputId": 569,
+      "oldQuestion": "有个人说用牙齿可以判断„„",
+      "question": "不用看包装，怎样用牙齿判断一块鸡肉老不老？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 76,
+      "inputId": 574,
+      "oldQuestion": "有一段100公尺长的铁轨上面每隔1公分放一条横木，请问共有几条横木？",
+      "question": "火车飞驰而过，为什么车轮从来不会直接压到枕木？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 83,
+      "inputId": 581,
+      "oldQuestion": "有一个女孩子穿着泳衣在沙滩上走，为什么在她的身后却没有脚印？",
+      "question": "女孩倒着走过沙滩，为什么她身后没有新脚印？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 84,
+      "inputId": 582,
+      "oldQuestion": "外国人问路，小明拼命有英语对他说，他却一点也听不懂，这是为什么？",
+      "question": "一个外国人问路，小明用英语回答，他为什么还是听不懂？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 87,
+      "inputId": 585,
+      "oldQuestion": "有一只老鼠碰到一堆屎,从上面过去了却留下三只脚印问为什么？（注不是三只脚）",
+      "question": "一只四脚小狗走过泥地，为什么只留下三种脚印？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 90,
+      "inputId": 588,
+      "oldQuestion": "要如何让一块钱浮在水面上",
+      "question": "怎样让一枚硬币浮在水面上，又不粘胶水？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 94,
+      "inputId": 592,
+      "oldQuestion": "李老板养了一些红金鱼和一些黑金鱼，他发现红金鱼吃掉的鱼食是黑金鱼的2倍，这是什么原因？",
+      "question": "每条金鱼吃得一样多，为什么红金鱼一天吃掉的鱼食总量是黑金鱼的两倍？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 96,
+      "inputId": 594,
+      "oldQuestion": "小明每天都和妈妈上街买菜，每次都捉着妈妈的裙子，但这次却迷路了，为什么？",
+      "question": "小明平时都牵妈妈的手逛街，今天也牵着一只手，却还是迷路了，为什么？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 97,
+      "inputId": 595,
+      "oldQuestion": "不小心溺水时，若附近沒有其他人该如何自救？",
+      "question": "什么东西掉进水里也不会湿？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 99,
+      "inputId": 597,
+      "oldQuestion": "江河流水归一处（打一字）",
+      "question": "“一口咬掉牛尾巴”，打一字。",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 102,
+      "inputId": 600,
+      "oldQuestion": "超人和女超人做完俯地挺身后，地上各有一个洞及二个洞，是怎么回事？",
+      "question": "两个人在松软沙地做俯卧撑，一个留下一个手坑，另一个留下两个，为什么？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 104,
+      "inputId": 602,
+      "oldQuestion": "乌龟为什么会突然「一个头两个大」？",
+      "question": "乌龟把头和四肢全缩进壳里后，外面还剩什么？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 107,
+      "inputId": 605,
+      "oldQuestion": "一家洗衣店招牌写着“二十四小时交货”，今天小高拿去洗，为何老板说要三天后才能拿到？",
+      "question": "洗衣店每天营业8小时，招牌写“24小时交货”，为什么老板说三天后取？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 108,
+      "inputId": 606,
+      "oldQuestion": "一条专门吃人的鳄鱼为什么也能获准进入天堂？",
+      "question": "一条鳄鱼整天张着嘴，却从来不吃东西，为什么？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 110,
+      "inputId": 608,
+      "oldQuestion": "为什么刘备三顾茅庐，诸葛亮才肯见他？",
+      "question": "刘备为什么要三顾茅庐才见到诸葛亮？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 112,
+      "inputId": 610,
+      "oldQuestion": "为什么女人穿高跟鞋后，就代表她快结婚了",
+      "question": "什么鞋永远都买不到合脚的尺码？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 114,
+      "inputId": 612,
+      "oldQuestion": "法国人的笑声跟我们有什么不同？",
+      "question": "什么语言不需要张嘴也能完整表达？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 118,
+      "inputId": 616,
+      "oldQuestion": "为什么有很多女孩子嫁给职业军人？",
+      "question": "哪一种“兵”从来不用真的上战场？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 119,
+      "inputId": 617,
+      "oldQuestion": "小云和阿花已经结婚了，为什么他们还偷偷摸摸的约会呢？",
+      "question": "小云和阿花都已经结婚了，为什么她们还经常出去约会？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 123,
+      "inputId": 621,
+      "oldQuestion": "最具有经济价值的瓜类是哪一种？",
+      "question": "什么“瓜”永远不能拿来炒菜？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 132,
+      "inputId": 630,
+      "oldQuestion": "米的外公是谁？",
+      "question": "“米”的妈妈是谁？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 135,
+      "inputId": 633,
+      "oldQuestion": "为什么一架纸飞机，造价一亿台币？",
+      "question": "一架纸飞机为什么值100元？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 136,
+      "inputId": 634,
+      "oldQuestion": "有一天，小英看到小明随即惊叫，小明见状，也跟着惊叫，为什么？",
+      "question": "两个人面对面站着，为什么谁也看不见谁？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 139,
+      "inputId": 637,
+      "oldQuestion": "江家有三个女儿，大女儿、二女儿、三女儿。谁的身材最辣？",
+      "question": "姜家三姐妹里，谁最“辣”？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 141,
+      "inputId": 639,
+      "oldQuestion": "印度人为什么用手抓饭？",
+      "question": "什么“勺子”不能拿来喝汤？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 143,
+      "inputId": 641,
+      "oldQuestion": "为什么两个孩子恰恰好？",
+      "question": "兄弟两人明明同年同月同日生，为什么却不是双胞胎？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 146,
+      "inputId": 644,
+      "oldQuestion": "安妮的医师男友到外地出差一年，每两天会写一封情书给安妮，请问两个月之后，安妮会收到几封情书？",
+      "question": "安妮的男友每两天写一封信，坚持两个月，她却一封也没收到，为什么？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 147,
+      "inputId": 645,
+      "oldQuestion": "哪种人希望孩子越多越好？",
+      "question": "什么“票”不能坐车，也不能看电影？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 153,
+      "inputId": 651,
+      "oldQuestion": "路边电线杆上蹲着一只猴子，司机小李看到就立刻停下车来，请问为什么",
+      "question": "红灯坏了，司机为什么还是乖乖停下？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 158,
+      "inputId": 656,
+      "oldQuestion": "小丁在游泳池游泳，游着游着，为什么水突然变深了？",
+      "question": "游泳池一滴水也没增加，小丁却觉得水越来越深，为什么？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 164,
+      "inputId": 662,
+      "oldQuestion": "为什么食人族只有在烹煮女明星时要放入一大堆牛粪来调味？",
+      "question": "什么东西越分享，自己反而可能拥有得越多？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 169,
+      "inputId": 667,
+      "oldQuestion": "武士刀和日本人有什么关系？",
+      "question": "什么“刀”不能拿来切菜？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 172,
+      "inputId": 670,
+      "oldQuestion": "一个警察有个弟弟，但弟弟却否认有个哥哥，为什么？",
+      "question": "一个警察有个弟弟，弟弟却说自己没有哥哥，为什么？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 174,
+      "inputId": 672,
+      "oldQuestion": "两只猫头鹰在聊天,其中一只说它可以在白天出门而不用戴墨镜,为什么",
+      "question": "什么“猫”不会抓老鼠，却经常在夜里活动？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 177,
+      "inputId": 675,
+      "oldQuestion": "为什么女人的衣服总是少一件？",
+      "question": "什么衣服永远不会穿旧？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 179,
+      "inputId": 677,
+      "oldQuestion": "鱼儿为什么不说话？",
+      "question": "什么鱼永远不会游泳？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 181,
+      "inputId": 679,
+      "oldQuestion": "为什么男生年满廿岁就一定要入伍当兵？",
+      "question": "什么“军”从来没有真正的士兵？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 183,
+      "inputId": 681,
+      "oldQuestion": "在一场足球赛前，你可以准确地告诉我比分吗？",
+      "question": "一场足球赛还没开始，你能准确说出当时的比分吗？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 189,
+      "inputId": 687,
+      "oldQuestion": "晴朗的天空，为什么没有太阳？？",
+      "question": "天空万里无云，却完全看不到太阳，为什么？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 190,
+      "inputId": 688,
+      "oldQuestion": "为什么老陈会说他少了女人一天也活不下去？",
+      "question": "什么东西每天都在变，却从来不会自己走一步？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 191,
+      "inputId": 689,
+      "oldQuestion": "善有善报，恶有恶报是什么意思？",
+      "question": "什么“报”从来没有新闻？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 195,
+      "inputId": 693,
+      "oldQuestion": "一艘正在水中航行的船为什么会突然消失得无影无综",
+      "question": "浴缸里一艘小船正在“航行”，为什么突然消失了？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 196,
+      "inputId": 694,
+      "oldQuestion": "两岁的叮当为什么看到隔壁的欧巴桑都叫她“伯伯”，而对方却一点也不生气？",
+      "question": "小明的爸爸有三个儿子：大毛、二毛，第三个叫什么？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 199,
+      "inputId": 697,
+      "oldQuestion": "考一个亲戚称呼问题，如果你曾祖父的儿子，就是娶了你妈妈的那个人，你应该叫他什么？",
+      "question": "你爸爸的儿子既不是你哥哥，也不是你弟弟，他是谁？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 200,
+      "inputId": 698,
+      "oldQuestion": "彩色丝袜已经变成一种流行，为什么红色系列在台湾销售得最差？",
+      "question": "什么袜子永远不会湿？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 206,
+      "inputId": 704,
+      "oldQuestion": "什么时候是老二最爽的时候？",
+      "question": "家里的老二什么时候能排在老大前面？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 208,
+      "inputId": 706,
+      "oldQuestion": "为什么小弟开车遇见交叉道从不停车",
+      "question": "小弟开车经过很多路口却从不停车，为什么？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 210,
+      "inputId": 708,
+      "oldQuestion": "为什么杀人要被判刑，杀蟑螂却不用",
+      "question": "什么“球”离你很近，却永远不能拿脚踢？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 212,
+      "inputId": 710,
+      "oldQuestion": "林老生大手术后换了一个人工心脏。病好了后,她的女友却马上提出分手,为什么会这样",
+      "question": "小林换了人工心脏后，朋友为什么开玩笑说他“没真心”？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 213,
+      "inputId": 711,
+      "oldQuestion": "阿火在营光日的考试全部答对，为什么却没得到满分？",
+      "question": "小光把判断题全部答对了，为什么还是得了0分？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 214,
+      "inputId": 712,
+      "oldQuestion": "波霸参加500公尺赛跑，一路领先的波霸不慎摔了一大跤却还能得第一名，为什么？",
+      "question": "赛跑中一路领先的人摔了一跤，为什么仍然是第一名？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 215,
+      "inputId": 713,
+      "oldQuestion": "苹果树上有一个苹果，一只小猴，请问树上有几个苹果，几只猴？",
+      "question": "树上有5只鸟，一声巨响后为什么一只也没了？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 216,
+      "inputId": 714,
+      "oldQuestion": "嫦娥为什么后悔上广寒宫？",
+      "question": "什么“月”不用翻日历，抬头就可能看见？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 222,
+      "inputId": 720,
+      "oldQuestion": "什么人最喜欢日光浴？",
+      "question": "什么“花”再漂亮也不能插进花瓶？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 226,
+      "inputId": 724,
+      "oldQuestion": "为什么父亲一发现皮夹里的钱数目少了一半后，便一口咬定是儿子干的好事，为什么？",
+      "question": "爸爸发现钱包里的钱少了一半，为什么立刻知道是儿子拿的？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 229,
+      "inputId": 727,
+      "oldQuestion": "唐老鸭最怕什么事？",
+      "question": "鸭子最怕哪个字？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 231,
+      "inputId": 729,
+      "oldQuestion": "为什么蝙蝠会经常倒吊着？",
+      "question": "什么动物一出生就像背着一座房子走？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 232,
+      "inputId": 730,
+      "oldQuestion": "一向最爱吃蛋糕的大宝，今天为什么连面前那14小块蛋糕都吃不下呢？",
+      "question": "大宝最爱吃蛋糕，面前14块蛋糕却一块也不能吃，为什么？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 235,
+      "inputId": 733,
+      "oldQuestion": "在火车站绝不可能发生什么事？",
+      "question": "火车站里什么东西天天等火车，却永远不上车？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 236,
+      "inputId": 734,
+      "oldQuestion": "70元的牛排，付帐时只付了210元，为什么？",
+      "question": "一张方桌有4个角，锯掉其中1个角后还剩几个角？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 237,
+      "inputId": 735,
+      "oldQuestion": "歌仔戏和歌剧有什么不一样？",
+      "question": "什么“歌”不用嘴唱也能出现？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 241,
+      "inputId": 739,
+      "oldQuestion": "警察面对两名歹徒，但他只剩下一颗子弹，他对歹徒说：谁动就打谁，结果没动的反而挨子弹，为什么？",
+      "question": "两个人比赛憋笑，为什么先笑的人反而赢了？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 242,
+      "inputId": 740,
+      "oldQuestion": "有一位老奶奶在看报，一只蚊子正想要叮她，老奶奶手和脚都没动，为什么蚊子会突然死掉了？",
+      "question": "一只蚊子停在玻璃外面，为什么怎么也叮不到屋里的人？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 246,
+      "inputId": 744,
+      "oldQuestion": "小明看书的时候，为什么不能把书签放在175页和176页之间？",
+      "question": "为什么书签不能夹在第175页和第176页之间？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 251,
+      "inputId": 749,
+      "oldQuestion": "有个人被恐龙一口咬住，又在嘴里嚼了好几下，为什么没有受伤？",
+      "question": "一个人被恐龙咬住却一点也不疼，为什么？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 252,
+      "inputId": 750,
+      "oldQuestion": "日本人的腿为什么比较短？",
+      "question": "什么人跑得再快也永远追不上自己的影子？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 255,
+      "inputId": 753,
+      "oldQuestion": "据说前一阵子“ET”离开地球以后，英文字母只剩24个字，但是最新消息听是15个字，为什么？",
+      "question": "英文字母里哪两个字母见面时最像在打招呼？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 256,
+      "inputId": 754,
+      "oldQuestion": "为什么女人穿高跟鞋后，就代表她想要结婚了",
+      "question": "什么鞋穿在脚上，却一步也走不了？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 259,
+      "inputId": 757,
+      "oldQuestion": "世界上最长的单词是什么？",
+      "question": "哪个英文单词看起来“最长”？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 262,
+      "inputId": 760,
+      "oldQuestion": "小王开医院，生意一直不是很如意，一天他的医院突然车水马龙排了一大堆人，为什么？",
+      "question": "一家医院突然来了很多人，却没有一个人生病，为什么？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 263,
+      "inputId": 761,
+      "oldQuestion": "琼斯练钢琴，除了妈妈给钱，还有谁给？",
+      "question": "小琼练钢琴，除了妈妈给他钱，邻居也给他钱，为什么？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 265,
+      "inputId": 763,
+      "oldQuestion": "兔子的眼睛为什么是红的？",
+      "question": "什么兔子从来不会跳？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 267,
+      "inputId": 765,
+      "oldQuestion": "某部队弹尽粮绝的被包围了很久，空军终于赶到，却只空投了一块大石头又飞走了，为什么？",
+      "question": "什么东西从天上落下来，越积越厚，却从来不会摔疼？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 269,
+      "inputId": 767,
+      "oldQuestion": "爸爸要小明背论语，他一分钟就背了整本书，难道小明是天才吗？",
+      "question": "爸爸让小明把整本《论语》“背起来”，他一分钟就做到了，为什么？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 270,
+      "inputId": 768,
+      "oldQuestion": "英国国王为什么是女性",
+      "question": "哪位“王”住在蜂巢里，却没有王宫和王冠？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 271,
+      "inputId": 769,
+      "oldQuestion": "小红帽从大野狼面前走过，大野狼为何没有发现她？",
+      "question": "小红帽从大灰狼面前走过，大灰狼为什么没认出她？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 279,
+      "inputId": 777,
+      "oldQuestion": "为什么爱斯基摩人是唯一住在北极的人呢",
+      "question": "北极熊为什么从来不吃企鹅？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 285,
+      "inputId": 783,
+      "oldQuestion": "三国美男子周瑜，为什么会感慨的说：“既生瑜，何生亮”呢？",
+      "question": "周瑜和诸葛亮的名字里，哪个字看起来更“亮”？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 286,
+      "inputId": 784,
+      "oldQuestion": "恐龙为什么会灭亡？",
+      "question": "博物馆里的恐龙为什么从来不会逃跑？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 287,
+      "inputId": 785,
+      "oldQuestion": "为什么婴儿一出生就大哭？",
+      "question": "哪个婴儿从来不会哭？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 288,
+      "inputId": 786,
+      "oldQuestion": "传说在古代的地球有十个太阳，但是现在为什么只剩一个？",
+      "question": "什么太阳永远晒不热人？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 289,
+      "inputId": 787,
+      "oldQuestion": "“只”字加一笔，变成什么字？",
+      "question": "“王”字加一点，变成什么字？",
+      "qualityScore": 5,
+      "optimized": true
+    },
+    {
+      "position": 298,
+      "inputId": 796,
+      "oldQuestion": "废除早自习会造成什么影响？",
+      "question": "什么“考试”不用写一道题，也可能顺利通过？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 302,
+      "inputId": 800,
+      "oldQuestion": "一个人在太阳下走路却看不见自己的影子,为什么",
+      "question": "一个人在太阳下走路，却怎么也看不到自己的影子，为什么？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 303,
+      "inputId": 801,
+      "oldQuestion": "为什么胖的人比瘦的人怕热？",
+      "question": "什么东西天气越热，反而穿得越“厚”？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 305,
+      "inputId": 803,
+      "oldQuestion": "为什么只看过“小说”，没看过“大说”？",
+      "question": "为什么“小说”再长也还是叫小说？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 306,
+      "inputId": 804,
+      "oldQuestion": "弗兰克林在雷雨中放风筝时说了什么",
+      "question": "什么风筝永远也飞不上天？",
+      "qualityScore": 4,
+      "optimized": true
+    },
+    {
+      "position": 311,
+      "inputId": 809,
+      "oldQuestion": "移防到马祖的大兵阿明以女友即将生产为由申请返台，为什么却没有被批准？",
+      "question": "什么门永远关不上？",
+      "qualityScore": 5,
+      "optimized": true
+    }
+  ],
+  "note": "仅替换脑筋急转弯分类；source/provenance 审计字段保持指向原始数据集（ChineseDatasets/brainteasers + 用户压缩包）；qualityScore/optimized 元数据随条目保留"
+}

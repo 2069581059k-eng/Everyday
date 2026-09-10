@@ -4,6 +4,8 @@
       <div class="qa-mode" show="{{isQaItem}}">
         <text class="quiz-kicker">{{quizCategory}}</text>
         <text class="quiz-count">{{quizPos}} / {{quizTotal}}</text>
+        <input class="kn-heart" show="{{!heartFilled}}" type="button" value="♡" onclick="toggleFavorite" />
+        <input class="kn-heart kn-heart-on" show="{{heartFilled}}" type="button" value="♥" onclick="toggleFavorite" />
         <input class="kn-home" type="button" value="返回主页" onclick="goHome" />
 
         <div class="quiz-question-box">
@@ -22,6 +24,8 @@
       <div class="read-mode" show="{{!isQaItem}}">
         <text class="read-kicker">{{quizCategory}}</text>
         <text class="read-count">{{quizPos}} / {{quizTotal}}</text>
+        <input class="kn-heart" show="{{!heartFilled}}" type="button" value="♡" onclick="toggleFavorite" />
+        <input class="kn-heart kn-heart-on" show="{{heartFilled}}" type="button" value="♥" onclick="toggleFavorite" />
         <input class="kn-home kn-home-read" type="button" value="返回主页" onclick="goHome" />
         <text class="read-title">{{riddleQuestion}}</text>
         <text class="read-text">{{riddleExplain}}</text>
@@ -45,16 +49,19 @@ import brightness from '@system.brightness'
 import { RIDDLES } from '../../common/data/knowledge.js'
 import { dayInfo } from '../../common/utils/date.js'
 import { isQaMode, knowledgeDetail, knowledgeAnswer, dailyRiddles, shouldResetQuizProgress } from '../../common/utils/knowledge.js'
+import { FAVORITES_KEY, makeKnowledgeFavorite, toggleFavorite, hasFavorite } from '../../common/utils/favorites.js'
 
 const STORAGE_KEY = 'daily_quote_knowledge_v1'
 const today = dayInfo(new Date())
 const dailyRiddleList = dailyRiddles(RIDDLES, today.dayNumber)
 let quizState = { quizDay: -1, quizIndex: 0, quizViewed: [] }
+let favoritesItems = []
 
 export default {
   // AIoT/Vela 页面数据必须放在 private 中，顶层属性不会被当作模板数据源
   private: {
     stateReady: false,
+    heartFilled: false,
     quizCategory: '',
     quizPos: 0,
     quizTotal: 0,
@@ -82,6 +89,27 @@ export default {
       page.stateReady = true
       page.renderQuiz()
     }
+    // 收藏室存档（爱心状态用）
+    try {
+      storage.get({
+        key: FAVORITES_KEY,
+        default: '',
+        success(favData) {
+          if (favData) try {
+            const savedFav = JSON.parse(favData)
+            if (savedFav && Array.isArray(savedFav.items)) favoritesItems = savedFav.items
+          } catch (error) {
+            console.log('收藏室存档解析失败: ' + error)
+          }
+          page.loadQuizState(finishLoad)
+        },
+        fail() { page.loadQuizState(finishLoad) }
+      })
+    } catch (error) { this.loadQuizState(finishLoad) }
+  },
+
+  loadQuizState(finishLoad) {
+    const page = this
     try {
       storage.get({
         key: STORAGE_KEY,
@@ -133,6 +161,32 @@ export default {
     } catch (error) { console.log('知识进度保存不可用: ' + error) }
   },
 
+  saveFavorites() {
+    try {
+      storage.set({
+        key: FAVORITES_KEY,
+        value: JSON.stringify({ items: favoritesItems }),
+        fail(data, code) { console.log('收藏室存档保存失败: ' + code) }
+      })
+    } catch (error) { console.log('存储模块不可用: ' + error) }
+  },
+
+  // 爱心收藏当前题目（快照式：题干/答案/解析，收藏室无需再导题库）
+  toggleFavorite() {
+    if (!this.stateReady) return
+    const riddle = dailyRiddleList[quizState.quizIndex]
+    if (!riddle) return
+    toggleFavorite(favoritesItems, makeKnowledgeFavorite(riddle))
+    this.saveFavorites()
+    this.refreshHeart()
+    this.pulse('short')
+  },
+
+  refreshHeart() {
+    const riddle = dailyRiddleList[quizState.quizIndex]
+    this.heartFilled = riddle ? hasFavorite(favoritesItems, 'k' + riddle.question) : false
+  },
+
   renderQuiz() {
     const list = dailyRiddleList
     const idx = Math.max(0, Math.min(quizState.quizIndex, list.length - 1))
@@ -159,6 +213,7 @@ export default {
     this.nextDisabled = idx >= list.length - 1
     this.prevLabel = idx <= 0 ? '已是第一题' : '上一题'
     this.nextLabel = idx >= list.length - 1 ? '已是最后一题' : '下一题'
+    this.refreshHeart()
   },
 
   revealAnswer() {
@@ -220,13 +275,15 @@ export default {
 </script>
 
 <style>
-.kn-home { position: absolute; left: 236px; top: 7px; width: 66px; height: 30px; border-width: 1px; border-color: #cfc4b5; border-radius: 4px; background-color: #f8f3e9; color: #766c61; font-size: 14px; }
-.kn-home-read { left: 236px; top: 7px; }
+.kn-heart { position: absolute; left: 186px; top: 7px; width: 38px; height: 30px; border-width: 1px; border-color: #d4c9ba; border-radius: 4px; background-color: #f8f3e9; color: #9a8e81; font-size: 17px; }
+.kn-heart-on { border-color: #a83b2d; background-color: #fdf0ec; color: #a83b2d; font-weight: bold; }
+.kn-home { position: absolute; left: 232px; top: 7px; width: 70px; height: 30px; border-width: 1px; border-color: #cfc4b5; border-radius: 4px; background-color: #f8f3e9; color: #766c61; font-size: 14px; }
+.kn-home-read { left: 232px; top: 7px; }
 .quiz-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: #f2eee5; }
 .quiz-panel { position: absolute; left: 12px; top: 12px; width: 312px; height: 456px; border-width: 1px; border-color: #d2c7b8; border-radius: 6px; background-color: #fffdf8; }
 .qa-mode { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
-.quiz-kicker { position: absolute; left: 16px; top: 10px; width: 150px; height: 20px; line-height: 20px; color: #a83b2d; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
-.quiz-count { position: absolute; left: 170px; top: 13px; width: 60px; height: 16px; line-height: 16px; color: #94887c; font-size: 11px; text-align: right; }
+.quiz-kicker { position: absolute; left: 16px; top: 10px; width: 110px; height: 20px; line-height: 20px; color: #a83b2d; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
+.quiz-count { position: absolute; left: 130px; top: 13px; width: 52px; height: 16px; line-height: 16px; color: #94887c; font-size: 11px; text-align: right; }
 .quiz-question-box { position: absolute; left: 16px; top: 48px; width: 280px; height: 130px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fbf7f0; }
 .quiz-question { position: absolute; left: 10px; top: 8px; width: 260px; height: 114px; color: #2c2722; font-size: 23px; font-weight: bold; line-height: 29px; text-align: center; }
 .quiz-reveal-btn { position: absolute; left: 36px; top: 198px; width: 240px; height: 44px; border-radius: 4px; background-color: #a83b2d; color: #fffaf2; font-size: 18px; font-weight: bold; }
@@ -235,8 +292,8 @@ export default {
 .quiz-explain { position: absolute; left: 10px; top: 34px; width: 260px; height: 130px; color: #29241f; font-size: 18px; font-weight: bold; line-height: 24px; }
 .detail-next { position: absolute; left: 50px; top: 168px; width: 180px; height: 30px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
 .read-mode { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
-.read-kicker { position: absolute; left: 16px; top: 10px; width: 150px; height: 20px; line-height: 20px; color: #a83b2d; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
-.read-count { position: absolute; left: 170px; top: 13px; width: 60px; height: 16px; line-height: 16px; color: #94887c; font-size: 11px; text-align: right; }
+.read-kicker { position: absolute; left: 16px; top: 10px; width: 110px; height: 20px; line-height: 20px; color: #a83b2d; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
+.read-count { position: absolute; left: 130px; top: 13px; width: 52px; height: 16px; line-height: 16px; color: #94887c; font-size: 11px; text-align: right; }
 .read-title { position: absolute; left: 18px; top: 46px; width: 276px; height: 58px; color: #2c2722; font-size: 19px; font-weight: bold; line-height: 24px; text-align: center; }
 .read-text { position: absolute; left: 18px; top: 112px; width: 276px; height: 248px; color: #29241f; font-size: 20px; font-weight: bold; line-height: 28px; text-align: left; }
 .read-next { position: absolute; left: 56px; top: 372px; width: 200px; height: 30px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }

@@ -1,5 +1,21 @@
 # 当前交接
 
+## 2026-09-10 · Trae Code 1.8.14 题库v2 + 收藏室 + 首页改版 + 宜模板扩充（分支 trae/v1.8.14-revamp）
+
+- 任务（用户要求）：①脑筋急转弯题库替换为优化后 v2（312 题 JSON）；②收藏改爱心交互 + 新增收藏室；③首页布局重做（换一句/抽签拆分为独立按钮，突出每日一言）；④「宜」模板明显扩充；⑤「灵光」功能与代码全量移除；⑥保持多页面架构，index 不回退为巨石页面。
+- 改动文件：
+  - 新增：`src/pages/favorites/favorites.ux`（收藏室独立页：列表分页/详情长文分页/取消收藏/空态）、`src/common/utils/favorites.js`（三页共享收藏数据层）、`src/common/data/fortune_templates.js`（宜行动 64 条 + 五档签级 + 配色）、`data/brain-teaser-v2-report.json`（v2 替换审计报告）
+  - 修改：`src/pages/index/index.ux`（首页改版 + 旧收藏迁移修复）、`src/pages/knowledge/knowledge.ux`（爱心收藏当前题目）、`src/common/utils/zodiac.js`（宜/签运模板迁出）、`src/manifest.json`（版本 1.8.14/10814 + 注册 pages/favorites）、`src/common/data/knowledge.js` 与 `data/final-input.json`/`data/knowledge-selected.json`（题库 v2 重新生成）、`tools/generate-quotes.mjs`（v2 元数据透传）、`tools/verify-game.mjs`（15+ 条新断言）
+- **P1 修复（模拟器验收发现）**：旧版收藏迁移源数组不清除 → 用户删除旧收藏后每次进首页重新迁移"复活"。修复：迁移完成后立即回写 v1 存档（`legacyMigrated` 模块标志 + `saveState()` 覆盖清除 `favorites` 数组），迁移只发生一次；防回退断言已入 verify-game.mjs。
+- **验收记录（按模拟器验收门槛）**：
+  - 验收时间：2026-09-10 21:05–21:30（GMT+8）
+  - 模拟器：Trae_AGI（Vela Band 10 Pro，336×480，端口 5578 / gRPC 8578），冷重启后验收（规避 AOD 灰屏假阳性）；安装版本经 `manifest-watch.json` 核对为 1.8.14 / 10814
+  - 源码快照：Workspace → `Temp\build-1.8.14-trae-20260910b`（独立无 .git 构建副本，npm test 全绿 → inline-modules 内联 → aiot build --enable-jsc）
+  - 安装包：`dist/com.dailyquote.band10pro.debug.1.8.14.rpk`，1,068,749 B，SHA-256 `144E2F1532B63EFFE2765E3FFF5E43D1994FC9E4F303969B88559709754B212F`；verify-rpk 校验通过
+  - 用例与结果：36 项 ALL-PASS（验收脚本 `tools/capture-1814.mjs`，证据 `qa-1.8.14/` 38 张截图 + runtime.log + logcat.txt）——前置清理（UI 驱动删除历史遗留收藏至空态）→ 首页新布局 → 换一句/抽签独立生效（抽签签章红像素 +500）→ 收藏室空态（像素级）→ **迁移修复验证（清理后经首页往返收藏不复活，空态哈希一致 `4616f9d3`）** → 首页爱心点亮（实心 ♥ 红像素 +242）→ 知识页 v2 题库（阅读类自动展开/答题类查看答案自适应）+ 爱心收藏 → 收藏室列表 2 条按类型区分（知识大全 + 每日一言）→ 详情/返回列表（哈希一致）/删除（2→1）→ **持久化（am stop/start 重启后收藏室哈希级一致 `881085e6`，详情哈希亦一致）** → 删除最后一条回空态（像素级）→ 日历翻月 → 星象遮罩（宜文案渲染）+ 换星座 → 星座测试 30 题 → 结果页 4 页分页 → 退出测试 P1 回归（返回首页、应用仍在前台）；logcat onError/pagehook/invalid pagename 0 行
+  - 环境备忘：①Vela `pm install` 升级保留应用存储、`pm uninstall` 亦不清 storage 且无 `pm clear`——验收"全新状态"需 UI 驱动清理（capture-1814.mjs 前置清理阶段）或专用实例；②验收脚本按钮坐标须按嵌套绝对定位精确计算（首页爱心在 quote-card(14,62) 内，绝对中心 (287,85)，初版坐标误击品牌区导致收藏未添加——已修正并全绿）；③npm test 前对同一文件的并行编辑竞争会丢修改（历史教训再现，第三次），编辑后必须核验落盘。
+- 待办：①用户真机安装验证（重点：爱心收藏、收藏室删除后不再复活、新首页布局）；②PR 合入 main；③发布 v1.8.14 Release（版本约束：≥1.8.14/10814，禁止同号覆盖，1.8.13 为当前正式基准）。
+
 ## 2026-09-10 · Trae Code 基准切换：1.8.13 设为首个正式版与后续开发基准
 
 - 用户在 GitHub 将 Release v1.8.13 转正为正式版（"Everyday v1.8.13正式版"，isPrerelease 已去除），并通过 PR #4 将 `trae/exit-test-fix` 合入 main（`6fcf419`）。**1.8.13 成为首个正式版与后续开发基准**（原基准 1.8.11）。
