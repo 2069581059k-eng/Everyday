@@ -204,6 +204,12 @@ function shouldResetQuizProgress(savedDay, todayDay) {
   return savedDay !== todayDay
 }
 
+// 每日语录索引：按天号稳定映射到语录库，负值回绕（f35af98 数据抽取时曾误删，导致黑屏）
+function quoteIndex(dayNumber) {
+  const value = (dayNumber * 17 + 11) % QUOTES.length
+  return value < 0 ? value + QUOTES.length : value
+}
+
 const today = dayInfo(new Date())
 const todayIndex = quoteIndex(today.dayNumber)
 const dailyRiddleList = dailyRiddles(today.dayNumber)

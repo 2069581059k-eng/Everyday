@@ -1,6 +1,6 @@
 {
   "name": "daily-quote-band10pro",
-  "version": "1.8.5",
+  "version": "1.8.8",
   "private": true,
   "type": "module",
   "description": "小米手环 10 Pro 离线每日一言小游戏",
@@ -8,7 +8,7 @@
     "generate": "node tools/select-hitokoto.mjs && node tools/generate-quotes.mjs",
     "data:refresh": "node tools/import-final-content.mjs",
     "data:import": "node tools/import-final-content.mjs",
-    "test": "npm run generate && node tools/verify-game.mjs",
+    "test": "npm run generate && node tools/verify-game.mjs && node tools/check-undefined.mjs",
     "build": "npm run test && ..\\node_modules\\.bin\\aiot.cmd build --enable-jsc",
     "package:release": "node tools/package-release.mjs",
     "capture": "node tools/capture-vvd.mjs"
