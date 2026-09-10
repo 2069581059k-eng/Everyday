@@ -1,5 +1,13 @@
 # 当前交接
 
+## 2026-09-10 · Trae Code 基准切换：1.8.13 设为首个正式版与后续开发基准
+
+- 用户在 GitHub 将 Release v1.8.13 转正为正式版（"Everyday v1.8.13正式版"，isPrerelease 已去除），并通过 PR #4 将 `trae/exit-test-fix` 合入 main（`6fcf419`）。**1.8.13 成为首个正式版与后续开发基准**（原基准 1.8.11）。
+- 本次为纯文档变更（无运行代码改动，按门槛仅检查文档差异）：README.md / AGENTS.md / docs/CHANGELOG.md / docs/HANDOFF.md 四处基准说明统一更新为 1.8.13；README 清理 1.8.11 时代过时段落。
+- tag `v1.8.13` → `92772a4`；实现线：`92772a4`（修复+清理）→ `15d1827`（Release 记录）→ `6fcf419`（PR #4 合并）。
+- 版本约束：后续发布必须 ≥1.8.14/10814，禁止同号覆盖。
+- 其他工具注意：WorkBuddy 的 `agent-knux-cleanup` 已同步 main（`64b493e`）并新增验收工具多工具隔离改进（`0a4532a`，未进 main）；真机验证仍待用户实测反馈。
+
 ## 2026-09-10 · Trae Code 1.8.13 退出测试 P1 修复 + P2 死代码清理
 
 - 分支 `trae/exit-test-fix`（基于 origin/main `ebac2bb` = 1.8.12）；环境 `D:\AGI\TraeCode`（Workspace/Simulator/Cache/Temp 全隔离，实例 Trae_AGI @ 5578/8578）。

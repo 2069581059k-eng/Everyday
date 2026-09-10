@@ -1,8 +1,9 @@
 # 版本记录
 
-## 1.8.13（预发布）
+## 1.8.13（首个正式版 · 当前共同基准）
 
-- Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.13（预发布）；BIN/RPK 各 1,059,724 B，SHA-256 `4263B0B4…`；tag 指向 `92772a4`（分支 `trae/exit-test-fix`）。
+- **首个正式版**：用户指定并经 PR #4 合入 main（`6fcf419`），Release 转正：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.13
+- 后续开发以 1.8.13 为基准（原基准 1.8.11）；BIN/RPK 各 1,059,724 B，SHA-256 `4263B0B4…`；tag 指向 `92772a4`（分支 `trae/exit-test-fix`）。
 
 - **修复 P1**：星象答题页「退出测试」`router.back()` 在 `router.replace` 组成的页面栈中无上一页，直接离开应用（1.8.10 起复现）；改为 `router.replace({ uri: 'pages/index' })` 返回主页，与知识/日历/结果页的返回模式一致。
 - **P2 死代码清理**（内联死代码，不改 UI 与用户行为）：
@@ -23,7 +24,7 @@
 - 模拟器全功能验收：93 项通过、2 项未通过（均为既有 P1「退出测试离开应用」，与 1.8.11 一致）；知识大全、月历、星座测试、星座结果页**进入与返回均正常**。
 - RPK SHA-256 `017d01e4…`；未创建 GitHub Release。
 
-## 1.8.11（当前共同基准）
+## 1.8.11（历史基准）
 
 - 发布源码/构建快照：`dd62eb7`（含 81bfe5f 修复）；tag `v1.8.11`；Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.11
 - 修复知识大全文字不显示：`knowledge.ux` 的 `riddleExplain` / `riddleAnswer` 未在 `private` 声明，导致**阅读类正文与答题答案渲染为空**。
@@ -31,7 +32,7 @@
 - 新增全功能模拟器验收链路：`capture-full.mjs`（含屏幕唤醒重试/亮度校验）+ `analyze-full.mjs`（像素级断言），配套 `inspect-png` / `band-report` / `color-census` / `dump-knowledge-daily`。
 - 模拟器全功能验收：94 项通过、2 项未通过（均属"退出测试直接离开应用"，P1 未修）；详见 `docs/VERIFY-1.8.10-1.8.11.md`。
 - RPK/BIN 1,341,503 B，SHA-256 `57916230c31cbbefdbb6e26859a882a4145413c05f5b3dc141b079e0464e4dc7`。
-- **后续开发以 1.8.11 为基准**（原基准 1.8.10）；真机未验，模拟器验证通过。
+- 曾为共同基准（1.8.13 起由 1.8.13 接任）；真机未验，模拟器验证通过。
 
 ## 1.8.10（历史基准）
 
