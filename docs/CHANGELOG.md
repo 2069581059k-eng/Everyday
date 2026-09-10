@@ -1,6 +1,8 @@
 # 版本记录
 
-## 1.8.14（分支 trae/v1.8.14-revamp，模拟器验收通过，真机待验）
+## 1.8.14（预发布 Release · 真机待验）
+
+- 源码经 PR #5 合入 main（`dc35e91`）；Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.14（tag 指向实现提交 `236791a`；BIN/RPK 各 1,068,749 B，SHA-256 `144E2F15…`；8 附件齐全）。
 
 - **题库 v2 整合**：脑筋急转弯 312 条整体替换为优化后题库（107 条低分题重写，qualityScore 4-5，`qualityScore`/`optimized` 元数据随条目保留；2 条转义污染经反转义与旧内容一致），其余四类共 1,711 条不动，知识库总数仍 2,023；替换审计报告 `data/brain-teaser-v2-report.json`（kept 205 / replaced 107）。
 - **收藏室（新独立页 `pages/favorites`）**：爱心交互（空心 ♡ / 实心 ♥）+ 快照式持久存储（新增数据层 `common/utils/favorites.js`，首页/知识页/收藏室三页共享存储键 `daily_quote_favorites_v2`）；支持列表分页（4 条/页）、详情长文分页、按类型区分（每日一言/抽签/知识分类）、取消收藏、空态提示「还没有收藏内容」；旧版语录收藏（v1 下标数组）自动迁移为 v2 快照条目。
