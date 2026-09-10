@@ -1,5 +1,13 @@
 # 当前交接
 
+## 2026-09-10 · WorkBuddy(agent) 1.8.9 星象分析可用 + 文案修正
+
+- 分支 agent-knux-cleanup；提交 900c4e4。
+- 根因：1.8.3 起的 `router.replace` 全部用了 `pages/<dir>/<file>`（文件名路径），但 Vela 引擎要求 **manifest router.pages 键名**（如 `pages/zodiac-test`）。引擎对错误 uri 静默返回 `invalid pagename`，跳转不生效——这就是 1.8.3「点击形象分析没反应」、1.8.8「星象分析不可用」的根因。
+- 修复：8 处 router uri 改回 manifest 键名（index/knowledge/calendar/zodiac-test/result）；顺手把首页按钮 + 测试页标题 + 结果页空态中的「形象分析」全部改为「星象分析」。
+- 模拟器实测：首页 35.8KB → 星象遮罩 22.4KB → 答题页 32.7KB → 结果页 19.5KB 四屏字节数全不同，runtime.log 显示 doReplace 成功无 invalid 报错。
+- Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.9；BIN 1,340,727 B，SHA-256 4236f73d…
+
 ## 2026-09-10 · WorkBuddy(agent) 1.8.8 黑屏真因修复
 
 - 分支 agent-knux-cleanup；提交 bd357b6。
