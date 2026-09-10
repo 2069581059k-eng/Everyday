@@ -35,9 +35,15 @@ const sourceKnowledge = fs.existsSync(knowledgePath) ? JSON.parse(fs.readFileSyn
 const knowledgeSources = fs.existsSync(knowledgeSourcesPath) ? JSON.parse(fs.readFileSync(knowledgeSourcesPath, 'utf8')) : {}
 const randomUtilsPath = path.join(root, 'src', 'common', 'utils', 'random.js')
 const dateUtilsPath = path.join(root, 'src', 'common', 'utils', 'date.js')
+const moonUtilsPath = path.join(root, 'src', 'common', 'utils', 'moon.js')
+const holidayUtilsPath = path.join(root, 'src', 'common', 'utils', 'holiday.js')
 const zodiacUtilsPath = path.join(root, 'src', 'common', 'utils', 'zodiac.js')
 const knowledgeUtilsPath = path.join(root, 'src', 'common', 'utils', 'knowledge.js')
+const zodiacScoringPath = path.join(root, 'src', 'common', 'scripts', 'zodiac-scoring.js')
 const dateUtils = fs.existsSync(dateUtilsPath) ? fs.readFileSync(dateUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
+const moonUtils = fs.existsSync(moonUtilsPath) ? fs.readFileSync(moonUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
+const holidayUtils = fs.existsSync(holidayUtilsPath) ? fs.readFileSync(holidayUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
+const zodiacScoring = fs.existsSync(zodiacScoringPath) ? fs.readFileSync(zodiacScoringPath, 'utf8').replace(/\r\n/g, '\n') : ''
 const randomUtils = fs.existsSync(randomUtilsPath) ? fs.readFileSync(randomUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
 const zodiacUtils = fs.existsSync(zodiacUtilsPath) ? fs.readFileSync(zodiacUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
 const knowledgeUtils = fs.existsSync(knowledgeUtilsPath) ? fs.readFileSync(knowledgeUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
@@ -165,7 +171,7 @@ check(page.includes('Math.random() * FORTUNES.length') && page.includes('drawFor
 check(!page.includes('fortuneForDay(today.dayNumber)'), '已移除按日期固定的自动签级')
 check(!page.includes('星象与签运为趣味参考'), '界面不再显示提示性免责声明')
 check(page.includes('<text class="brand">Daily Spark</text>'), '品牌已更名 Daily Spark')
-check(dateUtils.includes('HOLIDAYS_2026') && calendarPage.includes('monthHolidayText(y, m)') && calendarPage.includes('#3f7d46') && calendarPage.includes('#c0392b'), '月历内置 2026 法定节假日与周末配色')
+check(holidayUtils.includes('HOLIDAYS_2026') && calendarPage.includes('monthHolidayText(y, m)') && calendarPage.includes('#3f7d46') && calendarPage.includes('#c0392b'), '月历内置 2026 法定节假日与周末配色')
 check(page.includes('background-color: #f2eee5') && !page.includes('glow-one'), '主题已改为无光效的暖色纸质日历风格')
 check(page.includes('onswipe="handleSwipe"') && page.includes("event.direction === 'right'"), '支持右滑退出')
 check(page.includes('.page { position: relative; width: 336px; height: 480px;'), '页面完整适配 336×480')
@@ -225,7 +231,7 @@ check(page.includes('value="星象分析 ›"') && page.includes('startZodiacTes
 check(fs.existsSync(path.join(root, 'src', 'common', 'utils', 'date.js')), '日期工具位于 common/utils/date.js')
 check(fs.existsSync(path.join(root, 'src', 'common', 'utils', 'random.js')), '随机工具位于 common/utils/random.js')
 check(fs.existsSync(path.join(root, 'src', 'common', 'utils', 'knowledge.js')), '知识逻辑工具位于 common/utils/knowledge.js')
-check(page.includes("import { pad, WEEKDAYS, dayInfo, moonPhase") && page.includes("common/utils/date.js"), '主页面从 common/utils 导入日期工具')
+check(page.includes("import { pad, dayInfo } from '../../common/utils/date.js'") && page.includes("import { WEEKDAYS, moonPhase } from '../../common/utils/moon.js'"), '主页面从 common/utils 导入日期与月相工具')
 check(knowledgeUtils.includes('function mulberry32(') && knowledgePage.includes('common/utils/knowledge.js'), '随机与知识逻辑经共享模块供题库复用')
 check(page.includes("common/utils/zodiac.js") && page.includes('zodiacForDate'), '主页面从 common/utils 导入星座工具')
 check(manifestPages.includes('pages/knowledge') && manifestPages.includes('pages/calendar'), 'manifest 注册知识大全与日历独立页')
@@ -242,5 +248,11 @@ check(!page.includes('isLegalHoliday') && !page.includes('monthHolidayText'), '�
 check(!page.includes('openCalendar(') && !page.includes('previousMonth') && !page.includes('currentMonth'), '首页不再保留月历内部方法，仅留路由入口')
 check(page.includes('drawFortune') && page.includes('toggleFavorite') && page.includes('zodiac-mask') && page.includes('startZodiacTest'), '首页保留每日一言、抽签、收藏与趣味星象')
 check(!zodiacResult.includes('zodiacProfiles') && !zodiacResult.includes('zodiacQuestions') && !zodiacResult.includes('zodiacTemplates'), '结果页不再导入题库/模板数据（仅从本地存储读取已算好的 analysis）')
+
+// ---- 1.8.13 P2 清理：工具模块按消费者拆分，消除内联死代码（防回退） ----
+check(!zodiacScoring.includes('getZodiacByDate'), '计分脚本不再包含未被任何页面使用的 getZodiacByDate')
+check(fs.existsSync(moonUtilsPath) && fs.existsSync(holidayUtilsPath), '月相与节假日工具已拆分至 common/utils')
+check(!dateUtils.includes('HOLIDAYS_2026') && !dateUtils.includes('isLegalHoliday') && !dateUtils.includes('moonPhase') && !dateUtils.includes('WEEKDAYS'), 'date.js 仅保留日期核心（节假日/月相不再混入）')
+check(calendarPage.includes("import { dayInfo } from '../../common/utils/date.js'") && calendarPage.includes("import { isLegalHoliday, monthHolidayText } from '../../common/utils/holiday.js'"), '日历页仅导入日期核心与节假日工具（不带月相死代码）')
 
 console.log(`\n每日一言静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)  
