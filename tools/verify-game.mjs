@@ -54,7 +54,7 @@ const randomUtils = fs.existsSync(randomUtilsPath) ? fs.readFileSync(randomUtils
 const zodiacUtils = fs.existsSync(zodiacUtilsPath) ? fs.readFileSync(zodiacUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
 const knowledgeUtils = fs.existsSync(knowledgeUtilsPath) ? fs.readFileSync(knowledgeUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
 // 知识逻辑已抽为共享模块：直接取其函数体与 mulberry32，注入 RIDDLES 运行逻辑测试
-const knowledgeFnSrc = knowledgeUtils.match(/function (isQaMode|knowledgeDetail|knowledgeAnswer|dailyRiddles|shouldResetQuizProgress|mulberry32)\([\s\S]*?\n\}/gu) || []
+const knowledgeFnSrc = knowledgeUtils.match(/function (isQaMode|knowledgeDetail|knowledgeAnswer|pickDaily|dailyRiddles|shouldResetQuizProgress|mulberry32)\([\s\S]*?\n\}/gu) || []
 const quizHelpers = knowledgeFnSrc.length
   ? Function('RIDDLES', knowledgeFnSrc.join('\n') + '\nreturn { dailyRiddles, shouldResetQuizProgress, knowledgeDetail, knowledgeAnswer, isQaMode };')(riddles)
   : null
@@ -294,5 +294,33 @@ const yiCount = (fortuneTemplates.match(/'[^']{2,8}',?$/gmu) || []).length
 const astroActionsMatch = fortuneTemplates.match(/const ASTRO_ACTIONS = \[([\s\S]*?)\]/u)
 check(astroActionsMatch && (astroActionsMatch[1].match(/'/g) || []).length >= 80, `宜行动模板明显扩充（≥40 条）`)
 check(!zodiacUtils.includes('ASTRO_ACTIONS') && !zodiacUtils.includes('FORTUNES'), '宜/签运模板已从 zodiac.js 工具中迁出（数据与工具分离）')
+
+// ---- 1.8.15 功能增强：收藏室类型筛选 / 签运持久化 / qualityScore 优先选题 ----
+// 收藏室类型筛选（固定槽位 + show 切换，规避 Vela 循环项动态 class 限制）
+check(favoritesPage.includes('setFilterAll') && favoritesPage.includes('setFilterQuote') && favoritesPage.includes('setFilterFortune') && favoritesPage.includes('setFilterKnowledge'), '收藏室提供 全部/一言/抽签/知识 四档类型筛选')
+check(favoritesPage.includes('filterMode') && favoritesPage.includes('function applyFilter('), '筛选基于本地过滤列表实现（filterMode + applyFilter）')
+check(favoritesPage.includes('该类型还没有收藏'), '筛选后无结果时提供空提示（可切回全部）')
+check(favoritesPage.includes('favoritesItems[i].id === id'), '筛选状态下删除按 id 映射回全量列表（不误删条目）')
+check(favoritesPage.includes('show="{{filterMode !== 0}}"') && favoritesPage.includes('show="{{filterMode === 0}}"'), '筛选按钮用固定槽位双份 show 切换激活态（不用动态 class）')
+// 签运持久化（今日签跨重启保留 + 历史 + 遮罩页展示）
+check(page.includes('state.fortune') && page.includes('fortuneHistory'), '签运与历史记录写入每日存档（state.fortune / fortuneHistory）')
+check(!page.includes('this.fortuneDrawn = false'), '换一句不再清空今日签（签运独立于语录持久化）')
+check(page.includes('state.fortuneHistory.length > 16'), '签运历史最多保留 16 条')
+check(page.includes('item.day !== today.dayNumber'), '同日重抽仅保留最新一条历史')
+check(page.includes('maskFortuneText') && page.includes('maskHistoryText') && page.includes('今日未抽签'), '星象遮罩展示今日签与近签历史（未抽时提示）')
+// qualityScore 优先选题（脑筋急转弯每日 10 题中 ≥6 条 v2 优化条目）
+check(knowledgeUtils.includes('function pickDaily(') && knowledgeUtils.includes('preferred: 6'), '脑筋急转弯每日 10 题优先含 6 条 v2 优化条目（pickDaily）')
+check(knowledgePage.includes('quizSchema: 181'), '知识页 quizSchema 升至 181（选题算法变化后升级重置进度）')
+if (quizHelpers) {
+  const yiSampleDays = [3, 77, 400, 2027, 99999, 2147483000]
+  let yiOk = true
+  for (const day of yiSampleDays) {
+    const list = quizHelpers.dailyRiddles(riddles, day)
+    const brainTeasersToday = list.filter((item) => item.category === '脑筋急转弯')
+    const optimizedCount = brainTeasersToday.filter((item) => item.optimized === true).length
+    if (brainTeasersToday.length !== 10 || optimizedCount < 6) yiOk = false
+  }
+  check(yiOk, '多日采样：脑筋急转弯每日 10 题中优化条目稳定 ≥6（qualityScore 优先生效）')
+}
 
 console.log(`\n每日一言静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)  

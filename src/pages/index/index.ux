@@ -57,6 +57,8 @@
       <text class="zodiac-range-big">{{zodiacRange}}</text>
       <text class="zodiac-moon">{{moonText}}</text>
       <text class="zodiac-tip">{{astroTip}}</text>
+      <text class="zodiac-fortune">{{maskFortuneText}}</text>
+      <text class="zodiac-history">{{maskHistoryText}}</text>
       <input class="zodiac-analyze" type="button" value="星象分析 ›" onclick="startZodiacTest" />
       <input class="zodiac-close" type="button" value="返回主页" onclick="closeZodiac" />
     </div>
@@ -90,7 +92,10 @@ let currentIndex = todayIndex
 let state = {
   lastDay: -1,
   streak: 0,
-  zodiacIndex: zodiacForDate(today.month, today.date)
+  zodiacIndex: zodiacForDate(today.month, today.date),
+  // 1.8.15：当日签运持久化（跨重启保留）与最近签运历史（最多 16 条，同日覆盖）
+  fortune: null,
+  fortuneHistory: []
 }
 let favoritesItems = []
 let legacyMigrated = false
@@ -119,6 +124,8 @@ export default {
     zodiacRange: ZODIACS[state.zodiacIndex].range,
     moonText: '月相 · ' + moonPhase(today.dayNumber),
     astroTip: '',
+    maskFortuneText: '',
+    maskHistoryText: '',
   },
 
   onInit() {
@@ -201,6 +208,14 @@ export default {
             state.streak = Number(saved.streak) || 0
             const savedZodiac = Number(saved.zodiacIndex)
             if (savedZodiac >= 0 && savedZodiac < ZODIACS.length) state.zodiacIndex = savedZodiac
+            // 恢复签运持久化数据（当日签 + 历史）
+            if (saved.fortune && saved.fortune.day === today.dayNumber) {
+              state.fortune = saved.fortune
+              page.fortuneDrawn = true
+              page.fortuneLevel = saved.fortune.level
+              page.fortuneTip = saved.fortune.tip
+            }
+            if (Array.isArray(saved.fortuneHistory)) state.fortuneHistory = saved.fortuneHistory
             // 旧版语录收藏（下标数组）迁移为收藏室 v2 快照条目
             if (Array.isArray(saved.favorites) && saved.favorites.length) {
               const migrated = migrateOldFavorites(saved.favorites, QUOTES)
@@ -295,17 +310,16 @@ export default {
     router.replace({ uri: 'pages/favorites' })
   },
 
-  // 换一句：仅切换每日一言，不触发签运（原「抽一签」的混合行为已拆分）
+  // 换一句：仅切换每日一言；今日签运独立持久化，不再随换句清空（1.8.15）
   changeQuote() {
     if (!this.stateReady) return
     let next = (currentIndex + 1 + Math.floor(Math.random() * (QUOTES.length - 1))) % QUOTES.length
     if (next === currentIndex) next = (next + 1) % QUOTES.length
-    this.fortuneDrawn = false
     this.applyQuote(next)
     this.pulse('short')
   },
 
-  // 抽签：为当前这句抽取签级与提示（可反复重抽）
+  // 抽签：为今日抽取签级与提示（可反复重抽，同日历史仅保留最新一条）
   drawFortune() {
     if (!this.stateReady) return
     this.recordToday()
@@ -313,6 +327,12 @@ export default {
     this.fortuneLevel = fortune.level
     this.fortuneTip = fortune.tip
     this.fortuneDrawn = true
+    // 持久化：当日签 + 历史记录（同日覆盖最新，最多 16 条）
+    state.fortune = { day: today.dayNumber, level: fortune.level, tip: fortune.tip }
+    state.fortuneHistory = state.fortuneHistory.filter(function (item) { return item.day !== today.dayNumber })
+    state.fortuneHistory.unshift({ day: today.dayNumber, level: fortune.level, tip: fortune.tip })
+    if (state.fortuneHistory.length > 16) state.fortuneHistory.length = 16
+    this.saveState()
     this.pulse('short')
   },
 
@@ -333,13 +353,26 @@ export default {
     this.refreshFavorite()
   },
 
-  openZodiac() { this.zodiacVisible = true },
+  openZodiac() {
+    this.refreshMaskFortune()
+    this.zodiacVisible = true
+  },
   closeZodiac() { this.zodiacVisible = false },
 
-  // 爱心收藏：抽签后收藏会连同签运一起存为「抽签」类型
+  // 遮罩页签运区：今日签（未抽则提示）+ 最近 3 次签级串接
+  // 近签行不用 show 控制（父容器 zodiac-mask 隐藏期间改子级 show 不会重算，Vela 渲染怪癖），空串即无内容
+  refreshMaskFortune() {
+    const drawn = !!(state.fortune && state.fortune.day === today.dayNumber)
+    this.maskFortuneText = (drawn ? '今日签 · ' + state.fortune.level : '今日未抽签')
+    const recent = state.fortuneHistory.slice(0, 3)
+    this.maskHistoryText = recent.length > 0 ? '近签 ' + recent.map(function (item) { return item.level }).join('·') : ''
+  },
+
+  // 爱心收藏：纯语录快照（1.8.15 签运持久化后与签运解耦，恒为「每日一言」类型；
+  // 旧版「抽签」类型条目收藏室仍兼容展示）
   toggleFavorite() {
     if (!this.stateReady) return
-    const item = makeQuoteFavorite(currentIndex, QUOTES[currentIndex], this.fortuneDrawn ? this.fortuneLevel : '', this.fortuneDrawn ? this.fortuneTip : '')
+    const item = makeQuoteFavorite(currentIndex, QUOTES[currentIndex], '', '')
     toggleFavorite(favoritesItems, item)
     this.saveFavorites()
     this.refreshFavorite()
@@ -407,6 +440,8 @@ export default {
 .zodiac-range-big { position: absolute; left:  16px; top: 196px; width: 304px; color: #9a8e81; font-size: 18px; text-align: center; }
 .zodiac-moon { position: absolute; left: 16px; top: 250px; width: 304px; color: #71665b; font-size: 16px; text-align: center; }
 .zodiac-tip { position: absolute; left: 16px; top: 290px; width: 304px; color: #a83b2d; font-size: 16px; text-align: center; }
+.zodiac-fortune { position: absolute; left: 16px; top: 316px; width: 304px; height: 18px; line-height: 18px; color: #574e45; font-size: 14px; font-weight: bold; text-align: center; }
+.zodiac-history { position: absolute; left: 16px; top: 338px; width: 304px; height: 18px; line-height: 18px; color: #71665b; font-size: 14px; text-align: center; }
 .zodiac-analyze { position: absolute; left: 98px; top: 368px; width: 140px; height: 40px; border-width: 1px; border-color: #a83b2d; border-radius: 4px; background-color: #fffdf8; color: #a83b2d; font-size: 18px; font-weight: bold; }
 .zodiac-close { position: absolute; left: 98px; top: 420px; width: 140px; height: 40px; font-size: 18px; background-color: #a83b2d; color: #fffdf8; }
 </style>

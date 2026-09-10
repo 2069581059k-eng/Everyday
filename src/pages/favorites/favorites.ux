@@ -6,6 +6,17 @@
         <text class="fav-count">{{countText}}</text>
         <input class="fav-home" type="button" value="返回主页" onclick="goHome" />
 
+        <div class="fav-filter-bar">
+          <input class="fav-filter-btn" show="{{filterMode !== 0}}" value="全部" onclick="setFilterAll" />
+          <input class="fav-filter-btn ff-on" show="{{filterMode === 0}}" value="全部" onclick="setFilterAll" />
+          <input class="fav-filter-btn ff-quote" show="{{filterMode !== 1}}" value="一言" onclick="setFilterQuote" />
+          <input class="fav-filter-btn ff-quote ff-on" show="{{filterMode === 1}}" value="一言" onclick="setFilterQuote" />
+          <input class="fav-filter-btn ff-fortune" show="{{filterMode !== 2}}" value="抽签" onclick="setFilterFortune" />
+          <input class="fav-filter-btn ff-fortune ff-on" show="{{filterMode === 2}}" value="抽签" onclick="setFilterFortune" />
+          <input class="fav-filter-btn ff-know" show="{{filterMode !== 3}}" value="知识" onclick="setFilterKnowledge" />
+          <input class="fav-filter-btn ff-know ff-on" show="{{filterMode === 3}}" value="知识" onclick="setFilterKnowledge" />
+        </div>
+
         <div class="fav-slot" show="{{slotVisible1}}" onclick="openDetail(0)">
           <text class="fav-slot-badge">{{slotBadge1}}</text>
           <text class="fav-slot-text">{{slotText1}}</text>
@@ -22,6 +33,8 @@
           <text class="fav-slot-badge">{{slotBadge4}}</text>
           <text class="fav-slot-text">{{slotText4}}</text>
         </div>
+
+        <text class="fav-filter-empty" show="{{filterEmptyVisible}}">该类型还没有收藏</text>
 
         <div class="fav-pager">
           <input class="fav-page-btn fav-prev" type="button" value="上一页" onclick="prevPage" disabled="{{prevDisabled}}" />
@@ -68,10 +81,19 @@ const PAGE_SIZE = 4
 const CHUNK_CHARS = 24
 
 let favoritesItems = []
+let filteredItems = []
 let pageIndex = 0
 let detailIndex = -1
 let detailChunks = []
 let detailChunkIndex = 0
+
+// 类型筛选：0=全部 1=每日一言 2=抽签 3=知识（知识类合并五类题目分类）
+function applyFilter(mode) {
+  if (mode === 1) filteredItems = favoritesItems.filter(function (item) { return item.type === '每日一言' })
+  else if (mode === 2) filteredItems = favoritesItems.filter(function (item) { return item.type === '抽签' })
+  else if (mode === 3) filteredItems = favoritesItems.filter(function (item) { return item.type !== '每日一言' && item.type !== '抽签' })
+  else filteredItems = favoritesItems.slice()
+}
 
 export default {
   // AIoT/Vela 页面数据必须放在 private 中，顶层属性不会被当作模板数据源
@@ -80,6 +102,8 @@ export default {
     listVisible: false,
     emptyVisible: false,
     detailVisible: false,
+    filterMode: 0,
+    filterEmptyVisible: false,
     countText: '',
     pageLabel: '',
     prevDisabled: true,
@@ -155,7 +179,7 @@ export default {
 
   previewText(text) {
     const chars = Array.from(String(text || ''))
-    return chars.length > 32 ? chars.slice(0, 31).join('') + '…' : chars.join('')
+    return chars.length > 28 ? chars.slice(0, 27).join('') + '…' : chars.join('')
   },
 
   renderList() {
@@ -166,7 +190,10 @@ export default {
     this.countText = '共 ' + total + ' 条'
     if (total === 0) return
 
-    const pages = Math.ceil(total / PAGE_SIZE)
+    applyFilter(this.filterMode)
+    const shown = filteredItems.length
+    this.filterEmptyVisible = shown === 0
+    const pages = Math.max(1, Math.ceil(shown / PAGE_SIZE))
     if (pageIndex >= pages) pageIndex = pages - 1
     if (pageIndex < 0) pageIndex = 0
     this.pageLabel = (pageIndex + 1) + ' / ' + pages
@@ -174,18 +201,29 @@ export default {
     this.nextDisabled = pageIndex >= pages - 1
 
     const start = pageIndex * PAGE_SIZE
-    const badges = [this.slotBadge1, this.slotBadge2, this.slotBadge3, this.slotBadge4]
-    const texts = [this.slotText1, this.slotText2, this.slotText3, this.slotText4]
     for (let i = 0; i < PAGE_SIZE; i++) {
-      const item = favoritesItems[start + i]
-      badges[i] = item ? item.type : ''
-      texts[i] = item ? this.previewText(item.text) : ''
-      if (i === 0) { this.slotVisible1 = !!item; this.slotBadge1 = badges[i]; this.slotText1 = texts[i] }
-      if (i === 1) { this.slotVisible2 = !!item; this.slotBadge2 = badges[i]; this.slotText2 = texts[i] }
-      if (i === 2) { this.slotVisible3 = !!item; this.slotBadge3 = badges[i]; this.slotText3 = texts[i] }
-      if (i === 3) { this.slotVisible4 = !!item; this.slotBadge4 = badges[i]; this.slotText4 = texts[i] }
+      const item = filteredItems[start + i]
+      const badge = item ? item.type : ''
+      const text = item ? this.previewText(item.text) : ''
+      const visible = !!item
+      if (i === 0) { this.slotVisible1 = visible; this.slotBadge1 = badge; this.slotText1 = text }
+      if (i === 1) { this.slotVisible2 = visible; this.slotBadge2 = badge; this.slotText2 = text }
+      if (i === 2) { this.slotVisible3 = visible; this.slotBadge3 = badge; this.slotText3 = text }
+      if (i === 3) { this.slotVisible4 = visible; this.slotBadge4 = badge; this.slotText4 = text }
     }
   },
+
+  setFilter(mode) {
+    this.filterMode = mode
+    pageIndex = 0
+    this.renderList()
+    this.pulse('short')
+  },
+
+  setFilterAll() { this.setFilter(0) },
+  setFilterQuote() { this.setFilter(1) },
+  setFilterFortune() { this.setFilter(2) },
+  setFilterKnowledge() { this.setFilter(3) },
 
   prevPage() {
     if (pageIndex <= 0) return
@@ -202,14 +240,14 @@ export default {
 
   openDetail(slot) {
     const itemIndex = pageIndex * PAGE_SIZE + slot
-    if (itemIndex >= favoritesItems.length) return
+    if (itemIndex >= filteredItems.length) return
     detailIndex = itemIndex
     this.renderDetail()
     this.pulse('short')
   },
 
   renderDetail() {
-    const item = favoritesItems[detailIndex]
+    const item = filteredItems[detailIndex]
     if (!item) { this.renderList(); return }
     this.listVisible = false
     this.emptyVisible = false
@@ -237,8 +275,13 @@ export default {
   },
 
   removeFavorite() {
-    if (detailIndex < 0 || detailIndex >= favoritesItems.length) return
-    favoritesItems.splice(detailIndex, 1)
+    // detailIndex 为筛选列表索引：按 id 映射回全量列表删除（筛选状态下删除正确条目）
+    const item = filteredItems[detailIndex]
+    if (!item) return
+    const id = item.id
+    for (let i = 0; i < favoritesItems.length; i++) {
+      if (favoritesItems[i].id === id) { favoritesItems.splice(i, 1); break }
+    }
     detailIndex = -1
     this.saveFavorites()
     this.renderList()
@@ -268,14 +311,22 @@ export default {
 .fav-home { position: absolute; left: 232px; top: 7px; width: 70px; height: 30px; border-width: 1px; border-color: #cfc4b5; border-radius: 4px; background-color: #f8f3e9; color: #766c61; font-size: 14px; }
 
 .fav-list-view { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
-.fav-slot { position: absolute; left: 16px; top: 48px; width: 280px; height: 76px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fbf7f0; }
-.fav-slot-2 { top: 132px; }
-.fav-slot-3 { top: 216px; }
-.fav-slot-4 { top: 300px; }
-.fav-slot-badge { position: absolute; left: 10px; top: 8px; width: 120px; height: 16px; line-height: 16px; color: #a83b2d; font-size: 12px; font-weight: bold; }
-.fav-slot-text { position: absolute; left: 10px; top: 28px; width: 260px; height: 42px; color: #29241f; font-size: 15px; line-height: 21px; }
+.fav-filter-bar { position: absolute; left: 0; top: 42px; width: 312px; height: 28px; }
+.fav-filter-btn { position: absolute; top: 0; width: 70px; height: 28px; border-width: 1px; border-color: #d4c9ba; border-radius: 4px; background-color: #f8f3e9; color: #766c61; font-size: 13px; }
+.ff-all { left: 10px; }
+.ff-quote { left: 84px; }
+.ff-fortune { left: 158px; }
+.ff-know { left: 232px; }
+.ff-on { border-color: #a83b2d; background-color: #fdf0ec; color: #a83b2d; font-weight: bold; }
+.fav-slot { position: absolute; left: 16px; top: 78px; width: 280px; height: 66px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fbf7f0; }
+.fav-slot-2 { top: 150px; }
+.fav-slot-3 { top: 222px; }
+.fav-slot-4 { top: 294px; }
+.fav-slot-badge { position: absolute; left: 10px; top: 6px; width: 120px; height: 14px; line-height: 14px; color: #a83b2d; font-size: 12px; font-weight: bold; }
+.fav-slot-text { position: absolute; left: 10px; top: 22px; width: 260px; height: 40px; color: #29241f; font-size: 15px; line-height: 20px; }
+.fav-filter-empty { position: absolute; left: 16px; top: 218px; width: 280px; height: 20px; line-height: 20px; color: #71665b; font-size: 15px; text-align: center; }
 
-.fav-pager { position: absolute; left: 16px; top: 396px; width: 280px; height: 40px; }
+.fav-pager { position: absolute; left: 16px; top: 386px; width: 280px; height: 40px; }
 .fav-page-btn { position: absolute; top: 0; width: 80px; height: 40px; border-width: 1px; border-color: #d4c9ba; border-radius: 4px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
 .fav-prev { left: 0; }
 .fav-next { left: 200px; }
