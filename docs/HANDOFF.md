@@ -1,6 +1,16 @@
 # 当前交接
 
-## 2026-09-09 · WorkBuddy(agent) 1.8.6 黑屏根因修复
+## 2026-09-10 · WorkBuddy(agent) 1.8.8 黑屏真因修复
+
+- 分支 agent-knux-cleanup；提交 bd357b6。
+- 根因（**完全不是 import 机制问题**）：f35af98 数据抽取时误删了 index.ux 中的 `quoteIndex` 函数，但顶层仍调用 `const todayIndex = quoteIndex(today.dayNumber)` → 模块求值即 ReferenceError → 整个页面脚本失败 → 1.8.4/1.8.5/1.8.6 真机/模拟器全部黑屏。
+- **之前 108 条验收断言只查「调用存在」不查「定义存在」，让该 bug 逃过所有验收**。
+- 修复：补回 `quoteIndex` 函数；新增 `tools/check-undefined.mjs` 静态检查并接入 `npm test`，防止同类问题。
+- 模拟器实测 1.8.8：首页/星象/日历全部正常渲染，黑屏消除。
+- Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.8；BIN 1,340,736 B，SHA-256 b9f245f2…
+- 教训：内联工具不是修复手段（治不了这个 bug），但保持页面自包含仍是有价值的安全网；**真正缺的是「未定义引用」检查**。
+
+## 2026-09-09 · WorkBuddy(agent) 1.8.6 黑屏根因修复（错误方向）
 
 - 分支 agent-knux-cleanup；实现 5711365（内联工具+根因记录）。
 - 根因：1.8.4/1.8.5 页面改用 `import common/*.js` 自定义模块；Vela 真机/模拟器运行时无法解析（RPK 只含页面 .jsc，不含 common/*.js），启动 onInit TypeError 黑屏。对照：1.8.3（数据内嵌、无 import）真机正常。
