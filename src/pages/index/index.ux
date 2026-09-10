@@ -60,7 +60,8 @@ import brightness from '@system.brightness'
 import router from '@system.router'
 
 import { QUOTES } from '../../common/data/quotes.js'
-import { pad, WEEKDAYS, dayInfo, moonPhase } from '../../common/utils/date.js'
+import { pad, dayInfo } from '../../common/utils/date.js'
+import { WEEKDAYS, moonPhase } from '../../common/utils/moon.js'
 import { ZODIACS, ASTRO_ACTIONS, ASTRO_COLORS, FORTUNES, zodiacForDate } from '../../common/utils/zodiac.js'
 
 const STORAGE_KEY = 'daily_quote_state_v1'

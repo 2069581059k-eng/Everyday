@@ -1,5 +1,24 @@
 # 当前交接
 
+## 2026-09-10 · Trae Code 1.8.13 退出测试 P1 修复 + P2 死代码清理
+
+- 分支 `trae/exit-test-fix`（基于 origin/main `ebac2bb` = 1.8.12）；环境 `D:\AGI\TraeCode`（Workspace/Simulator/Cache/Temp 全隔离，实例 Trae_AGI @ 5578/8578）。
+- **P1 修复**：`zodiac-test.ux` 的 `quitTest()` 由 `router.back()` 改为 `router.replace({ uri: 'pages/index' })`——replace 组成的页面栈无上一页，back 直接离开应用（1.8.10 起复现）；与 knowledge/calendar/zodiac-result 三页返回模式一致。
+- **P2 清理**（上条 HANDOFF 遗留项②）：
+  - `zodiac-scoring.js` 删除未被任何页面使用、模块内部也未调用的 `getZodiacByDate`。
+  - `date.js` 按消费者拆分：`pad`/`dayInfo` 留守；`WEEKDAYS`/`MOON_PHASES`/`moonPhase` → 新文件 `common/utils/moon.js`（仅首页用）；`HOLIDAYS_2026`/`isLegalHoliday`/`monthHolidayText` → 新文件 `common/utils/holiday.js`（仅日历页用）。日历/知识页内联后不再携带月相与节假日死代码，首页不再携带节假日死代码。
+  - `verify-game.mjs`：断言适配新结构 + 4 条防回退断言（getZodiacByDate 不得回归、date.js 不得混入节假日/月相、moon.js/holiday.js 存在、日历页导入 holiday.js）。
+- 版本 1.8.13 / 10813（package.json、package-lock.json、src/manifest.json 同步）。
+- **验收记录（按模拟器验收门槛）**：
+  - 验收时间：2026-09-10 17:06–17:08（GMT+8）
+  - 模拟器：Trae_AGI（Vela Band 10 Pro，336×480，端口 5578 / gRPC 8578）；安装版本经 `manifest-watch.json` 核对为 1.8.13 / 10813
+  - 源码快照：Workspace → `Temp\build-1.8.13-trae-20260910`（独立无 .git 构建副本，含 node_modules junction）
+  - 安装包：`dist/com.dailyquote.band10pro.debug.1.8.13.rpk`，1,059,724 B，SHA-256 `4263B0B470D3B34F2CEF47E7B102596BD2EFAC048963E7F8938D1B1804A4D74C`；verify-rpk 校验通过
+  - 用例与结果：全链路通过——首页（暖纸 137,504 像素）→ 趣味星象遮罩（月相文案渲染）→ 星象分析答题页 → 答一题（第 1→2 题）→ **退出测试 → 返回首页（哈希与初始首页完全一致 `441972738e8a97b4`，应用仍在前台——P1 修复生效）** → 日历页 → 返回 → 知识页 → 返回（三次回首页哈希均一致）；首页哈希与 1.8.11 迁移验收完全一致 → 拆分重构零渲染变化
+  - 证据路径：`Temp\build-1.8.13-trae-20260910\qa-1.8.13\`（9 张截图 + runtime.log）
+- 环境备忘：①模拟器今日两次在运行中被外部 shutdown（非本工具操作，重启后正常，成因未明，其他工具如有模拟器看护请自查）；②暖色判定范围修正——遮罩背景 `#fffdf8` 的 b=248 超出旧上限 245，实为有效暖色（r-b≥5 已可排除灰屏）；③npm test 曾因对 verify-game.mjs 的并行编辑竞争丢失一处修改（历史教训重演），已串行重应用并全绿。
+- 未创建 Release（按 AGENTS.md 需用户指示）；真机未验。
+
 ## 2026-09-10 · WorkBuddy(agent) 1.8.12 纯架构清理（首页迁移收尾 + 结果页瘦身）
 
 - 分支 agent-knux-cleanup；实现提交见本条下方的"验收记录"对应源码快照（未提前提交，按门槛先生成快照构建并验收）。

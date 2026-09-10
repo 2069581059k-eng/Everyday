@@ -1,5 +1,16 @@
 # 版本记录
 
+## 1.8.13（本地构建 + 模拟器验收，未发布）
+
+- **修复 P1**：星象答题页「退出测试」`router.back()` 在 `router.replace` 组成的页面栈中无上一页，直接离开应用（1.8.10 起复现）；改为 `router.replace({ uri: 'pages/index' })` 返回主页，与知识/日历/结果页的返回模式一致。
+- **P2 死代码清理**（内联死代码，不改 UI 与用户行为）：
+  - `common/scripts/zodiac-scoring.js` 删除未被任何页面使用、模块内部也未调用的 `getZodiacByDate`（答题页内联后不再携带该函数）。
+  - `common/utils/date.js` 按消费者拆分：`pad`/`dayInfo` 留守；`WEEKDAYS`/`MOON_PHASES`/`moonPhase` 拆至新文件 `common/utils/moon.js`（仅首页使用）；`HOLIDAYS_2026`/`isLegalHoliday`/`monthHolidayText` 拆至新文件 `common/utils/holiday.js`（仅日历页使用）。日历页/知识页内联后不再携带月相与节假日死代码，首页不再携带节假日死代码。
+- `tools/verify-game.mjs`：断言适配新模块结构（主页面改为校验 date.js + moon.js 双导入、节假日断言改读 holiday.js），新增 4 条 P2 清理防回退断言。
+- 体积（对比 1.8.12）：RPK 1,060,781 → **1,059,724 B**；模拟器验收确认首页渲染与 1.8.11 **逐像素一致**（拆分重构零 UI 变化）。
+- 模拟器验收（Trae Code 独立实例 Trae_AGI，端口 5578）：全链路通过——首页 → 星象遮罩 → 星象分析答题页 → 答一题 → **退出测试返回首页（画面与首页哈希完全一致、应用仍在前台）** → 日历页 → 返回 → 知识页 → 返回。
+- RPK SHA-256 `4263B0B4…`；未创建 GitHub Release。
+
 ## 1.8.12（本地构建 + 模拟器验收，未发布）
 
 - **纯架构清理，不改任何 UI 与用户行为**：

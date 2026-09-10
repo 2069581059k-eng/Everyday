@@ -94,7 +94,7 @@ export default {
   },
 
   quitTest() {
-    router.back()
+    router.replace({ uri: 'pages/index' })
   }
 }
 </script>

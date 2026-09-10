@@ -60,7 +60,8 @@
 
 <script>
 import router from '@system.router'
-import { dayInfo, isLegalHoliday, monthHolidayText } from '../../common/utils/date.js'
+import { dayInfo } from '../../common/utils/date.js'
+import { isLegalHoliday, monthHolidayText } from '../../common/utils/holiday.js'
 
 const today = dayInfo(new Date())
 
