@@ -1,5 +1,20 @@
 # 当前交接
 
+## 2026-09-10 · WorkBuddy(agent) 同步共同基准 + 并行线审查（无代码改动）
+
+- 分支 agent-knux-cleanup；基线合并提交 f290df0（merge main a78520a），1.8.10 实现提交仍为 c82a8a3。本次仅文档同步与审查，未改任何源码。
+- 状态核对：本地工作区干净；远端 agent-knux-cleanup=245df27、main=a78520a、agent/zodiac-fix=179f8b8、PR #1（head=245df27，未合并，待用户/工具处置）。
+- 审查 agent/zodiac-fix（Kimi/Trae，基于 bd357b6=1.8.8，本地版本 1.8.9/10809，未合并）：
+  - 两线独立确认相同根因（交叉验证成立）：①页面数据必须在 private；②router URI 错误格式静默失败且无 fail 回调；③Vela flex 默认横向。
+  - 其 v5 崩溃教训：Vela 模板 for 循环项使用动态 class（`class="{{$item.cls}}"`）→ 整个 app 启动即崩溃。已复查本线 src/pages：无 for、无动态 class，1.8.10 不受影响。
+  - 其独有增量（未进基准，保留备用）：页面目录去连字符 zodiactest/zodiacresult（针对真机连字符路由静默失败）、zodiac 数据多行化（最长 117 字符）、verify-game 更严断言（URI 格式/flex 方向/分页）。
+- 风险与待决议：
+  - 1.8.10 仅模拟器实测，真机未验；若真机复现路由失败，优先评估其去连字符方案。
+  - 两线 URI 格式不同（本线 pages/xxx=manifest 键名 vs 其 /pages/xxx=前导斜杠），需真机仲裁后统一。
+  - 版本号：v1.8.9 标签已被本线 900c4e4 占用，其分支本地同样声明 1.8.9/10809；下次发布必须 ≥1.8.11/10811，禁止同号覆盖。
+  - tag v1.8.5 误指向文档提交 026bad2（应为 9aa02a1），1.8.5 无 Release；按规则不覆盖已有 tag，仅记录。
+- 环境注意（本 checkout）：refs/remotes/origin/* 的更新不落盘（fetch 显示成功但 git branch -r 随即看不到），远端分析以 ls-remote 为准，或显式 `git fetch origin +refs/heads/X:refs/heads/tmp-X` 取到本地分支再比对；push、本地分支与提交均正常。
+
 ## 2026-09-10 · Codex 同步 1.8.10 共同基准
 
 - 用户指定后续以 1.8.10 为基准，当前开发工具为 WorkBuddy 和 Trae Code，Codex 参与同步与后续维护。
