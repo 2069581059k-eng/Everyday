@@ -111,7 +111,7 @@ export default {
 .zt-progress-fill { height: 6px; border-radius: 3px; background-color: #a83b2d; }
 .zt-scene { margin-top: 18px; margin-left: 20px; width: 296px; height: 18px; line-height: 18px; color: #a83b2d; font-size: 14px; font-weight: bold; }
 .zt-question { margin-top: 8px; margin-left: 20px; width: 296px; height: 84px; color: #29241f; font-size: 20px; font-weight: bold; line-height: 28px; }
-.zt-options { margin-top: 6px; margin-left: 20px; width: 296px; }
-.zt-option { margin-top: 10px; width: 296px; height: 52px; border-width: 1px; border-color: #d4c9ba; border-radius: 6px; background-color: #fffdf8; color: #2c2722; font-size: 16px; text-align: center; }
+.zt-options { flex-direction: column; margin-top: 6px; margin-left: 20px; width: 296px; }
+.zt-option { margin-top: 6px; width: 296px; height: 44px; border-width: 1px; border-color: #d4c9ba; border-radius: 6px; background-color: #fffdf8; color: #2c2722; font-size: 16px; text-align: center; }
 .zt-exit { margin-top: 10px; margin-left: 108px; width: 120px; height: 30px; border-width: 1px; border-color: #cfc5b7; border-radius: 4px; background-color: #f8f3e9; color: #8b8175; font-size: 14px; }
 </style>

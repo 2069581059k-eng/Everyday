@@ -230,5 +230,9 @@ for (const uxFile of [page, knowledgePage, calendarPage, zodiacTest, zodiacResul
   check(!uxFile.includes("uri: 'pages/"), '路由 URI 必须使用 /pages/xxx 前导斜杠格式（固件拒绝三段格式）')
   check(!uxFile.includes('uri: "pages/'), '路由 URI 必须使用 /pages/xxx 前导斜杠格式（固件拒绝三段格式）')
 }
+// Vela flex 容器默认横向；竖排容器必须显式 column，否则子元素横排挤压（模拟器实测复现）
+check(zodiacTest.includes('.zt-options { flex-direction: column;'), '答题页选项区显式竖排')
+check(zodiacResult.includes('.zr-scroll { flex-direction: column;'), '结果页内容区显式竖排')
+check(zodiacTest.includes('private: {') && zodiacResult.includes('private: {') && knowledgePage.includes('private: {') && calendarPage.includes('private: {'), '拆分页数据属性必须声明在 private 中（否则模板绑定 undefined）')
 
 console.log(`\n每日一言静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)  

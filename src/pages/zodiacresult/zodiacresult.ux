@@ -101,11 +101,11 @@ export default {
     if (!parsed || !parsed.analysis) return this.noResult()
 
     const a = parsed.analysis
-    this.primaryName = a.primary.icon + ' ' + a.primary.name
+    this.primaryName = a.primary.name
     this.primaryMatch = a.primary.match
-    this.secondaryName = a.secondary.icon + ' ' + a.secondary.name
+    this.secondaryName = a.secondary.name
     this.secondaryMatch = a.secondary.match
-    this.thirdName = a.third.icon + ' ' + a.third.name
+    this.thirdName = a.third.name
     this.thirdMatch = a.third.match
     this.styleText = a.style
     this.mainText = a.main ? a.main.text : ''
@@ -150,7 +150,7 @@ export default {
 .zr-z-name { width: 96px; height: 22px; line-height: 22px; color: #2c2722; font-size: 16px; font-weight: bold; text-align: center; }
 .zr-z-match { width: 96px; height: 16px; line-height: 16px; color: #a83b2d; font-size: 12px; text-align: center; }
 .zr-vs { width: 8px; height: 62px; line-height: 62px; color: #94887c; font-size: 11px; text-align: center; }
-.zr-scroll { margin-top: 6px; margin-left: 16px; width: 304px; height: 330px; border-width: 1px; border-color: #d7cdbf; border-radius: 6px; background-color: #fffdf8; }
+.zr-scroll { flex-direction: column; margin-top: 6px; margin-left: 16px; width: 304px; height: 320px; border-width: 1px; border-color: #d7cdbf; border-radius: 6px; background-color: #fffdf8; }
 .zr-section-title { margin-top: 8px; margin-left: 10px; width: 284px; height: 18px; line-height: 18px; color: #a83b2d; font-size: 14px; font-weight: bold; }
 .zr-text { margin-top: 4px; margin-left: 10px; width: 284px; color: #29241f; font-size: 15px; line-height: 21px; }
 .zr-dim { margin-top: 3px; margin-left: 10px; width: 284px; height: 18px; line-height: 18px; color: #574e45; font-size: 14px; font-weight: bold; }
