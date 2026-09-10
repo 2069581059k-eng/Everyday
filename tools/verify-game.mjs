@@ -234,5 +234,9 @@ for (const uxFile of [page, knowledgePage, calendarPage, zodiacTest, zodiacResul
 check(zodiacTest.includes('.zt-options { flex-direction: column;'), '答题页选项区显式竖排')
 check(zodiacResult.includes('.zr-scroll { flex-direction: column;'), '结果页内容区显式竖排')
 check(zodiacTest.includes('private: {') && zodiacResult.includes('private: {') && knowledgePage.includes('private: {') && calendarPage.includes('private: {'), '拆分页数据属性必须声明在 private 中（否则模板绑定 undefined）')
+// 480 屏显示不完完整报告：结果页必须分页循环浏览，且分页属性在 private 中声明
+check(zodiacResult.includes('function paginate(') && zodiacResult.includes('this.paginated = paginate(units,'), '结果页按估算行高把报告单元切为多页')
+check(zodiacResult.includes('for="{{currentUnits}}"') && zodiacResult.includes('currentUnits: []') && zodiacResult.includes('totalPages: 0') && zodiacResult.includes("pageLabel: ''"), '模板渲染当前页单元且分页属性均在 private 声明')
+check(zodiacResult.includes('nextPage()') && zodiacResult.includes('onclick="nextPage"'), '结果页提供下一页按钮循环浏览完整报告')
 
 console.log(`\n每日一言静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)  

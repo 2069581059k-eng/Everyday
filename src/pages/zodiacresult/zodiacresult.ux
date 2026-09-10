@@ -20,23 +20,9 @@
     </div>
 
     <div class="zr-scroll">
-      <text class="zr-section-title">核心分析 · {{styleText}}</text>
-      <text class="zr-text">{{mainText}}</text>
-      <text class="zr-section-title">组合色彩</text>
-      <text class="zr-text">{{pairText}}</text>
-      <text class="zr-section-title">三个突出维度</text>
-      <text class="zr-dim" for="{{dimRows}}">{{$item.name}} {{$item.value}}</text>
-      <text class="zr-text" for="{{dimTexts}}">{{$item.text}}</text>
-      <text class="zr-section-title" show="{{hasContrast}}">你的矛盾与平衡</text>
-      <text class="zr-text" show="{{hasContrast}}">{{contrastText}}</text>
-      <text class="zr-section-title">场景中的你</text>
-      <text class="zr-text" for="{{sceneTexts}}">{{$item.text}}</text>
-      <text class="zr-section-title">一句话总结</text>
-      <text class="zr-text">{{summaryText}}</text>
-      <text class="zr-section-title">给你的建议</text>
-      <text class="zr-text" for="{{adviceTexts}}">{{$item.text}}</text>
-      <text class="zr-disclaimer">本测试仅用于娱乐与自我探索，不属于心理诊断、人格测评或科学占星结论。</text>
+      <text for="{{currentUnits}}" class="{{$item.cls}}">{{$item.text}}</text>
     </div>
+    <input class="zr-next" show="{{totalPages > 1}}" type="button" value="{{pageLabel}}" onclick="nextPage" />
 
     <div class="zr-actions">
       <input class="zr-btn zr-home" type="button" value="返回主页" onclick="goHome" />
@@ -59,6 +45,29 @@ function dimName(key) {
   return map[key] || key
 }
 
+// 米环 480 屏一次显示不完完整报告，按估算行高把内容单元切为多页循环浏览
+function paginate(units, pageHeight) {
+  const pages = []
+  let current = []
+  let used = 0
+  for (let i = 0; i < units.length; i++) {
+    const u = units[i]
+    let height = 26
+    if (u.cls === 'zr-dim') height = 21
+    else if (u.cls === 'zr-text') height = Math.ceil(Array.from(u.text).length / 18) * 21 + 4
+    else if (u.cls === 'zr-disclaimer') height = Math.ceil(Array.from(u.text).length / 23) * 17 + 8
+    if (used + height > pageHeight && current.length > 0) {
+      pages.push(current)
+      current = []
+      used = 0
+    }
+    current.push(u)
+    used += height
+  }
+  if (current.length > 0) pages.push(current)
+  return pages
+}
+
 export default {
   private: {
     primaryName: '',
@@ -77,7 +86,12 @@ export default {
     sceneTexts: [],
     summaryText: '',
     adviceTexts: [],
-    ready: false
+    ready: false,
+    currentPage: 0,
+    paginated: [],
+    totalPages: 0,
+    currentUnits: [],
+    pageLabel: ''
   },
 
   onInit() {
@@ -117,11 +131,52 @@ export default {
     this.sceneTexts = a.scenes || []
     this.summaryText = a.summary ? a.summary.text : ''
     this.adviceTexts = a.advice || []
+    // 把整份报告切成内容单元，再按 480 屏内容区高度分页循环浏览
+    const units = []
+    units.push({ cls: 'zr-section-title', text: '核心分析 · ' + this.styleText })
+    if (this.mainText) units.push({ cls: 'zr-text', text: this.mainText })
+    units.push({ cls: 'zr-section-title', text: '组合色彩' })
+    if (this.pairText) units.push({ cls: 'zr-text', text: this.pairText })
+    units.push({ cls: 'zr-section-title', text: '三个突出维度' })
+    for (let i = 0; i < this.dimRows.length; i++) {
+      units.push({ cls: 'zr-dim', text: this.dimRows[i].name + ' ' + this.dimRows[i].value + '%' })
+    }
+    for (let j = 0; j < this.dimTexts.length; j++) {
+      units.push({ cls: 'zr-text', text: this.dimTexts[j].text })
+    }
+    if (this.hasContrast) {
+      units.push({ cls: 'zr-section-title', text: '你的矛盾与平衡' })
+      units.push({ cls: 'zr-text', text: this.contrastText })
+    }
+    units.push({ cls: 'zr-section-title', text: '场景中的你' })
+    for (let k = 0; k < this.sceneTexts.length; k++) {
+      units.push({ cls: 'zr-text', text: this.sceneTexts[k].text })
+    }
+    units.push({ cls: 'zr-section-title', text: '一句话总结' })
+    if (this.summaryText) units.push({ cls: 'zr-text', text: this.summaryText })
+    units.push({ cls: 'zr-section-title', text: '给你的建议' })
+    for (let m = 0; m < this.adviceTexts.length; m++) {
+      units.push({ cls: 'zr-text', text: this.adviceTexts[m].text })
+    }
+    units.push({ cls: 'zr-disclaimer', text: '本测试仅用于娱乐与自我探索，不属于心理诊断、人格测评或科学占星结论。' })
+    this.paginated = paginate(units, 280)
+    this.totalPages = this.paginated.length
+    this.currentPage = 0
+    this.currentUnits = this.paginated[0] || []
+    this.pageLabel = '下一页 · 1/' + this.totalPages
     this.ready = true
   },
 
+  nextPage() {
+    if (this.totalPages < 1) return
+    this.currentPage = (this.currentPage + 1) % this.totalPages
+    this.currentUnits = this.paginated[this.currentPage] || []
+    this.pageLabel = '下一页 · ' + (this.currentPage + 1) + '/' + this.totalPages
+  },
+
   noResult() {
-    this.mainText = '还没有测试记录，先去做一次形象分析吧。'
+    this.currentUnits = [{ cls: 'zr-text', text: '还没有测试记录，先去做一次形象分析吧。' }]
+    this.totalPages = 0
     this.ready = true
   },
 
@@ -150,11 +205,12 @@ export default {
 .zr-z-name { width: 96px; height: 22px; line-height: 22px; color: #2c2722; font-size: 16px; font-weight: bold; text-align: center; }
 .zr-z-match { width: 96px; height: 16px; line-height: 16px; color: #a83b2d; font-size: 12px; text-align: center; }
 .zr-vs { width: 8px; height: 62px; line-height: 62px; color: #94887c; font-size: 11px; text-align: center; }
-.zr-scroll { flex-direction: column; margin-top: 6px; margin-left: 16px; width: 304px; height: 320px; border-width: 1px; border-color: #d7cdbf; border-radius: 6px; background-color: #fffdf8; }
-.zr-section-title { margin-top: 8px; margin-left: 10px; width: 284px; height: 18px; line-height: 18px; color: #a83b2d; font-size: 14px; font-weight: bold; }
-.zr-text { margin-top: 4px; margin-left: 10px; width: 284px; color: #29241f; font-size: 15px; line-height: 21px; }
-.zr-dim { margin-top: 3px; margin-left: 10px; width: 284px; height: 18px; line-height: 18px; color: #574e45; font-size: 14px; font-weight: bold; }
-.zr-disclaimer { margin-top: 8px; margin-left: 10px; width: 284px; color: #94887c; font-size: 12px; line-height: 17px; }
+.zr-scroll { flex-direction: column; margin-top: 6px; margin-left: 16px; width: 304px; height: 280px; border-width: 1px; border-color: #d7cdbf; border-radius: 6px; background-color: #fffdf8; }
+.zr-section-title { flex-shrink: 0; margin-top: 8px; margin-left: 10px; width: 284px; height: 18px; line-height: 18px; color: #a83b2d; font-size: 14px; font-weight: bold; }
+.zr-text { flex-shrink: 0; margin-top: 4px; margin-left: 10px; width: 284px; color: #29241f; font-size: 15px; line-height: 21px; }
+.zr-dim { flex-shrink: 0; margin-top: 3px; margin-left: 10px; width: 284px; height: 18px; line-height: 18px; color: #574e45; font-size: 14px; font-weight: bold; }
+.zr-disclaimer { flex-shrink: 0; margin-top: 8px; margin-left: 10px; width: 284px; color: #94887c; font-size: 12px; line-height: 17px; }
+.zr-next { flex-shrink: 0; margin-top: 6px; margin-left: 103px; width: 130px; height: 30px; border-width: 1px; border-color: #cfc5b7; border-radius: 4px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
 .zr-actions { flex-direction: row; margin-top: 6px; margin-left: 16px; width: 304px; height: 40px; }
 .zr-btn { width: 146px; height: 38px; border-radius: 4px; font-size: 16px; font-weight: bold; }
 .zr-home { background-color: #a83b2d; color: #fffaf2; }
