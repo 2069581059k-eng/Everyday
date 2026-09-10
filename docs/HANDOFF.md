@@ -1,5 +1,15 @@
 # 当前交接
 
+## 2026-09-10 · Kimi(agent) 星象分析真机修复 1.8.9
+
+- 基线：bd357b6（v1.8.8 黑屏真因修复；用户真机确认 1.8.8 不黑屏，首页/知识/日历正常）。
+- 实现提交：2473eee，分支 agent/zodiac-fix（未合并 main）。
+- 任务：真机反馈 1.8.8 星象「形象分析」按钮点击无反应。
+- 诊断：pages/zodiac-test、pages/zodiac-result 是全应用仅有的两个连字符路由（正常的 knowledge/calendar 均无连字符），Vela 真机路由解析失败且 router.replace 无 fail 回调 → 静默无反应；zodiac 数据单行 67635 字符为次要隐患（可正常工作的 knowledge.js 为 2028 行/最长 295 字符的多行格式）。
+- 改动：页面改名 zodiactest/zodiacresult（manifest、3 处路由调用、verify 断言同步，路由补 fail 日志）；结果页删除 3 个未使用的数据 import、移除 router.clear()；zodiac 三个数据文件转多行（最长 117 字符，内容零改动）。版本 1.8.9 / 10809。
+- 验证：npm test 全绿（108 断言 + 未定义引用检查）；node 运行时验证 30 题/12 星座/534 模板、模拟作答计分/排名/分析链完整，存储载荷 3.6KB（排除 storage 超限嫌疑）。
+- 遗留：模拟器/真机待复核；JSC 构建与 Release 未执行，待用户指示。
+
 ## 2026-09-09 · WorkBuddy(agent) 1.8.6 黑屏根因修复
 
 - 分支 agent-knux-cleanup；实现 5711365（内联工具+根因记录）。
