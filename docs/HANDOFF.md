@@ -1,5 +1,20 @@
 # 当前交接
 
+## 2026-09-10 · Kimi(agent) 星象分析真机修复 1.8.9（完整链路 + v5 崩溃教训）
+
+- 基线：bd357b6（v1.8.8 黑屏真因修复；用户真机确认 1.8.8 不黑屏，首页/知识/日历正常）。
+- 分支 agent/zodiac-fix（未合并 main），修复链 4 提交：
+  - 2473eee：页面改名去连字符 zodiactest/zodiacresult；zodiac 数据转多行（最长 117 字符，内容零改动）
+  - 925e52a：**根因①**——router URI 三段格式 `pages/xxx/xxx` 被固件判 invalid pagename 静默失败（不触发 fail 回调），全项目 8 处改 `/pages/xxx` 前导斜杠格式；**根因②**——4 个拆分页数据属性顶层平铺导致模板绑定全 undefined，移入 `private: {}`
+  - 45d0719：**根因③**——Vela flex 容器默认横向，答题页选项区/结果页内容区显式 `flex-direction: column`；移除结果页 emoji 图标（设备豆腐块）
+  - 4534355：结果页报告按估算行高分页循环浏览（480 屏显示不完完整报告），verify-game 新增 3 条分页断言
+- 模拟器验证（v4 构建 = 除分页外全部修复）：全链路通过——首页/知识答题答案/日历翻页/星象遮罩/连答 30 题/结果页/重测，截图 qa-zodiac 齐全；结果页底部内容被 480 屏裁掉（分页前已知问题）
+- **v5 构建（含分页）教训**：结果页模板改用 `for="{{currentUnits}}"` + `class="{{$item.cls}}"` 动态类后，**整个 app 启动即崩溃全黑**（runtime.log 实锤 `Application::onError: onReady pagehook executed failed`，v4 日志无此错误）。Vela 模板渲染器不支持 for 循环项动态 class；WorkBuddy 1.8.10 注释亦明确「不用 show/for，避免渲染风险」。黑截图≠模拟器预热问题，先查 runtime.log 的 onError
+- v5 RPK 静态校验通过（包名/版本/JSC 字节码/签名齐全），构建副本 build-1.8.9-v5-20260910；但应用不可运行，**不可交付**
+- **并行线**：WorkBuddy 在 agent-knux-cleanup 独立修复同 bug（URI 格式 + private + 选项绝对定位 + 固定 3 槽位分页），已发 v1.8.9/v1.8.10 Release 并模拟器实测通过（结果页 4 页字节数各异）。两线独立确认相同根因，交叉验证成立
+- 建议：真机验证优先用 WorkBuddy v1.8.10（已发布已验证）；本分支的增量价值为 verify-game 更严断言（URI 格式/flex 方向/分页）、zodiac 数据多行化、去连字符目录，可经 PR 整合或保留备用
+- 遗留：若继续本分支，结果页须改为固定槽位 + 脚本替换文案方案（参照 c82a8a3），重建复验
+
 ## 2026-09-10 · Kimi(agent) 星象分析真机修复 1.8.9
 
 - 基线：bd357b6（v1.8.8 黑屏真因修复；用户真机确认 1.8.8 不黑屏，首页/知识/日历正常）。
