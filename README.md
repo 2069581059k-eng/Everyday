@@ -1,8 +1,12 @@
 # 每日一言 · Band 10 Pro
 
-协作入口：[AGENTS.md](AGENTS.md) · [多工具流程](docs/COLLABORATION.md) · [当前交接](docs/HANDOFF.md) · [版本记录](docs/CHANGELOG.md)。
+协作入口：[AGENTS.md](AGENTS.md) · [多工具流程](docs/COLLABORATION.md) · [当前交接](docs/HANDOFF.md) · [版本记录](docs/CHANGELOG.md) · [模拟器验收报告](docs/VERIFY-1.8.10-1.8.11.md)。
 
-当前共同开发基准为 **1.8.10**（发布源码 `c82a8a3`），WorkBuddy、Trae Code 与 Codex 后续从最新 `main` 继续开发。此版本包含多页面架构、星象分析及页面数据绑定与分页修复。[下载已有 1.8.10 发布包](https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.10)。本次同步通过静态与逻辑测试；设备验证范围见交接记录。
+当前共同开发基准为 **1.8.11**（构建快照 `dd62eb7`，tag `v1.8.11`），WorkBuddy、Trae Code 与 Codex 后续请从最新 `main` 继续开发。[下载 1.8.11 发布包](https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.11)（BIN/RPK 1,341,503 B，SHA-256 `57916230c31cbbefdbb6e26859a882a4145413c05f5b3dc141b079e0464e4dc7`）。
+
+本版修复**知识大全文字不显示**：阅读类正文、答题类「查看答案」后的答案正文此前渲染为空（根因：页面数据未声明在 `export default` 的 `private` 中，Vela 不将其作为模板数据源）。同时新增 `tools/check-private-data.mjs` 静态检查并接入 `npm test`，防止同类回归。
+
+验证范围：**Vela Band 10 Pro 模拟器全功能验收 94/96 通过**（首页、抽签、收藏、知识题干与翻题、日历翻月、星象遮罩、星象答题、结果分页与循环、再测一次）；**真机尚未验证**。已知问题（P1，未修）：星象答题页「退出测试」会直接离开应用（`router.back()` 在 replace 组成的页面栈中无上一页可回）。
 
 1.8.0 的综合内容库仅使用用户提供的《米环综合内容库_V2_最终完整版_2000plus.zip》，完整替换之前的运行题库；不再合并旧条目。每日一言的独立 2000 条语录保持原样。
 
@@ -18,13 +22,23 @@
 
 旧版合并输入和脚本仅保留作历史审计，不参与当前构建或最终版源码发行包。原始压缩包和 Git 历史可用于恢复。
 
-## 构建
+## 构建与验收
 
 ```powershell
 npm.cmd run data:refresh
-npm.cmd test
-npm.cmd run build
+npm.cmd test                     # 静态/逻辑检查 + 未定义引用 + private 数据声明检查
+npm.cmd run build                # 必须包含 --enable-jsc
 npm.cmd run package:release
 ```
 
-`data:refresh` 只读取最终包快照。安装包、源码与校验文件位于 `release`。静态验证覆盖五类数量、原文逐字段一致、旧库条目排除、每日分类比例与正文完整保留。实际米环阅读效果需要设备验收。
+仓库规则：**每次代码变动必须在 commit / push 前通过模拟器验收**（见 `AGENTS.md` 的「模拟器验收门槛」）。标准顺序：
+
+1. 将待提交源码（含新增文件）导出到不含 `.git` 的唯一独立目录（`git archive`），建立依赖联接；
+2. 需要时执行 `tools/inline-modules.mjs`，再 `aiot build --enable-jsc`；
+3. `tools/verify-rpk.mjs` 校验包名、版本与 JSC 字节码；
+4. 安装到模拟器并核对实际安装版本（`manifest-watch.json`）；
+5. `tools/capture-full.mjs` 跑全链路截图，`tools/analyze-full.mjs` 做像素级断言；
+6. 证据归档到 `qa-<版本>/`（已 gitignore），并在 `docs/HANDOFF.md` 记录验收时间、模拟器型号、实际版本、源码快照、包 SHA-256、用例结果与证据路径。
+
+静态验证覆盖五类数量、原文逐字段一致、旧库条目排除、每日分类比例与正文完整保留。安装包、源码与校验文件生成于 `release`（已 gitignore），正式附件发布在 GitHub Release。实际米环阅读效果仍需真机验收。
+
