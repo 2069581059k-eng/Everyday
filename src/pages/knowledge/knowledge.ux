@@ -59,6 +59,8 @@ export default {
     quizPos: 0,
     quizTotal: 0,
     riddleQuestion: '',
+    riddleExplain: '',
+    riddleAnswer: '',
     isQaItem: false,
     revealLabel: '查看答案',
     answerLabel: '答案',
