@@ -1,5 +1,15 @@
 # 当前交接
 
+## 2026-09-10 · Codex 同步 1.8.10 共同基准
+
+- 用户指定后续以 1.8.10 为基准，当前开发工具为 WorkBuddy 和 Trae Code，Codex 参与同步与后续维护。
+- 原 main：026bad2（1.8.1）；选定基准：v1.8.10 / c82a8a3f00d7883ad1c74dcae2dc8974174ccefa。该提交是原 main 的后代，使用 fast-forward 整合，保留全部历史。
+- 发现原因：1.8.10 Release 和标签已存在，但 main 未同步。采用发布标签的源码，未混入桌面 agent/zodiac-fix 分支上另行开发的 1.8.9 改动。
+- 保留 1.8.10 页面 private 数据绑定、星象选项绝对定位、结果分页等实现；补齐 package-lock.json 遗留的 1.8.1 版本元数据。
+- 本次在独立 checkout 运行 npm.cmd test 通过（静态/逻辑验收及五页未定义调用检查）。未重新构建或做模拟器、真机验收；Release 中的模拟器验证是发布者已有记录。
+- 已有发布：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.10 。本次不覆盖其标签或附件。
+- 后续先 fetch 最新 main，在包含 c82a8a3 的基准上继续；协作工具、分支和执行人须在每次交接中明确。
+
 ## 2026-09-10 · WorkBuddy(agent) 1.8.10 星象分析布局与绑定修复
 
 - 分支 agent-knux-cleanup；提交 c82a8a3。
