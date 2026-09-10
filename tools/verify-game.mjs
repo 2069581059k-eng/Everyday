@@ -206,7 +206,15 @@ const zodiacTest = fs.readFileSync(zodiacTestPath, 'utf8')
 const zodiacResult = fs.readFileSync(zodiacResultPath, 'utf8')
 check(zodiacTest.includes('zodiac_questions.js') && zodiacTest.includes('scoreAnswers') && zodiacTest.includes('rankZodiacs') && zodiacTest.includes('buildAnalysis'), '答题页读取离线题库并完成计分/匹配/分析')
 check(zodiacTest.includes('router.replace') && zodiacResult.includes('router.replace'), '答题页答完跳结果页，结果页可返回/重测')
-check(zodiacResult.includes('primary') && zodiacResult.includes('mainText') && zodiacResult.includes('sceneTexts') && zodiacResult.includes('adviceTexts'), '结果页展示主气质、组合、维度、场景、建议等完整内容')
+check(zodiacResult.includes('primaryName') && zodiacResult.includes('slotBodyA') && zodiacResult.includes('blocks'), '结果页展示主气质、组合、维度、场景、建议等完整内容')
+check(zodiacResult.includes('nextPage') && zodiacResult.includes('fillPage') && zodiacResult.includes('pageIndex'), '结果页内容分页展示（翻页可看全）')
+check(zodiacResult.includes('position: absolute') && !/^\.zr-page \{ flex-direction/mu.test(zodiacResult), '结果页使用绝对定位布局，避免 flex 挤压')
+
+// ---- 所有页面数据必须声明在 private 内（顶层属性不会被当作模板数据源 → 绑定全空） ----
+for (const [label, text] of [['首页', page], ['知识页', knowledgePage], ['日历页', calendarPage], ['答题页', zodiacTest], ['结果页', zodiacResult]]) {
+  const decl = text.match(/export default \{([\s\S]{0,600})/u)
+  check(!!decl && /private:\s*\{/u.test(decl[1]), `${label}页面数据声明在 private 中（否则模板绑定全部为空）`)
+}
 check(zodiacTest.includes('storage.set') && zodiacResult.includes('storage.get'), '测试结果经本地存储传递')
 check(fs.existsSync(path.join(root, 'src', 'common', 'scripts', 'zodiac-scoring.js')), '公共计分脚本位于 common/scripts')
 for (const dataFile of ['zodiac_questions.js', 'zodiac_profiles.js', 'zodiac_templates.js']) {

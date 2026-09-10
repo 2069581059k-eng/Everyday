@@ -129,12 +129,18 @@ async function main() {
     await click(client, 168, 388)
     await wait(2500)
     await shot(client, '03-zodiac-test.png')
-    // 连续答题：选项 A 约 y=242
+    // 连续答题：选项 A 绝对定位 top190 高48 → 中心 y=214
     for (let i = 0; i < 32; i++) {
-      await click(client, 168, 242, 60)
+      await click(client, 168, 214, 60)
     }
     await wait(2500)
-    await shot(client, '04-zodiac-result.png')
+    await shot(client, '04-result-p1.png')
+    // 翻页按钮：底部三按钮中间那个（left16 + 96 + 8 → 中心 x=168, y=459）
+    for (let p = 2; p <= 5; p++) {
+      await click(client, 168, 459)
+      await wait(1200)
+      await shot(client, `0${3 + p}-result-p${p}.png`)
+    }
     const logText = run(adbPath, ['-s', serial, 'shell', 'logcat', '-d', '-t', '400'], 20000)
     fs.writeFileSync(path.join(outputDir, 'logcat.txt'), logText)
   } finally {
