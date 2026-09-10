@@ -122,17 +122,17 @@ export default {
   },
 
   noResult() {
-    this.mainText = '还没有测试记录，先去做一次形象分析吧。'
+    this.mainText = '还没有测试记录，先去做一次星象分析吧。'
     this.ready = true
   },
 
   goHome() {
     router.clear()
-    router.replace({ uri: 'pages/index/index' })
+    router.replace({ uri: 'pages/index' })
   },
 
   retest() {
-    router.replace({ uri: 'pages/zodiac-test/zodiac-test' })
+    router.replace({ uri: 'pages/zodiac-test' })
   }
 }
 </script>

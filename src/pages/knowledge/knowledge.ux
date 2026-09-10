@@ -204,7 +204,7 @@ export default {
 
   goHome() {
     this.saveState()
-    router.replace({ uri: 'pages/index/index' })
+    router.replace({ uri: 'pages/index' })
   },
 
   pulse(mode) {

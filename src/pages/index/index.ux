@@ -139,7 +139,7 @@
       <text class="zodiac-range-big">{{zodiacRange}}</text>
       <text class="zodiac-moon">{{moonText}}</text>
       <text class="zodiac-tip">{{astroTip}}</text>
-      <input class="zodiac-analyze" type="button" value="形象分析 ›" onclick="startZodiacTest" />
+      <input class="zodiac-analyze" type="button" value="星象分析 ›" onclick="startZodiacTest" />
       <input class="zodiac-close" type="button" value="返回主页" onclick="closeZodiac" />
     </div>
   </div>
@@ -481,15 +481,15 @@ export default {
   },
 
   startZodiacTest() {
-    router.replace({ uri: 'pages/zodiac-test/zodiac-test' })
+    router.replace({ uri: 'pages/zodiac-test' })
   },
 
   openKnowledgePage() {
-    router.replace({ uri: 'pages/knowledge/knowledge' })
+    router.replace({ uri: 'pages/knowledge' })
   },
 
   openCalendarPage() {
-    router.replace({ uri: 'pages/calendar/calendar' })
+    router.replace({ uri: 'pages/calendar' })
   },
 
   drawFortune() {

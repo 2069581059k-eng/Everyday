@@ -1,6 +1,6 @@
 <template>
   <div class="zt-page">
-    <text class="zt-head">星座气质 · 形象分析</text>
+    <text class="zt-head">星座气质 · 星象分析</text>
     <text class="zt-progress">{{progressText}}</text>
     <div class="zt-progress-bar">
       <div class="zt-progress-fill" style="width: {{progressPct}}%;"></div>
@@ -89,7 +89,7 @@ export default {
   },
 
   goResult() {
-    router.replace({ uri: 'pages/zodiac-result/zodiac-result' })
+    router.replace({ uri: 'pages/zodiac-result' })
   },
 
   quitTest() {
