@@ -1,5 +1,21 @@
 # 当前交接
 
+## 2026-09-10 · WorkBuddy(agent) 1.8.11 知识大全文字修复 + 1.8.10 模拟器全功能验收
+
+- 分支 agent-knux-cleanup；实现提交 81bfe5f（修复）、dd62eb7（验收工具）；基线 f290df0（已含 main a78520a）。本轮按用户要求「用 1.8.10 在模拟器完成全部功能验收」执行。
+- **缺陷 1（P0，已修于 1.8.11）**：知识大全**阅读类正文完全空白**（正文区仅 1 种颜色，深色文字 0.00%）、**答题类点开「查看答案」后正文仍空白**（仅剩红色"答案"标签）。
+  根因：`knowledge.ux` 给 `this.riddleExplain` / `this.riddleAnswer` 赋值，但**未在 `private: {}` 声明**（Vela 只把 private 声明的属性当模板数据源）——与 1.8.10 同类根因的遗漏项。
+  修复：private 补两字段；新增 `tools/check-private-data.mjs`（扫描各页 `this.X =` 是否已声明）并接入 `npm test`。版本 1.8.11 / 10811（三处版本文件同步）。
+- **缺陷 2（P1，未修）**：星象答题页「退出测试」用 `router.back()`，因页面栈由 `router.replace` 逐级替换而无上一页，**直接离开应用**（1.8.10、1.8.11 均复现）。建议改 `router.replace({ uri: 'pages/index' })`。
+- 验收结论（Vela Band10 Pro 模拟器 336×480；截图 `qa-1.8.10/` 27 张、`qa-1.8.11/` 30 张）：
+  - **1.8.10（官方包）**：81 通过 / 9 未通过 → 6 项为该文字缺陷、2 项为模拟器尾部截图偏暗、1 项为退出测试。
+  - **1.8.11（修复包）**：94 通过 / 2 未通过 → 仅「退出测试」相关。首页/抽签/收藏/知识题干与翻题/日历/星象遮罩/四选项纵向堆叠（8 条边框线）/进度条推进/结果页 4 页分页与循环/再测一次 全部通过；错误日志 `onError`、`invalid pagename` 0 行。
+  - 详细报告：`docs/VERIFY-1.8.10-1.8.11.md`。
+- 构建：`git archive` 独立副本 → `tools/inline-modules.mjs` → `aiot build --enable-jsc` → `tools/verify-rpk.mjs` 通过。1.8.11 RPK 1,341,503 B，SHA-256 `57916230c31cbbefdbb6e26859a882a4145413c05f5b3dc141b079e0464e4dc7`。
+- 新增工具：`tools/capture-full.mjs`（全链路截图 + 屏幕唤醒重试 + 亮度校验）、`tools/analyze-full.mjs`（文字/红色按钮区分、模式自适应分类、边框线、进度条、分页循环）、`tools/check-private-data.mjs`、`tools/inspect-png.mjs`、`tools/band-report.mjs`、`tools/color-census.mjs`、`tools/dump-knowledge-daily.mjs`。
+- 模拟器环境坑（已固化进脚本）：①屏幕会进低功耗态，截图呈黑底白字（亮度 45）或变暗（142–145），`KEYCODE_WAKEUP` 常无效，需点显示区外底部边框唤醒；②**`pm clear` 对 Vela 应用存储无效**，知识进度跨安装残留（本次实测页面从题单第 14 条开始），验收断言应做成"模式无关"；③`@aiot-toolkit/emulator` 的 gRPC 偶发在库回调内崩溃，需进程级兜底；④期望版本以 RPK 文件名解析，versionCode = major+minor(2位)+patch(2位)（1.8.11→10811）。
+- 未创建 Release（按 AGENTS.md 需用户指示）；真机未验，真机结论待用户实测。
+
 ## 2026-09-10 · WorkBuddy(agent) 同步共同基准 + 并行线审查（无代码改动）
 
 - 分支 agent-knux-cleanup；基线合并提交 f290df0（merge main a78520a），1.8.10 实现提交仍为 c82a8a3。本次仅文档同步与审查，未改任何源码。

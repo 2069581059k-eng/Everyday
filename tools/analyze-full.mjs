@@ -1,6 +1,7 @@
 // tools/analyze-full.mjs
-// 1.8.10 全功能验收结果分析：分区内容检测、选项边框线、进度条填充、页面差异比对
-// 用法：node tools/analyze-full.mjs [qa-full 目录]
+// 全功能验收截图分析（v3）
+// 关键能力：区分"文字"与"红色按钮"、自动判定知识页答题/阅读模式、选项边框线、进度条、页面差异与循环
+// 用法：node tools/analyze-full.mjs [qa目录]
 import fs from 'node:fs'
 import path from 'node:path'
 import zlib from 'node:zlib'
@@ -18,8 +19,7 @@ function decodePng(file) {
     else if (type === 'IEND') break
     pos += 12 + len
   }
-  if (bitDepth !== 8) throw new Error('仅支持 8bit PNG')
-  const channels = colorType === 6 ? 4 : colorType === 2 ? 3 : colorType === 0 ? 1 : 0
+  const channels = colorType === 6 ? 4 : colorType === 2 ? 3 : 1
   const raw = zlib.inflateSync(Buffer.concat(idat))
   const stride = width * channels
   const out = Buffer.alloc(height * stride)
@@ -44,22 +44,36 @@ function decodePng(file) {
 }
 
 const isBg = (r, g, b) =>
-  (Math.abs(r - 242) <= 8 && Math.abs(g - 238) <= 8 && Math.abs(b - 229) <= 8) ||
-  (Math.abs(r - 255) <= 7 && Math.abs(g - 253) <= 7 && Math.abs(b - 248) <= 7) ||
-  (Math.abs(r - 251) <= 7 && Math.abs(g - 247) <= 7 && Math.abs(b - 240) <= 7) ||
-  (Math.abs(r - 238) <= 8 && Math.abs(g - 229) <= 8 && Math.abs(b - 216) <= 8)
+  (Math.abs(r - 242) <= 10 && Math.abs(g - 238) <= 10 && Math.abs(b - 229) <= 10) ||
+  (Math.abs(r - 255) <= 8 && Math.abs(g - 253) <= 8 && Math.abs(b - 248) <= 8) ||
+  (Math.abs(r - 251) <= 8 && Math.abs(g - 247) <= 8 && Math.abs(b - 240) <= 8) ||
+  (Math.abs(r - 238) <= 10 && Math.abs(g - 229) <= 10 && Math.abs(b - 216) <= 10)
 
-function regionRatio(img, x0, x1, y0, y1) {
+function region(img, x0, x1, y0, y1, predicate) {
   const { width, channels, data } = img
-  let content = 0, total = 0
+  let hit = 0, total = 0
   for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) {
     const i = (y * width + x) * channels
     total++
-    if (!isBg(data[i], data[i + 1], data[i + 2])) content++
+    if (predicate(data[i], data[i + 1], data[i + 2])) hit++
   }
-  return total ? content / total : 0
+  return total ? hit / total : 0
 }
-
+const contentRatio = (img, x0, x1, y0, y1) => region(img, x0, x1, y0, y1, (r, g, b) => !isBg(r, g, b))
+const isRed = (r, g, b) => r > 130 && r - g > 45 && r - b > 55
+const redRatio = (img, x0, x1, y0, y1) => region(img, x0, x1, y0, y1, isRed)
+// 文字（深色且非红色强调色）
+const textRatio = (img, x0, x1, y0, y1) => region(img, x0, x1, y0, y1, (r, g, b) => (r * 299 + g * 587 + b * 114) / 1000 < 150 && (r - b) < 40)
+const creamRatio = (img) => region(img, 0, img.width, 0, img.height, (r, g, b) => isBg(r, g, b))
+function meanLum(img) {
+  const { width, height, channels, data } = img
+  let sum = 0, n = 0
+  for (let y = 0; y < height; y += 3) for (let x = 0; x < width; x += 3) {
+    const i = (y * width + x) * channels
+    sum += (data[i] * 299 + data[i + 1] * 587 + data[i + 2] * 114) / 1000; n++
+  }
+  return sum / n
+}
 function borderLines(img, x0, x1, y0, y1, minCount = 180) {
   const { width, channels, data } = img
   const rows = []
@@ -78,8 +92,6 @@ function borderLines(img, x0, x1, y0, y1, minCount = 180) {
   }
   return lines
 }
-
-// 统计某行内主色（红 #a83b2d）连续像素宽度 → 进度条填充
 function accentWidth(img, y, x0, x1) {
   const { width, channels, data } = img
   let count = 0
@@ -89,7 +101,6 @@ function accentWidth(img, y, x0, x1) {
   }
   return count
 }
-
 function hash16(img) {
   const { width, height, channels, data } = img
   let h = 0
@@ -99,186 +110,175 @@ function hash16(img) {
   }
   return h.toString(16).padStart(8, '0')
 }
+// 答题页（未展开）特征：y205-256 出现大面积红色「查看答案」按钮
+const isQaPage = (img) => redRatio(img, 30, 300, 205, 256) > 0.30
 
 const dir = process.argv[2] ? path.resolve(process.argv[2]) : path.resolve(import.meta.dirname, '..', 'qa-full')
 const files = fs.readdirSync(dir).filter((f) => f.endsWith('.png')).sort()
 const imgs = new Map()
-console.log(`== 1.8.10 全功能验收分析（${files.length} 张）==\n`)
-console.log('文件'.padEnd(30) + '尺寸'.padEnd(12) + '内容占比')
-for (const f of files) {
-  const img = decodePng(path.join(dir, f))
-  imgs.set(f, img)
-  const ratio = regionRatio(img, 10, img.width - 10, 0, img.height)
-  console.log(f.padEnd(30) + `${img.width}x${img.height}`.padEnd(12) + (ratio * 100).toFixed(1) + '%')
-}
-
-const rep = (t) => console.log(`\n== ${t} ==`)
-const ok = (c, m) => console.log(`  ${c ? '✅' : '❌'} ${m}`)
+for (const f of files) imgs.set(f, decodePng(path.join(dir, f)))
 const get = (k) => imgs.get(k)
-const near = (a, b, tol) => Math.abs(a - b) <= tol
+let pass = 0, fail = 0
+const rep = (t) => console.log(`\n== ${t} ==`)
+const ok = (c, m) => { c ? pass++ : fail++; console.log(`  ${c ? '✅' : '❌'} ${m}`) }
+
+console.log(`== 全功能验收分析：${dir}`)
+console.log(`截图 ${files.length} 张：${files.join(', ')}`)
+
+rep('截图有效性（无黑屏/熄屏）')
+for (const f of files) {
+  const lum = meanLum(get(f))
+  ok(lum > 180 && lum < 252, `${f} 平均亮度 ${lum.toFixed(0)}`)
+}
 
 rep('首页 01-home')
 {
   const img = get('01-home.png')
   if (img) {
-    const brand = regionRatio(img, 100, 236, 8, 28)
-    const stat = regionRatio(img, 15, 321, 44, 63)
-    const quote = regionRatio(img, 14, 322, 76, 200)
-    const cards = regionRatio(img, 14, 322, 266, 382)
-    const btns = regionRatio(img, 14, 322, 392, 426)
-    ok(brand > 0.06, `品牌标题有内容 (${(brand * 100).toFixed(1)}%)`)
-    ok(stat > 0.05, `状态行有内容 (${(stat * 100).toFixed(1)}%)`)
-    ok(quote > 0.05, `语录卡片有内容 (${(quote * 100).toFixed(1)}%)`)
-    ok(cards > 0.05, `两张功能卡片有内容 (${(cards * 100).toFixed(1)}%)`)
-    ok(btns > 0.2, `两个操作按钮有内容 (${(btns * 100).toFixed(1)}%)`)
+    ok(contentRatio(img, 100, 236, 8, 28) > 0.06, `品牌标题 (${(contentRatio(img, 100, 236, 8, 28) * 100).toFixed(1)}%)`)
+    ok(contentRatio(img, 15, 321, 44, 63) > 0.05, `状态行 (${(contentRatio(img, 15, 321, 44, 63) * 100).toFixed(1)}%)`)
+    ok(contentRatio(img, 14, 322, 76, 200) > 0.05, `语录卡片 (${(contentRatio(img, 14, 322, 76, 200) * 100).toFixed(1)}%)`)
+    ok(contentRatio(img, 14, 322, 266, 382) > 0.05, `两张功能卡片 (${(contentRatio(img, 14, 322, 266, 382) * 100).toFixed(1)}%)`)
+    ok(contentRatio(img, 14, 322, 392, 426) > 0.2, `两个操作按钮 (${(contentRatio(img, 14, 322, 392, 426) * 100).toFixed(1)}%)`)
   } else ok(false, '缺少 01-home.png')
 }
 
-rep('抽签 02-draw-fortune（签级+提示应出现）')
+rep('抽一签 02 / 收藏 03')
 {
-  const a = get('01-home.png'), b = get('02-draw-fortune.png')
+  const a = get('01-home.png'), b = get('02-draw-fortune.png'), c = get('03-favorite.png')
   if (a && b) {
-    // 签级印章区（quote-card 内 top37）：abs x30..88 y113..142
-    const stampA = regionRatio(a, 26, 92, 110, 146)
-    const stampB = regionRatio(b, 26, 92, 110, 146)
-    const tipB = regionRatio(b, 27, 300, 220, 240) // 签语提示行
-    ok(stampB > stampA, `抽签后签级印章区内容增加 (${(stampA * 100).toFixed(1)}% → ${(stampB * 100).toFixed(1)}%)`)
-    ok(stampB > 0.1, `签级印章可见 (${(stampB * 100).toFixed(1)}%)`)
-    ok(tipB > 0.03, `签语提示行可见 (${(tipB * 100).toFixed(1)}%)`)
+    const s1 = contentRatio(a, 26, 92, 110, 146), s2 = contentRatio(b, 26, 92, 110, 146)
+    ok(s2 > s1, `签级印章出现 (${(s1 * 100).toFixed(1)}% → ${(s2 * 100).toFixed(1)}%)`)
+    ok(redRatio(b, 27, 300, 216, 244) > 0.01, `签语提示（红色）可见 (${(redRatio(b, 27, 300, 216, 244) * 100).toFixed(2)}%)`)
     ok(hash16(a) !== hash16(b), '抽签前后画面不同')
-  } else ok(false, '缺少抽签截图')
-}
-
-rep('收藏 03-favorite（按钮文案应变化）')
-{
-  const b = get('02-draw-fortune.png'), c = get('03-favorite.png')
+  }
   if (b && c) {
-    const favB = regionRatio(b, 258, 312, 83, 110)
-    const favC = regionRatio(c, 258, 312, 83, 110)
     ok(hash16(b) !== hash16(c), '点击收藏后画面变化')
-    ok(favB > 0.02 && favC > 0.02, `收藏按钮有文案 (${(favB * 100).toFixed(1)}% → ${(favC * 100).toFixed(1)}%)`)
-  } else ok(false, '缺少收藏截图')
-}
-
-rep('知识大全 04-06（答题/阅读两种模式）')
-{
-  const k1 = get('04-knowledge-1.png'), k2 = get('05-knowledge-2-reveal.png')
-  const k3 = get('06-knowledge-3.png'), k4 = get('05-knowledge-4-reveal.png')
-  const k5 = get('06-knowledge-5.png')
-  const list = [['04-knowledge-1', k1], ['06-knowledge-3', k3], ['06-knowledge-5', k5]]
-  for (const [name, img] of list) {
-    if (!img) { ok(false, `缺少 ${name}.png`); continue }
-    const kicker = regionRatio(img, 28, 178, 22, 42)
-    const qbox = regionRatio(img, 28, 308, 60, 190)
-    const bar = regionRatio(img, 28, 308, 412, 460)
-    ok(kicker > 0.08, `${name}: 分类标签有内容 (${(kicker * 100).toFixed(1)}%)`)
-    ok(qbox > 0.05, `${name}: 题干/正文区有内容 (${(qbox * 100).toFixed(1)}%)`)
-    ok(bar > 0.05, `${name}: 底部导航有内容 (${(bar * 100).toFixed(1)}%)`)
-  }
-  if (k1 && k2) ok(hash16(k1) !== hash16(k2), '查看答案后画面变化（答题类展开答案）')
-  if (k4 && k5) ok(hash16(k4) !== hash16(k5), '阅读类下一步后画面变化')
-  if (k2 && k4) {
-    const ansBox = regionRatio(k2, 16, 296, 190, 394)
-    const readBox = regionRatio(k4, 18, 294, 112, 360)
-    ok(ansBox > 0.05, `答题类答案框有内容 (${(ansBox * 100).toFixed(1)}%)`)
-    ok(readBox > 0.05, `阅读类正文区有内容 (${(readBox * 100).toFixed(1)}%)`)
+    ok(textRatio(c, 256, 314, 82, 112) > 0.01, `收藏按钮文字 (${(textRatio(c, 256, 314, 82, 112) * 100).toFixed(2)}%)`)
   }
 }
 
-rep('返回首页 07 / 10 / 20')
+rep('知识大全 · 各页渲染（模式自适应：阅读正文 / 答题答案）')
 {
-  const h1 = get('01-home.png')
-  for (const k of ['07-back-home.png', '10-home-again.png', '20-final-home.png']) {
+  const shots = files.filter((f) => /kn-item\d+(-answer)?\.png$/.test(f)).sort()
+  let readPages = 0, readWithBody = 0, qaPages = 0, qaAnswers = 0, qaAnswerWithBody = 0
+  for (const k of shots) {
+    const img = get(k)
+    const qa = isQaPage(img)
+    const answerLabel = redRatio(img, 28, 130, 200, 244)
+    const title = textRatio(img, 30, 302, 56, 116)
+    const body = textRatio(img, 30, 302, 124, 372)
+    const question = textRatio(img, 28, 308, 60, 190)
+    const answerBody = textRatio(img, 28, 308, 246, 366)
+    if (qa) {
+      qaPages++
+      ok(question > 0.02, `${k} 答题类·题干文字 ${(question * 100).toFixed(2)}%`)
+      ok(true, `${k} 答题类·查看答案按钮存在（红块 ${(redRatio(img, 30, 300, 205, 256) * 100).toFixed(0)}%）`)
+    } else if (answerLabel > 0.004) {
+      qaAnswers++
+      ok(answerBody > 0.005, `${k} 答题类已展开·答案正文 ${(answerBody * 100).toFixed(2)}%（1.8.10 为 0.00%）`)
+      if (answerBody > 0.005) qaAnswerWithBody++
+    } else {
+      readPages++
+      ok(title > 0.01, `${k} 阅读类·标题文字 ${(title * 100).toFixed(2)}%`)
+      ok(body > 0.005, `${k} 阅读类·正文文字 ${(body * 100).toFixed(2)}%（1.8.10 为 0.00%）`)
+      if (body > 0.005) readWithBody++
+    }
+  }
+  console.log(`    分类：阅读页 ${readPages}（有正文 ${readWithBody}）、答题未展开页 ${qaPages}、答题已展开页 ${qaAnswers}（有答案正文 ${qaAnswerWithBody}）`)
+  ok(readPages > 0 && readWithBody === readPages, '全部阅读页都渲染出正文文字（修复点）')
+  ok(qaAnswers === 0 || qaAnswerWithBody === qaAnswers, '全部已展开的答题页都渲染出答案正文（修复点）')
+  ok(qaPages + qaAnswers + readPages === shots.length, `共覆盖 ${shots.length} 个知识页截图`)
+}
+
+rep('知识大全 · 翻题导航')
+{
+  const i6 = get('09-kn-item6.png'), prev = get('09-kn-prev.png')
+  if (i6 && prev) ok(hash16(i6) !== hash16(prev), '上一题切换画面变化')
+}
+
+rep('返回首页 10 / 13 / 25')
+{
+  for (const k of ['10-back-home.png', '13-home-again.png', '25-final-home.png']) {
     const img = get(k)
     if (!img) { ok(false, `缺少 ${k}`); continue }
-    const cards = regionRatio(img, 14, 322, 266, 382)
-    const quote = regionRatio(img, 14, 322, 76, 200)
-    ok(cards > 0.05 && quote > 0.05, `${k}: 首页结构完整（语录 ${(quote * 100).toFixed(1)}%，卡片 ${(cards * 100).toFixed(1)}%）`)
-    if (h1) ok(hash16(img) === hash16(h1), `${k}: 与首次首页一致`)
+    const quote = contentRatio(img, 14, 322, 76, 200), cards = contentRatio(img, 14, 322, 266, 382)
+    ok(quote > 0.05 && cards > 0.05, `${k} 首页结构完整（语录 ${(quote * 100).toFixed(1)}%，卡片 ${(cards * 100).toFixed(1)}%）`)
   }
 }
 
-rep('今日日历 08/09（网格+翻月）')
+rep('今日日历 11/12')
 {
-  const c1 = get('08-calendar.png'), c2 = get('09-calendar-next.png')
+  const c1 = get('11-calendar.png'), c2 = get('12-calendar-next.png')
   if (c1 && c2) {
-    const title = regionRatio(c1, 16, 320, 18, 50)
-    const grid = regionRatio(c1, 10, 326, 100, 366)
-    const btns = regionRatio(c1, 18, 318, 420, 460)
-    ok(title > 0.05, `月份标题有内容 (${(title * 100).toFixed(1)}%)`)
-    ok(grid > 0.05, `日历网格有内容 (${(grid * 100).toFixed(1)}%)`)
-    ok(btns > 0.2, `底部按钮有内容 (${(btns * 100).toFixed(1)}%)`)
+    ok(textRatio(c1, 16, 320, 18, 50) > 0.01, `月份标题 (${(textRatio(c1, 16, 320, 18, 50) * 100).toFixed(2)}%)`)
+    ok(textRatio(c1, 10, 326, 100, 366) > 0.01, `日历数字 (${(textRatio(c1, 10, 326, 100, 366) * 100).toFixed(2)}%)`)
+    ok(contentRatio(c1, 18, 318, 420, 460) > 0.2, '底部按钮可见')
     ok(hash16(c1) !== hash16(c2), '翻月后画面变化')
-    ok(regionRatio(c2, 16, 320, 18, 50) > 0.05, '翻月后标题仍有内容')
   } else ok(false, '缺少日历截图')
 }
 
-rep('趣味星象遮罩 11/12（换星座）')
+rep('趣味星象遮罩 14/15')
 {
-  const m1 = get('11-zodiac-mask.png'), m2 = get('12-zodiac-next-sign.png')
+  const m1 = get('14-zodiac-mask.png'), m2 = get('15-zodiac-sign-next.png')
   if (m1 && m2) {
     ok(hash16(m1) !== hash16(m2), '切换星座后画面变化')
-    const name1 = regionRatio(m1, 40, 296, 170, 220)
-    const analyze = regionRatio(m1, 98, 238, 368, 408)
-    ok(name1 > 0.05, `星座名区有内容 (${(name1 * 100).toFixed(1)}%)`)
-    ok(analyze > 0.2, `星象分析按钮可见 (${(analyze * 100).toFixed(1)}%)`)
+    ok(textRatio(m1, 40, 296, 160, 230) > 0.01, `星座名/日期文字 (${(textRatio(m1, 40, 296, 160, 230) * 100).toFixed(2)}%)`)
+    ok(redRatio(m1, 98, 238, 368, 408) > 0.03, `星象分析按钮（红字描边）可见 (${(redRatio(m1, 98, 238, 368, 408) * 100).toFixed(1)}%)`)
   } else ok(false, '缺少星象遮罩截图')
 }
 
-rep('星象答题 13/14（四选项纵向 + 进度推进）')
+rep('星象答题 16/17（四选项纵向 + 进度推进 + 不熄屏）')
 {
-  const t1 = get('13-zodiac-test-q1.png'), t2 = get('14-zodiac-test-mid.png')
+  const t1 = get('16-zodiac-test-q1.png'), t2 = get('17-zodiac-test-mid.png')
   if (t1) {
     const lines = borderLines(t1, 20, 320, 170, 420, 180)
     ok(lines.length === 8, `四个选项边框线 = ${lines.length} 条（期望 8）`)
     console.log('    边框线 y：' + lines.map((l) => l.start).join(', '))
-    const head = regionRatio(t1, 0, 336, 8, 70)
-    const scene = regionRatio(t1, 20, 316, 78, 100)
-    const q = regionRatio(t1, 20, 316, 102, 182)
-    ok(head > 0.08, `标题/进度有内容 (${(head * 100).toFixed(1)}%)`)
-    ok(scene > 0.05, `场景行有内容 (${(scene * 100).toFixed(1)}%)`)
-    ok(q > 0.05, `题干有内容 (${(q * 100).toFixed(1)}%)`)
-  } else ok(false, '缺少答题页截图')
+    ok(textRatio(t1, 0, 336, 8, 70) > 0.005, `标题/进度文字 (${(textRatio(t1, 0, 336, 8, 70) * 100).toFixed(2)}%)`)
+    ok(redRatio(t1, 20, 316, 78, 100) > 0.005, `场景行红字 (${(redRatio(t1, 20, 316, 78, 100) * 100).toFixed(2)}%)`)
+    ok(textRatio(t1, 20, 316, 102, 182) > 0.005, `题干文字 (${(textRatio(t1, 20, 316, 102, 182) * 100).toFixed(2)}%)`)
+    ok(textRatio(t1, 20, 316, 190, 400) > 0.005, `四个选项文字 (${(textRatio(t1, 20, 316, 190, 400) * 100).toFixed(2)}%)`)
+  } else ok(false, '缺少 16-zodiac-test-q1.png')
   if (t1 && t2) {
-    const fill1 = accentWidth(t1, 64, 38, 298)
-    const fill2 = accentWidth(t2, 64, 38, 298)
+    const f1 = accentWidth(t1, 64, 38, 298), f2 = accentWidth(t2, 64, 38, 298)
     ok(hash16(t1) !== hash16(t2), '答题推进后画面变化')
-    ok(fill2 > fill1, `进度条填充推进 (${fill1}px → ${fill2}px)`)
+    ok(f2 > f1, `进度条填充推进 (${f1}px → ${f2}px)`)
+    ok(meanLum(t2) > 180, `答题中途未熄屏（亮度 ${meanLum(t2).toFixed(0)}）`)
   }
 }
 
-rep('结果页 15-17（分页内容各异 + 循环）')
+rep('结果页 18-22（4 页各异 + 循环）')
 {
-  const pages = ['15-result-p1.png', '16-result-p2.png', '16-result-p3.png', '16-result-p4.png', '16-result-p5.png']
+  const pages = ['18-result-p1.png', '19-result-p2.png', '20-result-p3.png', '21-result-p4.png']
   const hashes = []
   for (const p of pages) {
     const img = get(p)
     if (!img) { ok(false, `缺少 ${p}`); continue }
     hashes.push(hash16(img))
-    const top3 = regionRatio(img, 16, 320, 40, 104)
-    const slots = regionRatio(img, 26, 310, 112, 412)
-    const actions = regionRatio(img, 16, 320, 440, 478)
-    ok(top3 > 0.05 && slots > 0.05, `${p}: 顶部三星座+内容槽有内容 (${(top3 * 100).toFixed(1)}% / ${(slots * 100).toFixed(1)}%)`)
-    ok(actions > 0.2, `${p}: 底部三按钮可见 (${(actions * 100).toFixed(1)}%)`)
+    ok(textRatio(img, 16, 320, 40, 104) > 0.01, `${p} 顶部三星座文字 (${(textRatio(img, 16, 320, 40, 104) * 100).toFixed(2)}%)`)
+    ok(textRatio(img, 26, 310, 110, 412) > 0.01, `${p} 内容槽文字 (${(textRatio(img, 26, 310, 110, 412) * 100).toFixed(2)}%)`)
+    ok(contentRatio(img, 16, 320, 440, 478) > 0.2, `${p} 底部三按钮可见`)
   }
-  const uniq = new Set(hashes)
-  ok(uniq.size === hashes.length && hashes.length === 5, `5 页内容互不相同 (${uniq.size}/5 唯一)`)
-  const loop = get('17-result-loop-back.png')
-  if (loop && hashes.length) ok(hash16(loop) === hashes[0], '第 6 次翻页回到第 1 页')
-  else ok(false, '缺少 17-result-loop-back.png')
+  ok(new Set(hashes).size === hashes.length && hashes.length === 4, `4 页内容互不相同 (${new Set(hashes).size}/4)`)
+  const loop = get('22-result-loop-back.png')
+  if (loop && hashes.length) ok(hash16(loop) === hashes[0], '第 5 次翻页回到第 1 页')
 }
 
-rep('再测一次 / 退出 / 收尾 18-20')
+rep('重测 23 / 退出测试 24 / 收尾 25')
 {
-  const rt = get('18-retest.png'), ex = get('19-exit-to-result.png')
+  const rt = get('23-retest.png')
   if (rt) {
     const lines = borderLines(rt, 20, 320, 170, 420, 180)
-    ok(lines.length === 8, `重测进入答题页且四选项正常 (${lines.length} 条边框线)`)
-  } else ok(false, '缺少 18-retest.png')
+    ok(lines.length === 8, `再测一次进入答题页且四选项正常（${lines.length} 条边框线）`)
+  } else ok(false, '缺少 23-retest.png')
+  const ex = get('24-exit-test.png')
   if (ex) {
-    const actions = regionRatio(ex, 16, 320, 440, 478)
-    ok(actions > 0.2, `退出测试回到结果页 (${(actions * 100).toFixed(1)}%)`)
-  } else ok(false, '缺少 19-exit-to-result.png')
+    const cream = creamRatio(ex)
+    ok(cream > 0.5, `退出测试后仍在应用内（米色底 ${(cream * 100).toFixed(0)}%）`)
+    const isHome = contentRatio(ex, 14, 322, 266, 382) > 0.05
+    console.log(`    24-exit-test 形态：${isHome ? '首页' : '非首页（需人工确认具体页面）'}`)
+  } else ok(false, '缺少 24-exit-test.png')
 }
 
 rep('错误日志')
@@ -290,3 +290,5 @@ rep('错误日志')
     for (const l of lines.slice(0, 8)) console.log('    ' + l)
   } else ok(false, '缺少 error-lines.txt')
 }
+
+console.log(`\n===== 汇总：通过 ${pass} 项，未通过 ${fail} 项 =====`)
