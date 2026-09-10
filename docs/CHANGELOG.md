@@ -1,5 +1,16 @@
 # 版本记录
 
+## 1.8.12（本地构建 + 模拟器验收，未发布）
+
+- **纯架构清理，不改任何 UI 与用户行为**：
+  - `pages/index/index.ux` 删除已迁移到独立页的旧实现：知识大全模板（`quiz-mask`/`quiz-panel`/`qa-mode`/`read-mode` 等）与答题逻辑（`startQuiz`/`renderQuiz`/`revealAnswer`/`renderDetail`/`nextDetail`/`prevQuestion`/`nextQuestion`/`closeQuiz`）、月历模板（`month-mask` 及 42 格）与月历逻辑（`openCalendar`/`closeCalendar`/`previousMonth`/`nextMonth`/`currentMonth`/`renderCalendar`），以及 `quizVisible`、`calCell/calToday/calColor×42`、`riddle*`/`detail*` 等状态；首页仅保留 `openKnowledgePage()`、`openCalendarPage()` 两个路由入口与每日一言/抽签/收藏/统计/趣味星象。
+  - 同步移除随迁移失效的导入与死字段：`RIDDLES`、`mulberry32`、`isLegalHoliday`、`monthHolidayText`、`monthYearText`、`yearDayText`、`calendarHolidayText`。
+  - `pages/zodiac-result/zodiac-result.ux` 删除未使用的 `zodiacProfiles`/`zodiacQuestions`/`zodiacTemplates` 导入（结果页仅从 `zodiac_profile_result_v1` 读取已算好的 `analysis`）。
+- 体积（对比 1.8.11）：`pages/index/index.jsc` 830,684 → **261,750 B（−568,934 B / −68.5%）**；`pages/zodiac-result/zodiac-result.jsc` 111,931 → **9,459 B（−102,472 B / −91.5%）**；全部 jsc 合计 1,632,392 → **960,986 B（−655.7 KB）**；RPK 1,341,503 → **1,060,781 B**。
+- `tools/verify-game.mjs`：更新过时断言（首页日期信息改按 `dayText`/`monthShortText`/`weekdayText` 校验），新增 7 条"迁移完整性"防回退断言。
+- 模拟器全功能验收：93 项通过、2 项未通过（均为既有 P1「退出测试离开应用」，与 1.8.11 一致）；知识大全、月历、星座测试、星座结果页**进入与返回均正常**。
+- RPK SHA-256 `017d01e4…`；未创建 GitHub Release。
+
 ## 1.8.11（当前共同基准）
 
 - 发布源码/构建快照：`dd62eb7`（含 81bfe5f 修复）；tag `v1.8.11`；Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.11

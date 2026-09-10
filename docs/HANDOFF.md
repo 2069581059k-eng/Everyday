@@ -1,5 +1,23 @@
 # 当前交接
 
+## 2026-09-10 · WorkBuddy(agent) 1.8.12 纯架构清理（首页迁移收尾 + 结果页瘦身）
+
+- 分支 agent-knux-cleanup；实现提交见本条下方的"验收记录"对应源码快照（未提前提交，按门槛先生成快照构建并验收）。
+- 任务（用户要求）：把 1.8.4 起"复制而非迁移"的旧实现真正删掉，**不改任何 UI 与用户行为**。
+  - `index.ux` 删除：知识大全模板（`quiz-mask`/`quiz-panel`/`qa-mode`/`read-mode` 等）与 `startQuiz/renderQuiz/revealAnswer/renderDetail/nextDetail/prevQuestion/nextQuestion/closeQuiz`；月历模板（`month-mask` + 42 格）与 `openCalendar/closeCalendar/previousMonth/nextMonth/currentMonth/renderCalendar`；状态 `quizVisible`、`calCell/calToday/calColor ×42`、`riddle*/detail*/answerVisible/prev*/next*`；失效导入 `RIDDLES`、`mulberry32`、`isLegalHoliday`、`monthHolidayText` 与死字段 `monthYearText`/`yearDayText`/`calendarHolidayText`。首页仅保留 `openKnowledgePage()`、`openCalendarPage()` 入口 + 每日一言/抽签/收藏/统计/趣味星象。
+  - `zodiac-result.ux` 删除未使用的 `zodiacProfiles`/`zodiacQuestions`/`zodiacTemplates` 导入。
+- 体积（对比基准 1.8.11）：`pages/index/index.jsc` 830,684 → **261,750 B（−68.5%）**；`pages/zodiac-result/zodiac-result.jsc` 111,931 → **9,459 B（−91.5%）**；jsc 合计 1,632,392 → **960,986 B（−655.7 KB）**；RPK 1,341,503 → **1,060,781 B**。`knowledge/calendar/zodiac-test` 三个 jsc 未变（其内联数据仍被需要）。
+- `tools/verify-game.mjs`：原断言"主页面包含真实日期日历信息"依据的 `yearDayText` 属死字段，已按新架构改为校验首页日历卡片 `dayText`/`monthShortText`/`weekdayText`；另加 7 条迁移完整性防回退断言（首页不得再出现 quiz/month/calCell 等旧实现、结果页不得再导入题库模板数据）。
+- 版本：1.8.12 / 10812（`package.json`、`package-lock.json`、`src/manifest.json` 同步）。**未发布 Release**（1.8.11 仍是已发布基准，本版为清理构建，是否发布待用户指示）。
+- **验收记录（按模拟器验收门槛）**：
+  - 验收时间：2026-09-10 14:44–14:48（GMT+8）
+  - 模拟器：Vela Band 10 Pro（AVD `Vela_Band10Pro_UI`，336×480，串口动态识别）；安装版本经 `manifest-watch.json` 核对为 1.8.12 / 10812
+  - 源码快照：工作区快照（含本次未提交改动）复制到独立无 `.git` 目录 `Documents/huarongdao/dq_b1812`；`src+tools+package*.json` 快照哈希 `ef6a0357b8fa5677aff8cabe2d702fa0cb1f29c115c2ce414921c8d6ccd7aacb`
+  - 安装包：`dist/com.dailyquote.band10pro.debug.1.8.12.rpk`，1,060,781 B，SHA-256 `017d01e4327fefe4237baf4fa8a1b803090a7d91afeb7797bf13398156a50069`；`tools/verify-rpk.mjs` 校验通过
+  - 用例与结果：93 项通过 / 2 项未通过（2 项均为既有 P1「退出测试直接离开应用」，1.8.11 同表现，非本次引入）。覆盖：首页/抽签/收藏 → 知识大全（4 阅读页正文 4/4、答题展开答案 2/2、上一题）→ 返回主页 → 今日日历（翻月）→ 返回主页 → 星象遮罩/换星座 → 星象答题（8 条选项边框线、进度条 8→138px）→ 结果页 4 页分页与循环 → **结果页返回主页** → 再次进入遮罩/答题页 → 退出测试 → 重启后首页正常；错误日志 `onError`/`invalid pagename` 0 行
+  - 证据路径：`qa-1.8.12/`（30 张截图 + `logcat.txt`、`error-lines.txt`、`runtime.log`）
+- 已知问题（未修，非本次引入）：①「退出测试」`router.back()` 直接离开应用（P1，建议 `router.replace({uri:'pages/index'})`）；②`calendar.ux` 仍导入未使用的 `WEEKDAYS`/`moonPhase`，`zodiac-test.ux` 内联的 `getZodiacByDate` 未使用——同类死代码，可下轮清理。
+
 ## 2026-09-10 · WorkBuddy(agent) 发布 1.8.11 并切换为后续更新基准
 
 - 分支 agent-knux-cleanup；构建快照提交 `dd62eb7`（含修复 81bfe5f）；tag `v1.8.11`；main 已普通 push 前进到本分支（无 force）。

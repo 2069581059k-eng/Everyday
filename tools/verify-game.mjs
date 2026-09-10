@@ -157,7 +157,7 @@ check(knowledgePage.includes('riddleExplain = chunks[this.detailIndex]') && know
 // ---- 其它原有功能保持不变 ----
 check(page.includes('state.lastDay === today.dayNumber - 1'), '实现连续签到计算')
 check(page.includes('toggleFavorite()') && page.includes('favorites'), '实现本地收藏')
-check(page.includes('今日日历') && page.includes('yearDayText'), '主页面包含真实日期日历信息')
+check(page.includes('今日日历') && page.includes('dayText') && page.includes('monthShortText') && page.includes('weekdayText'), '首页今日日历卡片显示真实日期信息（月/日/星期）')
 check(page.includes('ZODIACS') && page.includes('previousZodiac()') && page.includes('nextZodiac()'), '支持十二星座切换与本地保存')
 check(page.includes('moonPhase(today.dayNumber)'), '显示按日期计算的近似月相')
 check(zodiacUtils.includes("'上上签'") && zodiacUtils.includes("'上签'") && zodiacUtils.includes("'中签'") && zodiacUtils.includes("'下签'") && zodiacUtils.includes("'下下签'"), '抽签包含五个签级')
@@ -233,5 +233,14 @@ check(knowledgePage.includes('goHome') && knowledgePage.includes("uri: 'pages/in
 check(calendarPage.includes('goHome') && calendarPage.includes("uri: 'pages/index'"), '日历页提供返回主页跳转')
 check(page.includes('openKnowledgePage') && page.includes("uri: 'pages/knowledge'"), '首页知识大全入口跳转独立知识页')
 check(page.includes('openCalendarPage') && page.includes("uri: 'pages/calendar'"), '首页今日日历入口跳转独立日历页')
+
+// ---- 1.8.12 架构清理：首页不再内置知识/月历实现，仅保留路由入口（防回退） ----
+check(!page.includes('quiz-mask') && !page.includes('quiz-panel') && !page.includes('quizVisible') && !page.includes('startQuiz'), '首页已移除知识大全模板与答题逻辑（迁移到知识页）')
+check(!page.includes('riddleQuestion') && !page.includes('riddleExplain') && !page.includes('dailyRiddleList') && !page.includes('RIDDLES'), '首页已移除题目状态与题库导入')
+check(!page.includes('month-mask') && !page.includes('calCell') && !page.includes('calToday') && !page.includes('calColor') && !page.includes('renderCalendar'), '首页已移除月历模板与 42 格状态/逻辑（迁移到日历页）')
+check(!page.includes('isLegalHoliday') && !page.includes('monthHolidayText'), '首页不再导入节假日工具（改由日历页负责）')
+check(!page.includes('openCalendar(') && !page.includes('previousMonth') && !page.includes('currentMonth'), '首页不再保留月历内部方法，仅留路由入口')
+check(page.includes('drawFortune') && page.includes('toggleFavorite') && page.includes('zodiac-mask') && page.includes('startZodiacTest'), '首页保留每日一言、抽签、收藏与趣味星象')
+check(!zodiacResult.includes('zodiacProfiles') && !zodiacResult.includes('zodiacQuestions') && !zodiacResult.includes('zodiacTemplates'), '结果页不再导入题库/模板数据（仅从本地存储读取已算好的 analysis）')
 
 console.log(`\n每日一言静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)  

@@ -199,7 +199,7 @@ rep('知识大全 · 翻题导航')
 
 rep('返回首页 10 / 13 / 25')
 {
-  for (const k of ['10-back-home.png', '13-home-again.png', '25-final-home.png']) {
+  for (const k of ['10-back-home.png', '13-home-again.png', '23-result-home.png', '27-final-home.png']) {
     const img = get(k)
     if (!img) { ok(false, `缺少 ${k}`); continue }
     const quote = contentRatio(img, 14, 322, 76, 200), cards = contentRatio(img, 14, 322, 266, 382)
@@ -220,10 +220,11 @@ rep('今日日历 11/12')
 
 rep('趣味星象遮罩 14/15')
 {
-  const m1 = get('14-zodiac-mask.png'), m2 = get('15-zodiac-sign-next.png')
+  const m1 = get('14-zodiac-mask.png'), m2 = get('15-zodiac-sign-next.png'), m3 = get('24-mask-again.png')
   if (m1 && m2) {
     ok(hash16(m1) !== hash16(m2), '切换星座后画面变化')
     ok(textRatio(m1, 40, 296, 160, 230) > 0.01, `星座名/日期文字 (${(textRatio(m1, 40, 296, 160, 230) * 100).toFixed(2)}%)`)
+    if (m3) ok(contentRatio(m3, 98, 238, 368, 408) > 0.15, '再次进入遮罩后星象分析按钮仍可见')
     ok(redRatio(m1, 98, 238, 368, 408) > 0.03, `星象分析按钮（红字描边）可见 (${(redRatio(m1, 98, 238, 368, 408) * 100).toFixed(1)}%)`)
   } else ok(false, '缺少星象遮罩截图')
 }
@@ -267,18 +268,18 @@ rep('结果页 18-22（4 页各异 + 循环）')
 
 rep('重测 23 / 退出测试 24 / 收尾 25')
 {
-  const rt = get('23-retest.png')
+  const rt = get('25-test-again.png')
   if (rt) {
     const lines = borderLines(rt, 20, 320, 170, 420, 180)
-    ok(lines.length === 8, `再测一次进入答题页且四选项正常（${lines.length} 条边框线）`)
-  } else ok(false, '缺少 23-retest.png')
-  const ex = get('24-exit-test.png')
+    ok(lines.length === 8, `再次进入答题页且四选项正常（${lines.length} 条边框线）`)
+  } else ok(false, '缺少 25-test-again.png')
+  const ex = get('26-exit-test.png')
   if (ex) {
     const cream = creamRatio(ex)
     ok(cream > 0.5, `退出测试后仍在应用内（米色底 ${(cream * 100).toFixed(0)}%）`)
     const isHome = contentRatio(ex, 14, 322, 266, 382) > 0.05
-    console.log(`    24-exit-test 形态：${isHome ? '首页' : '非首页（需人工确认具体页面）'}`)
-  } else ok(false, '缺少 24-exit-test.png')
+    console.log(`    26-exit-test 形态：${isHome ? '首页' : '非首页（需人工确认具体页面）'}`)
+  } else ok(false, '缺少 26-exit-test.png')
 }
 
 rep('错误日志')

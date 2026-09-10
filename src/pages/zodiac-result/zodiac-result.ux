@@ -66,9 +66,6 @@
 <script>
 import router from '@system.router'
 import storage from '@system.storage'
-import zodiacProfiles from '../../common/data/zodiac_profiles.js'
-import zodiacQuestions from '../../common/data/zodiac_questions.js'
-import zodiacTemplates from '../../common/data/zodiac_templates.js'
 
 const STORAGE_KEY = 'zodiac_profile_result_v1'
 const PER_PAGE = 3

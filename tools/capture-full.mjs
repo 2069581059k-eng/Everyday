@@ -86,7 +86,7 @@ const emulatorPath = path.join(sdkHome, 'emulator', 'windows-x86_64', 'emulator.
 const manifest = JSON.parse(fs.readFileSync(path.join(projectRoot, 'src', 'manifest.json'), 'utf8'))
 const rpkPath = process.env.VELA_RPK || path.join(projectRoot, 'dist', `${packageName}.debug.${manifest.versionName}.rpk`)
 const outputDir = path.join(projectRoot, process.env.QA_DIR || 'qa-full')
-const serial = 'emulator-5554'
+let serial = 'emulator-5554'
 let startedHere = false
 let lastLum = 226   // 最近一次截图平均亮度（用于点击前自动唤醒）
 const runtimeLog = []
@@ -102,9 +102,14 @@ function run(file, args, timeout = 30000) {
   return result.stdout || ''
 }
 
-function deviceReady() {
+function deviceSerial() {
   const result = spawnSync(adbPath, ['devices'], { encoding: 'utf8', timeout: 5000, windowsHide: true })
-  return /emulator-\d+\s+device/.test(result.stdout || '')
+  const m = (result.stdout || '').match(/(emulator-\d+)\s+device/)
+  return m ? m[1] : null
+}
+
+function deviceReady() {
+  return !!deviceSerial()
 }
 
 function readRunningConfig() {
@@ -209,6 +214,7 @@ const P = {
   calHome: [248, 440],     // 日历 返回主页
   opt: [[168, 214], [168, 268], [168, 322], [168, 376]], // 星象选项 A/B/C/D
   ztExit: [168, 429],      // 星象测试 退出测试
+  zrHome: [64, 459],       // 结果页 返回主页
   zrPage: [168, 459],      // 结果页 下一页
   zrRetest: [272, 459],    // 结果页 再测一次
 }
@@ -229,6 +235,9 @@ async function main() {
     child.stderr.on('data', (d) => runtimeLog.push(String(d)))
   }
   await waitForDevice()
+  serial = deviceSerial() || serial
+  console.log('模拟器串口：' + serial)
+  runtimeLog.push('serial=' + serial)
 
   const remoteRpk = `/data/quickapp/app/${packageName}.rpk`
   try {
@@ -339,18 +348,25 @@ async function main() {
     await wait(1000)
     await shotAwake(client, '22-result-loop-back.png', serial)
 
-    await click(client, ...P.zrRetest)             // 再测一次
+    await click(client, ...P.zrHome)               // 结果页「返回主页」（验证结果页返回）
+    await wait(1800)
+    await shotAwake(client, '23-result-home.png', serial)
+
+    await click(client, ...P.astroCard)            // 再次进入趣味星象遮罩
+    await wait(1000)
+    await shotAwake(client, '24-mask-again.png', serial)
+    await click(client, ...P.zodAnalyze)           // 星象分析 › → 再次进入答题页
     await wait(2500)
-    await shotAwake(client, '23-retest.png', serial)
+    await shotAwake(client, '25-test-again.png', serial)
     await click(client, ...P.ztExit)               // 退出测试
     await wait(1800)
-    await shotAwake(client, '24-exit-test.png', serial)
+    await shotAwake(client, '26-exit-test.png', serial)
     const pidAfterExit = run(adbPath, ['-s', serial, 'shell', 'pidof', packageName], 10000).trim()
     runtimeLog.push(`退出测试后 pidof=${pidAfterExit || '(空)'}`)
     console.log(`退出测试后进程：${pidAfterExit || '(空，应用已退出)'}`)
     run(adbPath, ['-s', serial, 'shell', 'am', 'start', packageName], 15000)
     await wait(9000)
-    await shotAwake(client, '25-final-home.png', serial)
+    await shotAwake(client, '27-final-home.png', serial)
 
     const logText = run(adbPath, ['-s', serial, 'shell', 'logcat', '-d', '-t', '900'], 20000)
     fs.writeFileSync(path.join(outputDir, 'logcat.txt'), logText)
