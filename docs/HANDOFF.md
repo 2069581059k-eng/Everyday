@@ -11,6 +11,14 @@
   - **1.8.10（官方包）**：81 通过 / 9 未通过 → 6 项为该文字缺陷、2 项为模拟器尾部截图偏暗、1 项为退出测试。
   - **1.8.11（修复包）**：94 通过 / 2 未通过 → 仅「退出测试」相关。首页/抽签/收藏/知识题干与翻题/日历/星象遮罩/四选项纵向堆叠（8 条边框线）/进度条推进/结果页 4 页分页与循环/再测一次 全部通过；错误日志 `onError`、`invalid pagename` 0 行。
   - 详细报告：`docs/VERIFY-1.8.10-1.8.11.md`。
+- **验收记录（按 main 新增的「模拟器验收门槛」逐项）**：
+  - 验收时间：2026-09-10 14:10–14:20（GMT+8）
+  - 模拟器：Vela Band10 Pro（AVD `Vela_Band10Pro_UI`，336×480），adb 安装后以 `/data/app/com.dailyquote.band10pro/manifest-watch.json` 核对版本
+  - 实际安装版本：1.8.11 / 10811（对照轮 1.8.10 / 10810）
+  - 源码快照：`git archive HEAD`（含 81bfe5f 修复 + dd62eb7 工具）导出至独立无 .git 目录 `Documents/huarongdao/dq_b1811`；验收后仅再改动 test 工具与文档，未改运行源码/资源/依赖/构建配置
+  - 安装包：`dist/com.dailyquote.band10pro.debug.1.8.11.rpk`，1,341,503 B，SHA-256 `57916230c31cbbefdbb6e26859a882a4145413c05f5b3dc141b079e0464e4dc7`
+  - 用例与结果：`docs/VERIFY-1.8.10-1.8.11.md` 第四节（首页/抽签/收藏/知识/日历/星象/结果/重测/退出逐项断言）
+  - 证据路径：`qa-1.8.11/`（30 张截图 + `logcat.txt`、`error-lines.txt`、`runtime.log`）、`qa-1.8.10/`（27 张）
 - 构建：`git archive` 独立副本 → `tools/inline-modules.mjs` → `aiot build --enable-jsc` → `tools/verify-rpk.mjs` 通过。1.8.11 RPK 1,341,503 B，SHA-256 `57916230c31cbbefdbb6e26859a882a4145413c05f5b3dc141b079e0464e4dc7`。
 - 新增工具：`tools/capture-full.mjs`（全链路截图 + 屏幕唤醒重试 + 亮度校验）、`tools/analyze-full.mjs`（文字/红色按钮区分、模式自适应分类、边框线、进度条、分页循环）、`tools/check-private-data.mjs`、`tools/inspect-png.mjs`、`tools/band-report.mjs`、`tools/color-census.mjs`、`tools/dump-knowledge-daily.mjs`。
 - 模拟器环境坑（已固化进脚本）：①屏幕会进低功耗态，截图呈黑底白字（亮度 45）或变暗（142–145），`KEYCODE_WAKEUP` 常无效，需点显示区外底部边框唤醒；②**`pm clear` 对 Vela 应用存储无效**，知识进度跨安装残留（本次实测页面从题单第 14 条开始），验收断言应做成"模式无关"；③`@aiot-toolkit/emulator` 的 gRPC 偶发在库回调内崩溃，需进程级兜底；④期望版本以 RPK 文件名解析，versionCode = major+minor(2位)+patch(2位)（1.8.11→10811）。
