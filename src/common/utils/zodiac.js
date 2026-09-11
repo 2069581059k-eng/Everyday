@@ -1,4 +1,5 @@
 // common/utils/zodiac.js —— 星座相关纯函数（不含娱乐向量，向量见 common/data/zodiac_profiles.js）
+// 1.8.14：宜行动/签运模板已迁出至 common/data/fortune_templates.js（数据与工具分离）
 
 const ZODIACS = [
   { name: '白羊座', range: '03.21—04.19' },
@@ -13,17 +14,6 @@ const ZODIACS = [
   { name: '摩羯座', range: '12.22—01.19' },
   { name: '水瓶座', range: '01.20—02.18' },
   { name: '双鱼座', range: '02.19—03.20' }
-]
-
-const ASTRO_ACTIONS = ['整理计划', '坦诚沟通', '完成小事', '适度休息', '专注学习', '清理杂念', '主动表达', '耐心观察', '重新取舍', '回顾总结', '尝试新路', '守住节奏']
-const ASTRO_COLORS = ['朱砂红', '松石绿', '雾霾蓝', '月光白', '琥珀黄', '岩石灰']
-
-const FORTUNES = [
-  { level: '上上签', tip: '宜把握机会，心愿可期' },
-  { level: '上签', tip: '宜稳步向前，静候佳音' },
-  { level: '中签', tip: '宜守住节奏，顺其自然' },
-  { level: '下签', tip: '宜慢行少决，留有余地' },
-  { level: '下下签', tip: '宜休整避急，明日再行' }
 ]
 
 // 返回星座索引（0=白羊 … 11=双鱼），仅供显示/娱乐
@@ -43,4 +33,4 @@ function zodiacForDate(month, date) {
   return 9
 }
 
-export { ZODIACS, ASTRO_ACTIONS, ASTRO_COLORS, FORTUNES, zodiacForDate }
+export { ZODIACS, zodiacForDate }

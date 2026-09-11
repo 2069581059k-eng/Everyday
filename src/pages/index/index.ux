@@ -3,39 +3,50 @@
     <text class="brand">Daily Spark</text>
 
     <div class="stat-row">
-      <text class="stat-text">连续 {{streakText}} 天</text>
       <text class="date-text">{{dateText}}</text>
-      <text class="star-text">灵光 {{starsText}}</text>
+      <text class="stat-text">连续 {{streakText}} 天</text>
     </div>
 
     <div class="quote-card" show="{{quoteVisible}}">
       <div class="quote-accent"></div>
       <text class="quote-kicker">{{quoteKicker}}</text>
-      <text class="fortune-stamp" show="{{quoteDrawn}}">{{fortuneLevel}}</text>
-      <input class="favorite-button" type="button" value="{{favoriteText}}" onclick="toggleFavorite" disabled="{{!quoteDrawn}}" />
+      <input class="heart-btn" show="{{!heartFilled}}" type="button" value="♡" onclick="toggleFavorite" disabled="{{!stateReady}}" />
+      <input class="heart-btn heart-on" show="{{heartFilled}}" type="button" value="♥" onclick="toggleFavorite" disabled="{{!stateReady}}" />
       <text class="quote-text">{{quoteText}}</text>
-      <text class="quote-source" show="{{quoteDrawn}}">— {{quoteSource}}</text>
-      <text class="fortune-tip" show="{{quoteDrawn}}">{{fortuneTip}}</text>
-    </div>
-
-    <div class="feature-row" show="{{quoteVisible}}">
-      <div class="calendar-card" onclick="openCalendarPage">
-        <text class="feature-title">今日日历</text>
-        <text class="calendar-day">{{dayText}}</text>
-        <text class="calendar-month">{{monthShortText}} {{weekdayText}}</text>
-        <text class="feature-go">月历 ›</text>
-      </div>
-
-      <div class="astro-card" onclick="openZodiac">
-        <text class="feature-title">趣味星象</text>
-        <text class="zodiac-name-short">{{zodiacName}}</text>
-        <text class="feature-go">详情 ›</text>
-      </div>
+      <text class="quote-source">— {{quoteSource}}</text>
+      <text class="fortune-stamp" show="{{fortuneDrawn}}">{{fortuneLevel}}</text>
+      <text class="fortune-tip" show="{{fortuneDrawn}}">{{fortuneTip}}</text>
     </div>
 
     <div class="quote-actions" show="{{quoteVisible}}">
-      <input class="action-button action-primary" type="button" value="知识大全" onclick="openKnowledgePage" />
-      <input class="action-button action-secondary" type="button" value="抽一签" onclick="drawFortune" />
+      <input class="action-button action-primary" type="button" value="换一句" onclick="changeQuote" />
+      <input class="action-button action-secondary" type="button" value="抽签" onclick="drawFortune" />
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card" onclick="openCalendarPage">
+        <text class="feature-title">今日日历</text>
+        <text class="feature-main">{{monthShortText}}{{dayText}}日</text>
+        <text class="feature-sub">{{weekdayText}} · 月历 ›</text>
+      </div>
+
+      <div class="feature-card feature-card-r" onclick="openZodiac">
+        <text class="feature-title">趣味星象</text>
+        <text class="feature-main">{{zodiacName}}</text>
+        <text class="feature-sub">{{moonShortText}} · 详情 ›</text>
+      </div>
+
+      <div class="feature-card feature-card-b" onclick="openKnowledgePage">
+        <text class="feature-title">知识大全</text>
+        <text class="feature-main">今日 50 题</text>
+        <text class="feature-sub">五类各 10 · 进入 ›</text>
+      </div>
+
+      <div class="feature-card feature-card-r feature-card-b" onclick="openFavoritesPage">
+        <text class="feature-title">收藏室</text>
+        <text class="feature-main">{{favoritesCountText}}</text>
+        <text class="feature-sub">已收藏 · 进入 ›</text>
+      </div>
     </div>
 
     <div class="zodiac-mask" show="{{zodiacVisible}}">
@@ -46,6 +57,8 @@
       <text class="zodiac-range-big">{{zodiacRange}}</text>
       <text class="zodiac-moon">{{moonText}}</text>
       <text class="zodiac-tip">{{astroTip}}</text>
+      <text class="zodiac-fortune">{{maskFortuneText}}</text>
+      <text class="zodiac-history">{{maskHistoryText}}</text>
       <input class="zodiac-analyze" type="button" value="星象分析 ›" onclick="startZodiacTest" />
       <input class="zodiac-close" type="button" value="返回主页" onclick="closeZodiac" />
     </div>
@@ -62,7 +75,9 @@ import router from '@system.router'
 import { QUOTES } from '../../common/data/quotes.js'
 import { pad, dayInfo } from '../../common/utils/date.js'
 import { WEEKDAYS, moonPhase } from '../../common/utils/moon.js'
-import { ZODIACS, ASTRO_ACTIONS, ASTRO_COLORS, FORTUNES, zodiacForDate } from '../../common/utils/zodiac.js'
+import { ZODIACS, zodiacForDate } from '../../common/utils/zodiac.js'
+import { ASTRO_ACTIONS, ASTRO_COLORS, FORTUNES } from '../../common/data/fortune_templates.js'
+import { FAVORITES_KEY, makeQuoteFavorite, toggleFavorite, hasFavorite, migrateOldFavorites } from '../../common/utils/favorites.js'
 
 const STORAGE_KEY = 'daily_quote_state_v1'
 
@@ -77,39 +92,44 @@ let currentIndex = todayIndex
 let state = {
   lastDay: -1,
   streak: 0,
-  stars: 0,
-  awardedDay: -1,
-  favorites: [],
-  zodiacIndex: zodiacForDate(today.month, today.date)
+  zodiacIndex: zodiacForDate(today.month, today.date),
+  // 1.8.15：当日签运持久化（跨重启保留）与最近签运历史（最多 16 条，同日覆盖）
+  fortune: null,
+  fortuneHistory: []
 }
+let favoritesItems = []
+let legacyMigrated = false
 
 export default {
   private: {
     stateReady: false,
 
     streakText: '0',
-    starsText: '0',
     dateText: today.label,
     monthShortText: pad(today.month) + '月',
     dayText: pad(today.date),
     weekdayText: WEEKDAYS[today.weekday],
     quoteVisible: true,
     zodiacVisible: false,
-    quoteDrawn: false,
+    fortuneDrawn: false,
     quoteKicker: 'Daily Spark',
-    quoteText: '轻触下方「抽一签」，看看今天与哪句话有缘。',
+    quoteText: '',
     quoteSource: '',
-    quoteNote: '',
     fortuneLevel: '',
     fortuneTip: '',
+    heartFilled: false,
+    favoritesCountText: '已收藏 0 条',
+    moonShortText: '',
     zodiacName: ZODIACS[state.zodiacIndex].name,
     zodiacRange: ZODIACS[state.zodiacIndex].range,
     moonText: '月相 · ' + moonPhase(today.dayNumber),
     astroTip: '',
-    favoriteText: '收藏',
+    maskFortuneText: '',
+    maskHistoryText: '',
   },
 
   onInit() {
+    this.moonShortText = '月相 · ' + moonPhase(today.dayNumber)
     this.loadState()
     this.refreshAstro()
   },
@@ -140,13 +160,43 @@ export default {
 
   loadState() {
     const page = this
+    legacyMigrated = false
     const finishLoad = function () {
       page.stateReady = true
       page.refreshStats()
-      page.refreshFavorite()
-      page.refreshAstro()
       page.recordToday()
+      page.applyQuote(currentIndex)
+      page.refreshAstro()
+      if (legacyMigrated) {
+        // 旧版收藏迁移完成后回写 v1 存档（state 不含 favorites 数组，覆盖即清除），
+        // 否则用户在收藏室删除旧条目后，下次进入首页会再次迁移导致"删不掉的收藏"
+        page.saveState()
+      }
     }
+    // 先读收藏室存档，再读签到/星座存档（含旧版收藏迁移），全部完成后放行交互
+    try {
+      storage.get({
+        key: FAVORITES_KEY,
+        default: '',
+        success(favData) {
+          if (favData) try {
+            const savedFav = JSON.parse(favData)
+            if (savedFav && Array.isArray(savedFav.items)) favoritesItems = savedFav.items
+          } catch (error) {
+            console.log('收藏室存档解析失败: ' + error)
+          }
+          page.loadDailyState(finishLoad)
+        },
+        fail() { page.loadDailyState(finishLoad) }
+      })
+    } catch (error) {
+      console.log('存储模块不可用: ' + error)
+      this.loadDailyState(finishLoad)
+    }
+  },
+
+  loadDailyState(finishLoad) {
+    const page = this
     try {
       storage.get({
         key: STORAGE_KEY,
@@ -156,11 +206,25 @@ export default {
             const saved = JSON.parse(data)
             state.lastDay = Number(saved.lastDay) || -1
             state.streak = Number(saved.streak) || 0
-            state.stars = Number(saved.stars) || 0
-            state.awardedDay = Number(saved.awardedDay) || -1
-            state.favorites = saved.favorites || []
             const savedZodiac = Number(saved.zodiacIndex)
             if (savedZodiac >= 0 && savedZodiac < ZODIACS.length) state.zodiacIndex = savedZodiac
+            // 恢复签运持久化数据（当日签 + 历史）
+            if (saved.fortune && saved.fortune.day === today.dayNumber) {
+              state.fortune = saved.fortune
+              page.fortuneDrawn = true
+              page.fortuneLevel = saved.fortune.level
+              page.fortuneTip = saved.fortune.tip
+            }
+            if (Array.isArray(saved.fortuneHistory)) state.fortuneHistory = saved.fortuneHistory
+            // 旧版语录收藏（下标数组）迁移为收藏室 v2 快照条目
+            if (Array.isArray(saved.favorites) && saved.favorites.length) {
+              const migrated = migrateOldFavorites(saved.favorites, QUOTES)
+              for (let i = 0; i < migrated.length; i++) {
+                if (!hasFavorite(favoritesItems, migrated[i].id)) favoritesItems.push(migrated[i])
+              }
+              page.saveFavorites()
+              legacyMigrated = true
+            }
           } catch (error) {
             console.log('每日一言存档解析失败: ' + error)
           }
@@ -190,9 +254,21 @@ export default {
     }
   },
 
+  saveFavorites() {
+    try {
+      storage.set({
+        key: FAVORITES_KEY,
+        value: JSON.stringify({ items: favoritesItems }),
+        fail(data, code) { console.log('收藏室存档保存失败: ' + code) }
+      })
+    } catch (error) {
+      console.log('存储模块不可用: ' + error)
+    }
+  },
+
   refreshStats() {
     this.streakText = String(state.streak)
-    this.starsText = String(state.stars)
+    this.favoritesCountText = '已收藏 ' + favoritesItems.length + ' 条'
   },
 
   refreshAstro() {
@@ -230,16 +306,33 @@ export default {
     router.replace({ uri: 'pages/calendar' })
   },
 
+  openFavoritesPage() {
+    router.replace({ uri: 'pages/favorites' })
+  },
+
+  // 换一句：仅切换每日一言；今日签运独立持久化，不再随换句清空（1.8.15）
+  changeQuote() {
+    if (!this.stateReady) return
+    let next = (currentIndex + 1 + Math.floor(Math.random() * (QUOTES.length - 1))) % QUOTES.length
+    if (next === currentIndex) next = (next + 1) % QUOTES.length
+    this.applyQuote(next)
+    this.pulse('short')
+  },
+
+  // 抽签：为今日抽取签级与提示（可反复重抽，同日历史仅保留最新一条）
   drawFortune() {
     if (!this.stateReady) return
     this.recordToday()
-    let next = (currentIndex + 1 + Math.floor(Math.random() * (QUOTES.length - 1))) % QUOTES.length
-    if (next === currentIndex) next = (next + 1) % QUOTES.length
-    this.applyQuote(next, false)
     const fortune = FORTUNES[Math.floor(Math.random() * FORTUNES.length)]
     this.fortuneLevel = fortune.level
     this.fortuneTip = fortune.tip
-    this.quoteDrawn = true
+    this.fortuneDrawn = true
+    // 持久化：当日签 + 历史记录（同日覆盖最新，最多 16 条）
+    state.fortune = { day: today.dayNumber, level: fortune.level, tip: fortune.tip }
+    state.fortuneHistory = state.fortuneHistory.filter(function (item) { return item.day !== today.dayNumber })
+    state.fortuneHistory.unshift({ day: today.dayNumber, level: fortune.level, tip: fortune.tip })
+    if (state.fortuneHistory.length > 16) state.fortuneHistory.length = 16
+    this.saveState()
     this.pulse('short')
   },
 
@@ -251,32 +344,44 @@ export default {
     this.saveState()
   },
 
-  applyQuote(index, isToday) {
+  applyQuote(index) {
     currentIndex = index
     const quote = QUOTES[index]
     this.quoteText = quote.text
-    this.quoteNote = quote.note
     this.quoteKicker = quote.note ? 'Daily Spark · ' + quote.note : 'Daily Spark'
     this.quoteSource = quote.source || 'Daily Spark'
     this.refreshFavorite()
   },
 
-  openZodiac() { this.zodiacVisible = true },
+  openZodiac() {
+    this.refreshMaskFortune()
+    this.zodiacVisible = true
+  },
   closeZodiac() { this.zodiacVisible = false },
+
+  // 遮罩页签运区：今日签（未抽则提示）+ 最近 3 次签级串接
+  // 近签行不用 show 控制（父容器 zodiac-mask 隐藏期间改子级 show 不会重算，Vela 渲染怪癖），空串即无内容
+  refreshMaskFortune() {
+    const drawn = !!(state.fortune && state.fortune.day === today.dayNumber)
+    this.maskFortuneText = (drawn ? '今日签 · ' + state.fortune.level : '今日未抽签')
+    const recent = state.fortuneHistory.slice(0, 3)
+    this.maskHistoryText = recent.length > 0 ? '近签 ' + recent.map(function (item) { return item.level }).join('·') : ''
+  },
+
+  // 爱心收藏：纯语录快照（1.8.15 签运持久化后与签运解耦，恒为「每日一言」类型；
+  // 旧版「抽签」类型条目收藏室仍兼容展示）
   toggleFavorite() {
-    const position = state.favorites.indexOf(currentIndex)
-    if (position >= 0) {
-      state.favorites.splice(position, 1)
-    } else {
-      state.favorites.push(currentIndex)
-    }
+    if (!this.stateReady) return
+    const item = makeQuoteFavorite(currentIndex, QUOTES[currentIndex], '', '')
+    toggleFavorite(favoritesItems, item)
+    this.saveFavorites()
     this.refreshFavorite()
-    this.saveState()
+    this.refreshStats()
     this.pulse('short')
   },
 
   refreshFavorite() {
-    this.favoriteText = state.favorites.indexOf(currentIndex) >= 0 ? '已收藏' : '收藏'
+    this.heartFilled = hasFavorite(favoritesItems, 'q' + currentIndex)
   },
 
   handleSwipe(event) {
@@ -300,43 +405,43 @@ export default {
 .page { position: relative; width: 336px; height: 480px; background-color: #f2eee5; overflow: hidden; }
 .brand { position: absolute; left: 0; top: 8px; width: 336px; color: #6f655a; font-size: 15px; font-weight: bold; letter-spacing: 2px; text-align: center; }
 
-.stat-row { position: absolute; left: 15px; top: 44px; width: 306px; height: 19px; border-bottom-width: 1px; border-color: #d6cec1; }
-.stat-text { position: absolute; left: 0; top: 0; width: 100px; color: #786e63; font-size: 14px; }
-.date-text { position: absolute; left: 113px; top: 0; width: 100px; color: #473f37; font-size: 14px; text-align: center; }
-.star-text { position: absolute; left: 236px; top: 0; width: 70px; color: #a43c30; font-size: 14px; text-align: right; }
+.stat-row { position: absolute; left: 15px; top: 36px; width: 306px; height: 18px; border-bottom-width: 1px; border-color: #d6cec1; }
+.date-text { position: absolute; left: 0; top: 0; width: 150px; color: #473f37; font-size: 14px; }
+.stat-text { position: absolute; left: 156px; top: 0; width: 150px; color: #786e63; font-size: 14px; text-align: right; }
 
-.quote-card { position: absolute; left: 14px; top: 76px; width: 308px; height: 181px; border-width: 1px; border-color: #d7cdbf; border-radius: 6px; background-color: #fffdf8; }
-.quote-accent { position: absolute; left: 0; top: 0; width: 5px; height: 179px; background-color: #a83b2d; }
-.quote-kicker { position: absolute; left: 16px; top: 11px; width: 200px; color: #8b8175; font-size: 14px; letter-spacing: 1px; }
-.fortune-stamp { position: absolute; left: 16px; top: 37px; width: 58px; height: 29px; border-width: 2px; border-color: #a83b2d; border-radius: 3px; color: #a83b2d; font-size: 17px; font-weight: bold; text-align: center; padding-top: 4px; }
-.favorite-button { position: absolute; left: 244px; top: 7px; width: 54px; height: 27px; border-width: 1px; border-color: #d4c9ba; border-radius: 3px; background-color: #f8f3e9; color: #766c61; font-size: 14px; }
-.quote-text { position: absolute; left: 81px; top: 39px; width: 207px; height: 84px; color: #29241f; font-size: 23px; font-weight: bold; line-height: 25px; text-align: left; }
-.quote-source { position: absolute; left: 84px; top: 127px; width: 206px; color: #85796c; font-size: 14px; text-align: right; }
-.fortune-tip { position: absolute; left: 17px; top: 150px; width: 270px; color: #a83b2d; font-size: 14px; }
+.quote-card { position: absolute; left: 14px; top: 62px; width: 308px; height: 200px; border-width: 1px; border-color: #d7cdbf; border-radius: 6px; background-color: #fffdf8; }
+.quote-accent { position: absolute; left: 0; top: 0; width: 5px; height: 198px; background-color: #a83b2d; }
+.quote-kicker { position: absolute; left: 16px; top: 12px; width: 210px; color: #8b8175; font-size: 14px; letter-spacing: 1px; }
+.heart-btn { position: absolute; left: 254px; top: 8px; width: 38px; height: 30px; border-width: 1px; border-color: #d4c9ba; border-radius: 4px; background-color: #f8f3e9; color: #9a8e81; font-size: 18px; }
+.heart-on { border-color: #a83b2d; background-color: #fdf0ec; color: #a83b2d; font-weight: bold; }
+.quote-text { position: absolute; left: 20px; top: 48px; width: 268px; height: 92px; color: #29241f; font-size: 24px; font-weight: bold; line-height: 28px; text-align: left; }
+.quote-source { position: absolute; left: 20px; top: 146px; width: 268px; color: #85796c; font-size: 14px; text-align: right; }
+.fortune-stamp { position: absolute; left: 16px; top: 166px; width: 64px; height: 26px; border-width: 2px; border-color: #a83b2d; border-radius: 3px; color: #a83b2d; font-size: 15px; font-weight: bold; text-align: center; padding-top: 2px; }
+.fortune-tip { position: absolute; left: 88px; top: 168px; width: 200px; color: #a83b2d; font-size: 13px; }
 
-.feature-row { position: absolute; left: 14px; top: 266px; width: 308px; height: 116px; }
-.calendar-card, .astro-card { position: absolute; top: 0; width: 148px; height: 116px; border-width: 1px; border-color: #d7cdbf; border-radius: 6px; background-color: #fffdf8; }
-.calendar-card { left: 0; }
-.astro-card { left: 160px; }
-.feature-title { position: absolute; left: 10px; top: 6px; width: 128px; height: 16px; line-height: 16px; color: #786d62; font-size: 14px; letter-spacing: 1px; }
-.calendar-day { position: absolute; left: 10px; top: 24px; width: 70px; height: 46px; line-height: 46px; color: #2c2722; font-size: 46px; font-weight: bold; }
-.calendar-month { position: absolute; left: 10px; top: 74px; width: 128px; height: 17px; line-height: 17px; color: #a83b2d; font-size: 15px; font-weight: bold; }
-.feature-go { position: absolute; left: 10px; top: 96px; width: 128px; height: 14px; line-height: 14px; color: #93877a; font-size: 13px; }
-.zodiac-name-short { position: absolute; left: 10px; top: 32px; width: 128px; color: #2f2924; font-size: 22px; font-weight: bold; }
-
-.quote-actions { position: absolute; left: 14px; top: 392px; width: 308px; height: 34px; }
-.action-button { position: absolute; top: 0; width: 140px; height: 34px; border-radius: 4px; font-size: 17px; font-weight: bold; }
+.quote-actions { position: absolute; left: 14px; top: 272px; width: 308px; height: 36px; }
+.action-button { position: absolute; top: 0; width: 148px; height: 36px; border-radius: 4px; font-size: 17px; font-weight: bold; }
 .action-primary { left: 0; background-color: #a83b2d; color: #fffaf2; }
-.action-secondary { left: 168px; border-width: 1px; border-color: #cfc4b5; background-color: #fffdf8; color: #574e45; }
+.action-secondary { left: 160px; border-width: 1px; border-color: #a83b2d; background-color: #fffdf8; color: #a83b2d; }
+
+.feature-grid { position: absolute; left: 14px; top: 318px; width: 308px; height: 140px; }
+.feature-card { position: absolute; left: 0; top: 0; width: 148px; height: 66px; border-width: 1px; border-color: #d7cdbf; border-radius: 6px; background-color: #fffdf8; }
+.feature-card-r { left: 160px; }
+.feature-card-b { top: 74px; }
+.feature-title { position: absolute; left: 10px; top: 6px; width: 128px; height: 15px; line-height: 15px; color: #786d62; font-size: 13px; letter-spacing: 1px; }
+.feature-main { position: absolute; left: 10px; top: 24px; width: 128px; height: 22px; line-height: 22px; color: #2c2722; font-size: 19px; font-weight: bold; }
+.feature-sub { position: absolute; left: 10px; top: 49px; width: 128px; height: 14px; line-height: 14px; color: #93877a; font-size: 12px; }
 
 .zodiac-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: #fffdf8; }
 .zodiac-title { position: absolute; left: 16px; top: 18px; width: 304px; font-size: 26px; color: #383029; text-align: center; }
 .zodiac-prev, .zodiac-next { position: absolute; top: 60px; width: 36px; height: 36px; border-width: 1px; border-color: #d8cec0; border-radius: 3px; background-color: #f8f3e9; color: #8a4138; font-size: 23px; }
 .zodiac-prev { left: 16px; } .zodiac-next { left: 284px; }
 .zodiac-name-big { position: absolute; left: 16px; top: 140px; width: 304px; color: #2f2924; font-size: 40px; font-weight: bold; text-align: center; }
-.zodiac-range-big { position: absolute; left: 16px; top: 196px; width: 304px; color: #9a8e81; font-size: 18px; text-align: center; }
+.zodiac-range-big { position: absolute; left:  16px; top: 196px; width: 304px; color: #9a8e81; font-size: 18px; text-align: center; }
 .zodiac-moon { position: absolute; left: 16px; top: 250px; width: 304px; color: #71665b; font-size: 16px; text-align: center; }
 .zodiac-tip { position: absolute; left: 16px; top: 290px; width: 304px; color: #a83b2d; font-size: 16px; text-align: center; }
+.zodiac-fortune { position: absolute; left: 16px; top: 316px; width: 304px; height: 18px; line-height: 18px; color: #574e45; font-size: 14px; font-weight: bold; text-align: center; }
+.zodiac-history { position: absolute; left: 16px; top: 338px; width: 304px; height: 18px; line-height: 18px; color: #71665b; font-size: 14px; text-align: center; }
 .zodiac-analyze { position: absolute; left: 98px; top: 368px; width: 140px; height: 40px; border-width: 1px; border-color: #a83b2d; border-radius: 4px; background-color: #fffdf8; color: #a83b2d; font-size: 18px; font-weight: bold; }
 .zodiac-close { position: absolute; left: 98px; top: 420px; width: 140px; height: 40px; font-size: 18px; background-color: #a83b2d; color: #fffdf8; }
 </style>

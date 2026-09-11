@@ -10003,10 +10003,10 @@
     "id": "final:501",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "放烟火时为什么不会射到星星",
-    "question": "放烟火时为什么不会射到星星？",
-    "answer": "星星会闪",
-    "explain": "因为星星会闪",
+    "title": "什么“星”不在天上，却常在海里",
+    "question": "什么“星”不在天上，却常在海里？",
+    "answer": "海星",
+    "explain": "把“星”理解成名字的一部分，海星生活在海里。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "653",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -10017,7 +10017,9 @@
       "inputId": 501,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:502",
@@ -10043,10 +10045,10 @@
     "id": "final:503",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "有爷俩，娘俩和兄妹俩，只有6个烧饼，但却每人分得了两个，这是为什么",
-    "question": "有爷俩，娘俩和兄妹俩，只有6个烧饼，但却每人分得了两个，这是为什么？",
-    "answer": "他们只有三个人：母亲",
-    "explain": "他们只有三个人：母亲，儿子，舅舅",
+    "title": "爷爷、爸爸和儿子一起出门，明明有两个父亲、两个儿子，为什么只有三个人",
+    "question": "爷爷、爸爸和儿子一起出门，明明有两个父亲、两个儿子，为什么只有三个人？",
+    "answer": "因为他们是祖孙三代",
+    "explain": "爷爷是爸爸的父亲，爸爸既是儿子也是父亲，所以三个人就满足条件。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "3358",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -10057,7 +10059,9 @@
       "inputId": 503,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:504",
@@ -10123,10 +10127,10 @@
     "id": "final:507",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "中国人为什么人口这么多",
-    "question": "中国人为什么人口这么多？",
-    "answer": "汉(和)人在一起.",
-    "explain": "因为汉(和)人在一起.",
+    "title": "什么人每天都在你的眼前，却永远不会跟你说话",
+    "question": "什么人每天都在你的眼前，却永远不会跟你说话？",
+    "answer": "镜子里的人",
+    "explain": "镜中的人只是你的影像，看得见却不会独立说话。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "244",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -10137,16 +10141,18 @@
       "inputId": 507,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:508",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "文劭乘电梯上12楼，中间没有停，用了60秒；下楼时也没有停，却用了５分钟，为什么呢",
-    "question": "文劭乘电梯上12楼，中间没有停，用了60秒；下楼时也没有停，却用了５分钟，为什么呢？",
-    "answer": "下楼没有做楼梯.",
-    "explain": "下楼没有做楼梯.",
+    "title": "小文上12楼坐电梯只用1分钟，下楼却用了5分钟，为什么",
+    "question": "小文上12楼坐电梯只用1分钟，下楼却用了5分钟，为什么？",
+    "answer": "他下楼走的是楼梯",
+    "explain": "题目只说上楼坐电梯，并没说下楼也坐电梯。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1285",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -10157,7 +10163,9 @@
       "inputId": 508,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:509",
@@ -10263,10 +10271,10 @@
     "id": "final:514",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "小男孩和小女孩在一起不能玩什么游戏",
-    "question": "小男孩和小女孩在一起不能玩什么游戏？",
-    "answer": "不能玩猜拳(两小无猜0",
-    "explain": "不能玩猜拳(两小无猜0",
+    "title": "两个从小一起长大的好朋友，最不适合玩什么“猜”的游戏",
+    "question": "两个从小一起长大的好朋友，最不适合玩什么“猜”的游戏？",
+    "answer": "猜心",
+    "explain": "因为他们“从小无猜”，答案用的是“两小无猜”的文字梗。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "459",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -10277,16 +10285,18 @@
       "inputId": 514,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:515",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "一只羊碰到一头老虎，非但不怕，而且还把那头老虎给吃了，这是怎么回事",
-    "question": "一只羊碰到一头老虎，非但不怕，而且还把那头老虎给吃了，这是怎么回事？",
-    "answer": "那是只纸考虎",
-    "explain": "那是只纸考虎",
+    "title": "一只羊遇到一只老虎，不但不怕，还一口把老虎吃了，为什么",
+    "question": "一只羊遇到一只老虎，不但不怕，还一口把老虎吃了，为什么？",
+    "answer": "那是一只纸老虎",
+    "explain": "“老虎”并不一定是真老虎，纸老虎当然可以被羊咬坏。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "352",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -10297,7 +10307,9 @@
       "inputId": 515,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:516",
@@ -10403,10 +10415,10 @@
     "id": "final:521",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "印度人为什么用手抓饭吃",
-    "question": "印度人为什么用手抓饭吃？",
-    "answer": "手比脚干净",
-    "explain": "因为手比脚干净",
+    "title": "吃面条时，最不适合用什么“夹”",
+    "question": "吃面条时，最不适合用什么“夹”？",
+    "answer": "文件夹",
+    "explain": "题目把“夹”从夹食物转成了“文件夹”的词义。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1351",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -10417,7 +10429,9 @@
       "inputId": 521,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:522",
@@ -10543,10 +10557,10 @@
     "id": "final:528",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "尼克的法语不好，他去法国旅游时吃苦头了吗",
-    "question": "尼克的法语不好，他去法国旅游时吃苦头了吗？",
-    "answer": "没有吃苦头的是法国人.",
-    "explain": "没有吃苦头的是法国人.",
+    "title": "小王一句法语都不会，去法国旅游却说自己一路没吃过“苦头”，为什么",
+    "question": "小王一句法语都不会，去法国旅游却说自己一路没吃过“苦头”，为什么？",
+    "answer": "他一路吃的都是甜点",
+    "explain": "“吃苦头”被故意按字面理解成吃苦味的东西。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1027",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -10557,16 +10571,18 @@
       "inputId": 528,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:529",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "一个招牌突然由高处掉落,砸向并排行走的五个人,为什么只有三个人受伤",
-    "question": "一个招牌突然由高处掉落,砸向并排行走的五个人,为什么只有三个人受伤",
-    "answer": "帮当劳M的招牌",
-    "explain": "因为帮当劳M的招牌",
+    "title": "五个人共撑一把伞走了十分钟，为什么一个人也没淋湿",
+    "question": "五个人共撑一把伞走了十分钟，为什么一个人也没淋湿？",
+    "answer": "因为根本没下雨",
+    "explain": "题目只说撑伞，没有说当时在下雨。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1636",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -10577,7 +10593,9 @@
       "inputId": 529,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:530",
@@ -10783,10 +10801,10 @@
     "id": "final:540",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "孔子和孟子有什么不同",
-    "question": "孔子和孟子有什么不同？",
-    "answer": "孔子把儿子牵在身边",
-    "explain": "孔子把儿子牵在身边，而孟子把儿子放在头上~！",
+    "title": "孔子、孟子和老子站在一起，谁的名字听起来最年长",
+    "question": "孔子、孟子和老子站在一起，谁的名字听起来最年长？",
+    "answer": "老子",
+    "explain": "这是利用名字里的“老”制造的文字反转。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1927",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -10797,7 +10815,9 @@
       "inputId": 540,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:541",
@@ -11063,10 +11083,10 @@
     "id": "final:554",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "著名歌手罗大佑有一天出现在热闹的西门町街头，为什么却没有半个人认出他来",
-    "question": "著名歌手罗大佑有一天出现在热闹的西门町街头，为什么却没有半个人认出他来？",
-    "answer": "他忘了带墨镜",
-    "explain": "因为他忘了带墨镜",
+    "title": "一个著名歌手出现在街头，大家都看见了他，却没人上前要签名，为什么",
+    "question": "一个著名歌手出现在街头，大家都看见了他，却没人上前要签名，为什么？",
+    "answer": "那只是广告牌上的照片",
+    "explain": "“出现在街头”不等于本人站在街上，也可能只是广告画面。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "432",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11077,16 +11097,18 @@
       "inputId": 554,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:555",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "如果恐龙没有绝迹，世界将会变成什么样子",
-    "question": "如果恐龙没有绝迹，世界将会变成什么样子？",
-    "answer": "再也没有稀罕他的存在",
-    "explain": "再也没有稀罕他的存在",
+    "title": "哪种鹿最容易“迷路”",
+    "question": "哪种鹿最容易“迷路”？",
+    "answer": "麋鹿",
+    "explain": "“麋鹿”和“迷路”读音相近，是简单的谐音反转。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "561",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11097,7 +11119,9 @@
       "inputId": 555,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:556",
@@ -11143,10 +11167,10 @@
     "id": "final:558",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么很多学生上课会打瞌睡",
-    "question": "为什么很多学生上课会打瞌睡？",
-    "answer": "前几节没有睡饱",
-    "explain": "前几节没有睡饱",
+    "title": "小明上课一直闭着眼，老师为什么没有批评他",
+    "question": "小明上课一直闭着眼，老师为什么没有批评他？",
+    "answer": "正在做眼保健操",
+    "explain": "闭眼并不一定是在睡觉，眼保健操本来就需要闭眼。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "572",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11157,16 +11181,18 @@
       "inputId": 558,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:559",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么养长颈鹿最不花钱",
-    "question": "为什么养长颈鹿最不花钱？",
-    "answer": "他们的脖子长",
-    "explain": "因为他们的脖子长,一点点食物都要走很长的路才能到肚?",
+    "title": "长颈鹿为什么脖子那么长",
+    "question": "长颈鹿为什么脖子那么长？",
+    "answer": "因为它的头离身体太远了",
+    "explain": "把结果倒过来当原因，是经典的荒诞式反转。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1099",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11177,7 +11203,9 @@
       "inputId": 559,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:560",
@@ -11203,10 +11231,10 @@
     "id": "final:561",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "有两个棋友在一天中共下了9盘棋，在没有和局的情况下他俩赢的次数相同，这是怎么一回事",
-    "question": "有两个棋友在一天中共下了9盘棋，在没有和局的情况下他俩赢的次数相同，这是怎么一回事？",
-    "answer": "所下的九盘棋都不是他们下的",
-    "explain": "所下的九盘棋都不是他们下的",
+    "title": "两个棋友一天一共下了9盘棋，没有和局，两人的胜局数却一样，为什么",
+    "question": "两个棋友一天一共下了9盘棋，没有和局，两人的胜局数却一样，为什么？",
+    "answer": "他们不是彼此对弈",
+    "explain": "两人可以分别和其他对手下棋，因此各自胜局数可以相同。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "624",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11217,16 +11245,18 @@
       "inputId": 561,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:562",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "共汽车上，两个人正在热烈的交谈，可围观的人却一句话也听不到，这是因为什么",
-    "question": "共汽车上，两个人正在热烈的交谈，可围观的人却一句话也听不到，这是因为什么？",
-    "answer": "这是一对聋哑人",
-    "explain": "这是一对聋哑人",
+    "title": "公交车上两个人聊得很热烈，旁边的人为什么一句也听不到",
+    "question": "公交车上两个人聊得很热烈，旁边的人为什么一句也听不到？",
+    "answer": "他们在用手语交流",
+    "explain": "“聊天”不一定要发出声音，手语也能完成交流。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "3126",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11237,7 +11267,9 @@
       "inputId": 562,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:563",
@@ -11263,10 +11295,10 @@
     "id": "final:564",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "小胖上完厕所为什么不洗手",
-    "question": "小胖上完厕所为什么不洗手？",
-    "answer": "没有人规定上完厕所要洗手.",
-    "explain": "因为没有人规定上完厕所要洗手.",
+    "title": "小胖从厕所出来却没有洗手，为什么",
+    "question": "小胖从厕所出来却没有洗手，为什么？",
+    "answer": "他进去只是换灯泡",
+    "explain": "“进厕所”不等于“上厕所”，因此没有触发题目暗示的情境。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1282",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11277,16 +11309,18 @@
       "inputId": 564,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:565",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "某人用面条上吊，结果真的死了。为什么",
-    "question": "某人用面条上吊，结果真的死了。为什么？",
-    "answer": "他是掉下来摔死的。",
-    "explain": "他是掉下来摔死的。",
+    "title": "什么“面”永远不能当饭吃",
+    "question": "什么“面”永远不能当饭吃？",
+    "answer": "见面",
+    "explain": "“面”被从食物含义切换成“见面”的字义。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "2402",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11297,7 +11331,9 @@
       "inputId": 565,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:566",
@@ -11343,10 +11379,10 @@
     "id": "final:568",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "许仙遇见白蛇后，发生了什么事",
-    "question": "许仙遇见白蛇后，发生了什么事？",
-    "answer": "不知道因为他被白蛇吓倒了",
-    "explain": "不知道因为他被白蛇吓倒了",
+    "title": "许仙和白娘子的故事，为什么大家都说“传”得很广",
+    "question": "许仙和白娘子的故事，为什么大家都说“传”得很广？",
+    "answer": "因为故事名叫《白蛇传》",
+    "explain": "把“传”同时理解为传播和作品名称。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "520",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11357,16 +11393,18 @@
       "inputId": 568,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:569",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "有个人说用牙齿可以判断„„",
-    "question": "有个人说用牙齿可以判断„„",
-    "answer": "牙可以嚼出肉的老嫩",
-    "explain": "牙可以嚼出肉的老嫩",
+    "title": "不用看包装，怎样用牙齿判断一块鸡肉老不老",
+    "question": "不用看包装，怎样用牙齿判断一块鸡肉老不老？",
+    "answer": "咬一口就知道嫩不嫩",
+    "explain": "“用牙齿判断”不是看牙齿，而是用牙齿去咀嚼。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1792",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11377,7 +11415,9 @@
       "inputId": 569,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:570",
@@ -11463,10 +11503,10 @@
     "id": "final:574",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "有一段100公尺长的铁轨上面每隔1公分放一条横木，请问共有几条横木",
-    "question": "有一段100公尺长的铁轨上面每隔1公分放一条横木，请问共有几条横木？",
-    "answer": "0,因为钢轨上不放横木",
-    "explain": "0,因为钢轨上不放横木",
+    "title": "火车飞驰而过，为什么车轮从来不会直接压到枕木",
+    "question": "火车飞驰而过，为什么车轮从来不会直接压到枕木？",
+    "answer": "因为车轮压在钢轨上",
+    "explain": "枕木在钢轨下面，车轮与钢轨接触而不是直接压枕木。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "455",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11477,7 +11517,9 @@
       "inputId": 574,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:575",
@@ -11603,10 +11645,10 @@
     "id": "final:581",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "有一个女孩子穿着泳衣在沙滩上走，为什么在她的身后却没有脚印",
-    "question": "有一个女孩子穿着泳衣在沙滩上走，为什么在她的身后却没有脚印？",
-    "answer": "她是倒着走的。",
-    "explain": "因为她是倒着走的。",
+    "title": "女孩倒着走过沙滩，为什么她身后没有新脚印",
+    "question": "女孩倒着走过沙滩，为什么她身后没有新脚印？",
+    "answer": "脚印都留在她面前了",
+    "explain": "她面朝前、身体向后移动，刚走过的位置位于她的正面方向。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1665",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11617,16 +11659,18 @@
       "inputId": 581,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:582",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "外国人问路，小明拼命有英语对他说，他却一点也听不懂，这是为什么",
-    "question": "外国人问路，小明拼命有英语对他说，他却一点也听不懂，这是为什么？",
-    "answer": "他是法国人",
-    "explain": "因为他是法国人",
+    "title": "一个外国人问路，小明用英语回答，他为什么还是听不懂",
+    "question": "一个外国人问路，小明用英语回答，他为什么还是听不懂？",
+    "answer": "因为那个外国人不会英语",
+    "explain": "“外国人”不等于“会英语的人”。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "274",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11637,7 +11681,9 @@
       "inputId": 582,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:583",
@@ -11683,10 +11729,10 @@
     "id": "final:585",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "有一只老鼠碰到一堆屎,从上面过去了却留下三只脚印问为什么？（注不是三只脚）",
-    "question": "有一只老鼠碰到一堆屎,从上面过去了却留下三只脚印问为什么？（注不是三只脚）",
-    "answer": "用一只脚捏着鼻子呢.",
-    "explain": "用一只脚捏着鼻子呢.",
+    "title": "一只四脚小狗走过泥地，为什么只留下三种脚印",
+    "question": "一只四脚小狗走过泥地，为什么只留下三种脚印？",
+    "answer": "有两只脚总踩在同一条脚印线上",
+    "explain": "脚有四只，但不同脚可以反复踩到同一条轨迹上。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1041",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11697,7 +11743,9 @@
       "inputId": 585,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:586",
@@ -11743,10 +11791,10 @@
     "id": "final:588",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "要如何让一块钱浮在水面上",
-    "question": "要如何让一块钱浮在水面上",
-    "answer": "用美钞就行了",
-    "explain": "用美钞就行了",
+    "title": "怎样让一枚硬币浮在水面上，又不粘胶水",
+    "question": "怎样让一枚硬币浮在水面上，又不粘胶水？",
+    "answer": "把硬币放在浮冰上",
+    "explain": "硬币本身不浮，但可以借助会浮的冰块停在水面上。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "929",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11757,7 +11805,9 @@
       "inputId": 588,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:589",
@@ -11823,10 +11873,10 @@
     "id": "final:592",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "李老板养了一些红金鱼和一些黑金鱼，他发现红金鱼吃掉的鱼食是黑金鱼的2倍，这是什么原因",
-    "question": "李老板养了一些红金鱼和一些黑金鱼，他发现红金鱼吃掉的鱼食是黑金鱼的2倍，这是什么原因？",
-    "answer": "红金鱼数是黑金鱼数的二倍",
-    "explain": "因为红金鱼数是黑金鱼数的二倍",
+    "title": "每条金鱼吃得一样多，为什么红金鱼一天吃掉的鱼食总量是黑金鱼的两倍",
+    "question": "每条金鱼吃得一样多，为什么红金鱼一天吃掉的鱼食总量是黑金鱼的两倍？",
+    "answer": "红金鱼的数量是黑金鱼的两倍",
+    "explain": "单条食量相同，总量差异来自数量差异。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "681",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11837,7 +11887,9 @@
       "inputId": 592,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:593",
@@ -11863,10 +11915,10 @@
     "id": "final:594",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "小明每天都和妈妈上街买菜，每次都捉着妈妈的裙子，但这次却迷路了，为什么",
-    "question": "小明每天都和妈妈上街买菜，每次都捉着妈妈的裙子，但这次却迷路了，为什么？",
-    "answer": "那天妈妈穿着迷你裙",
-    "explain": "因为那天妈妈穿着迷你裙",
+    "title": "小明平时都牵妈妈的手逛街，今天也牵着一只手，却还是迷路了，为什么",
+    "question": "小明平时都牵妈妈的手逛街，今天也牵着一只手，却还是迷路了，为什么？",
+    "answer": "他牵错了人",
+    "explain": "题目只说牵着一只手，没有保证那只手属于妈妈。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "464",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11877,16 +11929,18 @@
       "inputId": 594,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:595",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "不小心溺水时，若附近沒有其他人该如何自救",
-    "question": "不小心溺水时，若附近沒有其他人该如何自救？",
-    "answer": "把水喝光=>但是还是会胀死",
-    "explain": "把水喝光=>但是还是会胀死",
+    "title": "什么东西掉进水里也不会湿",
+    "question": "什么东西掉进水里也不会湿？",
+    "answer": "影子",
+    "explain": "影子不是实体，所以不会被水浸湿。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "3274",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11897,7 +11951,9 @@
       "inputId": 595,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:596",
@@ -11923,10 +11979,10 @@
     "id": "final:597",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "江河流水归一处（打一字）",
-    "question": "江河流水归一处（打一字）",
-    "answer": "“珂”",
-    "explain": "“珂”，因为“江河”两字去“水”后成“工可”，再加",
+    "title": "“一口咬掉牛尾巴”，打一字。",
+    "question": "“一口咬掉牛尾巴”，打一字。",
+    "answer": "告",
+    "explain": "“牛”去掉尾部，再加上“口”，组合成“告”。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "3219",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11937,7 +11993,9 @@
       "inputId": 597,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:598",
@@ -11983,10 +12041,10 @@
     "id": "final:600",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "超人和女超人做完俯地挺身后，地上各有一个洞及二个洞，是怎么回事",
-    "question": "超人和女超人做完俯地挺身后，地上各有一个洞及二个洞，是怎么回事？",
-    "answer": "超人用单手女超人用双手",
-    "explain": "超人用单手女超人用双手",
+    "title": "两个人在松软沙地做俯卧撑，一个留下一个手坑，另一个留下两个，为什么",
+    "question": "两个人在松软沙地做俯卧撑，一个留下一个手坑，另一个留下两个，为什么？",
+    "answer": "一个单手撑，另一个双手撑",
+    "explain": "两人的支撑方式不同，因此手掌留下的坑数不同。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "434",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -11997,7 +12055,9 @@
       "inputId": 600,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:601",
@@ -12023,10 +12083,10 @@
     "id": "final:602",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "乌龟为什么会突然「一个头两个大」",
-    "question": "乌龟为什么会突然「一个头两个大」？",
-    "answer": "乌龟正在想这个问题",
-    "explain": "因为乌龟正在想这个问题",
+    "title": "乌龟把头和四肢全缩进壳里后，外面还剩什么",
+    "question": "乌龟把头和四肢全缩进壳里后，外面还剩什么？",
+    "answer": "龟壳",
+    "explain": "题目容易让人继续数头脚，但真正还露在外面的只有壳。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "3248",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12037,7 +12097,9 @@
       "inputId": 602,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:603",
@@ -12083,10 +12145,10 @@
     "id": "final:605",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "一家洗衣店招牌写着“二十四小时交货”，今天小高拿去洗，为何老板说要三天后才能拿到",
-    "question": "一家洗衣店招牌写着“二十四小时交货”，今天小高拿去洗，为何老板说要三天后才能拿到？",
-    "answer": "他是抓黑枪不是抓白枪",
-    "explain": "因为他是抓黑枪不是抓白枪",
+    "title": "洗衣店每天营业8小时，招牌写“24小时交货”，为什么老板说三天后取",
+    "question": "洗衣店每天营业8小时，招牌写“24小时交货”，为什么老板说三天后取？",
+    "answer": "这里的24小时指24个营业小时",
+    "explain": "每天只营业8小时，累计24个营业小时正好需要三天。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "461",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12097,16 +12159,18 @@
       "inputId": 605,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:606",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "一条专门吃人的鳄鱼为什么也能获准进入天堂",
-    "question": "一条专门吃人的鳄鱼为什么也能获准进入天堂？",
-    "answer": "他吃了一个神父",
-    "explain": "因为他吃了一个神父",
+    "title": "一条鳄鱼整天张着嘴，却从来不吃东西，为什么",
+    "question": "一条鳄鱼整天张着嘴，却从来不吃东西，为什么？",
+    "answer": "它是鳄鱼模型",
+    "explain": "题目没有说明鳄鱼一定是活的。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "590",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12117,7 +12181,9 @@
       "inputId": 606,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:607",
@@ -12143,10 +12209,10 @@
     "id": "final:608",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么刘备三顾茅庐，诸葛亮才肯见他",
-    "question": "为什么刘备三顾茅庐，诸葛亮才肯见他？",
-    "answer": "前两次没带礼",
-    "explain": "因为前两次没带礼",
+    "title": "刘备为什么要三顾茅庐才见到诸葛亮",
+    "question": "刘备为什么要三顾茅庐才见到诸葛亮？",
+    "answer": "前两次都没见到他",
+    "explain": "前两次拜访都没有成功见到诸葛亮，第三次才见到。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "125",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12157,7 +12223,9 @@
       "inputId": 608,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:609",
@@ -12183,10 +12251,10 @@
     "id": "final:610",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么女人穿高跟鞋后，就代表她快结婚了",
-    "question": "为什么女人穿高跟鞋后，就代表她快结婚了",
-    "answer": "穿高跟鞋慢很容易被男人追上",
-    "explain": "因为穿高跟鞋慢很容易被男人追上",
+    "title": "什么鞋永远都买不到合脚的尺码",
+    "question": "什么鞋永远都买不到合脚的尺码？",
+    "answer": "照片里的鞋",
+    "explain": "照片中的鞋只是图像，没有真实尺码可以穿。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "169",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12197,7 +12265,9 @@
       "inputId": 610,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:611",
@@ -12223,10 +12293,10 @@
     "id": "final:612",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "法国人的笑声跟我们有什么不同",
-    "question": "法国人的笑声跟我们有什么不同？",
-    "answer": "他们是用法语笑的",
-    "explain": "他们是用法语笑的",
+    "title": "什么语言不需要张嘴也能完整表达",
+    "question": "什么语言不需要张嘴也能完整表达？",
+    "answer": "手语",
+    "explain": "语言不一定依靠声音，手语主要通过手势和动作表达。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "2685",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12237,7 +12307,9 @@
       "inputId": 612,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:613",
@@ -12303,10 +12375,10 @@
     "id": "final:616",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么有很多女孩子嫁给职业军人",
-    "question": "为什么有很多女孩子嫁给职业军人？",
-    "answer": "吃馒头不用涮碗",
-    "explain": "吃馒头不用涮碗",
+    "title": "哪一种“兵”从来不用真的上战场",
+    "question": "哪一种“兵”从来不用真的上战场？",
+    "answer": "象棋里的兵",
+    "explain": "把“兵”从现实士兵切换成棋子。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "598",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12317,16 +12389,18 @@
       "inputId": 616,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:617",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "小云和阿花已经结婚了，为什么他们还偷偷摸摸的约会呢",
-    "question": "小云和阿花已经结婚了，为什么他们还偷偷摸摸的约会呢？",
-    "answer": "他们分别是和别人约会",
-    "explain": "他们分别是和别人约会",
+    "title": "小云和阿花都已经结婚了，为什么她们还经常出去约会",
+    "question": "小云和阿花都已经结婚了，为什么她们还经常出去约会？",
+    "answer": "她们各自和自己的配偶约会",
+    "explain": "“已婚”并不等于不能和自己的伴侣约会。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "111",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12337,7 +12411,9 @@
       "inputId": 617,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:618",
@@ -12403,10 +12479,10 @@
     "id": "final:621",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "最具有经济价值的瓜类是哪一种",
-    "question": "最具有经济价值的瓜类是哪一种？",
-    "answer": "南瓜可以变成灰姑娘的马车",
-    "explain": "南瓜可以变成灰姑娘的马车",
+    "title": "什么“瓜”永远不能拿来炒菜",
+    "question": "什么“瓜”永远不能拿来炒菜？",
+    "answer": "傻瓜",
+    "explain": "把“瓜”从蔬果切换到词语“傻瓜”。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "555",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12417,7 +12493,9 @@
       "inputId": 621,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:622",
@@ -12583,10 +12661,10 @@
     "id": "final:630",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "米的外公是谁",
-    "question": "米的外公是谁？",
-    "answer": "是爆米花因为抱过米也抱过花.",
-    "explain": "是爆米花因为抱过米也抱过花.",
+    "title": "“米”的妈妈是谁",
+    "question": "“米”的妈妈是谁？",
+    "answer": "花",
+    "explain": "因为“花生米”，按文字梗可理解为“花生了米”。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "976",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12597,7 +12675,9 @@
       "inputId": 630,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:631",
@@ -12643,10 +12723,10 @@
     "id": "final:633",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么一架纸飞机，造价一亿台币",
-    "question": "为什么一架纸飞机，造价一亿台币？",
-    "answer": "那是用一张一亿台币的纸票折的",
-    "explain": "那是用一张一亿台币的纸票折的",
+    "title": "一架纸飞机为什么值100元",
+    "question": "一架纸飞机为什么值100元？",
+    "answer": "它是用100元纸币折的",
+    "explain": "纸飞机的价值来自折它的纸，而不是飞行能力。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "436",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12657,16 +12737,18 @@
       "inputId": 633,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:634",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "有一天，小英看到小明随即惊叫，小明见状，也跟着惊叫，为什么",
-    "question": "有一天，小英看到小明随即惊叫，小明见状，也跟着惊叫，为什么？",
-    "answer": "他们正在玩游戏",
-    "explain": "因为他们正在玩游戏",
+    "title": "两个人面对面站着，为什么谁也看不见谁",
+    "question": "两个人面对面站着，为什么谁也看不见谁？",
+    "answer": "中间隔着一面墙",
+    "explain": "“面对面”描述方向，不代表中间没有障碍物。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "409",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12677,7 +12759,9 @@
       "inputId": 634,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:635",
@@ -12723,10 +12807,10 @@
     "id": "final:637",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "江家有三个女儿，大女儿、二女儿、三女儿。谁的身材最辣",
-    "question": "江家有三个女儿，大女儿、二女儿、三女儿。谁的身材最辣？",
-    "answer": "大女儿因为姜还是老的辣.",
-    "explain": "大女儿因为姜还是老的辣.",
+    "title": "姜家三姐妹里，谁最“辣”",
+    "question": "姜家三姐妹里，谁最“辣”？",
+    "answer": "大姐",
+    "explain": "因为“姜还是老的辣”，这里借用了姓氏和俗语的文字梗。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1067",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12737,7 +12821,9 @@
       "inputId": 637,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:638",
@@ -12763,10 +12849,10 @@
     "id": "final:639",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "印度人为什么用手抓饭",
-    "question": "印度人为什么用手抓饭？",
-    "answer": "手比脚干净",
-    "explain": "因为手比脚干净",
+    "title": "什么“勺子”不能拿来喝汤",
+    "question": "什么“勺子”不能拿来喝汤？",
+    "answer": "耳勺",
+    "explain": "名字里有“勺”，但用途并不是吃饭。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1881",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12777,7 +12863,9 @@
       "inputId": 639,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:640",
@@ -12803,10 +12891,10 @@
     "id": "final:641",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么两个孩子恰恰好",
-    "question": "为什么两个孩子恰恰好？",
-    "answer": "不孝有三",
-    "explain": "因为不孝有三",
+    "title": "兄弟两人明明同年同月同日生，为什么却不是双胞胎",
+    "question": "兄弟两人明明同年同月同日生，为什么却不是双胞胎？",
+    "answer": "因为他们还有其他同胎兄弟姐妹",
+    "explain": "他们可以是三胞胎、四胞胎，而不一定是双胞胎。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "11",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12817,7 +12905,9 @@
       "inputId": 641,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:642",
@@ -12863,10 +12953,10 @@
     "id": "final:644",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "安妮的医师男友到外地出差一年，每两天会写一封情书给安妮，请问两个月之后，安妮会收到几封情书",
-    "question": "安妮的医师男友到外地出差一年，每两天会写一封情书给安妮，请问两个月之后，安妮会收到几封情书？",
-    "answer": "一封也没有",
-    "explain": "一封也没有,有,但他太懒了,一封也没有寄.",
+    "title": "安妮的男友每两天写一封信，坚持两个月，她却一封也没收到，为什么",
+    "question": "安妮的男友每两天写一封信，坚持两个月，她却一封也没收到，为什么？",
+    "answer": "他只写了，没有寄出",
+    "explain": "“写信”和“寄信”是两件事，题目只保证前者。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "295",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12877,16 +12967,18 @@
       "inputId": 644,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:645",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "哪种人希望孩子越多越好",
-    "question": "哪种人希望孩子越多越好？",
-    "answer": "儿童用品制造高",
-    "explain": "儿童用品制造高",
+    "title": "什么“票”不能坐车，也不能看电影",
+    "question": "什么“票”不能坐车，也不能看电影？",
+    "answer": "发票",
+    "explain": "“票”不一定是入场券或车票，发票是交易凭证。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "123",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -12897,7 +12989,9 @@
       "inputId": 645,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:646",
@@ -13003,10 +13097,10 @@
     "id": "final:651",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "路边电线杆上蹲着一只猴子，司机小李看到就立刻停下车来，请问为什么",
-    "question": "路边电线杆上蹲着一只猴子，司机小李看到就立刻停下车来，请问为什么",
-    "answer": "他把猴子屁股当红灯了",
-    "explain": "他把猴子屁股当红灯了",
+    "title": "红灯坏了，司机为什么还是乖乖停下",
+    "question": "红灯坏了，司机为什么还是乖乖停下？",
+    "answer": "交警正举手示意停车",
+    "explain": "停车不只由红灯决定，现场指挥同样有效。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "2162",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13017,7 +13111,9 @@
       "inputId": 651,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:652",
@@ -13103,10 +13199,10 @@
     "id": "final:656",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "小丁在游泳池游泳，游着游着，为什么水突然变深了",
-    "question": "小丁在游泳池游泳，游着游着，为什么水突然变深了？",
-    "answer": "有人刚撒了一泡尿",
-    "explain": "因为有人刚撒了一泡尿",
+    "title": "游泳池一滴水也没增加，小丁却觉得水越来越深，为什么",
+    "question": "游泳池一滴水也没增加，小丁却觉得水越来越深，为什么？",
+    "answer": "他正从浅水区游向深水区",
+    "explain": "水位没有变化，变化的是他所在的位置。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "3271",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13117,7 +13213,9 @@
       "inputId": 656,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:657",
@@ -13223,10 +13321,10 @@
     "id": "final:662",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么食人族只有在烹煮女明星时要放入一大堆牛粪来调味",
-    "question": "为什么食人族只有在烹煮女明星时要放入一大堆牛粪来调味？",
-    "answer": "香水味太浓他们吃不消",
-    "explain": "香水味太浓他们吃不消",
+    "title": "什么东西越分享，自己反而可能拥有得越多",
+    "question": "什么东西越分享，自己反而可能拥有得越多？",
+    "answer": "知识",
+    "explain": "知识分享出去不会减少，交流还可能带来新的知识。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "467",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13237,7 +13335,9 @@
       "inputId": 662,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:663",
@@ -13323,10 +13423,10 @@
     "id": "final:667",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "武士刀和日本人有什么关系",
-    "question": "武士刀和日本人有什么关系？",
-    "answer": "他们是剖腹之交",
-    "explain": "他们是剖腹之交",
+    "title": "什么“刀”不能拿来切菜",
+    "question": "什么“刀”不能拿来切菜？",
+    "answer": "剪刀石头布里的“剪刀”",
+    "explain": "这里的“剪刀”只是游戏手势，不是真正的工具。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "379",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13337,7 +13437,9 @@
       "inputId": 667,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:668",
@@ -13383,10 +13485,10 @@
     "id": "final:670",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "一个警察有个弟弟，但弟弟却否认有个哥哥，为什么",
-    "question": "一个警察有个弟弟，但弟弟却否认有个哥哥，为什么？",
-    "answer": "哪个警察上全女的",
-    "explain": "因为哪个警察上全女的",
+    "title": "一个警察有个弟弟，弟弟却说自己没有哥哥，为什么",
+    "question": "一个警察有个弟弟，弟弟却说自己没有哥哥，为什么？",
+    "answer": "警察是他的姐姐",
+    "explain": "题目只说“警察”，没有说警察一定是男性。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1476",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13397,7 +13499,9 @@
       "inputId": 670,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:671",
@@ -13423,10 +13527,10 @@
     "id": "final:672",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "两只猫头鹰在聊天,其中一只说它可以在白天出门而不用戴墨镜,为什么",
-    "question": "两只猫头鹰在聊天,其中一只说它可以在白天出门而不用戴墨镜,为什么",
-    "answer": "那是一只瞎眼猫头鹰",
-    "explain": "那是一只瞎眼猫头鹰",
+    "title": "什么“猫”不会抓老鼠，却经常在夜里活动",
+    "question": "什么“猫”不会抓老鼠，却经常在夜里活动？",
+    "answer": "猫头鹰",
+    "explain": "名字里有“猫”，但它其实是鸟类。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "818",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13437,7 +13541,9 @@
       "inputId": 672,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:673",
@@ -13483,10 +13589,10 @@
     "id": "final:675",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么女人的衣服总是少一件",
-    "question": "为什么女人的衣服总是少一件？",
-    "answer": "她穿在身上.",
-    "explain": "因为她穿在身上.",
+    "title": "什么衣服永远不会穿旧",
+    "question": "什么衣服永远不会穿旧？",
+    "answer": "照片里的衣服",
+    "explain": "照片里的衣服只是影像，不会因穿着而磨损。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1206",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13497,7 +13603,9 @@
       "inputId": 675,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:676",
@@ -13523,10 +13631,10 @@
     "id": "final:677",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "鱼儿为什么不说话",
-    "question": "鱼儿为什么不说话？",
-    "answer": "他在水里",
-    "explain": "因为他在水里",
+    "title": "什么鱼永远不会游泳",
+    "question": "什么鱼永远不会游泳？",
+    "answer": "木鱼",
+    "explain": "木鱼名字里有“鱼”，但它是敲击用的器物。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "2488",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13537,7 +13645,9 @@
       "inputId": 677,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:678",
@@ -13563,10 +13673,10 @@
     "id": "final:679",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么男生年满廿岁就一定要入伍当兵",
-    "question": "为什么男生年满廿岁就一定要入伍当兵？",
-    "answer": "兵不可以在家当",
-    "explain": "因为兵不可以在家当",
+    "title": "什么“军”从来没有真正的士兵",
+    "question": "什么“军”从来没有真正的士兵？",
+    "answer": "冠军",
+    "explain": "“军”只是“冠军”这个词的一部分，并不是军队。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "596",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13577,7 +13687,9 @@
       "inputId": 679,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:680",
@@ -13603,10 +13715,10 @@
     "id": "final:681",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "在一场足球赛前，你可以准确地告诉我比分吗",
-    "question": "在一场足球赛前，你可以准确地告诉我比分吗？",
-    "answer": "当然可以0:)",
-    "explain": "当然可以0:)",
+    "title": "一场足球赛还没开始，你能准确说出当时的比分吗",
+    "question": "一场足球赛还没开始，你能准确说出当时的比分吗？",
+    "answer": "能，0比0",
+    "explain": "比赛开始前双方都还没有进球。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "886",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13617,7 +13729,9 @@
       "inputId": 681,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:682",
@@ -13723,10 +13837,10 @@
     "id": "final:687",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "晴朗的天空，为什么没有太阳",
-    "question": "晴朗的天空，为什么没有太阳？？",
-    "answer": "晚上当然没有太阳",
-    "explain": "晚上当然没有太阳",
+    "title": "天空万里无云，却完全看不到太阳，为什么",
+    "question": "天空万里无云，却完全看不到太阳，为什么？",
+    "answer": "因为现在是晚上",
+    "explain": "晴朗只表示没有云，并不表示一定是白天。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1313",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13737,16 +13851,18 @@
       "inputId": 687,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:688",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么老陈会说他少了女人一天也活不下去",
-    "question": "为什么老陈会说他少了女人一天也活不下去？",
-    "answer": "他是化妆品制造商",
-    "explain": "他是化妆品制造商",
+    "title": "什么东西每天都在变，却从来不会自己走一步",
+    "question": "什么东西每天都在变，却从来不会自己走一步？",
+    "answer": "日历",
+    "explain": "日期每天变化，但日历本身不会移动。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "338",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13757,16 +13873,18 @@
       "inputId": 688,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:689",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "善有善报，恶有恶报是什么意思",
-    "question": "善有善报，恶有恶报是什么意思？",
-    "answer": "什么报纸都没有",
-    "explain": "什么报纸都没有",
+    "title": "什么“报”从来没有新闻",
+    "question": "什么“报”从来没有新闻？",
+    "answer": "善有善报里的“报”",
+    "explain": "这里的“报”表示回报，不是报纸。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "724",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13777,7 +13895,9 @@
       "inputId": 689,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:690",
@@ -13843,10 +13963,10 @@
     "id": "final:693",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "一艘正在水中航行的船为什么会突然消失得无影无综",
-    "question": "一艘正在水中航行的船为什么会突然消失得无影无综",
-    "answer": "小宝已经洗完澡把它拿走了",
-    "explain": "因为小宝已经洗完澡把它拿走了",
+    "title": "浴缸里一艘小船正在“航行”，为什么突然消失了",
+    "question": "浴缸里一艘小船正在“航行”，为什么突然消失了？",
+    "answer": "孩子洗完澡把玩具船拿走了",
+    "explain": "题目里的船是玩具船，并不是真正的大船。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "534",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13857,16 +13977,18 @@
       "inputId": 693,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:694",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "两岁的叮当为什么看到隔壁的欧巴桑都叫她“伯伯”，而对方却一点也不生气",
-    "question": "两岁的叮当为什么看到隔壁的欧巴桑都叫她“伯伯”，而对方却一点也不生气？",
-    "answer": "他是阿拉伯\"人",
-    "explain": "因为他是阿拉伯\"人",
+    "title": "小明的爸爸有三个儿子：大毛、二毛，第三个叫什么",
+    "question": "小明的爸爸有三个儿子：大毛、二毛，第三个叫什么？",
+    "answer": "小明",
+    "explain": "题目开头已经给出了第三个儿子的名字。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "518",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13877,7 +13999,9 @@
       "inputId": 694,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:695",
@@ -13923,10 +14047,10 @@
     "id": "final:697",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "考一个亲戚称呼问题，如果你曾祖父的儿子，就是娶了你妈妈的那个人，你应该叫他什么",
-    "question": "考一个亲戚称呼问题，如果你曾祖父的儿子，就是娶了你妈妈的那个人，你应该叫他什么？",
-    "answer": "喂乘儿子吃了没有",
-    "explain": "喂乘儿子吃了没有",
+    "title": "你爸爸的儿子既不是你哥哥，也不是你弟弟，他是谁",
+    "question": "你爸爸的儿子既不是你哥哥，也不是你弟弟，他是谁？",
+    "answer": "你自己",
+    "explain": "排除哥哥和弟弟后，爸爸的儿子还可能就是提问者本人。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "282",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13937,16 +14061,18 @@
       "inputId": 697,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:698",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "彩色丝袜已经变成一种流行，为什么红色系列在台湾销售得最差",
-    "question": "彩色丝袜已经变成一种流行，为什么红色系列在台湾销售得最差？",
-    "answer": "台湾萝卜腿的女孩子太多了",
-    "explain": "因为台湾萝卜腿的女孩子太多了",
+    "title": "什么袜子永远不会湿",
+    "question": "什么袜子永远不会湿？",
+    "answer": "画在纸上的袜子",
+    "explain": "图画里的袜子不是实物，所以不会被水弄湿。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "589",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -13957,7 +14083,9 @@
       "inputId": 698,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:699",
@@ -14063,10 +14191,10 @@
     "id": "final:704",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "什么时候是老二最爽的时候",
-    "question": "什么时候是老二最爽的时候？",
-    "answer": "当老大不在不能欺负老二时",
-    "explain": "当老大不在不能欺负老二时",
+    "title": "家里的老二什么时候能排在老大前面",
+    "question": "家里的老二什么时候能排在老大前面？",
+    "answer": "按身高从矮到高排时",
+    "explain": "“老大、老二”是出生顺序，新的排序规则可以改变前后位置。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "430",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14077,7 +14205,9 @@
       "inputId": 704,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:705",
@@ -14103,10 +14233,10 @@
     "id": "final:706",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么小弟开车遇见交叉道从不停车",
-    "question": "为什么小弟开车遇见交叉道从不停车",
-    "answer": "他以前是开火车的。",
-    "explain": "因为他以前是开火车的。",
+    "title": "小弟开车经过很多路口却从不停车，为什么",
+    "question": "小弟开车经过很多路口却从不停车，为什么？",
+    "answer": "他开的是赛车游戏",
+    "explain": "“开车”也可以发生在电子游戏里。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "2656",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14117,7 +14247,9 @@
       "inputId": 706,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:707",
@@ -14143,10 +14275,10 @@
     "id": "final:708",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么杀人要被判刑，杀蟑螂却不用",
-    "question": "为什么杀人要被判刑，杀蟑螂却不用",
-    "answer": "蟑螂没有辨护律师",
-    "explain": "因为蟑螂没有辨护律师",
+    "title": "什么“球”离你很近，却永远不能拿脚踢",
+    "question": "什么“球”离你很近，却永远不能拿脚踢？",
+    "answer": "眼球",
+    "explain": "把“球”从运动器材切换成身体部位。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "909",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14157,7 +14289,9 @@
       "inputId": 708,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:709",
@@ -14183,10 +14317,10 @@
     "id": "final:710",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "林老生大手术后换了一个人工心脏。病好了后,她的女友却马上提出分手,为什么会这样",
-    "question": "林老生大手术后换了一个人工心脏。病好了后,她的女友却马上提出分手,为什么会这样",
-    "answer": "没有真心爱她",
-    "explain": "没有真心爱她",
+    "title": "小林换了人工心脏后，朋友为什么开玩笑说他“没真心”",
+    "question": "小林换了人工心脏后，朋友为什么开玩笑说他“没真心”？",
+    "answer": "因为他用的是人工心脏",
+    "explain": "把“真心”的感情含义转换成“真实的心脏”。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1928",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14197,16 +14331,18 @@
       "inputId": 710,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:711",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "阿火在营光日的考试全部答对，为什么却没得到满分",
-    "question": "阿火在营光日的考试全部答对，为什么却没得到满分？",
-    "answer": "考的是是非题",
-    "explain": "因为考的是是非题",
+    "title": "小光把判断题全部答对了，为什么还是得了0分",
+    "question": "小光把判断题全部答对了，为什么还是得了0分？",
+    "answer": "他把答案写在了别人的试卷上",
+    "explain": "答案本身正确，但没有写在自己的试卷上，所以本人不能得分。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "595",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14217,16 +14353,18 @@
       "inputId": 711,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:712",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "波霸参加500公尺赛跑，一路领先的波霸不慎摔了一大跤却还能得第一名，为什么",
-    "question": "波霸参加500公尺赛跑，一路领先的波霸不慎摔了一大跤却还能得第一名，为什么？",
-    "answer": "其它人都被陷到坑里了",
-    "explain": "因为其它人都被陷到坑里了",
+    "title": "赛跑中一路领先的人摔了一跤，为什么仍然是第一名",
+    "question": "赛跑中一路领先的人摔了一跤，为什么仍然是第一名？",
+    "answer": "他越过终点线后才摔倒",
+    "explain": "摔倒发生在比赛已经结束之后，不影响名次。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "608",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14237,16 +14375,18 @@
       "inputId": 712,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:713",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "苹果树上有一个苹果，一只小猴，请问树上有几个苹果，几只猴",
-    "question": "苹果树上有一个苹果，一只小猴，请问树上有几个苹果，几只猴？",
-    "answer": "一个苹果一只猴子也没有",
-    "explain": "一个苹果一只猴子也没有,因为去打架去了.",
+    "title": "树上有5只鸟，一声巨响后为什么一只也没了",
+    "question": "树上有5只鸟，一声巨响后为什么一只也没了？",
+    "answer": "它们全被吓飞了",
+    "explain": "“一只也没了”不等于出了意外，也可能只是全部飞走。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1275",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14257,16 +14397,18 @@
       "inputId": 713,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:714",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "嫦娥为什么后悔上广寒宫",
-    "question": "嫦娥为什么后悔上广寒宫？",
-    "answer": "月亮上没有赛月饼",
-    "explain": "因为月亮上没有赛月饼",
+    "title": "什么“月”不用翻日历，抬头就可能看见",
+    "question": "什么“月”不用翻日历，抬头就可能看见？",
+    "answer": "月亮",
+    "explain": "把“月”从月份切换成天体“月亮”。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "283",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14277,7 +14419,9 @@
       "inputId": 714,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:715",
@@ -14383,10 +14527,10 @@
     "id": "final:720",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "什么人最喜欢日光浴",
-    "question": "什么人最喜欢日光浴？",
-    "answer": "植物人(光合作用).",
-    "explain": "植物人(光合作用).",
+    "title": "什么“花”再漂亮也不能插进花瓶",
+    "question": "什么“花”再漂亮也不能插进花瓶？",
+    "answer": "烟花",
+    "explain": "“花”被从植物切换成“烟花”的词义。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1236",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14397,7 +14541,9 @@
       "inputId": 720,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:721",
@@ -14463,10 +14609,10 @@
     "id": "final:724",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么父亲一发现皮夹里的钱数目少了一半后，便一口咬定是儿子干的好事，为什么",
-    "question": "为什么父亲一发现皮夹里的钱数目少了一半后，便一口咬定是儿子干的好事，为什么？",
-    "answer": "老婆不会只拿走一半.",
-    "explain": "因为老婆不会只拿走一半.",
+    "title": "爸爸发现钱包里的钱少了一半，为什么立刻知道是儿子拿的",
+    "question": "爸爸发现钱包里的钱少了一半，为什么立刻知道是儿子拿的？",
+    "answer": "另一半正拿在儿子手里",
+    "explain": "题目不需要猜测性别或习惯，因为有直接证据。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1183",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14477,7 +14623,9 @@
       "inputId": 724,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:725",
@@ -14523,10 +14671,10 @@
     "id": "final:727",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "唐老鸭最怕什么事",
-    "question": "唐老鸭最怕什么事？",
-    "answer": "发现原来自己是白天鹅",
-    "explain": "发现原来自己是白天鹅",
+    "title": "鸭子最怕哪个字",
+    "question": "鸭子最怕哪个字？",
+    "answer": "压",
+    "explain": "“鸭”和“压”同音，答案是简单的谐音梗。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "511",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14537,7 +14685,9 @@
       "inputId": 727,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:728",
@@ -14563,10 +14713,10 @@
     "id": "final:729",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么蝙蝠会经常倒吊着",
-    "question": "为什么蝙蝠会经常倒吊着？",
-    "answer": "它胃下垂",
-    "explain": "因为它胃下垂",
+    "title": "什么动物一出生就像背着一座房子走",
+    "question": "什么动物一出生就像背着一座房子走？",
+    "answer": "蜗牛",
+    "explain": "蜗牛的壳一直背在身体上，看起来像随身带着房子。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1717",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14577,16 +14727,18 @@
       "inputId": 729,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:730",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "一向最爱吃蛋糕的大宝，今天为什么连面前那14小块蛋糕都吃不下呢",
-    "question": "一向最爱吃蛋糕的大宝，今天为什么连面前那14小块蛋糕都吃不下呢？",
-    "answer": "他刚刚吃完那3/4",
-    "explain": "因为他刚刚吃完那3/4",
+    "title": "大宝最爱吃蛋糕，面前14块蛋糕却一块也不能吃，为什么",
+    "question": "大宝最爱吃蛋糕，面前14块蛋糕却一块也不能吃，为什么？",
+    "answer": "那是蛋糕店橱窗里的模型",
+    "explain": "看起来像蛋糕，不代表是真正可以食用的蛋糕。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "306",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14597,7 +14749,9 @@
       "inputId": 730,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:731",
@@ -14643,10 +14797,10 @@
     "id": "final:733",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "在火车站绝不可能发生什么事",
-    "question": "在火车站绝不可能发生什么事？",
-    "answer": "既然不可能发生当然不能发生",
-    "explain": "既然不可能发生当然不能发生",
+    "title": "火车站里什么东西天天等火车，却永远不上车",
+    "question": "火车站里什么东西天天等火车，却永远不上车？",
+    "answer": "站台",
+    "explain": "站台一直在火车旁，却不会真的乘车。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "527",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14657,16 +14811,18 @@
       "inputId": 733,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:734",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "70元的牛排，付帐时只付了210元，为什么",
-    "question": "70元的牛排，付帐时只付了210元，为什么？",
-    "answer": "这是祖孙三人",
-    "explain": "这是祖孙三人",
+    "title": "一张方桌有4个角，锯掉其中1个角后还剩几个角",
+    "question": "一张方桌有4个角，锯掉其中1个角后还剩几个角？",
+    "answer": "5个",
+    "explain": "锯掉一个原角会新形成两个角，所以总数变成5个。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "2704",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14677,16 +14833,18 @@
       "inputId": 734,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:735",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "歌仔戏和歌剧有什么不一样",
-    "question": "歌仔戏和歌剧有什么不一样？",
-    "answer": "一样的一个是传统歌仔戏",
-    "explain": "其实是一样的一个是传统歌仔戏,一个是西方歌仔戏",
+    "title": "什么“歌”不用嘴唱也能出现",
+    "question": "什么“歌”不用嘴唱也能出现？",
+    "answer": "歌词",
+    "explain": "“歌”可以以文字形式存在，看到歌词不需要发出声音。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "565",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14697,7 +14855,9 @@
       "inputId": 735,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:736",
@@ -14763,10 +14923,10 @@
     "id": "final:739",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "警察面对两名歹徒，但他只剩下一颗子弹，他对歹徒说：谁动就打谁，结果没动的反而挨子弹，为什么",
-    "question": "警察面对两名歹徒，但他只剩下一颗子弹，他对歹徒说：谁动就打谁，结果没动的反而挨子弹，为什么？",
-    "answer": "不动的比较好打",
-    "explain": "因为不动的比较好打",
+    "title": "两个人比赛憋笑，为什么先笑的人反而赢了",
+    "question": "两个人比赛憋笑，为什么先笑的人反而赢了？",
+    "answer": "比赛规则就是看谁先把对方逗笑",
+    "explain": "题目故意让人把“憋笑”理解成坚持越久越好，但规则可以不同。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1985",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14777,16 +14937,18 @@
       "inputId": 739,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:740",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "有一位老奶奶在看报，一只蚊子正想要叮她，老奶奶手和脚都没动，为什么蚊子会突然死掉了",
-    "question": "有一位老奶奶在看报，一只蚊子正想要叮她，老奶奶手和脚都没动，为什么蚊子会突然死掉了？",
-    "answer": "他被老奶奶的皱纹夹死了",
-    "explain": "因为他被老奶奶的皱纹夹死了",
+    "title": "一只蚊子停在玻璃外面，为什么怎么也叮不到屋里的人",
+    "question": "一只蚊子停在玻璃外面，为什么怎么也叮不到屋里的人？",
+    "answer": "中间隔着玻璃",
+    "explain": "距离很近不等于没有障碍物。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "440",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14797,7 +14959,9 @@
       "inputId": 740,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:741",
@@ -14863,10 +15027,10 @@
     "id": "final:744",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "小明看书的时候，为什么不能把书签放在175页和176页之间",
-    "question": "小明看书的时候，为什么不能把书签放在175页和176页之间？",
-    "answer": "是写在一张纸上.",
-    "explain": "因为是写在一张纸上.",
+    "title": "为什么书签不能夹在第175页和第176页之间",
+    "question": "为什么书签不能夹在第175页和第176页之间？",
+    "answer": "因为它们印在同一张纸的正反面",
+    "explain": "相邻的奇数页和偶数页可能正好是同一张纸的两面，中间没有可夹的位置。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1121",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14877,7 +15041,9 @@
       "inputId": 744,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:745",
@@ -14963,10 +15129,10 @@
     "id": "final:749",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "有个人被恐龙一口咬住，又在嘴里嚼了好几下，为什么没有受伤",
-    "question": "有个人被恐龙一口咬住，又在嘴里嚼了好几下，为什么没有受伤？",
-    "answer": "塞到恐龙的牙缝里了.",
-    "explain": "因为塞到恐龙的牙缝里了.",
+    "title": "一个人被恐龙咬住却一点也不疼，为什么",
+    "question": "一个人被恐龙咬住却一点也不疼，为什么？",
+    "answer": "那是玩具恐龙",
+    "explain": "题目没说恐龙是真的，玩具当然咬不伤人。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1053",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14977,16 +15143,18 @@
       "inputId": 749,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:750",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "日本人的腿为什么比较短",
-    "question": "日本人的腿为什么比较短？",
-    "answer": "地震多短腿跑起来稳.",
-    "explain": "因为地震多短腿跑起来稳.",
+    "title": "什么人跑得再快也永远追不上自己的影子",
+    "question": "什么人跑得再快也永远追不上自己的影子？",
+    "answer": "任何人",
+    "explain": "影子会随着人的移动同步变化，无法靠奔跑把它甩在身后再追上。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1161",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -14997,7 +15165,9 @@
       "inputId": 750,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:751",
@@ -15043,10 +15213,10 @@
     "id": "final:753",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "据说前一阵子“ET”离开地球以后，英文字母只剩24个字，但是最新消息听是15个字，为什么",
-    "question": "据说前一阵子“ET”离开地球以后，英文字母只剩24个字，但是最新消息听是15个字，为什么？",
-    "answer": "UFO飞走了",
-    "explain": "因为UFO飞走了,WC臭死了AIDS生病住院",
+    "title": "英文字母里哪两个字母见面时最像在打招呼",
+    "question": "英文字母里哪两个字母见面时最像在打招呼？",
+    "answer": "H 和 I",
+    "explain": "H、I 连起来就是“HI”，表示“你好”。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "492",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15057,16 +15227,18 @@
       "inputId": 753,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:754",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么女人穿高跟鞋后，就代表她想要结婚了",
-    "question": "为什么女人穿高跟鞋后，就代表她想要结婚了",
-    "answer": "穿上高跟鞋",
-    "explain": "因为穿上高跟鞋，别人追就跑得慢啊。",
+    "title": "什么鞋穿在脚上，却一步也走不了",
+    "question": "什么鞋穿在脚上，却一步也走不了？",
+    "answer": "雕像脚上的鞋",
+    "explain": "雕像不会走路，所以鞋也不会真正迈步。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1548",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15077,7 +15249,9 @@
       "inputId": 754,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:755",
@@ -15123,10 +15297,10 @@
     "id": "final:757",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "世界上最长的单词是什么",
-    "question": "世界上最长的单词是什么？",
-    "answer": "微笑因为两个字母s里隔了一里",
-    "explain": "微笑因为两个字母s里隔了一里.",
+    "title": "哪个英文单词看起来“最长”",
+    "question": "哪个英文单词看起来“最长”？",
+    "answer": "smiles",
+    "explain": "因为两个字母 s 中间仿佛隔着一“mile”，是英文文字梗。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1110",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15137,7 +15311,9 @@
       "inputId": 757,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:758",
@@ -15183,10 +15359,10 @@
     "id": "final:760",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "小王开医院，生意一直不是很如意，一天他的医院突然车水马龙排了一大堆人，为什么",
-    "question": "小王开医院，生意一直不是很如意，一天他的医院突然车水马龙排了一大堆人，为什么？",
-    "answer": "他在医院门口贴了今日住院3折",
-    "explain": "因为他在医院门口贴了今日住院3折",
+    "title": "一家医院突然来了很多人，却没有一个人生病，为什么",
+    "question": "一家医院突然来了很多人，却没有一个人生病，为什么？",
+    "answer": "他们都是来参加体检的",
+    "explain": "去医院不一定代表生病，也可能是体检。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "410",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15197,16 +15373,18 @@
       "inputId": 760,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:761",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "琼斯练钢琴，除了妈妈给钱，还有谁给",
-    "question": "琼斯练钢琴，除了妈妈给钱，还有谁给？",
-    "answer": "邻居因为他一练琴他们就别想睡",
-    "explain": "邻居因为他一练琴他们就别想睡.",
+    "title": "小琼练钢琴，除了妈妈给他钱，邻居也给他钱，为什么",
+    "question": "小琼练钢琴，除了妈妈给他钱，邻居也给他钱，为什么？",
+    "answer": "邻居请他暂停练琴一会儿",
+    "explain": "邻居给钱不是奖励演奏，而是希望暂时安静。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1026",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15217,7 +15395,9 @@
       "inputId": 761,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:762",
@@ -15243,10 +15423,10 @@
     "id": "final:763",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "兔子的眼睛为什么是红的",
-    "question": "兔子的眼睛为什么是红的？",
-    "answer": "他跑输了乌龟哭红的.",
-    "explain": "因为他跑输了乌龟哭红的.",
+    "title": "什么兔子从来不会跳",
+    "question": "什么兔子从来不会跳？",
+    "answer": "画在纸上的兔子",
+    "explain": "图画里的兔子不是活物，自然不会跳。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "1173",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15257,7 +15437,9 @@
       "inputId": 763,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:764",
@@ -15283,10 +15465,10 @@
     "id": "final:765",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "某部队弹尽粮绝的被包围了很久，空军终于赶到，却只空投了一块大石头又飞走了，为什么",
-    "question": "某部队弹尽粮绝的被包围了很久，空军终于赶到，却只空投了一块大石头又飞走了，为什么？",
-    "answer": "让他们刻阵亡将士纪念碑",
-    "explain": "让他们刻阵亡将士纪念碑",
+    "title": "什么东西从天上落下来，越积越厚，却从来不会摔疼",
+    "question": "什么东西从天上落下来，越积越厚，却从来不会摔疼？",
+    "answer": "雪花",
+    "explain": "雪花很轻，落地后会堆积，却不会像重物那样摔疼。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "619",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15297,7 +15479,9 @@
       "inputId": 765,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:766",
@@ -15323,10 +15507,10 @@
     "id": "final:767",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "爸爸要小明背论语，他一分钟就背了整本书，难道小明是天才吗",
-    "question": "爸爸要小明背论语，他一分钟就背了整本书，难道小明是天才吗？",
-    "answer": "不因为他只背了论语.",
-    "explain": "不因为他只背了论语.",
+    "title": "爸爸让小明把整本《论语》“背起来”，他一分钟就做到了，为什么",
+    "question": "爸爸让小明把整本《论语》“背起来”，他一分钟就做到了，为什么？",
+    "answer": "他把书背在背上",
+    "explain": "“背”既可以表示背诵，也可以表示用背驮着。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "229",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15337,16 +15521,18 @@
       "inputId": 767,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:768",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "英国国王为什么是女性",
-    "question": "英国国王为什么是女性",
-    "answer": "英国男人都是绅士讲究女士优先",
-    "explain": "因为英国男人都是绅士讲究女士优先.",
+    "title": "哪位“王”住在蜂巢里，却没有王宫和王冠",
+    "question": "哪位“王”住在蜂巢里，却没有王宫和王冠？",
+    "answer": "蜂王",
+    "explain": "这里的“王”是蜂群中的称呼，不是国家君主。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "922",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15357,16 +15543,18 @@
       "inputId": 768,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:769",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "小红帽从大野狼面前走过，大野狼为何没有发现她",
-    "question": "小红帽从大野狼面前走过，大野狼为何没有发现她？",
-    "answer": "小红帽今天没有戴帽子",
-    "explain": "小红帽今天没有戴帽子",
+    "title": "小红帽从大灰狼面前走过，大灰狼为什么没认出她",
+    "question": "小红帽从大灰狼面前走过，大灰狼为什么没认出她？",
+    "answer": "她今天没戴红帽，也换了普通衣服",
+    "explain": "角色称呼来自标志性装束，换掉装束后就不容易被认出。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "556",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15377,7 +15565,9 @@
       "inputId": 769,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:770",
@@ -15523,10 +15713,10 @@
     "id": "final:777",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么爱斯基摩人是唯一住在北极的人呢",
-    "question": "为什么爱斯基摩人是唯一住在北极的人呢",
-    "answer": "他们是爱死寂寞的人",
-    "explain": "因为他们是爱死寂寞的人",
+    "title": "北极熊为什么从来不吃企鹅",
+    "question": "北极熊为什么从来不吃企鹅？",
+    "answer": "因为它们不生活在同一极",
+    "explain": "北极熊生活在北极地区，企鹅主要生活在南半球，野外不会相遇。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "433",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15537,7 +15727,9 @@
       "inputId": 777,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:778",
@@ -15643,10 +15835,10 @@
     "id": "final:783",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "三国美男子周瑜，为什么会感慨的说：“既生瑜，何生亮”呢",
-    "question": "三国美男子周瑜，为什么会感慨的说：“既生瑜，何生亮”呢？",
-    "answer": "诸葛亮长的比周瑜帅",
-    "explain": "因为诸葛亮长的比周瑜帅",
+    "title": "周瑜和诸葛亮的名字里，哪个字看起来更“亮”",
+    "question": "周瑜和诸葛亮的名字里，哪个字看起来更“亮”？",
+    "answer": "亮",
+    "explain": "题目把人物比较转成了字面比较，“亮”本身就是答案。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "305",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15657,16 +15849,18 @@
       "inputId": 783,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:784",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "恐龙为什么会灭亡",
-    "question": "恐龙为什么会灭亡？",
-    "answer": "那个时候没有动物保护协会",
-    "explain": "那个时候没有动物保护协会",
+    "title": "博物馆里的恐龙为什么从来不会逃跑",
+    "question": "博物馆里的恐龙为什么从来不会逃跑？",
+    "answer": "因为它们是化石或模型",
+    "explain": "展出的“恐龙”并不是活着的恐龙。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "393",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15677,16 +15871,18 @@
       "inputId": 784,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:785",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么婴儿一出生就大哭",
-    "question": "为什么婴儿一出生就大哭？",
-    "answer": "他看到护士阿姨太漂亮",
-    "explain": "因为他看到护士阿姨太漂亮.自己又太...小",
+    "title": "哪个婴儿从来不会哭",
+    "question": "哪个婴儿从来不会哭？",
+    "answer": "照片里的婴儿",
+    "explain": "照片只是影像，不会真的哭。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "12",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15697,16 +15893,18 @@
       "inputId": 785,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:786",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "传说在古代的地球有十个太阳，但是现在为什么只剩一个",
-    "question": "传说在古代的地球有十个太阳，但是现在为什么只剩一个？",
-    "answer": "九个太阳被齐秦拿去写歌了.",
-    "explain": "因为九个太阳被齐秦拿去写歌了.",
+    "title": "什么太阳永远晒不热人",
+    "question": "什么太阳永远晒不热人？",
+    "answer": "画里的太阳",
+    "explain": "画中的太阳只是图像，不会真的发出热量。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "912",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15717,16 +15915,18 @@
       "inputId": 786,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:787",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "“只”字加一笔，变成什么字",
-    "question": "“只”字加一笔，变成什么字？",
-    "answer": "冲（先把“只”立起来）",
-    "explain": "冲（先把“只”立起来）",
+    "title": "“王”字加一点，变成什么字",
+    "question": "“王”字加一点，变成什么字？",
+    "answer": "玉",
+    "explain": "在“王”上增加一点即可得到“玉”。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "2242",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15737,7 +15937,9 @@
       "inputId": 787,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:788",
@@ -15903,10 +16105,10 @@
     "id": "final:796",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "废除早自习会造成什么影响",
-    "question": "废除早自习会造成什么影响？",
-    "answer": "让学生和家长可以多赖床半小时",
-    "explain": "让学生和家长可以多赖床半小时。",
+    "title": "什么“考试”不用写一道题，也可能顺利通过",
+    "question": "什么“考试”不用写一道题，也可能顺利通过？",
+    "answer": "体检",
+    "explain": "体检常被口语称为身体检查，“检查”并不一定是答题考试。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "3264",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15917,7 +16119,9 @@
       "inputId": 796,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:797",
@@ -15983,10 +16187,10 @@
     "id": "final:800",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "一个人在太阳下走路却看不见自己的影子,为什么",
-    "question": "一个人在太阳下走路却看不见自己的影子,为什么",
-    "answer": "他撑了一把伞",
-    "explain": "因为他撑了一把伞",
+    "title": "一个人在太阳下走路，却怎么也看不到自己的影子，为什么",
+    "question": "一个人在太阳下走路，却怎么也看不到自己的影子，为什么？",
+    "answer": "正午时影子几乎就在脚下",
+    "explain": "太阳接近头顶时，影子会很短，容易被自己的身体和脚遮住。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "861",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -15997,16 +16201,18 @@
       "inputId": 800,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:801",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么胖的人比瘦的人怕热",
-    "question": "为什么胖的人比瘦的人怕热？",
-    "answer": "被晒的面积比较大.",
-    "explain": "因为被晒的面积比较大.",
+    "title": "什么东西天气越热，反而穿得越“厚”",
+    "question": "什么东西天气越热，反而穿得越“厚”？",
+    "answer": "冰淇淋外面的保温箱",
+    "explain": "天气越热越需要更好的保温隔热，题目利用“厚”制造反差。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "945",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -16017,7 +16223,9 @@
       "inputId": 801,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:802",
@@ -16043,10 +16251,10 @@
     "id": "final:803",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "为什么只看过“小说”，没看过“大说”",
-    "question": "为什么只看过“小说”，没看过“大说”？",
-    "answer": "大说已逝世",
-    "explain": "因为大说已逝世",
+    "title": "为什么“小说”再长也还是叫小说",
+    "question": "为什么“小说”再长也还是叫小说？",
+    "answer": "“小说”是文体名称，不是按篇幅大小命名",
+    "explain": "题目故意把“小说”的“小”理解成尺寸大小。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "140",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -16057,16 +16265,18 @@
       "inputId": 803,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:804",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "弗兰克林在雷雨中放风筝时说了什么",
-    "question": "弗兰克林在雷雨中放风筝时说了什么",
-    "answer": "什么也没有说当时他被电麻了",
-    "explain": "什么也没有说当时他被电麻了",
+    "title": "什么风筝永远也飞不上天",
+    "question": "什么风筝永远也飞不上天？",
+    "answer": "画在纸上的风筝",
+    "explain": "图画中的风筝不是实物，所以无法真正起飞。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "875",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -16077,7 +16287,9 @@
       "inputId": 804,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 4,
+    "optimized": true
   },
   {
     "id": "final:805",
@@ -16163,10 +16375,10 @@
     "id": "final:809",
     "category": "脑筋急转弯",
     "displayMode": "qa",
-    "title": "移防到马祖的大兵阿明以女友即将生产为由申请返台，为什么却没有被批准",
-    "question": "移防到马祖的大兵阿明以女友即将生产为由申请返台，为什么却没有被批准？",
-    "answer": "马明来到阿祖一超过一年以上",
-    "explain": "因为马明来到阿祖一超过一年以上,中途不曾返台过.",
+    "title": "什么门永远关不上",
+    "question": "什么门永远关不上？",
+    "answer": "球门",
+    "explain": "球门是比赛设施，不是用来开关的门。",
     "source": "ChineseDatasets / brainteasers",
     "sourceId": "935",
     "sourceUrl": "https://huggingface.co/datasets/ShakaRover/ChineseDatasets/tree/5090c4f0fc9f2fab0e2de7d9d229f034b0524923/brainteasers",
@@ -16177,7 +16389,9 @@
       "inputId": 809,
       "sourceType": "来源化独立数据·附解析",
       "verification": "supplied-reference"
-    }
+    },
+    "qualityScore": 5,
+    "optimized": true
   },
   {
     "id": "final:810",
