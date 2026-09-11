@@ -11,6 +11,7 @@
   - 源码快照：`Temp\build-1.8.22-trae-20260911`（verify-game 全绿 → inline → aiot build --enable-jsc → verify-rpk 通过）
   - 安装包：`dist/com.dailyquote.band10pro.debug.1.8.22.rpk`，1,295,005 B，SHA-256 `E1D3C429BF88D6E8C2F65F01F34CE0910EFABD0B97431771F30149EE981DE632`；RPK 解包 icon.png 哈希与 src 一致
   - 用例与结果：ALL-PASS（14 张截图）——版本核验 1.8.22/10822 → 全场景回归全过（知识页「下一题」末题无变化警告沿例非缺陷）
+- 发布：PR #13 合入 main（merge commit `3fd5150`），tag `v1.8.22` → 实现提交 `3826131`，Release 8 附件齐全（RPK/BIN 1,295,005 B `E1D3C429…1DE632`；源码包 2,557,758 B `E9440483…39A7E1`）：https://github.com/2069581059k-eng/DAILY-NOTE/releases/tag/v1.8.22
 - **真机未验**：应用图标建议真机复核。
 
 ## 2026-09-11 · Trae Code 1.8.21 素材统一 imgs 目录（应用图标 + 日历导航图标补全）（分支 trae/v1.8.21-imgs-assets）
