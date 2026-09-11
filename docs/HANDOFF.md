@@ -11,6 +11,7 @@
   - 源码快照：`Temp\build-1.8.21-trae-20260911`（verify-game 全绿 → inline → aiot build --enable-jsc → verify-rpk 通过）
   - 安装包：`dist/com.dailyquote.band10pro.debug.1.8.21.rpk`，705,269 B，SHA-256 `9B568E6AD175C8E493DCE1AAA22C4A7E5C5447EBF8578221979F5109D1B58E3D`；RPK 解包 icon.png / ic-nav-calendar.png 哈希与 src 一致
   - 用例与结果：ALL-PASS（14 张截图）——版本核验 1.8.21/10821 → 首页新日历图标/星光轨道/书本/爱心书签导航图标全可见 → 退出提示白纸卡片置顶 → 原 13 场景回归全过
+- 发布：PR #12 合入 main（merge commit `0d72ec5`），tag `v1.8.21` → 实现提交 `d0cdd5c`，Release 8 附件齐全（RPK/BIN 705,269 B `9B568E6A…B58E3D`；源码包 1,967,441 B `21F11F1F…ECAC02`）：https://github.com/2069581059k-eng/DAILY-NOTE/releases/tag/v1.8.21
 - **真机未验**：应用图标与日历导航图标建议真机复核。
 
 ## 2026-09-11 · Trae Code 1.8.20 应用图标还原 1.8.14 + 退出提示主题化置顶（分支 trae/v1.8.20-icon-exit-hint）
