@@ -10,9 +10,10 @@ import { createRequire } from 'node:module'
 const require = createRequire(import.meta.url)
 const { createGrpcClient } = require('@aiot-toolkit/emulator/lib/vvd/grpc')
 const projectRoot = path.resolve(import.meta.dirname, '..')
-const sdkHome = 'C:\\Users\\20695\\Documents\\NEWPRO~1\\CODEX_~1\\VELA-H~1\\VELA~1\\sdk'
-const vvdHome = 'C:\\Users\\20695\\Documents\\NEWPRO~1\\CODEX_~1\\VELA-H~1\\VELA~1\\vvd'
-const vvdName = 'Vela_Band10Pro_UI'
+// 环境隔离：SDK 只读共享（可用 WB_VELA_SDK 覆盖），AVD 数据与实例名独立在 D 盘
+const sdkHome = process.env.WB_VELA_SDK || 'C:\\Users\\20695\\Documents\\NEWPRO~1\\CODEX_~1\\VELA-H~1\\VELA~1\\sdk'
+const vvdHome = process.env.WB_VELA_AVD_HOME || 'D:\\AGI\\WorkBuddy\\Simulator\\avd'
+const vvdName = process.env.WB_VELA_AVD || 'WorkBuddy_Band10Pro'
 const packageName = 'com.dailyquote.band10pro'
 const adbPath = 'C:\\Windows\\System32\\adb.exe'
 const emulatorPath = path.join(sdkHome, 'emulator', 'windows-x86_64', 'emulator.exe')
