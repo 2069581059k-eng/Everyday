@@ -62,6 +62,10 @@
       <input class="zodiac-analyze" type="button" value="星象分析 ›" onclick="startZodiacTest" />
       <input class="zodiac-close" type="button" value="返回主页" onclick="closeZodiac" />
     </div>
+
+    <div class="exit-hint" show="{{exitHintVisible}}">
+      <text class="exit-hint-text">再次右滑退出应用</text>
+    </div>
   </div>
 </template>
 
@@ -99,6 +103,8 @@ let state = {
 }
 let favoritesItems = []
 let legacyMigrated = false
+// 右滑退出二次确认提示的自动消失计时器（模块级，避免污染 private 渲染数据）
+let exitHintTimer = null
 
 export default {
   private: {
@@ -126,6 +132,7 @@ export default {
     astroTip: '',
     maskFortuneText: '',
     maskHistoryText: '',
+    exitHintVisible: false,
   },
 
   onInit() {
@@ -384,15 +391,54 @@ export default {
     this.heartFilled = hasFavorite(favoritesItems, 'q' + currentIndex)
   },
 
+  // 1.8.17 右滑交互：遮罩打开时右滑=关闭遮罩（返回上一级）；
+  // 首页右滑第一次弹出"再次右滑退出"提示，提示期内再次右滑才真正退出（防误触）
   handleSwipe(event) {
-    if (event && event.direction === 'right') this.exitGame()
+    if (!event || event.direction !== 'right') return
+    if (this.zodiacVisible) { this.zodiacVisible = false; return }
+    if (this.exitHintVisible) {
+      this.exitHintVisible = false
+      if (exitHintTimer) {
+        try { clearTimeout(exitHintTimer) } catch (error) {}
+        exitHintTimer = null
+      }
+      this.exitGame()
+      return
+    }
+    this.exitHintVisible = true
+    const page = this
+    try {
+      exitHintTimer = setTimeout(function () {
+        page.exitHintVisible = false
+        exitHintTimer = null
+      }, 3000)
+    } catch (error) {
+      // 计时器不可用时提示常驻：不影响二次右滑退出，仅不会自动消失
+      console.log('退出提示计时器不可用: ' + error)
+    }
+  },
+
+  dismissExitHint() {
+    this.exitHintVisible = false
+    if (exitHintTimer) {
+      try { clearTimeout(exitHintTimer) } catch (error) {}
+      exitHintTimer = null
+    }
   },
 
   exitGame() {
-    this.setScreenAwake(false)
+    // 1.8.17：在手势回调内同步 $app.exit() 会撕裂 Vela 应用表面（退出后重启左侧出现
+    // 持续黑条，模拟器实测复现/修复），故延迟到手势与渲染周期结束后再退出；
+    // keepScreenOn 不在此处释放，统一交给 onHide/onDestroy
     if (this.stateReady) this.saveState()
-    try { this.$app.exit() } catch (error) { console.log('全局退出不可用: ' + error) }
-    try { app.terminate() } catch (error) { console.log('系统退出不可用: ' + error) }
+    const page = this
+    try {
+      setTimeout(function () {
+        try { page.$app.exit() } catch (error) { try { app.terminate() } catch (error2) {} }
+      }, 150)
+    } catch (error) {
+      try { app.terminate() } catch (error2) {}
+    }
   },
 
   pulse(mode) {
@@ -444,4 +490,7 @@ export default {
 .zodiac-history { position: absolute; left: 16px; top: 338px; width: 304px; height: 18px; line-height: 18px; color: #71665b; font-size: 14px; text-align: center; }
 .zodiac-analyze { position: absolute; left: 98px; top: 368px; width: 140px; height: 40px; border-width: 1px; border-color: #a83b2d; border-radius: 4px; background-color: #fffdf8; color: #a83b2d; font-size: 18px; font-weight: bold; }
 .zodiac-close { position: absolute; left: 98px; top: 420px; width: 140px; height: 40px; font-size: 18px; background-color: #a83b2d; color: #fffdf8; }
+
+.exit-hint { position: absolute; left: 48px; top: 440px; width: 240px; height: 32px; border-radius: 4px; background-color: #3a332c; }
+.exit-hint-text { position: absolute; left: 0; top: 0; width: 240px; height: 32px; line-height: 32px; color: #fffdf8; font-size: 14px; text-align: center; }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="zt-page">
+  <div class="zt-page" onswipe="handleSwipe">
     <text class="zt-head">星座气质 · 星象分析</text>
     <text class="zt-progress">{{progressText}}</text>
     <div class="zt-progress-bar">
@@ -95,6 +95,11 @@ export default {
 
   quitTest() {
     router.replace({ uri: 'pages/index' })
+  },
+
+  // 1.8.17：右滑返回上一级（答题页上一级为主页，与「退出测试」一致）
+  handleSwipe(event) {
+    if (event && event.direction === 'right') this.quitTest()
   }
 }
 </script>

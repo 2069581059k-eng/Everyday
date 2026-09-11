@@ -1,5 +1,5 @@
 <template>
-  <div class="quiz-mask">
+  <div class="quiz-mask" onswipe="handleSwipe">
     <div class="quiz-panel">
       <div class="qa-mode" show="{{isQaItem}}">
         <text class="quiz-kicker">{{quizCategory}}</text>
@@ -16,8 +16,8 @@
 
         <div class="quiz-answer-box" show="{{answerVisible}}">
           <text class="quiz-answer-label">答案</text>
-          <text class="quiz-explain">{{riddleExplain}}</text>
-          <input class="detail-next" show="{{detailTotal > 1}}" type="button" value="{{detailLabel}}" onclick="nextDetail" />
+          <text class="quiz-explain" onclick="nextDetail">{{riddleExplain}}</text>
+          <text class="detail-page" show="{{detailTotal > 1}}">{{detailLabel}}</text>
         </div>
       </div>
 
@@ -28,8 +28,8 @@
         <input class="kn-heart kn-heart-on" show="{{heartFilled}}" type="button" value="♥" onclick="toggleFavorite" />
         <input class="kn-home kn-home-read" type="button" value="返回主页" onclick="goHome" />
         <text class="read-title">{{riddleQuestion}}</text>
-        <text class="read-text">{{riddleExplain}}</text>
-        <input class="read-next" show="{{detailTotal > 1}}" type="button" value="{{detailLabel}}" onclick="nextDetail" />
+        <text class="read-text" onclick="nextDetail">{{riddleExplain}}</text>
+        <text class="read-page" show="{{detailTotal > 1}}">{{detailLabel}}</text>
       </div>
 
       <div class="quiz-actionbar">
@@ -240,7 +240,8 @@ export default {
     for (let i = 0; i < chars.length; i += step) chunks.push(chars.slice(i, i + step).join(''))
     this.detailTotal = chunks.length || 1
     this.riddleExplain = chunks[this.detailIndex] || ''
-    this.detailLabel = '继续 ' + (this.detailIndex + 1) + '/' + this.detailTotal
+    // 1.8.17：「继续」按钮移除，正文点击翻页；仅保留纯页码指示
+    this.detailLabel = (this.detailIndex + 1) + ' / ' + this.detailTotal
   },
 
   nextDetail() {
@@ -269,6 +270,11 @@ export default {
     router.replace({ uri: 'pages/index' })
   },
 
+  // 1.8.17：右滑返回上一级（知识页上一级为主页）
+  handleSwipe(event) {
+    if (event && event.direction === 'right') this.goHome()
+  },
+
   pulse(mode) {
     try { vibrator.vibrate({ mode: mode }) } catch (error) {}
   }
@@ -291,13 +297,13 @@ export default {
 .quiz-answer-box { position: absolute; left: 16px; top: 190px; width: 280px; height: 204px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fffdf8; }
 .quiz-answer-label { position: absolute; left: 10px; top: 8px; width: 60px; color: #a83b2d; font-size: 15px; font-weight: bold; }
 .quiz-explain { position: absolute; left: 10px; top: 34px; width: 260px; height: 130px; color: #29241f; font-size: 18px; font-weight: bold; line-height: 24px; }
-.detail-next { position: absolute; left: 50px; top: 168px; width: 180px; height: 30px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
+.detail-page { position: absolute; left: 170px; top: 172px; width: 100px; height: 16px; line-height: 16px; color: #71665b; font-size: 12px; text-align: right; }
 .read-mode { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
 .read-kicker { position: absolute; left: 16px; top: 10px; width: 110px; height: 20px; line-height: 20px; color: #a83b2d; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
 .read-count { position: absolute; left: 130px; top: 13px; width: 52px; height: 16px; line-height: 16px; color: #94887c; font-size: 11px; text-align: right; }
 .read-title { position: absolute; left: 18px; top: 46px; width: 276px; height: 58px; color: #2c2722; font-size: 19px; font-weight: bold; line-height: 24px; text-align: center; }
 .read-text { position: absolute; left: 18px; top: 112px; width: 276px; height: 248px; color: #29241f; font-size: 20px; font-weight: bold; line-height: 28px; text-align: left; }
-.read-next { position: absolute; left: 56px; top: 372px; width: 200px; height: 30px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
+.read-page { position: absolute; left: 194px; top: 366px; width: 100px; height: 16px; line-height: 16px; color: #71665b; font-size: 12px; text-align: right; }
 .quiz-actionbar { position: absolute; left: 16px; top: 400px; width: 280px; height: 48px; }
 .quiz-nav-btn { position: absolute; top: 0; width: 86px; height: 44px; border-width: 1px; border-color: #d4c9ba; border-radius: 4px; background-color: #f8f3e9; color: #574e45; font-size: 14px; font-weight: bold; }
 .quiz-prev { left: 0; }

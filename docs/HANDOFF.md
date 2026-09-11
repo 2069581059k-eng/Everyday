@@ -1,5 +1,29 @@
 # 当前交接
 
+## 2026-09-11 · Trae Code 1.8.17 右滑重构 + 收藏室详情改版 + 知识页点击翻页（分支 trae/v1.8.17-ux）
+
+- 任务（用户四项需求 + 交互重构）：①收藏室长文正文扩容、去重复「答案：」前缀；②每日一言（无正文）详情移除正文框、居中显示；③小米手环右滑不再直接退出——首页二次确认退出、其他页面右滑返回上一级；④知识大全移除「继续」按钮，点击正文翻页。
+- 基线：origin/main @ `1dbbbfa`（含 1.8.16 DAILY NOTE 更名，PR #7）；本分支 rebase 其上，版本 1.8.17 / 10817。
+- 改动文件：
+  - `src/pages/index/index.ux`：`onswipe` + `exitHintVisible` 提示条（模块级 `exitHintTimer`，3s 自动消失）；遮罩打开时右滑关遮罩；**exitGame 延迟 150ms 退出（P1 修复）**
+  - `src/pages/knowledge/knowledge.ux` / `calendar.ux` / `zodiac-test.ux` / `zodiac-result.ux`：`onswipe` 右滑返回上一级；知识页 `detail-next`/`read-next` 按钮移除，正文 `onclick="nextDetail"` 翻页 + 纯文本页码
+  - `src/pages/favorites/favorites.ux`：`CHUNK_CHARS` 24→120；双布局 `fav-detail-center`（无正文，居中大字）+ `fav-detail-doc`（有正文，框+继续按钮）；`detailHasBody` 判定；右滑 详情→列表→主页
+  - `src/common/utils/favorites.js`：`isQa` 判定——仅答题类拼「答案：/解析：」，阅读类直接用 `explain` 作正文
+  - `tools/verify-game.mjs`：新增 16 条 1.8.17 断言；修正 4 条旧断言（`detail-next` 按钮→`detail-page` 页码、`event.direction ===`→`!==`、`read-text` 点击翻页等）
+- **修复 P1（重要）**：onswipe 回调内同步 `$app.exit()`/`app.terminate()` 撕裂应用表面（重启后左侧持续黑条）。诊断过程：`am stop` 强停路径干净 → 仅应用自退出路径损坏 → `app.terminate()` 单用/`$app.exit()` 单用均复现 → 手势完成后延迟 150ms 退出 → 冷重启复测干净。模拟器手势注入：gRPC `sendMouse` 快速轻扫（起点 x≥56 避开系统边缘手势，6 步 × 8ms）。
+- **验收记录（按模拟器验收门槛）**：
+  - 验收时间：2026-09-11 10:25–10:50（GMT+8）
+  - 模拟器：Trae_AGI（Vela Band 10 Pro，336×480，端口 5578 / gRPC 8578）
+  - 源码快照：`Temp\build-1.8.17-trae-20260911`（npm test 全绿 → inline → aiot build --enable-jsc build success 4335ms；node_modules 复制自 1.8.16 快照）
+  - 安装包：`dist/com.dailyquote.band10pro.debug.1.8.17.rpk`，1,070,832 B，SHA-256 `DB92D7EFCBBDB6AF305935D747366350E3AAA05E4EA4CC3247303E8FEC8BA41A`；verify-rpk 通过
+  - 用例与结果：ALL-PASS（快照内 `qa-1817.mjs`，证据 `qa-1.8.17/` 30+ 张截图 + runtime.log）——退出二次确认（提示条 dark=5718 / 3s 消失 dark=1085 / 二次右滑退出）→ **退出修复（重启后首页哈希级一致、无黑条）** → 遮罩右滑关闭 → 知识页多页阅读条目（继续按钮像素=0、页码=18px、点击翻页生效、爱心 red=159）→ 首页爱心 red=289 → 收藏室一言详情（边框=0/按钮=0/**文字中心 x=165.3 vs 屏幕中心 168**）→ 知识详情（正文框 269px/继续按钮 4025px/翻页生效）→ 右滑 详情→列表→主页 → 日历/答题页/结果页右滑回主页（30 题全答完）
+- **平台怪癖备忘（QA 已适配，后续验收注意）**：
+  - `pm uninstall` **不清 kvdb 存储**（`/data/persist.db`）：知识页进度、收藏、首页语录状态跨重装持久——QA 需双向翻题与「确保点亮」式爱心断言；
+  - 遮罩右滑关闭后**首击有数秒输入延迟**（画面已回主页但点击稍后才生效）——导航断言带重试；
+  - gRPC 快速滑动**偶发不被识别**——关键滑动断言带重试；
+  - 退出释放常亮后显示器休眠 + 引擎拆卸期首个 `am start` 可能被丢弃——重启断言带唤醒点击 + 轮询。
+- 未创建 Release；**真机未验**（右滑手势与退出修复需真机复核）。
+
 ## 2026-09-11 · WorkBuddy(agent) 1.8.16 品牌文案统一（每日一言 → DAILY NOTE）
 
 - 任务（用户要求）：把仓库内所有「每日一言」改为「**DAILY NOTE**」——用户选择「全部 31 处（含历史记录）」与「存档值直改（接受数据风险）」。
