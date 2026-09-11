@@ -353,7 +353,7 @@ check(favoritesPage.includes('function cleanDetailBody(') && favoritesPage.inclu
 check(favoritesPage.includes(' · 已收录$'), '收藏室详情隐藏「分类 · 已收录」冗余副标题（兼容旧存档）')
 check(favoritesUtils.includes("sub: ''"), '知识类新收藏不再写入「已收录」副标题')
 check(favoritesPage.includes('.fav-detail-box { position: absolute; left: 0; top: 108px; width: 312px; height: 226px;'), '收藏室详情正文框扩容至 226px（副标题让位，每日一言居中布局不变）')
-check(page.includes('.exit-hint { position: absolute; left: 38px; top: 140px;'), '右滑退出提示移至屏幕中上方（1.8.19，避开底部手势热区）')
+check(page.includes('.exit-hint { position: absolute; left: 38px; top: 12px;') && page.includes('border-color: #ece3d6; border-radius: 6px; background-color: #fffdf8; }') && page.includes('line-height: 40px; color: #574e45; font-size: 14px; }'), '右滑退出提示移至屏幕最上方且与主题一致（1.8.20 羊皮纸卡片，不再使用黑色底）')
 
 // ---- 1.8.18 全局 UI 改版：东方美学设计令牌 + 设计稿图片素材 + 统一页面头部 ----
 const redesignedPages = [

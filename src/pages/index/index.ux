@@ -497,8 +497,8 @@ export default {
 .zodiac-analyze { position: absolute; left: 48px; top: 340px; width: 240px; height: 44px; border-radius: 6px; background-color: #a83b2d; color: #fffaf2; font-size: 17px; font-weight: bold; }
 .zodiac-close { position: absolute; left: 48px; top: 396px; width: 240px; height: 40px; border-width: 1px; border-color: #a83b2d; border-radius: 6px; background-color: #fffdf8; color: #a83b2d; font-size: 16px; }
 
-/* 右滑退出二次确认提示（1.8.19 移至屏幕中上方，避开底部手势热区） */
-.exit-hint { position: absolute; left: 38px; top: 140px; width: 260px; height: 40px; border-radius: 6px; background-color: #2b2723; }
+/* 右滑退出二次确认提示（1.8.20 移至屏幕最上方；羊皮纸主题卡片样式，不再使用黑色底） */
+.exit-hint { position: absolute; left: 38px; top: 12px; width: 260px; height: 40px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fffdf8; }
 .exit-hint-icon { position: absolute; left: 14px; top: 10px; width: 20px; height: 20px; }
-.exit-hint-text { position: absolute; left: 42px; top: 0; width: 206px; height: 40px; line-height: 40px; color: #fffdf8; font-size: 14px; }
+.exit-hint-text { position: absolute; left: 42px; top: 0; width: 206px; height: 40px; line-height: 40px; color: #574e45; font-size: 14px; }
 </style>
