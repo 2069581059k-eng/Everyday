@@ -11,6 +11,7 @@
   - 源码快照：`Temp\build-1.8.20-trae-20260911`（verify-game 全绿 → inline → aiot build --enable-jsc → verify-rpk 通过）
   - 安装包：`dist/com.dailyquote.band10pro.debug.1.8.20.rpk`，1,294,291 B，SHA-256 `B58CA2FC565292740CB3C715CBBEFCF940BA672C205F2664E7C08D2C7D883916`（体积增长来自还原的 1.8.14 高清图标）
   - 用例与结果：ALL-PASS（14 张截图）——版本核验 1.8.20/10820 → 首页右滑退出提示（白纸卡片/屏幕最上方/3s 自动消失，截图 00-exit-hint）→ 原 13 场景回归全过（知识页「下一题」末题无变化警告沿例非缺陷）
+- 发布：PR #11 合入 main（merge commit `57ce6d3`），tag `v1.8.20` → 实现提交 `ef4db17`，Release 8 附件齐全（RPK/BIN 1,294,291 B `B58CA2FC…D883916`；源码包 2,557,068 B `EB0A944D…D8100B`）：https://github.com/2069581059k-eng/DAILY-NOTE/releases/tag/v1.8.20
 - **真机未验**：退出提示样式/位置与应用图标建议真机复核。
 
 ## 2026-09-11 · Trae Code 1.8.19 收藏室交互对齐 + 新素材替换 + 星象遮罩星座插画直显（分支 trae/v1.8.19-favorites-polish）
