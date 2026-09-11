@@ -1,5 +1,22 @@
 # 当前交接
 
+## 2026-09-11 · WorkBuddy(agent) 验收脚本多工具隔离（PR #3 合入 main）
+
+- 背景：同一台机器上 WorkBuddy / TraeCode / Codex 三套工具并行开发，需各自独立的模拟器实例与端口，互不占用。
+- 改动范围：**仅验收工具**（不含产品代码/资源）——`tools/capture-full.mjs`、`tools/capture-zodiac.mjs`、`tools/capture-vvd.mjs`
+  - 路径/实例/端口改为**环境变量优先**：`WB_VELA_SDK`、`WB_VELA_AVD_HOME`、`WB_VELA_AVD`（实例名）、`WB_VELA_REGISTRY`（实例注册目录）、`WB_EMU_PORT`、`WB_EMU_FORWARD`；默认值指向 WorkBuddy 自己的隔离目录 `D:\AGI\WorkBuddy\Simulator\{sdk,vvd}`。
+  - 独立端口：`-port 5580`（adb serial `emulator-5580`）/ `-grpc 8580` / hostfwd `10081`；启动参数补齐 `-grpc`——缺该参数时模拟器**不写运行配置** `pid_*.ini`，工具链会报"未找到模拟器 gRPC 配置"。
+  - 只连自己的实例：`deviceSerial()` 仅认 `emulator-<emuPort>` 并在绑定后断言串口；`readRunningConfig()` 按 `avd.dir` 精确匹配，避免误取 Codex(5574) / Trae(5578) 的运行配置。
+- 兼容性：默认值均可用环境变量覆盖；其它工具按自己的实例名与端口传参即可复用同一脚本（主分支原先硬编码共享路径，若直接用默认值会因共享 AVD 数据已清理而启动失败）。
+- 验收记录（WorkBuddy 隔离环境；模拟器验收门槛；非真机）：
+  - 验收时间：2026-09-10 15:52–15:55（GMT+8）
+  - 模拟器：WorkBuddy 独立实例 `WorkBuddy_Band10Pro`（Vela Band 10 Pro 336×480，serial `emulator-5580` / gRPC `8580`，数据目录 `D:\AGI\WorkBuddy\Simulator\vvd\WorkBuddy_Band10Pro.vvd`，与 Codex 5574 / Trae 5578 并存互不干扰）
+  - 源码快照：`D:\AGI\WorkBuddy\Temp\iso1812`（快照 + 独立依赖副本，`@aiot-toolkit/jsc` 1.0.9，`win32_aiotjsc.exe` 参与构建）
+  - 安装包：`com.dailyquote.band10pro.debug.1.8.12.rpk`，1,060,791 B，SHA-256 `95a1d27fa7fc6340bd81ca8774b3d54f2db9498cc4f4324bbb49eff28fbc3bcb`；`verify-rpk` 通过
+  - 用例与结果：**93 通过 / 2 未通过**（2 项均为当时既有的 P1「退出测试离开应用」，与该改动前逐条一致 → **行为未变**）；首页/抽签/收藏/知识大全/月历/星象答题/结果页 4 页/返回主页/退出重进 全部通过；logcat 0 错误行
+  - 证据路径：`qa-1.8.12-iso/`（30 张截图 + logcat/error-lines/runtime.log）
+- 备注：本次仅改验收工具，未改产品代码与资源，故**不产生新版本号**；产品线当前基准为 1.8.15，后续发布须 ≥1.8.16/10816。
+
 ## 2026-09-10 · 基准切换：1.8.15 设为共同开发基准（1.8.14/1.8.15 均转正）
 
 - 用户真机验证 1.8.14 与 1.8.15 均通过（1.8.14 收藏/新首页；1.8.15 收藏筛选、今日签持久化）。
