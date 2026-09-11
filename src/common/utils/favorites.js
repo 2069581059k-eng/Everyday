@@ -22,12 +22,13 @@ function makeQuoteFavorite(quoteIndex, quote, fortuneLevel, fortuneTip) {
 function makeKnowledgeFavorite(riddle) {
   // 阅读类（鬼故事/百科/冷笑话）：answer 即标题、explain 即正文，拼接"答案："前缀会造成
   // 详情页标题与正文首行重复（1.8.17 修复）；仅答题类保留"答案/解析"结构
+  // 1.8.19：sub 不再写入「分类 · 已收录」（与详情页角标重复）；渲染层兼容剥离旧存档
   const isQa = riddle.displayMode === 'qa' || riddle.category === '脑筋急转弯' || riddle.category === '十万个为什么'
   return {
     id: 'k' + riddle.question,
     type: riddle.category,
     text: riddle.question,
-    sub: riddle.category + ' · 已收录',
+    sub: '',
     detail: isQa ? '答案：' + riddle.answer + '\n解析：' + riddle.explain : riddle.explain,
     savedDay: 0
   }

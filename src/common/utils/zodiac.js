@@ -33,4 +33,24 @@ function zodiacForDate(month, date) {
   return 9
 }
 
-export { ZODIACS, zodiacForDate }
+// 1.8.19：星座插画素材映射收敛至共享模块（星象遮罩与结果页共用，透明底 96×96）
+const ZODIAC_IMG = {
+  '白羊座': '/common/assets/zodiac-aries.png',
+  '金牛座': '/common/assets/zodiac-taurus.png',
+  '双子座': '/common/assets/zodiac-gemini.png',
+  '巨蟹座': '/common/assets/zodiac-cancer.png',
+  '狮子座': '/common/assets/zodiac-leo.png',
+  '处女座': '/common/assets/zodiac-virgo.png',
+  '天秤座': '/common/assets/zodiac-libra.png',
+  '天蝎座': '/common/assets/zodiac-scorpio.png',
+  '射手座': '/common/assets/zodiac-sagittarius.png',
+  '摩羯座': '/common/assets/zodiac-capricorn.png',
+  '水瓶座': '/common/assets/zodiac-aquarius.png',
+  '双鱼座': '/common/assets/zodiac-pisces.png'
+}
+
+function zodiacImg(name) {
+  return ZODIAC_IMG[name] || ''
+}
+
+export { ZODIACS, zodiacForDate, ZODIAC_IMG, zodiacImg }

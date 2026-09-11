@@ -1,5 +1,24 @@
 # 当前交接
 
+## 2026-09-11 · Trae Code 1.8.19 收藏室交互对齐 + 新素材替换 + 星象遮罩星座插画直显（分支 trae/v1.8.19-favorites-polish）
+
+- 任务（用户六项需求 + 素材替换 + 追加需求）：①收藏室「继续」改知识页式点击正文翻页；②鬼故事等正文开头「答案」前缀移除；③收藏室「分类 · 已收录」重复副标题移除 + 详情正文区扩容（DAILY NOTE 不变）；④右滑退出提示移至屏幕中上方；⑤星象遮罩移除「今日签/近签」显示；⑥imgs 新素材 11 枚替换；⑦追加：星象遮罩插图直接显示当前星座素材。
+- 基线：origin/main @ `98ac692`（含 1.8.18 正式发布记录，PR #9）；版本 1.8.19 / 10819。
+- 改动文件：
+  - `src/pages/favorites/favorites.ux`：移除 `fav-detail-next` 按钮 → `fav-detail-box` 绑定 `nextDetailChunk` 点击翻页 + `detailPageText` 纯文本页码；`cleanDetailBody` 三层清洗（剥「答案：」→ 剥首行重复标题 → 剥「解析：」，兼容旧存档不改数据）；` · 已收录$` 正则隐藏旧副标题；正文框 top 108/h 226（body h 186，分页粒度 120 字）
+  - `src/common/utils/favorites.js`：`makeKnowledgeFavorite` 的 `sub` 改空串（新收藏不再写「分类 · 已收录」）
+  - `src/pages/index/index.ux`：`.exit-hint` top 428→140；移除 `zodiac-fortune`/`zodiac-history` 与 `refreshMaskFortune`（签运持久化逻辑保留）；`.zodiac-ill` 改 `src="{{zodiacIll}}"`（110×110 方形槽防拉伸），`refreshAstro` 同步 `zodiacImg(zodiac.name)`
+  - `src/common/utils/zodiac.js`：新增 `ZODIAC_IMG`（12 星座中文名→素材路径）+ `zodiacImg()`，导出共享；`zodiac-result.ux` 删除页内重复映射改 import（inline-modules 自动内联）
+  - `src/common/assets/`（用户提供新图 11 枚入库，透明底裁切缩放）：ic-nav-zodiac/knowledge/favorites、ic-heart-on/off、ic-t-info/ok、ill-sun/mountain/bamboo/night
+  - `tools/verify-game.mjs`：1.8.19 断言组；`tools/capture-vvd.mjs`：星象分析按钮坐标 (168,362)
+- **验收记录（按模拟器验收门槛）**：
+  - 验收时间：2026-09-11 19:20–19:50（GMT+8）
+  - 模拟器：Trae_AGI（Vela Band 10 Pro，336×480，端口 5578 / gRPC 8578，adb serial **emulator-5578**；`VELA_SERIAL`/`WB_VELA_AVD` 注入沿 1.8.18 要求）
+  - 源码快照：`Temp\build-1.8.19-trae-20260911`（verify-game 全绿 → inline → aiot build --enable-jsc → verify-rpk 通过；构建尾清理 .gitignore EBUSY 沿例忽略）
+  - 安装包：`dist/com.dailyquote.band10pro.debug.1.8.19.rpk`，710,972 B，SHA-256 `433787D0C8CA809914276D81A6054FAE596698EA60F480FF84ED93AE6B8F4A17`；RPK 解包逐素材哈希与 src 比对全部一致（26/26）
+  - 用例与结果：ALL-PASS（capture-vvd.mjs，证据 `qa-emulator/` 13 张截图）——安装版本核验 1.8.19/10819 → 首页（新导航图标/新爱心/退出提示中上方）→ 星象遮罩（白羊座插画直显）→ 切换（金牛座插画联动）→ 日历 → 知识页 → 收藏室（详情点击翻页、x/y 页码、无「答案」前缀与重复标题、正文框扩容）→ 星象答题 30 题 → 结果页 top3（共享映射渲染正确）
+- **真机未验**：收藏室点击翻页、退出提示新位置、星象遮罩星座插画直显建议真机复核。
+
 ## 2026-09-11 · Trae Code 1.8.18 全局视觉改版（东方纸韵）+ 左缘回退箭头命中修复（分支 trae/v1.8.18-ui-redesign）
 
 - 任务：按用户五张设计稿全局改版（图标/UI/主题/组件）+ 星象分析星座形象采用用户提供素材（裁切 12 枚 96×96 透明底）；修复全链路验收发现的收藏详情页回退箭头点击无响应。

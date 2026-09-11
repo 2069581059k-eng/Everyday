@@ -59,13 +59,12 @@
       <text class="zodiac-title">趣味星象</text>
       <input class="zodiac-prev" type="button" value="‹" onclick="previousZodiac" />
       <input class="zodiac-next" type="button" value="›" onclick="nextZodiac" />
-      <image class="zodiac-ill" src="/common/assets/ill-sun.png" />
+      <!-- 1.8.19：插图位直接显示当前星座对应素材（切换星座联动刷新） -->
+      <image class="zodiac-ill" src="{{zodiacIll}}" />
       <text class="zodiac-name-big">{{zodiacName}}</text>
       <text class="zodiac-range-big">{{zodiacRange}}</text>
       <text class="zodiac-moon">{{moonText}}</text>
       <text class="zodiac-tip">{{astroTip}}</text>
-      <text class="zodiac-fortune">{{maskFortuneText}}</text>
-      <text class="zodiac-history">{{maskHistoryText}}</text>
       <input class="zodiac-analyze" type="button" value="星象分析 ›" onclick="startZodiacTest" />
       <input class="zodiac-close" type="button" value="返回主页" onclick="closeZodiac" />
     </div>
@@ -87,7 +86,7 @@ import router from '@system.router'
 import { QUOTES } from '../../common/data/quotes.js'
 import { pad, dayInfo } from '../../common/utils/date.js'
 import { WEEKDAYS, moonPhase } from '../../common/utils/moon.js'
-import { ZODIACS, zodiacForDate } from '../../common/utils/zodiac.js'
+import { ZODIACS, zodiacForDate, zodiacImg } from '../../common/utils/zodiac.js'
 import { ASTRO_ACTIONS, ASTRO_COLORS, FORTUNES } from '../../common/data/fortune_templates.js'
 import { FAVORITES_KEY, makeQuoteFavorite, toggleFavorite, hasFavorite, migrateOldFavorites } from '../../common/utils/favorites.js'
 
@@ -136,10 +135,9 @@ export default {
     moonShortText: '',
     zodiacName: ZODIACS[state.zodiacIndex].name,
     zodiacRange: ZODIACS[state.zodiacIndex].range,
+    zodiacIll: zodiacImg(ZODIACS[state.zodiacIndex].name),
     moonText: '月相 · ' + moonPhase(today.dayNumber),
     astroTip: '',
-    maskFortuneText: '',
-    maskHistoryText: '',
     exitHintVisible: false,
   },
 
@@ -292,6 +290,7 @@ export default {
     const color = ASTRO_COLORS[(today.dayNumber * 3 + state.zodiacIndex) % ASTRO_COLORS.length]
     this.zodiacName = zodiac.name
     this.zodiacRange = zodiac.range
+    this.zodiacIll = zodiacImg(zodiac.name)
     this.astroTip = '宜 ' + action + ' · ' + color
   },
 
@@ -368,20 +367,8 @@ export default {
     this.refreshFavorite()
   },
 
-  openZodiac() {
-    this.refreshMaskFortune()
-    this.zodiacVisible = true
-  },
+  openZodiac() { this.zodiacVisible = true },
   closeZodiac() { this.zodiacVisible = false },
-
-  // 遮罩页签运区：今日签（未抽则提示）+ 最近 3 次签级串接
-  // 近签行不用 show 控制（父容器 zodiac-mask 隐藏期间改子级 show 不会重算，Vela 渲染怪癖），空串即无内容
-  refreshMaskFortune() {
-    const drawn = !!(state.fortune && state.fortune.day === today.dayNumber)
-    this.maskFortuneText = (drawn ? '今日签 · ' + state.fortune.level : '今日未抽签')
-    const recent = state.fortuneHistory.slice(0, 3)
-    this.maskHistoryText = recent.length > 0 ? '近签 ' + recent.map(function (item) { return item.level }).join('·') : ''
-  },
 
   // 爱心收藏：纯语录快照（1.8.15 签运持久化后与签运解耦，恒为「DAILY NOTE」类型；
   // 旧版「抽签」类型条目收藏室仍兼容展示）
@@ -501,18 +488,17 @@ export default {
 .zodiac-title { position: absolute; left: 56px; top: 21px; width: 224px; height: 26px; line-height: 26px; font-size: 20px; font-weight: bold; color: #2b2723; text-align: center; }
 .zodiac-prev, .zodiac-next { position: absolute; top: 140px; width: 40px; height: 40px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fffdf8; color: #a83b2d; font-size: 22px; }
 .zodiac-prev { left: 16px; } .zodiac-next { left: 280px; }
-.zodiac-ill { position: absolute; left: 108px; top: 70px; width: 120px; height: 110px; }
+/* 1.8.19：星座素材为 96×96 方形，插图位改 110×110 居中避免拉伸 */
+.zodiac-ill { position: absolute; left: 113px; top: 70px; width: 110px; height: 110px; }
 .zodiac-name-big { position: absolute; left: 16px; top: 188px; width: 304px; height: 44px; line-height: 44px; color: #2b2723; font-size: 32px; font-weight: bold; text-align: center; }
 .zodiac-range-big { position: absolute; left: 16px; top: 236px; width: 304px; height: 20px; line-height: 20px; color: #9a9186; font-size: 14px; text-align: center; }
 .zodiac-moon { position: absolute; left: 16px; top: 268px; width: 304px; height: 20px; line-height: 20px; color: #7b7268; font-size: 14px; text-align: center; }
 .zodiac-tip { position: absolute; left: 16px; top: 294px; width: 304px; height: 20px; line-height: 20px; color: #a83b2d; font-size: 14px; text-align: center; }
-.zodiac-fortune { position: absolute; left: 16px; top: 320px; width: 304px; height: 18px; line-height: 18px; color: #a83b2d; font-size: 13px; font-weight: bold; text-align: center; }
-.zodiac-history { position: absolute; left: 16px; top: 340px; width: 304px; height: 18px; line-height: 18px; color: #9a9186; font-size: 12px; text-align: center; }
-.zodiac-analyze { position: absolute; left: 48px; top: 366px; width: 240px; height: 44px; border-radius: 6px; background-color: #a83b2d; color: #fffaf2; font-size: 17px; font-weight: bold; }
-.zodiac-close { position: absolute; left: 48px; top: 418px; width: 240px; height: 40px; border-width: 1px; border-color: #a83b2d; border-radius: 6px; background-color: #fffdf8; color: #a83b2d; font-size: 16px; }
+.zodiac-analyze { position: absolute; left: 48px; top: 340px; width: 240px; height: 44px; border-radius: 6px; background-color: #a83b2d; color: #fffaf2; font-size: 17px; font-weight: bold; }
+.zodiac-close { position: absolute; left: 48px; top: 396px; width: 240px; height: 40px; border-width: 1px; border-color: #a83b2d; border-radius: 6px; background-color: #fffdf8; color: #a83b2d; font-size: 16px; }
 
-/* 右滑退出提示条（Toast） */
-.exit-hint { position: absolute; left: 38px; top: 428px; width: 260px; height: 40px; border-radius: 6px; background-color: #2b2723; }
+/* 右滑退出二次确认提示（1.8.19 移至屏幕中上方，避开底部手势热区） */
+.exit-hint { position: absolute; left: 38px; top: 140px; width: 260px; height: 40px; border-radius: 6px; background-color: #2b2723; }
 .exit-hint-icon { position: absolute; left: 14px; top: 10px; width: 20px; height: 20px; }
 .exit-hint-text { position: absolute; left: 42px; top: 0; width: 206px; height: 40px; line-height: 40px; color: #fffdf8; font-size: 14px; }
 </style>
