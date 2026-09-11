@@ -78,13 +78,30 @@ async function screenshot(client, filename) {
   runtimeLog.push(`${filename}: ${image.length} bytes`)
 }
 
+// 1.8.18：点击后检测画面变化，未变化自动重试（模拟器偶发丢触，QA 断言需要重试）
+async function clickUntilChange(client, x, y, tries = 3) {
+  let before = null
+  try { before = await client.getScreenshot() } catch (error) { before = null }
+  for (let i = 0; i < tries; i++) {
+    await click(client, x, y)
+    await wait(900)
+    let after = null
+    try { after = await client.getScreenshot() } catch (error) { after = null }
+    if (!before || !after || !after.equals(before)) return
+  }
+  console.log('warn: click no-change after', tries, 'tries at', x, y)
+}
+
 async function main() {
   fs.mkdirSync(outputDir, { recursive: true })
   const oldCaptures = [
     '01-cover.png', '02-today.png', '03-zodiac-next.png', '04-riddle.png',
     '05-riddle-result.png', '03-calendar.png', '03-zodiac.png',
     '04-zodiac.png', '04-zodiac-next.png', '05-calendar.png',
-    '05-zodiac-next.png', '06-riddle.png', '07-riddle-answer.png'
+    '05-zodiac-next.png', '06-riddle.png', '07-riddle-answer.png',
+    '01-home.png', '02-home-change.png', '08-riddle-next.png',
+    '09-favorites.png', '10-favorite-detail.png',
+    '11-zodiac-test.png', '12-zodiac-test-next.png', '13-zodiac-result.png'
   ]
   for (const filename of oldCaptures) {
     const target = path.join(outputDir, filename)
@@ -110,7 +127,7 @@ async function main() {
   }
   await waitForDevice()
 
-  const serial = 'emulator-5554'
+  const serial = process.env.VELA_SERIAL || 'emulator-5554'
   if (process.env.VELA_SKIP_INSTALL !== '1') {
     const remoteRpk = `/data/quickapp/app/${packageName}.rpk`
     try {
@@ -141,23 +158,49 @@ async function main() {
   const client = createGrpcClient(readRunningConfig())
   try {
     await client.waitForReady()
-    await screenshot(client, '01-cover.png')
+    await screenshot(client, '01-home.png')
     if (process.env.VELA_CAPTURE_ONLY === '1') return
-    await click(client, 168, 388)
-    await wait(800)
-    await screenshot(client, '02-today.png')
-    await click(client, 300, 307)
+    // 首页：换一句（1.8.18 四宫格布局坐标，导航点击带变化重试）
+    await clickUntilChange(client, 92, 288)
+    await screenshot(client, '02-home-change.png')
+    // 星象遮罩：功能卡 → 切换星座
+    await clickUntilChange(client, 246, 355)
     await screenshot(client, '03-zodiac.png')
-    await click(client, 302, 78)
+    await clickUntilChange(client, 300, 160)
     await screenshot(client, '04-zodiac-next.png')
-    await click(client, 168, 440)
-    await click(client, 88, 320)
+    // 遮罩回退箭头 → 回首页 → 日历页（1.8.18：回退箭头统一改点 (48,30)，模拟器左缘 x<40 为触摸抖动死区）
+    await clickUntilChange(client, 48, 34)
+    await clickUntilChange(client, 90, 355)
     await screenshot(client, '05-calendar.png')
-    await click(client, 248, 440)
-    await click(client, 84, 409)
+    // 回退箭头 → 回首页 → 知识页 → 查看答案 → 下一题
+    await clickUntilChange(client, 48, 30)
+    await clickUntilChange(client, 90, 429)
     await screenshot(client, '06-riddle.png')
-    await click(client, 168, 212)
+    await clickUntilChange(client, 168, 374)
     await screenshot(client, '07-riddle-answer.png')
+    await clickUntilChange(client, 265, 434)
+    await screenshot(client, '08-riddle-next.png')
+    // 回退 → 回首页点亮爱心（1.8.18 爱心在语录卡片右上角 289,95）→ 收藏室 → 收藏详情
+    await clickUntilChange(client, 48, 30)
+    await clickUntilChange(client, 289, 95)
+    await clickUntilChange(client, 246, 429)
+    await screenshot(client, '09-favorites.png')
+    await clickUntilChange(client, 168, 138)
+    await screenshot(client, '10-favorite-detail.png')
+    // 详情回列表 → 回首页 → 星象遮罩 → 星象分析答题页
+    await clickUntilChange(client, 48, 30)
+    await clickUntilChange(client, 48, 30)
+    await clickUntilChange(client, 246, 355)
+    await clickUntilChange(client, 168, 388)
+    await screenshot(client, '11-zodiac-test.png')
+    await clickUntilChange(client, 168, 218)
+    await screenshot(client, '12-zodiac-test-next.png')
+    // 答完剩余 29 题（固定选 A），自动跳转星象分析结果页（星座插画验收）
+    for (let i = 0; i < 29; i++) {
+      await clickUntilChange(client, 168, 218, 4)
+    }
+    await wait(1500)
+    await screenshot(client, '13-zodiac-result.png')
   } finally {
     client.close()
     fs.writeFileSync(path.join(outputDir, 'runtime.log'), `${runtimeLog.join('\n')}\n`, 'utf8')

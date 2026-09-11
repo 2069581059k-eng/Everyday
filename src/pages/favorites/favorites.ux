@@ -2,13 +2,9 @@
   <div class="fav-mask" onswipe="handleSwipe">
     <div class="fav-panel">
       <div class="fav-list-view" show="{{listVisible}}">
-        <text class="fav-kicker">收藏室</text>
-        <text class="fav-count">{{countText}}</text>
-        <input class="fav-home" type="button" value="返回主页" onclick="goHome" />
-
         <div class="fav-filter-bar">
-          <input class="fav-filter-btn" show="{{filterMode !== 0}}" value="全部" onclick="setFilterAll" />
-          <input class="fav-filter-btn ff-on" show="{{filterMode === 0}}" value="全部" onclick="setFilterAll" />
+          <input class="fav-filter-btn ff-all" show="{{filterMode !== 0}}" value="全部" onclick="setFilterAll" />
+          <input class="fav-filter-btn ff-all ff-on" show="{{filterMode === 0}}" value="全部" onclick="setFilterAll" />
           <input class="fav-filter-btn ff-quote" show="{{filterMode !== 1}}" value="一言" onclick="setFilterQuote" />
           <input class="fav-filter-btn ff-quote ff-on" show="{{filterMode === 1}}" value="一言" onclick="setFilterQuote" />
           <input class="fav-filter-btn ff-fortune" show="{{filterMode !== 2}}" value="抽签" onclick="setFilterFortune" />
@@ -20,18 +16,22 @@
         <div class="fav-slot" show="{{slotVisible1}}" onclick="openDetail(0)">
           <text class="fav-slot-badge">{{slotBadge1}}</text>
           <text class="fav-slot-text">{{slotText1}}</text>
+          <image class="fav-slot-heart" src="/common/assets/ic-heart-on.png" />
         </div>
         <div class="fav-slot fav-slot-2" show="{{slotVisible2}}" onclick="openDetail(1)">
           <text class="fav-slot-badge">{{slotBadge2}}</text>
           <text class="fav-slot-text">{{slotText2}}</text>
+          <image class="fav-slot-heart" src="/common/assets/ic-heart-on.png" />
         </div>
         <div class="fav-slot fav-slot-3" show="{{slotVisible3}}" onclick="openDetail(2)">
           <text class="fav-slot-badge">{{slotBadge3}}</text>
           <text class="fav-slot-text">{{slotText3}}</text>
+          <image class="fav-slot-heart" src="/common/assets/ic-heart-on.png" />
         </div>
         <div class="fav-slot fav-slot-4" show="{{slotVisible4}}" onclick="openDetail(3)">
           <text class="fav-slot-badge">{{slotBadge4}}</text>
           <text class="fav-slot-text">{{slotText4}}</text>
+          <image class="fav-slot-heart" src="/common/assets/ic-heart-on.png" />
         </div>
 
         <text class="fav-filter-empty" show="{{filterEmptyVisible}}">该类型还没有收藏</text>
@@ -44,14 +44,14 @@
       </div>
 
       <div class="fav-empty" show="{{emptyVisible}}">
+        <image class="fav-empty-ill" src="/common/assets/ill-bamboo.png" />
         <text class="fav-empty-title">还没有收藏内容</text>
-        <text class="fav-empty-hint">在首页或知识大全点亮 ♥ 即可收藏</text>
+        <text class="fav-empty-hint">在首页或知识大全点亮爱心即可收藏</text>
         <input class="fav-empty-home" type="button" value="返回主页" onclick="goHome" />
       </div>
 
       <div class="fav-detail-view" show="{{detailVisible}}">
-        <text class="fav-kicker">{{detailBadge}}</text>
-        <input class="fav-home" type="button" value="返回主页" onclick="goHome" />
+        <text class="fav-detail-kicker">{{detailBadge}}</text>
 
         <div class="fav-detail-center" show="{{!detailHasBody}}">
           <text class="fav-center-text">{{detailText}}</text>
@@ -74,6 +74,11 @@
         </div>
       </div>
     </div>
+
+    <div class="fav-back-hit" onclick="handleBack"><text class="fav-back">‹</text></div>
+    <text class="fav-title">收藏室</text>
+    <text class="fav-count">{{countText}}</text>
+    <div class="header-line"></div>
   </div>
 </template>
 
@@ -308,6 +313,12 @@ export default {
     router.replace({ uri: 'pages/index' })
   },
 
+  // 顶部回退箭头：详情中返回列表，列表/空态返回主页（与右滑一致）
+  handleBack() {
+    if (this.detailVisible) { this.backToList(); return }
+    this.goHome()
+  },
+
   // 1.8.17：右滑返回上一级——详情中返回列表，列表/空态返回主页
   handleSwipe(event) {
     if (!event || event.direction !== 'right') return
@@ -322,52 +333,67 @@ export default {
 </script>
 
 <style>
+/* 1.8.18 设计令牌：bg #f2eee5 / card #fffdf8 / 主文字 #2b2723 / 次要 #7b7268 / 提示 #9a9186 / 品牌红 #a83b2d / 分割线 #ece3d6 */
 .fav-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: #f2eee5; }
-.fav-panel { position: absolute; left: 12px; top: 12px; width: 312px; height: 456px; border-width: 1px; border-color: #d2c7b8; border-radius: 6px; background-color: #fffdf8; }
-.fav-kicker { position: absolute; left: 16px; top: 10px; width: 130px; height: 20px; line-height: 20px; color: #a83b2d; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
-.fav-count { position: absolute; left: 148px; top: 13px; width: 74px; height: 16px; line-height: 16px; color: #94887c; font-size: 11px; text-align: right; }
-.fav-home { position: absolute; left: 232px; top: 7px; width: 70px; height: 30px; border-width: 1px; border-color: #cfc4b5; border-radius: 4px; background-color: #f8f3e9; color: #766c61; font-size: 14px; }
+/* 回退箭头透明命中层加宽至 64px：模拟器左缘 x<40 为触摸抖动死区（真机边缘手势同风险），保证箭头可点、视觉不变 */
+.fav-back-hit { position: absolute; left: 10px; top: 10px; width: 64px; height: 40px; }
+.fav-back { width: 40px; height: 40px; line-height: 40px; color: #2b2723; font-size: 26px; text-align: center; }
+.fav-title { position: absolute; left: 56px; top: 17px; width: 120px; height: 22px; line-height: 22px; color: #2b2723; font-size: 18px; font-weight: bold; }
+.fav-count { position: absolute; left: 196px; top: 20px; width: 124px; height: 16px; line-height: 16px; color: #9a9186; font-size: 12px; text-align: right; }
+.header-line { position: absolute; left: 16px; top: 56px; width: 304px; height: 1px; background-color: #ece3d6; }
 
-.fav-list-view { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
-.fav-filter-bar { position: absolute; left: 0; top: 42px; width: 312px; height: 28px; }
-.fav-filter-btn { position: absolute; top: 0; width: 70px; height: 28px; border-width: 1px; border-color: #d4c9ba; border-radius: 4px; background-color: #f8f3e9; color: #766c61; font-size: 13px; }
-.ff-all { left: 10px; }
-.ff-quote { left: 84px; }
-.ff-fortune { left: 158px; }
-.ff-know { left: 232px; }
-.ff-on { border-color: #a83b2d; background-color: #fdf0ec; color: #a83b2d; font-weight: bold; }
-.fav-slot { position: absolute; left: 16px; top: 78px; width: 280px; height: 66px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fbf7f0; }
-.fav-slot-2 { top: 150px; }
-.fav-slot-3 { top: 222px; }
-.fav-slot-4 { top: 294px; }
-.fav-slot-badge { position: absolute; left: 10px; top: 6px; width: 120px; height: 14px; line-height: 14px; color: #a83b2d; font-size: 12px; font-weight: bold; }
-.fav-slot-text { position: absolute; left: 10px; top: 22px; width: 260px; height: 40px; color: #29241f; font-size: 15px; line-height: 20px; }
-.fav-filter-empty { position: absolute; left: 16px; top: 218px; width: 280px; height: 20px; line-height: 20px; color: #71665b; font-size: 15px; text-align: center; }
+/* 面板整体下沉到头部之下（top 56px，高度 412px）：与回退箭头零重叠，杜绝全屏面板吞掉头部触摸（1.8.18 收藏室箭头失效事故的根因修复，子元素整体上移 44px 保持绝对视觉不变） */
+.fav-panel { position: absolute; left: 12px; top: 56px; width: 312px; height: 412px; }
+.fav-list-view { position: absolute; left: 0; top: 0; width: 312px; height: 412px; }
 
-.fav-pager { position: absolute; left: 16px; top: 386px; width: 280px; height: 40px; }
-.fav-page-btn { position: absolute; top: 0; width: 80px; height: 40px; border-width: 1px; border-color: #d4c9ba; border-radius: 4px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
+/* 分类筛选栏（固定槽位双份 show 切换激活态，Vela 不支持动态 class） */
+.fav-filter-bar { position: absolute; left: 0; top: 8px; width: 312px; height: 30px; }
+.fav-filter-btn { position: absolute; top: 0; width: 70px; height: 30px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fffdf8; color: #7b7268; font-size: 13px; }
+.ff-all { left: 4px; }
+.ff-quote { left: 82px; }
+.ff-fortune { left: 160px; }
+.ff-know { left: 238px; }
+.ff-on { border-color: #a83b2d; background-color: #a83b2d; color: #fffaf2; font-weight: bold; }
+
+/* 收藏条目卡片（每页 4 条固定槽位） */
+.fav-slot { position: absolute; left: 0; top: 50px; width: 312px; height: 64px; border-width: 1px; border-color: #ece3d6; border-radius: 8px; background-color: #fffdf8; }
+.fav-slot-2 { top: 122px; }
+.fav-slot-3 { top: 194px; }
+.fav-slot-4 { top: 266px; }
+.fav-slot-badge { position: absolute; left: 12px; top: 9px; width: 180px; height: 14px; line-height: 14px; color: #a83b2d; font-size: 11px; font-weight: bold; letter-spacing: 1px; }
+.fav-slot-text { position: absolute; left: 12px; top: 27px; width: 252px; height: 32px; color: #2b2723; font-size: 14px; line-height: 17px; }
+.fav-slot-heart { position: absolute; left: 280px; top: 22px; width: 20px; height: 20px; }
+.fav-filter-empty { position: absolute; left: 0; top: 166px; width: 312px; height: 20px; line-height: 20px; color: #7b7268; font-size: 14px; text-align: center; }
+
+/* 底部分页栏 */
+.fav-pager { position: absolute; left: 16px; top: 352px; width: 280px; height: 44px; }
+.fav-page-btn { position: absolute; top: 0; width: 86px; height: 44px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fffdf8; color: #574e45; font-size: 14px; font-weight: bold; }
 .fav-prev { left: 0; }
-.fav-next { left: 200px; }
-.fav-page-label { position: absolute; left: 88px; top: 11px; width: 104px; height: 18px; line-height: 18px; color: #786e63; font-size: 14px; text-align: center; }
+.fav-next { left: 194px; }
+.fav-page-label { position: absolute; left: 86px; top: 0; width: 108px; height: 44px; line-height: 44px; color: #9a9186; font-size: 13px; text-align: center; }
 
-.fav-empty { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
-.fav-empty-title { position: absolute; left: 16px; top: 170px; width: 280px; color: #6f655a; font-size: 19px; font-weight: bold; text-align: center; }
-.fav-empty-hint { position: absolute; left: 16px; top: 208px; width: 280px; color: #93877a; font-size: 14px; text-align: center; }
-.fav-empty-home { position: absolute; left: 91px; top: 268px; width: 130px; height: 38px; border-radius: 4px; background-color: #a83b2d; color: #fffaf2; font-size: 16px; }
+/* 空状态 */
+.fav-empty { position: absolute; left: 0; top: 0; width: 312px; height: 412px; }
+.fav-empty-ill { position: absolute; left: 96px; top: 52px; width: 120px; height: 110px; }
+.fav-empty-title { position: absolute; left: 16px; top: 182px; width: 280px; height: 24px; line-height: 24px; color: #2b2723; font-size: 18px; font-weight: bold; text-align: center; }
+.fav-empty-hint { position: absolute; left: 16px; top: 212px; width: 280px; height: 18px; line-height: 18px; color: #9a9186; font-size: 13px; text-align: center; }
+.fav-empty-home { position: absolute; left: 76px; top: 266px; width: 160px; height: 44px; border-radius: 6px; background-color: #a83b2d; color: #fffaf2; font-size: 16px; font-weight: bold; }
 
-.fav-detail-view { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
-.fav-detail-doc { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
-.fav-detail-text { position: absolute; left: 16px; top: 44px; width: 280px; height: 78px; color: #2c2722; font-size: 20px; font-weight: bold; line-height: 26px; }
-.fav-detail-sub { position: absolute; left: 16px; top: 126px; width: 280px; height: 14px; line-height: 14px; color: #85796c; font-size: 12px; }
-.fav-detail-box { position: absolute; left: 16px; top: 142px; width: 280px; height: 238px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fbf7f0; }
-.fav-detail-body { position: absolute; left: 10px; top: 10px; width: 260px; height: 190px; color: #29241f; font-size: 16px; line-height: 22px; }
-.fav-detail-next { position: absolute; left: 50px; top: 208px; width: 180px; height: 30px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
+/* 详情视图 */
+.fav-detail-view { position: absolute; left: 0; top: 0; width: 312px; height: 412px; }
+.fav-detail-kicker { position: absolute; left: 8px; top: 8px; width: 200px; height: 18px; line-height: 18px; color: #a83b2d; font-size: 13px; font-weight: bold; letter-spacing: 2px; }
+.fav-detail-doc { position: absolute; left: 0; top: 0; width: 312px; height: 412px; }
+.fav-detail-text { position: absolute; left: 8px; top: 32px; width: 296px; height: 74px; color: #2b2723; font-size: 19px; font-weight: bold; line-height: 25px; }
+.fav-detail-sub { position: absolute; left: 8px; top: 108px; width: 296px; height: 14px; line-height: 14px; color: #9a9186; font-size: 12px; }
+.fav-detail-box { position: absolute; left: 0; top: 130px; width: 312px; height: 186px; border-width: 1px; border-color: #ece3d6; border-radius: 8px; background-color: #fffdf8; }
+.fav-detail-body { position: absolute; left: 12px; top: 10px; width: 288px; height: 130px; color: #2b2723; font-size: 16px; line-height: 22px; }
+.fav-detail-next { position: absolute; left: 66px; top: 146px; width: 180px; height: 28px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #f2eee5; color: #7b7268; font-size: 13px; }
 
-.fav-detail-center { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
-.fav-center-text { position: absolute; left: 30px; top: 150px; width: 252px; height: 116px; color: #29241f; font-size: 21px; font-weight: bold; line-height: 29px; text-align: center; }
-.fav-center-sub { position: absolute; left: 30px; top: 278px; width: 252px; height: 18px; line-height: 18px; color: #85796c; font-size: 13px; text-align: center; }
+.fav-detail-center { position: absolute; left: 0; top: 0; width: 312px; height: 412px; }
+.fav-center-text { position: absolute; left: 20px; top: 96px; width: 272px; height: 130px; color: #2b2723; font-size: 21px; font-weight: bold; line-height: 30px; text-align: center; }
+.fav-center-sub { position: absolute; left: 20px; top: 238px; width: 272px; height: 18px; line-height: 18px; color: #9a9186; font-size: 13px; text-align: center; }
 
-.fav-detail-actions { position: absolute; left: 16px; top: 396px; width: 280px; height: 40px; }
-.fav-remove-btn { position: absolute; left: 0; top: 0; width: 130px; height: 40px; border-width: 1px; border-color: #a83b2d; border-radius: 4px; background-color: #fffdf8; color: #a83b2d; font-size: 15px; font-weight: bold; }
-.fav-back-btn { position: absolute; left: 150px; top: 0; width: 130px; height: 40px; border-radius: 4px; background-color: #f8f3e9; color: #574e45; font-size: 15px; }
+.fav-detail-actions { position: absolute; left: 16px; top: 352px; width: 280px; height: 44px; }
+.fav-remove-btn { position: absolute; left: 0; top: 0; width: 136px; height: 44px; border-width: 1px; border-color: #a83b2d; border-radius: 6px; background-color: #fffdf8; color: #a83b2d; font-size: 15px; font-weight: bold; }
+.fav-back-btn { position: absolute; left: 152px; top: 0; width: 128px; height: 44px; border-radius: 6px; background-color: #a83b2d; color: #fffaf2; font-size: 15px; font-weight: bold; }
 </style>

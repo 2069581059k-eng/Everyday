@@ -1,17 +1,18 @@
 <template>
   <div class="page" onswipe="handleSwipe">
-    <text class="brand">Daily Spark</text>
-
-    <div class="stat-row">
+    <div class="header">
+      <text class="brand">Daily Spark</text>
+      <text class="brand-sub">DAILY NOTE · 日常一页</text>
       <text class="date-text">{{dateText}}</text>
-      <text class="stat-text">连续 {{streakText}} 天</text>
+      <text class="date-sub">{{weekdayText}} · 连续 {{streakText}} 天</text>
     </div>
+    <div class="header-line"></div>
 
     <div class="quote-card" show="{{quoteVisible}}">
       <div class="quote-accent"></div>
       <text class="quote-kicker">{{quoteKicker}}</text>
-      <input class="heart-btn" show="{{!heartFilled}}" type="button" value="♡" onclick="toggleFavorite" disabled="{{!stateReady}}" />
-      <input class="heart-btn heart-on" show="{{heartFilled}}" type="button" value="♥" onclick="toggleFavorite" disabled="{{!stateReady}}" />
+      <image class="heart-img" show="{{!heartFilled}}" src="/common/assets/ic-heart-off.png" onclick="toggleFavorite" />
+      <image class="heart-img" show="{{heartFilled}}" src="/common/assets/ic-heart-on.png" onclick="toggleFavorite" />
       <text class="quote-text">{{quoteText}}</text>
       <text class="quote-source">— {{quoteSource}}</text>
       <text class="fortune-stamp" show="{{fortuneDrawn}}">{{fortuneLevel}}</text>
@@ -25,34 +26,40 @@
 
     <div class="feature-grid">
       <div class="feature-card" onclick="openCalendarPage">
+        <image class="feature-icon" src="/common/assets/ic-nav-calendar.png" />
         <text class="feature-title">今日日历</text>
         <text class="feature-main">{{monthShortText}}{{dayText}}日</text>
-        <text class="feature-sub">{{weekdayText}} · 月历 ›</text>
+        <text class="feature-sub">月历 · 进入 ›</text>
       </div>
 
       <div class="feature-card feature-card-r" onclick="openZodiac">
+        <image class="feature-icon" src="/common/assets/ic-nav-zodiac.png" />
         <text class="feature-title">趣味星象</text>
         <text class="feature-main">{{zodiacName}}</text>
-        <text class="feature-sub">{{moonShortText}} · 详情 ›</text>
+        <text class="feature-sub">月相 · 详情 ›</text>
       </div>
 
       <div class="feature-card feature-card-b" onclick="openKnowledgePage">
+        <image class="feature-icon" src="/common/assets/ic-nav-knowledge.png" />
         <text class="feature-title">知识大全</text>
         <text class="feature-main">今日 50 题</text>
-        <text class="feature-sub">五类各 10 · 进入 ›</text>
+        <text class="feature-sub">五类 · 进入 ›</text>
       </div>
 
       <div class="feature-card feature-card-r feature-card-b" onclick="openFavoritesPage">
+        <image class="feature-icon" src="/common/assets/ic-nav-favorites.png" />
         <text class="feature-title">收藏室</text>
-        <text class="feature-main">{{favoritesCountText}}</text>
+        <text class="feature-main">{{favNumText}} 条</text>
         <text class="feature-sub">已收藏 · 进入 ›</text>
       </div>
     </div>
 
     <div class="zodiac-mask" show="{{zodiacVisible}}">
+      <div class="zodiac-back-hit" onclick="closeZodiac"><text class="zodiac-back">‹</text></div>
       <text class="zodiac-title">趣味星象</text>
       <input class="zodiac-prev" type="button" value="‹" onclick="previousZodiac" />
       <input class="zodiac-next" type="button" value="›" onclick="nextZodiac" />
+      <image class="zodiac-ill" src="/common/assets/ill-sun.png" />
       <text class="zodiac-name-big">{{zodiacName}}</text>
       <text class="zodiac-range-big">{{zodiacRange}}</text>
       <text class="zodiac-moon">{{moonText}}</text>
@@ -64,6 +71,7 @@
     </div>
 
     <div class="exit-hint" show="{{exitHintVisible}}">
+      <image class="exit-hint-icon" src="/common/assets/ic-t-info.png" />
       <text class="exit-hint-text">再次右滑退出应用</text>
     </div>
   </div>
@@ -124,7 +132,7 @@ export default {
     fortuneLevel: '',
     fortuneTip: '',
     heartFilled: false,
-    favoritesCountText: '已收藏 0 条',
+    favNumText: '0',
     moonShortText: '',
     zodiacName: ZODIACS[state.zodiacIndex].name,
     zodiacRange: ZODIACS[state.zodiacIndex].range,
@@ -275,7 +283,7 @@ export default {
 
   refreshStats() {
     this.streakText = String(state.streak)
-    this.favoritesCountText = '已收藏 ' + favoritesItems.length + ' 条'
+    this.favNumText = String(favoritesItems.length)
   },
 
   refreshAstro() {
@@ -448,49 +456,63 @@ export default {
 </script>
 
 <style>
+/* 1.8.18 设计令牌：bg #f2eee5 / card #fffdf8 / 主文字 #2b2723 / 次要 #7b7268 / 提示 #9a9186 / 品牌红 #a83b2d / 分割线 #ece3d6 */
 .page { position: relative; width: 336px; height: 480px; background-color: #f2eee5; overflow: hidden; }
-.brand { position: absolute; left: 0; top: 8px; width: 336px; color: #6f655a; font-size: 15px; font-weight: bold; letter-spacing: 2px; text-align: center; }
 
-.stat-row { position: absolute; left: 15px; top: 36px; width: 306px; height: 18px; border-bottom-width: 1px; border-color: #d6cec1; }
-.date-text { position: absolute; left: 0; top: 0; width: 150px; color: #473f37; font-size: 14px; }
-.stat-text { position: absolute; left: 156px; top: 0; width: 150px; color: #786e63; font-size: 14px; text-align: right; }
+/* 顶部品牌区（56px） */
+.header { position: absolute; left: 16px; top: 12px; width: 304px; height: 40px; }
+.brand { position: absolute; left: 0; top: 0; width: 190px; height: 22px; line-height: 22px; color: #2b2723; font-size: 18px; font-weight: bold; letter-spacing: 2px; }
+.brand-sub { position: absolute; left: 0; top: 24px; width: 190px; height: 14px; line-height: 14px; color: #9a9186; font-size: 11px; letter-spacing: 1px; }
+.date-text { position: absolute; left: 204px; top: 0; width: 100px; height: 20px; line-height: 20px; color: #2b2723; font-size: 16px; font-weight: bold; text-align: right; }
+.date-sub { position: absolute; left: 184px; top: 23px; width: 120px; height: 14px; line-height: 14px; color: #7b7268; font-size: 11px; text-align: right; }
+.header-line { position: absolute; left: 16px; top: 58px; width: 304px; height: 1px; background-color: #ece3d6; }
 
-.quote-card { position: absolute; left: 14px; top: 62px; width: 308px; height: 200px; border-width: 1px; border-color: #d7cdbf; border-radius: 6px; background-color: #fffdf8; }
-.quote-accent { position: absolute; left: 0; top: 0; width: 5px; height: 198px; background-color: #a83b2d; }
-.quote-kicker { position: absolute; left: 16px; top: 12px; width: 210px; color: #8b8175; font-size: 14px; letter-spacing: 1px; }
-.heart-btn { position: absolute; left: 254px; top: 8px; width: 38px; height: 30px; border-width: 1px; border-color: #d4c9ba; border-radius: 4px; background-color: #f8f3e9; color: #9a8e81; font-size: 18px; }
-.heart-on { border-color: #a83b2d; background-color: #fdf0ec; color: #a83b2d; font-weight: bold; }
-.quote-text { position: absolute; left: 20px; top: 48px; width: 268px; height: 92px; color: #29241f; font-size: 24px; font-weight: bold; line-height: 28px; text-align: left; }
-.quote-source { position: absolute; left: 20px; top: 146px; width: 268px; color: #85796c; font-size: 14px; text-align: right; }
-.fortune-stamp { position: absolute; left: 16px; top: 166px; width: 64px; height: 26px; border-width: 2px; border-color: #a83b2d; border-radius: 3px; color: #a83b2d; font-size: 15px; font-weight: bold; text-align: center; padding-top: 2px; }
-.fortune-tip { position: absolute; left: 88px; top: 168px; width: 200px; color: #a83b2d; font-size: 13px; }
+/* 语录卡片 */
+.quote-card { position: absolute; left: 16px; top: 70px; width: 304px; height: 188px; border-width: 1px; border-color: #ece3d6; border-radius: 8px; background-color: #fffdf8; }
+.quote-accent { position: absolute; left: 14px; top: 16px; width: 4px; height: 14px; border-radius: 2px; background-color: #a83b2d; }
+.quote-kicker { position: absolute; left: 24px; top: 13px; width: 220px; height: 18px; line-height: 18px; color: #9a9186; font-size: 13px; letter-spacing: 1px; }
+.heart-img { position: absolute; left: 256px; top: 8px; width: 34px; height: 34px; }
+.quote-text { position: absolute; left: 22px; top: 44px; width: 264px; height: 76px; color: #2b2723; font-size: 20px; font-weight: bold; line-height: 26px; text-align: left; }
+.quote-source { position: absolute; left: 22px; top: 126px; width: 264px; height: 18px; line-height: 18px; color: #7b7268; font-size: 13px; text-align: right; }
+.fortune-stamp { position: absolute; left: 16px; top: 150px; width: 62px; height: 26px; border-width: 2px; border-color: #a83b2d; border-radius: 4px; color: #a83b2d; font-size: 14px; font-weight: bold; text-align: center; padding-top: 2px; }
+.fortune-tip { position: absolute; left: 86px; top: 152px; width: 202px; height: 18px; line-height: 18px; color: #a83b2d; font-size: 13px; }
 
-.quote-actions { position: absolute; left: 14px; top: 272px; width: 308px; height: 36px; }
-.action-button { position: absolute; top: 0; width: 148px; height: 36px; border-radius: 4px; font-size: 17px; font-weight: bold; }
-.action-primary { left: 0; background-color: #a83b2d; color: #fffaf2; }
-.action-secondary { left: 160px; border-width: 1px; border-color: #a83b2d; background-color: #fffdf8; color: #a83b2d; }
+/* 操作按钮：48 规格按屏高压缩为 44 */
+.quote-actions { position: absolute; left: 16px; top: 266px; width: 304px; height: 44px; }
+.action-button { position: absolute; top: 0; height: 44px; border-radius: 6px; font-size: 17px; font-weight: bold; }
+.action-primary { left: 0; width: 152px; background-color: #a83b2d; color: #fffaf2; }
+.action-secondary { left: 164px; width: 140px; border-width: 1px; border-color: #a83b2d; background-color: #fffdf8; color: #a83b2d; }
 
-.feature-grid { position: absolute; left: 14px; top: 318px; width: 308px; height: 140px; }
-.feature-card { position: absolute; left: 0; top: 0; width: 148px; height: 66px; border-width: 1px; border-color: #d7cdbf; border-radius: 6px; background-color: #fffdf8; }
-.feature-card-r { left: 160px; }
+/* 四宫格功能卡 */
+.feature-grid { position: absolute; left: 16px; top: 322px; width: 304px; height: 140px; }
+.feature-card { position: absolute; left: 0; top: 0; width: 148px; height: 66px; border-width: 1px; border-color: #ece3d6; border-radius: 8px; background-color: #fffdf8; }
+.feature-card-r { left: 156px; }
 .feature-card-b { top: 74px; }
-.feature-title { position: absolute; left: 10px; top: 6px; width: 128px; height: 15px; line-height: 15px; color: #786d62; font-size: 13px; letter-spacing: 1px; }
-.feature-main { position: absolute; left: 10px; top: 24px; width: 128px; height: 22px; line-height: 22px; color: #2c2722; font-size: 19px; font-weight: bold; }
-.feature-sub { position: absolute; left: 10px; top: 49px; width: 128px; height: 14px; line-height: 14px; color: #93877a; font-size: 12px; }
+.feature-icon { position: absolute; left: 10px; top: 17px; width: 32px; height: 32px; }
+.feature-title { position: absolute; left: 50px; top: 9px; width: 94px; height: 13px; line-height: 13px; color: #9a9186; font-size: 11px; letter-spacing: 1px; }
+.feature-main { position: absolute; left: 50px; top: 24px; width: 94px; height: 20px; line-height: 20px; color: #2b2723; font-size: 15px; font-weight: bold; }
+.feature-sub { position: absolute; left: 50px; top: 47px; width: 94px; height: 13px; line-height: 13px; color: #7b7268; font-size: 10px; }
 
-.zodiac-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: #fffdf8; }
-.zodiac-title { position: absolute; left: 16px; top: 18px; width: 304px; font-size: 26px; color: #383029; text-align: center; }
-.zodiac-prev, .zodiac-next { position: absolute; top: 60px; width: 36px; height: 36px; border-width: 1px; border-color: #d8cec0; border-radius: 3px; background-color: #f8f3e9; color: #8a4138; font-size: 23px; }
-.zodiac-prev { left: 16px; } .zodiac-next { left: 284px; }
-.zodiac-name-big { position: absolute; left: 16px; top: 140px; width: 304px; color: #2f2924; font-size: 40px; font-weight: bold; text-align: center; }
-.zodiac-range-big { position: absolute; left:  16px; top: 196px; width: 304px; color: #9a8e81; font-size: 18px; text-align: center; }
-.zodiac-moon { position: absolute; left: 16px; top: 250px; width: 304px; color: #71665b; font-size: 16px; text-align: center; }
-.zodiac-tip { position: absolute; left: 16px; top: 290px; width: 304px; color: #a83b2d; font-size: 16px; text-align: center; }
-.zodiac-fortune { position: absolute; left: 16px; top: 316px; width: 304px; height: 18px; line-height: 18px; color: #574e45; font-size: 14px; font-weight: bold; text-align: center; }
-.zodiac-history { position: absolute; left: 16px; top: 338px; width: 304px; height: 18px; line-height: 18px; color: #71665b; font-size: 14px; text-align: center; }
-.zodiac-analyze { position: absolute; left: 98px; top: 368px; width: 140px; height: 40px; border-width: 1px; border-color: #a83b2d; border-radius: 4px; background-color: #fffdf8; color: #a83b2d; font-size: 18px; font-weight: bold; }
-.zodiac-close { position: absolute; left: 98px; top: 420px; width: 140px; height: 40px; font-size: 18px; background-color: #a83b2d; color: #fffdf8; }
+/* 趣味星象遮罩 */
+.zodiac-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: #f2eee5; }
+/* 回退箭头透明命中层加宽至 64px（规避左缘触摸死区，视觉不变） */
+.zodiac-back-hit { position: absolute; left: 16px; top: 14px; width: 64px; height: 40px; }
+.zodiac-back { width: 40px; height: 40px; line-height: 40px; color: #574e45; font-size: 28px; text-align: center; }
+.zodiac-title { position: absolute; left: 56px; top: 21px; width: 224px; height: 26px; line-height: 26px; font-size: 20px; font-weight: bold; color: #2b2723; text-align: center; }
+.zodiac-prev, .zodiac-next { position: absolute; top: 140px; width: 40px; height: 40px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fffdf8; color: #a83b2d; font-size: 22px; }
+.zodiac-prev { left: 16px; } .zodiac-next { left: 280px; }
+.zodiac-ill { position: absolute; left: 108px; top: 70px; width: 120px; height: 110px; }
+.zodiac-name-big { position: absolute; left: 16px; top: 188px; width: 304px; height: 44px; line-height: 44px; color: #2b2723; font-size: 32px; font-weight: bold; text-align: center; }
+.zodiac-range-big { position: absolute; left: 16px; top: 236px; width: 304px; height: 20px; line-height: 20px; color: #9a9186; font-size: 14px; text-align: center; }
+.zodiac-moon { position: absolute; left: 16px; top: 268px; width: 304px; height: 20px; line-height: 20px; color: #7b7268; font-size: 14px; text-align: center; }
+.zodiac-tip { position: absolute; left: 16px; top: 294px; width: 304px; height: 20px; line-height: 20px; color: #a83b2d; font-size: 14px; text-align: center; }
+.zodiac-fortune { position: absolute; left: 16px; top: 320px; width: 304px; height: 18px; line-height: 18px; color: #a83b2d; font-size: 13px; font-weight: bold; text-align: center; }
+.zodiac-history { position: absolute; left: 16px; top: 340px; width: 304px; height: 18px; line-height: 18px; color: #9a9186; font-size: 12px; text-align: center; }
+.zodiac-analyze { position: absolute; left: 48px; top: 366px; width: 240px; height: 44px; border-radius: 6px; background-color: #a83b2d; color: #fffaf2; font-size: 17px; font-weight: bold; }
+.zodiac-close { position: absolute; left: 48px; top: 418px; width: 240px; height: 40px; border-width: 1px; border-color: #a83b2d; border-radius: 6px; background-color: #fffdf8; color: #a83b2d; font-size: 16px; }
 
-.exit-hint { position: absolute; left: 48px; top: 440px; width: 240px; height: 32px; border-radius: 4px; background-color: #3a332c; }
-.exit-hint-text { position: absolute; left: 0; top: 0; width: 240px; height: 32px; line-height: 32px; color: #fffdf8; font-size: 14px; text-align: center; }
+/* 右滑退出提示条（Toast） */
+.exit-hint { position: absolute; left: 38px; top: 428px; width: 260px; height: 40px; border-radius: 6px; background-color: #2b2723; }
+.exit-hint-icon { position: absolute; left: 14px; top: 10px; width: 20px; height: 20px; }
+.exit-hint-text { position: absolute; left: 42px; top: 0; width: 206px; height: 40px; line-height: 40px; color: #fffdf8; font-size: 14px; }
 </style>
