@@ -17,6 +17,7 @@
   - 源码快照：`Temp\build-1.8.19-trae-20260911`（verify-game 全绿 → inline → aiot build --enable-jsc → verify-rpk 通过；构建尾清理 .gitignore EBUSY 沿例忽略）
   - 安装包：`dist/com.dailyquote.band10pro.debug.1.8.19.rpk`，710,972 B，SHA-256 `433787D0C8CA809914276D81A6054FAE596698EA60F480FF84ED93AE6B8F4A17`；RPK 解包逐素材哈希与 src 比对全部一致（26/26）
   - 用例与结果：ALL-PASS（capture-vvd.mjs，证据 `qa-emulator/` 13 张截图）——安装版本核验 1.8.19/10819 → 首页（新导航图标/新爱心/退出提示中上方）→ 星象遮罩（白羊座插画直显）→ 切换（金牛座插画联动）→ 日历 → 知识页 → 收藏室（详情点击翻页、x/y 页码、无「答案」前缀与重复标题、正文框扩容）→ 星象答题 30 题 → 结果页 top3（共享映射渲染正确）
+- 发布：PR #10 合入 main（merge commit `e88f1f9`），tag `v1.8.19` → 实现提交 `3f73efd`，Release 8 附件齐全（RPK/BIN 710,972 B `433787D0…8F4A17`；源码包 1,973,071 B `CC92F6AD…9BE7DE`）：https://github.com/2069581059k-eng/DAILY-NOTE/releases/tag/v1.8.19
 - **真机未验**：收藏室点击翻页、退出提示新位置、星象遮罩星座插画直显建议真机复核。
 
 ## 2026-09-11 · Trae Code 1.8.18 全局视觉改版（东方纸韵）+ 左缘回退箭头命中修复（分支 trae/v1.8.18-ui-redesign）
