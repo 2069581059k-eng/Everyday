@@ -1,5 +1,8 @@
 <template>
   <div class="month-mask" onswipe="handleSwipe">
+    <div class="month-back-hit" onclick="goHome"><text class="month-back">‹</text></div>
+    <text class="month-page-title">今日日历</text>
+    <div class="header-line"></div>
     <text class="month-title">{{calendarTitle}}</text>
     <input class="month-prev" type="button" value="上月" onclick="previousMonth" />
     <input class="month-next" type="button" value="下月" onclick="nextMonth" />
@@ -72,48 +75,48 @@ export default {
     calendarMonth: today.month,
     calendarTitle: '',
     calendarInfo: '',
-    calCell0: '', calColor0: '#383029',
-    calCell1: '', calColor1: '#383029',
-    calCell2: '', calColor2: '#383029',
-    calCell3: '', calColor3: '#383029',
-    calCell4: '', calColor4: '#383029',
-    calCell5: '', calColor5: '#383029',
-    calCell6: '', calColor6: '#383029',
-    calCell7: '', calColor7: '#383029',
-    calCell8: '', calColor8: '#383029',
-    calCell9: '', calColor9: '#383029',
-    calCell10: '', calColor10: '#383029',
-    calCell11: '', calColor11: '#383029',
-    calCell12: '', calColor12: '#383029',
-    calCell13: '', calColor13: '#383029',
-    calCell14: '', calColor14: '#383029',
-    calCell15: '', calColor15: '#383029',
-    calCell16: '', calColor16: '#383029',
-    calCell17: '', calColor17: '#383029',
-    calCell18: '', calColor18: '#383029',
-    calCell19: '', calColor19: '#383029',
-    calCell20: '', calColor20: '#383029',
-    calCell21: '', calColor21: '#383029',
-    calCell22: '', calColor22: '#383029',
-    calCell23: '', calColor23: '#383029',
-    calCell24: '', calColor24: '#383029',
-    calCell25: '', calColor25: '#383029',
-    calCell26: '', calColor26: '#383029',
-    calCell27: '', calColor27: '#383029',
-    calCell28: '', calColor28: '#383029',
-    calCell29: '', calColor29: '#383029',
-    calCell30: '', calColor30: '#383029',
-    calCell31: '', calColor31: '#383029',
-    calCell32: '', calColor32: '#383029',
-    calCell33: '', calColor33: '#383029',
-    calCell34: '', calColor34: '#383029',
-    calCell35: '', calColor35: '#383029',
-    calCell36: '', calColor36: '#383029',
-    calCell37: '', calColor37: '#383029',
-    calCell38: '', calColor38: '#383029',
-    calCell39: '', calColor39: '#383029',
-    calCell40: '', calColor40: '#383029',
-    calCell41: '', calColor41: '#383029',
+    calCell0: '', calColor0: '#2b2723',
+    calCell1: '', calColor1: '#2b2723',
+    calCell2: '', calColor2: '#2b2723',
+    calCell3: '', calColor3: '#2b2723',
+    calCell4: '', calColor4: '#2b2723',
+    calCell5: '', calColor5: '#2b2723',
+    calCell6: '', calColor6: '#2b2723',
+    calCell7: '', calColor7: '#2b2723',
+    calCell8: '', calColor8: '#2b2723',
+    calCell9: '', calColor9: '#2b2723',
+    calCell10: '', calColor10: '#2b2723',
+    calCell11: '', calColor11: '#2b2723',
+    calCell12: '', calColor12: '#2b2723',
+    calCell13: '', calColor13: '#2b2723',
+    calCell14: '', calColor14: '#2b2723',
+    calCell15: '', calColor15: '#2b2723',
+    calCell16: '', calColor16: '#2b2723',
+    calCell17: '', calColor17: '#2b2723',
+    calCell18: '', calColor18: '#2b2723',
+    calCell19: '', calColor19: '#2b2723',
+    calCell20: '', calColor20: '#2b2723',
+    calCell21: '', calColor21: '#2b2723',
+    calCell22: '', calColor22: '#2b2723',
+    calCell23: '', calColor23: '#2b2723',
+    calCell24: '', calColor24: '#2b2723',
+    calCell25: '', calColor25: '#2b2723',
+    calCell26: '', calColor26: '#2b2723',
+    calCell27: '', calColor27: '#2b2723',
+    calCell28: '', calColor28: '#2b2723',
+    calCell29: '', calColor29: '#2b2723',
+    calCell30: '', calColor30: '#2b2723',
+    calCell31: '', calColor31: '#2b2723',
+    calCell32: '', calColor32: '#2b2723',
+    calCell33: '', calColor33: '#2b2723',
+    calCell34: '', calColor34: '#2b2723',
+    calCell35: '', calColor35: '#2b2723',
+    calCell36: '', calColor36: '#2b2723',
+    calCell37: '', calColor37: '#2b2723',
+    calCell38: '', calColor38: '#2b2723',
+    calCell39: '', calColor39: '#2b2723',
+    calCell40: '', calColor40: '#2b2723',
+    calCell41: '', calColor41: '#2b2723',
   },
 
 
@@ -161,7 +164,7 @@ export default {
         if (isToday) color = '#a83b2d'
         else if (holiday) color = '#c0392b'
         else if (isWeekend) color = '#3f7d46'
-        else color = '#383029'
+        else color = '#2b2723'
       }
       this['calColor' + i] = color
     }
@@ -179,13 +182,19 @@ export default {
 </script>
 
 <style>
-.month-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: #fffdf8; }
-.month-title { position: absolute; left: 16px; top: 18px; width: 304px; font-size: 26px; color: #383029; text-align: center; }
-.month-prev, .month-next { position: absolute; top: 60px; width: 90px; height: 36px; font-size: 18px; background-color: #eee5d8; color: #574e45; }
-.month-prev { left: 16px; } .month-next { left: 230px; }
-.month-week-cell { position: absolute; top: 103px; width: 42px; height: 20px; font-size: 16px; color: #776c61; text-align: center; }
-.month-cell { position: absolute; width: 42px; height: 36px; font-size: 22px; text-align: center; }
-.month-info { position: absolute; left: 12px; top: 372px; width: 312px; font-size: 16px; color: #776c61; text-align: center; }
-.month-current, .month-close { position: absolute; top: 420px; width: 140px; height: 40px; font-size: 18px; background-color: #a83b2d; color: #fffdf8; }
-.month-current { left: 18px; } .month-close { left: 178px; }
+/* 1.8.18 设计令牌：bg #f2eee5 / card #fffdf8 / 主文字 #2b2723 / 次要 #7b7268 / 提示 #9a9186 / 品牌红 #a83b2d / 分割线 #ece3d6 */
+.month-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: #f2eee5; }
+/* 回退箭头透明命中层加宽至 64px（规避左缘触摸死区，视觉不变） */
+.month-back-hit { position: absolute; left: 10px; top: 10px; width: 64px; height: 40px; }
+.month-back { width: 40px; height: 40px; line-height: 40px; color: #2b2723; font-size: 26px; text-align: center; }
+.month-page-title { position: absolute; left: 56px; top: 17px; width: 160px; height: 22px; line-height: 22px; color: #2b2723; font-size: 18px; font-weight: bold; }
+.header-line { position: absolute; left: 16px; top: 56px; width: 304px; height: 1px; background-color: #ece3d6; }
+.month-title { position: absolute; left: 76px; top: 66px; width: 184px; height: 24px; line-height: 24px; font-size: 17px; font-weight: bold; color: #2b2723; text-align: center; }
+.month-prev, .month-next { position: absolute; top: 62px; width: 56px; height: 32px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fffdf8; color: #574e45; font-size: 14px; }
+.month-prev { left: 16px; } .month-next { left: 264px; }
+.month-week-cell { position: absolute; top: 104px; width: 42px; height: 18px; line-height: 18px; font-size: 13px; color: #9a9186; text-align: center; }
+.month-cell { position: absolute; width: 42px; height: 36px; line-height: 36px; font-size: 20px; text-align: center; }
+.month-info { position: absolute; left: 12px; top: 368px; width: 312px; height: 18px; line-height: 18px; font-size: 13px; color: #7b7268; text-align: center; }
+.month-current { position: absolute; left: 18px; top: 416px; width: 140px; height: 42px; border-radius: 6px; background-color: #a83b2d; color: #fffaf2; font-size: 16px; font-weight: bold; }
+.month-close { position: absolute; left: 178px; top: 416px; width: 140px; height: 42px; border-width: 1px; border-color: #a83b2d; border-radius: 6px; background-color: #fffdf8; color: #a83b2d; font-size: 16px; font-weight: bold; }
 </style>

@@ -276,9 +276,9 @@ check(sourceKnowledge.filter((item) => item.category === '脑筋急转弯' && it
 check(page.includes('value="换一句"') && page.includes('changeQuote()'), '「换一句」独立按钮：仅切换DAILY NOTE')
 check(page.includes('value="抽签"') && page.includes('drawFortune()'), '「抽签」独立按钮：仅触发签运')
 check(!page.includes('value="抽一签"'), '旧的「抽一签」混合按钮已移除')
-// 爱心收藏
-check(page.includes('value="♡"') && page.includes('value="♥"'), '首页爱心图标：空心 ♡ / 实心 ♥ 双状态切换')
-check(knowledgePage.includes('value="♡"') && knowledgePage.includes('value="♥"') && knowledgePage.includes('toggleFavorite()'), '知识页提供爱心收藏当前题目')
+// 爱心收藏（1.8.18：文字 ♡/♥ 升级为设计稿图片图标）
+check(page.includes('/common/assets/ic-heart-off.png') && page.includes('/common/assets/ic-heart-on.png'), '首页爱心图标：未收藏/已收藏图片双状态切换')
+check(knowledgePage.includes('/common/assets/ic-heart-off.png') && knowledgePage.includes('/common/assets/ic-heart-on.png') && knowledgePage.includes('toggleFavorite()'), '知识页提供爱心收藏当前题目（图片图标）')
 check(favoritesUtils.includes('FAVORITES_KEY') && favoritesUtils.includes('makeKnowledgeFavorite') && page.includes('FAVORITES_KEY') && knowledgePage.includes('FAVORITES_KEY') && favoritesPage.includes('FAVORITES_KEY'), '收藏统一走 common/utils/favorites.js 数据层（三页共享存储键）')
 check(page.includes('migrateOldFavorites'), '旧版语录收藏自动迁移到收藏室 v2')
 check(page.includes('legacyMigrated') && page.includes('迁移完成后回写 v1 存档'), '旧版收藏迁移完成后回写清除 v1 下标数组（避免删除后在下次启动复活）')
@@ -344,5 +344,38 @@ check(favoritesPage.includes('CHUNK_CHARS = 120'), '收藏室详情正文分页�
 check(favoritesPage.includes('fav-detail-center') && favoritesPage.includes('fav-center-text') && favoritesPage.includes('detailHasBody'), '收藏室详情双布局：无正文类型（DAILY NOTE）走居中大字卡片')
 check(favoritesPage.includes('fav-detail-doc') && favoritesPage.includes('fav-detail-box'), '有正文类型保持标题+分页正文框布局')
 check(favoritesUtils.includes("const isQa = riddle.displayMode === 'qa'"), '阅读类收藏详情直接用正文（不再拼接「答案：」前缀）')
+
+// ---- 1.8.18 全局 UI 改版：东方美学设计令牌 + 设计稿图片素材 + 统一页面头部 ----
+const redesignedPages = [
+  ['首页', page], ['知识页', knowledgePage], ['日历页', calendarPage],
+  ['收藏室', favoritesPage], ['答题页', zodiacTestPage], ['结果页', zodiacResultPage]
+]
+for (const [label, text] of redesignedPages) {
+  check(text.includes('#f2eee5') && text.includes('#fffdf8') && text.includes('#2b2723') && text.includes('#a83b2d') && text.includes('#ece3d6'), `${label}使用 1.8.18 设计令牌（纸底/卡片/主文字/品牌红/分割线）`)
+}
+for (const [label, text, backClass] of [['知识页', knowledgePage, 'kn-back'], ['日历页', calendarPage, 'month-back'], ['收藏室', favoritesPage, 'fav-back'], ['答题页', zodiacTestPage, 'zt-back'], ['结果页', zodiacResultPage, 'zr-back']]) {
+  check(text.includes('header-line') && text.includes(`class="${backClass}"`), `${label}统一页面头部：回退箭头 + 顶部分割线`)
+  check(text.includes(`class="${backClass}-hit"`), `${label}回退箭头带 64px 透明加宽命中层（规避左缘触摸死区）`)
+}
+check(page.includes('zodiac-back-hit'), '星象遮罩回退箭头带 64px 加宽命中层')
+// 几何守卫：全屏面板必须下沉到头部之下（top≥56px），与回退箭头零重叠——面板覆盖头部会吞掉箭头触摸（1.8.18 收藏室事故回归）
+check(favoritesPage.includes('.fav-panel { position: absolute; left: 12px; top: 56px;'), '收藏室全屏面板下沉至头部之下（top 56px，不与回退箭头重叠，避免面板吞掉头部触摸）')
+// 设计稿素材入库且被引用（图标/插图全部为本地 PNG，无外链）
+const assetRefs = new Set()
+for (const text of [page, knowledgePage, calendarPage, favoritesPage, zodiacTestPage, zodiacResultPage]) {
+  for (const match of text.matchAll(/\/common\/assets\/([\w.-]+\.png)/gu)) assetRefs.add(match[1])
+}
+check(assetRefs.size >= 8, `页面引用的设计稿素材覆盖导航/状态/插图（实际 ${assetRefs.size} 种）`)
+for (const name of assetRefs) {
+  check(fs.existsSync(path.join(root, 'src', 'common', 'assets', name)), `设计稿素材已入库：src/common/assets/${name}`)
+}
+check(page.includes('/common/assets/ic-nav-knowledge.png') && page.includes('/common/assets/ic-nav-calendar.png') && page.includes('/common/assets/ic-nav-zodiac.png') && page.includes('/common/assets/ic-nav-favorites.png'), '首页四宫格功能卡全部使用设计稿导航图标')
+check(knowledgePage.includes('/common/assets/ill-mountain.png') && favoritesPage.includes('/common/assets/ill-bamboo.png') && page.includes('/common/assets/ill-sun.png'), '主题插图应用于知识页/收藏室空态/星象遮罩')
+// 星象分析：12 星座设计稿插画（按星座名映射本地素材，透明底 96×96）
+const zodiacAssetKeys = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces']
+for (const key of zodiacAssetKeys) {
+  check(fs.existsSync(path.join(root, 'src', 'common', 'assets', `zodiac-${key}.png`)), `星座插画已入库：zodiac-${key}.png`)
+}
+check(zodiacResultPage.includes('zr-z-img') && (zodiacResultPage.match(/\/common\/assets\/zodiac-/gu) || []).length === 12, '结果页 top3 星座卡使用设计稿星座插画（12 枚按名映射）')
 
 console.log(`\nDAILY NOTE静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)

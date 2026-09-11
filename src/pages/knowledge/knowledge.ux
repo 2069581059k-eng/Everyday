@@ -3,15 +3,10 @@
     <div class="quiz-panel">
       <div class="qa-mode" show="{{isQaItem}}">
         <text class="quiz-kicker">{{quizCategory}}</text>
-        <text class="quiz-count">{{quizPos}} / {{quizTotal}}</text>
-        <input class="kn-heart" show="{{!heartFilled}}" type="button" value="♡" onclick="toggleFavorite" />
-        <input class="kn-heart kn-heart-on" show="{{heartFilled}}" type="button" value="♥" onclick="toggleFavorite" />
-        <input class="kn-home" type="button" value="返回主页" onclick="goHome" />
-
         <div class="quiz-question-box">
           <text class="quiz-question">{{riddleQuestion}}</text>
         </div>
-
+        <image class="quiz-ill" show="{{!answerVisible}}" src="/common/assets/ill-mountain.png" />
         <input class="quiz-reveal-btn" show="{{!answerVisible}}" type="button" value="{{revealLabel}}" onclick="revealAnswer" />
 
         <div class="quiz-answer-box" show="{{answerVisible}}">
@@ -23,10 +18,6 @@
 
       <div class="read-mode" show="{{!isQaItem}}">
         <text class="read-kicker">{{quizCategory}}</text>
-        <text class="read-count">{{quizPos}} / {{quizTotal}}</text>
-        <input class="kn-heart" show="{{!heartFilled}}" type="button" value="♡" onclick="toggleFavorite" />
-        <input class="kn-heart kn-heart-on" show="{{heartFilled}}" type="button" value="♥" onclick="toggleFavorite" />
-        <input class="kn-home kn-home-read" type="button" value="返回主页" onclick="goHome" />
         <text class="read-title">{{riddleQuestion}}</text>
         <text class="read-text" onclick="nextDetail">{{riddleExplain}}</text>
         <text class="read-page" show="{{detailTotal > 1}}">{{detailLabel}}</text>
@@ -34,10 +25,15 @@
 
       <div class="quiz-actionbar">
         <input class="quiz-nav-btn quiz-prev" type="button" value="{{prevLabel}}" onclick="prevQuestion" disabled="{{prevDisabled}}" />
-        <input class="quiz-nav-btn quiz-cancel" type="button" value="返回主页" onclick="goHome" />
+        <text class="quiz-mid">{{quizPos}} / {{quizTotal}}</text>
         <input class="quiz-nav-btn quiz-next" type="button" value="{{nextLabel}}" onclick="nextQuestion" disabled="{{nextDisabled}}" />
       </div>
     </div>
+
+    <div class="kn-back-hit" onclick="goHome"><text class="kn-back">‹</text></div>
+    <image class="kn-heart-img" show="{{!heartFilled}}" src="/common/assets/ic-heart-off.png" onclick="toggleFavorite" />
+    <image class="kn-heart-img" show="{{heartFilled}}" src="/common/assets/ic-heart-on.png" onclick="toggleFavorite" />
+    <div class="header-line"></div>
   </div>
 </template>
 
@@ -282,31 +278,40 @@ export default {
 </script>
 
 <style>
-.kn-heart { position: absolute; left: 186px; top: 7px; width: 38px; height: 30px; border-width: 1px; border-color: #d4c9ba; border-radius: 4px; background-color: #f8f3e9; color: #9a8e81; font-size: 17px; }
-.kn-heart-on { border-color: #a83b2d; background-color: #fdf0ec; color: #a83b2d; font-weight: bold; }
-.kn-home { position: absolute; left: 232px; top: 7px; width: 70px; height: 30px; border-width: 1px; border-color: #cfc4b5; border-radius: 4px; background-color: #f8f3e9; color: #766c61; font-size: 14px; }
-.kn-home-read { left: 232px; top: 7px; }
+/* 1.8.18 设计令牌：bg #f2eee5 / card #fffdf8 / 主文字 #2b2723 / 次要 #7b7268 / 提示 #9a9186 / 品牌红 #a83b2d / 分割线 #ece3d6 */
 .quiz-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: #f2eee5; }
-.quiz-panel { position: absolute; left: 12px; top: 12px; width: 312px; height: 456px; border-width: 1px; border-color: #d2c7b8; border-radius: 6px; background-color: #fffdf8; }
+/* 回退箭头透明命中层加宽至 64px（规避左缘触摸死区，视觉不变） */
+.kn-back-hit { position: absolute; left: 10px; top: 10px; width: 64px; height: 40px; }
+.kn-back { width: 40px; height: 40px; line-height: 40px; color: #2b2723; font-size: 26px; text-align: center; }
+.kn-heart-img { position: absolute; left: 286px; top: 12px; width: 36px; height: 36px; }
+.header-line { position: absolute; left: 16px; top: 56px; width: 304px; height: 1px; background-color: #ece3d6; }
+
+/* 固定尺寸父容器（312×456，验收断言约束），透明底仅作布局锚点 */
+.quiz-panel { position: absolute; left: 12px; top: 12px; width: 312px; height: 456px; }
+
+/* 答题模式（脑筋急转弯/十万个为什么） */
 .qa-mode { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
-.quiz-kicker { position: absolute; left: 16px; top: 10px; width: 110px; height: 20px; line-height: 20px; color: #a83b2d; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
-.quiz-count { position: absolute; left: 130px; top: 13px; width: 52px; height: 16px; line-height: 16px; color: #94887c; font-size: 11px; text-align: right; }
-.quiz-question-box { position: absolute; left: 16px; top: 48px; width: 280px; height: 130px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fbf7f0; }
-.quiz-question { position: absolute; left: 10px; top: 8px; width: 260px; height: 114px; color: #2c2722; font-size: 23px; font-weight: bold; line-height: 29px; text-align: center; }
-.quiz-reveal-btn { position: absolute; left: 36px; top: 198px; width: 240px; height: 44px; border-radius: 4px; background-color: #a83b2d; color: #fffaf2; font-size: 18px; font-weight: bold; }
-.quiz-answer-box { position: absolute; left: 16px; top: 190px; width: 280px; height: 204px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fffdf8; }
-.quiz-answer-label { position: absolute; left: 10px; top: 8px; width: 60px; color: #a83b2d; font-size: 15px; font-weight: bold; }
-.quiz-explain { position: absolute; left: 10px; top: 34px; width: 260px; height: 130px; color: #29241f; font-size: 18px; font-weight: bold; line-height: 24px; }
-.detail-page { position: absolute; left: 170px; top: 172px; width: 100px; height: 16px; line-height: 16px; color: #71665b; font-size: 12px; text-align: right; }
+.quiz-kicker { position: absolute; left: 8px; top: 52px; width: 200px; height: 18px; line-height: 18px; color: #a83b2d; font-size: 13px; font-weight: bold; letter-spacing: 2px; }
+.quiz-question-box { position: absolute; left: 0; top: 78px; width: 312px; height: 128px; border-width: 1px; border-color: #ece3d6; border-radius: 8px; background-color: #fffdf8; }
+.quiz-question { position: absolute; left: 14px; top: 14px; width: 284px; height: 100px; color: #2b2723; font-size: 20px; font-weight: bold; line-height: 27px; text-align: center; }
+.quiz-ill { position: absolute; left: 96px; top: 216px; width: 120px; height: 110px; }
+.quiz-reveal-btn { position: absolute; left: 36px; top: 340px; width: 240px; height: 44px; border-radius: 6px; background-color: #a83b2d; color: #fffaf2; font-size: 17px; font-weight: bold; }
+.quiz-answer-box { position: absolute; left: 0; top: 216px; width: 312px; height: 180px; border-width: 1px; border-color: #ece3d6; border-radius: 8px; background-color: #fffdf8; }
+.quiz-answer-label { position: absolute; left: 14px; top: 10px; width: 100px; height: 18px; line-height: 18px; color: #a83b2d; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
+.quiz-explain { position: absolute; left: 14px; top: 34px; width: 284px; height: 108px; color: #2b2723; font-size: 17px; font-weight: bold; line-height: 24px; }
+.detail-page { position: absolute; left: 198px; top: 150px; width: 100px; height: 16px; line-height: 16px; color: #9a9186; font-size: 12px; text-align: right; }
+
+/* 阅读模式（百科全书/冷笑话/鬼故事） */
 .read-mode { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
-.read-kicker { position: absolute; left: 16px; top: 10px; width: 110px; height: 20px; line-height: 20px; color: #a83b2d; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
-.read-count { position: absolute; left: 130px; top: 13px; width: 52px; height: 16px; line-height: 16px; color: #94887c; font-size: 11px; text-align: right; }
-.read-title { position: absolute; left: 18px; top: 46px; width: 276px; height: 58px; color: #2c2722; font-size: 19px; font-weight: bold; line-height: 24px; text-align: center; }
-.read-text { position: absolute; left: 18px; top: 112px; width: 276px; height: 248px; color: #29241f; font-size: 20px; font-weight: bold; line-height: 28px; text-align: left; }
-.read-page { position: absolute; left: 194px; top: 366px; width: 100px; height: 16px; line-height: 16px; color: #71665b; font-size: 12px; text-align: right; }
-.quiz-actionbar { position: absolute; left: 16px; top: 400px; width: 280px; height: 48px; }
-.quiz-nav-btn { position: absolute; top: 0; width: 86px; height: 44px; border-width: 1px; border-color: #d4c9ba; border-radius: 4px; background-color: #f8f3e9; color: #574e45; font-size: 14px; font-weight: bold; }
+.read-kicker { position: absolute; left: 8px; top: 52px; width: 200px; height: 18px; line-height: 18px; color: #a83b2d; font-size: 13px; font-weight: bold; letter-spacing: 2px; }
+.read-title { position: absolute; left: 8px; top: 78px; width: 296px; height: 52px; color: #2b2723; font-size: 19px; font-weight: bold; line-height: 26px; text-align: center; }
+.read-text { position: absolute; left: 8px; top: 138px; width: 296px; height: 226px; color: #2b2723; font-size: 18px; line-height: 27px; text-align: left; }
+.read-page { position: absolute; left: 204px; top: 372px; width: 100px; height: 16px; line-height: 16px; color: #9a9186; font-size: 12px; text-align: right; }
+
+/* 底部固定操作栏：上一题 / 页码 / 下一题 */
+.quiz-actionbar { position: absolute; left: 16px; top: 400px; width: 280px; height: 44px; }
+.quiz-nav-btn { position: absolute; top: 0; width: 86px; height: 44px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fffdf8; color: #574e45; font-size: 14px; font-weight: bold; }
 .quiz-prev { left: 0; }
-.quiz-cancel { left: 97px; background-color: #fffdf8; color: #918579; font-size: 13px; }
 .quiz-next { left: 194px; }
+.quiz-mid { position: absolute; left: 86px; top: 0; width: 108px; height: 44px; line-height: 44px; color: #9a9186; font-size: 13px; text-align: center; }
 </style>
