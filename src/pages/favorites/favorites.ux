@@ -1,5 +1,5 @@
 <template>
-  <div class="fav-mask">
+  <div class="fav-mask" onswipe="handleSwipe">
     <div class="fav-panel">
       <div class="fav-list-view" show="{{listVisible}}">
         <text class="fav-kicker">收藏室</text>
@@ -53,12 +53,19 @@
         <text class="fav-kicker">{{detailBadge}}</text>
         <input class="fav-home" type="button" value="返回主页" onclick="goHome" />
 
-        <text class="fav-detail-text">{{detailText}}</text>
-        <text class="fav-detail-sub">{{detailSub}}</text>
+        <div class="fav-detail-center" show="{{!detailHasBody}}">
+          <text class="fav-center-text">{{detailText}}</text>
+          <text class="fav-center-sub">— {{detailSub}}</text>
+        </div>
 
-        <div class="fav-detail-box">
-          <text class="fav-detail-body">{{detailBody}}</text>
-          <input class="fav-detail-next" show="{{detailNextVisible}}" type="button" value="{{detailNextLabel}}" onclick="nextDetailChunk" />
+        <div class="fav-detail-doc" show="{{detailHasBody}}">
+          <text class="fav-detail-text">{{detailText}}</text>
+          <text class="fav-detail-sub">{{detailSub}}</text>
+
+          <div class="fav-detail-box">
+            <text class="fav-detail-body">{{detailBody}}</text>
+            <input class="fav-detail-next" show="{{detailNextVisible}}" type="button" value="{{detailNextLabel}}" onclick="nextDetailChunk" />
+          </div>
         </div>
 
         <div class="fav-detail-actions">
@@ -78,7 +85,8 @@ import brightness from '@system.brightness'
 import { FAVORITES_KEY } from '../../common/utils/favorites.js'
 
 const PAGE_SIZE = 4
-const CHUNK_CHARS = 24
+// 1.8.17：正文区扩大（h190，16px/22lh×8 行×16 字=128 字容量），分页粒度 24 → 120
+const CHUNK_CHARS = 120
 
 let favoritesItems = []
 let filteredItems = []
@@ -123,6 +131,7 @@ export default {
     detailBadge: '',
     detailText: '',
     detailSub: '',
+    detailHasBody: false,
     detailBody: '',
     detailNextVisible: false,
     detailNextLabel: '',
@@ -258,7 +267,9 @@ export default {
     detailChunks = []
     const chars = Array.from(String(item.detail || ''))
     for (let i = 0; i < chars.length; i += CHUNK_CHARS) detailChunks.push(chars.slice(i, i + CHUNK_CHARS).join(''))
-    if (detailChunks.length === 0) detailChunks = ['']
+    // 1.8.17：无正文类型（每日一言等）走居中大字布局，不渲染正文框
+    this.detailHasBody = chars.length > 0
+    if (!this.detailHasBody) detailChunks = ['']
     detailChunkIndex = 0
     this.renderDetailChunk()
   },
@@ -295,6 +306,13 @@ export default {
 
   goHome() {
     router.replace({ uri: 'pages/index' })
+  },
+
+  // 1.8.17：右滑返回上一级——详情中返回列表，列表/空态返回主页
+  handleSwipe(event) {
+    if (!event || event.direction !== 'right') return
+    if (this.detailVisible) { this.backToList(); return }
+    this.goHome()
   },
 
   pulse(mode) {
@@ -338,11 +356,16 @@ export default {
 .fav-empty-home { position: absolute; left: 91px; top: 268px; width: 130px; height: 38px; border-radius: 4px; background-color: #a83b2d; color: #fffaf2; font-size: 16px; }
 
 .fav-detail-view { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
-.fav-detail-text { position: absolute; left: 16px; top: 48px; width: 280px; height: 96px; color: #2c2722; font-size: 20px; font-weight: bold; line-height: 26px; }
-.fav-detail-sub { position: absolute; left: 16px; top: 150px; width: 280px; height: 18px; line-height: 18px; color: #85796c; font-size: 14px; }
-.fav-detail-box { position: absolute; left: 16px; top: 178px; width: 280px; height: 196px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fbf7f0; }
-.fav-detail-body { position: absolute; left: 10px; top: 10px; width: 260px; height: 140px; color: #29241f; font-size: 16px; line-height: 22px; }
-.fav-detail-next { position: absolute; left: 50px; top: 154px; width: 180px; height: 30px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
+.fav-detail-doc { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
+.fav-detail-text { position: absolute; left: 16px; top: 44px; width: 280px; height: 78px; color: #2c2722; font-size: 20px; font-weight: bold; line-height: 26px; }
+.fav-detail-sub { position: absolute; left: 16px; top: 126px; width: 280px; height: 14px; line-height: 14px; color: #85796c; font-size: 12px; }
+.fav-detail-box { position: absolute; left: 16px; top: 142px; width: 280px; height: 238px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fbf7f0; }
+.fav-detail-body { position: absolute; left: 10px; top: 10px; width: 260px; height: 190px; color: #29241f; font-size: 16px; line-height: 22px; }
+.fav-detail-next { position: absolute; left: 50px; top: 208px; width: 180px; height: 30px; background-color: #f8f3e9; color: #574e45; font-size: 14px; }
+
+.fav-detail-center { position: absolute; left: 0; top: 0; width: 312px; height: 456px; }
+.fav-center-text { position: absolute; left: 30px; top: 150px; width: 252px; height: 116px; color: #29241f; font-size: 21px; font-weight: bold; line-height: 29px; text-align: center; }
+.fav-center-sub { position: absolute; left: 30px; top: 278px; width: 252px; height: 18px; line-height: 18px; color: #85796c; font-size: 13px; text-align: center; }
 
 .fav-detail-actions { position: absolute; left: 16px; top: 396px; width: 280px; height: 40px; }
 .fav-remove-btn { position: absolute; left: 0; top: 0; width: 130px; height: 40px; border-width: 1px; border-color: #a83b2d; border-radius: 4px; background-color: #fffdf8; color: #a83b2d; font-size: 15px; font-weight: bold; }

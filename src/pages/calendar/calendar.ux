@@ -1,5 +1,5 @@
 <template>
-  <div class="month-mask">
+  <div class="month-mask" onswipe="handleSwipe">
     <text class="month-title">{{calendarTitle}}</text>
     <input class="month-prev" type="button" value="上月" onclick="previousMonth" />
     <input class="month-next" type="button" value="下月" onclick="nextMonth" />
@@ -169,6 +169,11 @@ export default {
 
   goHome() {
     router.replace({ uri: 'pages/index' })
+  },
+
+  // 1.8.17：右滑返回上一级（日历页上一级为主页）
+  handleSwipe(event) {
+    if (event && event.direction === 'right') this.goHome()
   }
 }
 </script>

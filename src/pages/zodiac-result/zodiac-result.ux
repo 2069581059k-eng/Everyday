@@ -1,5 +1,5 @@
 <template>
-  <div class="zr-page">
+  <div class="zr-page" onswipe="handleSwipe">
     <text class="zr-title">你的气质画像</text>
 
     <div class="zr-top3">
@@ -199,6 +199,11 @@ export default {
 
   retest() {
     router.replace({ uri: 'pages/zodiac-test' })
+  },
+
+  // 1.8.17：右滑返回上一级（结果页上一级为主页，与「返回主页」一致；测试已完成不回答题页）
+  handleSwipe(event) {
+    if (event && event.direction === 'right') this.goHome()
   }
 }
 </script>

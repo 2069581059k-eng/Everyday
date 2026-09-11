@@ -7,6 +7,8 @@ const pagePath = path.join(root, 'src', 'pages', 'index', 'index.ux')
 const knowledgePagePath = path.join(root, 'src', 'pages', 'knowledge', 'knowledge.ux')
 const calendarPagePath = path.join(root, 'src', 'pages', 'calendar', 'calendar.ux')
 const favoritesPagePath = path.join(root, 'src', 'pages', 'favorites', 'favorites.ux')
+const zodiacTestPagePath = path.join(root, 'src', 'pages', 'zodiac-test', 'zodiac-test.ux')
+const zodiacResultPagePath = path.join(root, 'src', 'pages', 'zodiac-result', 'zodiac-result.ux')
 const manifestPath = path.join(root, 'src', 'manifest.json')
 const packagePath = path.join(root, 'package.json')
 const capturePath = path.join(root, 'tools', 'capture-vvd.mjs')
@@ -18,6 +20,8 @@ const page = fs.readFileSync(pagePath, 'utf8').replace(/\r\n/g, '\n')
 const knowledgePage = fs.existsSync(knowledgePagePath) ? fs.readFileSync(knowledgePagePath, 'utf8').replace(/\r\n/g, '\n') : ''
 const calendarPage = fs.existsSync(calendarPagePath) ? fs.readFileSync(calendarPagePath, 'utf8').replace(/\r\n/g, '\n') : ''
 const favoritesPage = fs.existsSync(favoritesPagePath) ? fs.readFileSync(favoritesPagePath, 'utf8').replace(/\r\n/g, '\n') : ''
+const zodiacTestPage = fs.existsSync(zodiacTestPagePath) ? fs.readFileSync(zodiacTestPagePath, 'utf8').replace(/\r\n/g, '\n') : ''
+const zodiacResultPage = fs.existsSync(zodiacResultPagePath) ? fs.readFileSync(zodiacResultPagePath, 'utf8').replace(/\r\n/g, '\n') : ''
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
 const packageJson = JSON.parse(fs.readFileSync(packagePath, 'utf8'))
 const captureScript = fs.readFileSync(capturePath, 'utf8')
@@ -147,7 +151,7 @@ check(!knowledgePage.includes('choiceOneText') && !knowledgePage.includes('choos
 check(knowledgePage.includes('revealAnswer') && knowledgePage.includes('answerVisible'), '提供“查看答案”按钮，点击后才显示答案')
 check(/quiz-reveal-btn" show="\{\{!answerVisible\}\}"/u.test(knowledgePage), '未查看答案时显示“查看答案”按钮，查看后隐藏')
 check(/quiz-answer-box" show="\{\{answerVisible\}\}"/u.test(knowledgePage), '查看答案后才显示答案与解析区')
-check(knowledgePage.includes('detail-next') && knowledgePage.includes('quiz-explain'), '答案区显示原始解析且支持分页浏览（不再拼接来源）')
+check(knowledgePage.includes('quiz-explain" onclick="nextDetail"') && knowledgePage.includes('nextDetail()'), '答案区显示原始解析且支持分页浏览（1.8.17 起点击正文翻页，不再拼接来源）')
 check(!knowledgePage.includes("+ ' 来源：' + record.source"), '正文与解析不再拼接“来源”尾巴')
 
 // ---- 上一题/下一题、序号进度、末题边界 ----
@@ -163,7 +167,7 @@ check(!knowledgePage.includes('isCompleteReward('), '已移除答题完成判定
 check(knowledgePage.includes('this.answerVisible = !this.isQaItem'), '阅读类条目进入即自动显示正文，答题类每次进入都收起（不再记忆展开状态）')
 check(knowledgePage.includes("this.answerLabel = this.isQaItem ? '答案' : riddle.category"), '仅答题类在答案框标注“答案”，正文框不再显示“正文·分类”')
 check(knowledgePage.includes('<text class="quiz-kicker">{{quizCategory}}</text>') && /<div class="qa-mode" show="\{\{isQaItem\}\}">[\s\S]*?<div class="read-mode" show="\{\{!isQaItem\}\}">/u.test(knowledgePage), '答题模式顶部标签显示当前分类，阅读模式独立布局')
-check(knowledgePage.includes('<text class="read-kicker">{{quizCategory}}</text>') && knowledgePage.includes('<text class="read-title">{{riddleQuestion}}</text>') && knowledgePage.includes('<text class="read-text">{{riddleExplain}}</text>'), '阅读模式左上显示分类标签，正文含子标题与大号正文')
+check(knowledgePage.includes('<text class="read-kicker">{{quizCategory}}</text>') && knowledgePage.includes('<text class="read-title">{{riddleQuestion}}</text>') && knowledgePage.includes('class="read-text" onclick="nextDetail"'), '阅读模式左上显示分类标签，正文含子标题与大号正文（点击翻页）')
 check(knowledgePage.includes('riddleExplain = chunks[this.detailIndex]') && knowledgePage.includes("this.answerLabel = this.isQaItem ? '答案' : riddle.category"), '正文不重复“正文·分类”标签，不拼接来源')
 
 // ---- 其它原有功能保持不变 ----
@@ -179,7 +183,7 @@ check(!page.includes('星象与签运为趣味参考'), '界面不再显示提�
 check(page.includes('<text class="brand">Daily Spark</text>'), '品牌已更名 Daily Spark')
 check(holidayUtils.includes('HOLIDAYS_2026') && calendarPage.includes('monthHolidayText(y, m)') && calendarPage.includes('#3f7d46') && calendarPage.includes('#c0392b'), '月历内置 2026 法定节假日与周末配色')
 check(page.includes('background-color: #f2eee5') && !page.includes('glow-one'), '主题已改为无光效的暖色纸质日历风格')
-check(page.includes('onswipe="handleSwipe"') && page.includes("event.direction === 'right'"), '支持右滑退出')
+check(page.includes('onswipe="handleSwipe"') && page.includes("event.direction !== 'right'"), '支持右滑手势（1.8.17 起首页右滑为二次确认退出）')
 check(page.includes('.page { position: relative; width: 336px; height: 480px;'), '页面完整适配 336×480')
 check(page.includes('brightness.setKeepScreenOn'), '保留常亮（保持屏幕常亮）实现')
 check(page.includes('stateReady: false') && page.includes('drawFortune()') && page.includes('if (!this.stateReady) return'), '存档读取完成前禁止抽签与相关操作')
@@ -199,7 +203,7 @@ check(dayCells === 42, `月历使用 42 格（6 行×7 列，实际 ${dayCells}�
 for (const text of [page, knowledgePage, calendarPage, favoritesPage]) {
   check(!/\bright:\s*\d/u.test(text), '布局统一使用 left/top 定位，未使用 right（规避模拟器支持问题）')
 }
-check(knowledgePage.includes('detail-next') && knowledgePage.includes('detailTotal') && knowledgePage.includes('detailLabel'), '答案/解析过长时可分页（下一段按钮 + 总段数 + 动态文案）')
+check(knowledgePage.includes('detail-page') && knowledgePage.includes('detailTotal') && knowledgePage.includes('detailLabel'), '答案/解析过长时可分页（点击正文翻下一段 + 总段数 + 动态页码）')
 check(!knowledgePage.includes('quiz-reward') && !knowledgePage.includes('rewardText'), '已移除奖励提示，题目与答案区不再被奖励文字挤占')
 const captureOrder = [
   '03-zodiac.png', '04-zodiac-next.png', '05-calendar.png',
@@ -323,4 +327,22 @@ if (quizHelpers) {
   check(yiOk, '多日采样：脑筋急转弯每日 10 题中优化条目稳定 ≥6（qualityScore 优先生效）')
 }
 
-console.log(`\nDAILY NOTE静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)  
+// ---- 1.8.17 右滑交互重构 / 收藏室详情改版 / 知识页点击翻页 ----
+// 右滑全局：所有页面挂 onswipe，返回上一级
+check(page.includes('onswipe="handleSwipe"') && page.includes('exitHintVisible') && page.includes('再次右滑退出应用'), '首页右滑二次确认退出（首次提示，提示期内再次右滑才退出）')
+check(page.includes('exitHintTimer') && page.includes('3000'), '首页退出提示 3 秒自动消失（模块级计时器不污染渲染数据）')
+check(page.includes('if (this.zodiacVisible) { this.zodiacVisible = false; return }'), '星象遮罩打开时右滑直接关闭遮罩（返回上一级）')
+check(knowledgePage.includes('onswipe="handleSwipe"') && calendarPage.includes('onswipe="handleSwipe"'), '知识页与日历页右滑返回主页')
+check(zodiacTestPage.includes('onswipe="handleSwipe"') && zodiacResultPage.includes('onswipe="handleSwipe"'), '星象答题页与结果页右滑返回主页')
+check(favoritesPage.includes('onswipe="handleSwipe"') && favoritesPage.includes('if (this.detailVisible) { this.backToList(); return }'), '收藏室右滑返回上一级（详情→列表，列表/空态→主页）')
+// 知识页：移除「继续」按钮，点击正文翻页
+check(!knowledgePage.includes('detail-next') && !knowledgePage.includes('read-next') && !knowledgePage.includes("'继续 '"), '知识页「继续」按钮已移除')
+check(knowledgePage.includes('class="quiz-explain" onclick="nextDetail"') && knowledgePage.includes('class="read-text" onclick="nextDetail"'), '知识页正文点击翻页（答题区与阅读区一致）')
+check(knowledgePage.includes('class="detail-page"') && knowledgePage.includes('class="read-page"'), '知识页保留纯文本页码指示')
+// 收藏室详情改版：正文扩容 + 双布局 + 阅读类去「答案：」前缀
+check(favoritesPage.includes('CHUNK_CHARS = 120'), '收藏室详情正文分页粒度扩至 120 字（长文单屏容量翻5倍）')
+check(favoritesPage.includes('fav-detail-center') && favoritesPage.includes('fav-center-text') && favoritesPage.includes('detailHasBody'), '收藏室详情双布局：无正文类型（DAILY NOTE）走居中大字卡片')
+check(favoritesPage.includes('fav-detail-doc') && favoritesPage.includes('fav-detail-box'), '有正文类型保持标题+分页正文框布局')
+check(favoritesUtils.includes("const isQa = riddle.displayMode === 'qa'"), '阅读类收藏详情直接用正文（不再拼接「答案：」前缀）')
+
+console.log(`\nDAILY NOTE静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)
