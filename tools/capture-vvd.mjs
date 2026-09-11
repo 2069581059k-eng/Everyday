@@ -92,6 +92,19 @@ async function clickUntilChange(client, x, y, tries = 3) {
   console.log('warn: click no-change after', tries, 'tries at', x, y)
 }
 
+// 1.8.20：首页右滑手势（gRPC 快速轻扫，起点 x≥56 避开系统边缘手势，6 步 × 8ms）
+async function swipeRight(client) {
+  const y = 240
+  client.sendMouse({ x: 60, y, buttons: 1 })
+  for (let i = 1; i <= 6; i++) {
+    await wait(8)
+    client.sendMouse({ x: 60 + i * 40, y, buttons: 1 })
+  }
+  await wait(8)
+  client.sendMouse({ x: 300, y, buttons: 0 })
+  await wait(650)
+}
+
 async function main() {
   fs.mkdirSync(outputDir, { recursive: true })
   const oldCaptures = [
@@ -101,7 +114,8 @@ async function main() {
     '05-zodiac-next.png', '06-riddle.png', '07-riddle-answer.png',
     '01-home.png', '02-home-change.png', '08-riddle-next.png',
     '09-favorites.png', '10-favorite-detail.png',
-    '11-zodiac-test.png', '12-zodiac-test-next.png', '13-zodiac-result.png'
+    '11-zodiac-test.png', '12-zodiac-test-next.png', '13-zodiac-result.png',
+    '00-exit-hint.png'
   ]
   for (const filename of oldCaptures) {
     const target = path.join(outputDir, filename)
@@ -160,6 +174,10 @@ async function main() {
     await client.waitForReady()
     await screenshot(client, '01-home.png')
     if (process.env.VELA_CAPTURE_ONLY === '1') return
+    // 1.8.20：首页右滑一次 → 退出二次确认提示（主题卡片/屏幕最上方验收）；提示 3 秒自动消失后再继续
+    await swipeRight(client)
+    await screenshot(client, '00-exit-hint.png')
+    await wait(3600)
     // 首页：换一句（1.8.18 四宫格布局坐标，导航点击带变化重试）
     await clickUntilChange(client, 92, 288)
     await screenshot(client, '02-home-change.png')
