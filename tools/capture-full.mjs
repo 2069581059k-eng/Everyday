@@ -219,11 +219,11 @@ async function shotAwake(client, filename, serial) {
 
 // 坐标：均来自各页 .ux 的绝对定位
 const P = {
-  draw: [252, 409],        // 首页 抽一签
-  favorite: [285, 96],     // 首页 收藏
-  knowledge: [84, 409],    // 首页 知识大全
-  calendarCard: [88, 324], // 首页 今日日历卡片
-  astroCard: [248, 324],   // 首页 趣味星象卡片
+  draw: [248, 290],        // 首页 抽签按钮（1.8.14 布局：quote-actions y272-308，右侧按钮 x174-322）
+  favorite: [287, 85],     // 首页 爱心收藏（quote-card(14,62)+heart-btn(254,8)→中心 287,85）
+  knowledge: [88, 425],    // 首页 知识大全卡（feature-grid(14,318) 左下卡）
+  calendarCard: [88, 351], // 首页 今日日历卡（feature-grid 左上卡 中心）
+  astroCard: [248, 351],   // 首页 趣味星象卡（feature-grid 右上卡 中心）
   zodAnalyze: [168, 388],  // 星象遮罩 星象分析 ›
   zodNext: [302, 78],      // 星象遮罩 › 换星座
   knHome: [281, 34],       // 知识页 返回主页

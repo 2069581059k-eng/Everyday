@@ -1,5 +1,14 @@
 # 版本记录
 
+## 1.8.16（本地构建 + 模拟器验收，未发布）
+
+- **品牌文案统一**：全仓库「每日一言」→「DAILY NOTE」（32 处 / 10 文件），含 **manifest 应用名**、收藏数据 `type` 值、源码注释与日志、README、变更/交接记录、验收断言文案；版本 1.8.16 / 10816。
+- ⚠️ **数据兼容说明**：收藏存档的 `type` 值由 `'每日一言'` 直改为 `'DAILY NOTE'`（用户确认"全部直改"）。由此，**1.8.15 及更早版本收藏的"一言"条目在 1.8.16 的「一言」筛选下不再显示**（「全部」视图仍可见）；如需兼容旧值，可在读取侧加回退判断。
+- **验收工具适配 1.8.14/1.8.15 改版**：`tools/capture-full.mjs` 首页点击坐标更新（抽签按钮 / 爱心 / 四张功能卡）；`tools/analyze-full.mjs` 首页区域定义更新（功能卡 318–458、操作按钮 272–308、签章 30–94/228–254、签语 102–302/228–254）、知识页标题阈值放宽至 0.6%、收藏断言改为红像素判定（♥ 点亮 19.9%）。
+- **隔离环境验收（模拟器验收门槛）**：实例 `WorkBuddy_Band10Pro`（serial `emulator-5580` / gRPC `8580`，数据目录 `D:\AGI\WorkBuddy\Simulator\vvd`），安装版本核对 **1.8.16 / 10816**；全功能像素验收 **95 通过 / 0 未通过**（首页 4 功能卡 + 换一句/抽签、抽签签章、爱心收藏、知识大全 4 阅读页 + 2 答题未展开 + 2 已展开答案、月历翻月、星象遮罩、星象答题、结果页 4 页与循环、返回主页、退出测试后应用仍在前台）；`onError`/`invalid pagename` 0 行；证据 `qa-1.8.16/`（30 张）。
+- **构建**：源码快照 + 独立依赖（`@aiot-toolkit/jsc` 1.0.9，`win32_aiotjsc.exe` 参与）→ inline-modules → `aiot build --enable-jsc`（build success 7486ms）→ `verify-rpk` 通过；RPK/BIN 1,069,853 B，SHA-256 `d0975b2652a3c5864bcec0e527c8c9c66e5b7b9bf2ff05497d3a5ad14c081ef1`；源码包 2,757,590 B。
+- 未创建 Release（待用户决定）；**真机未验**。
+
 ## 1.8.15（正式版 · 当前共同基准 · 真机验证通过）
 
 - **正式版**：用户真机验证通过（含 1.8.14 收藏/新首页与 1.8.15 筛选/今日签持久化）；源码经 PR #6 合入 main（`b6f5ead`），Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.15（tag 指向实现提交 `54aa335`；BIN/RPK 各 1,069,951 B，SHA-256 `A53BC716…`；8 附件齐全）。**后续开发基准**（原基准 1.8.13，1.8.14/1.8.15 均已转正）。
@@ -7,7 +16,7 @@
 - **收藏室类型筛选**：全部/一言/抽签/知识 四档固定槽位筛选按钮（双份 show 切换激活态，规避 Vela 动态 class 限制）；筛选后分页重置、空类型显示「该类型还没有收藏」提示；筛选状态下删除按 id 映射回全量列表（不误删）。
 - **签运持久化**：今日签（签级+提示）跨重启保留（重启后首页哈希级一致）；「换一句」不再清空今日签（签运独立于语录）；同日重抽覆盖最新；历史记录最近 16 条；星象遮罩页新增「今日签」与「近签」（最近 3 次签级）两行展示。
 - **qualityScore 高分优先选题**：脑筋急转弯每日 10 题中保证 ≥6 条来自 v2 优化重写条目（`pickDaily` 优先池 + 补足逻辑，原版条目仍会出现）；quizSchema 180→181（升级后重置当日进度）。
-- **修复（验收发现的行为退化）**：签运持久化后 `fortuneDrawn` 恒为 true，爱心收藏的语录被错误标记为「抽签」类型、「每日一言」类型无法产生；修复为收藏与签运解耦（爱心收藏恒为「每日一言」快照，旧「抽签」条目收藏室仍兼容展示）。
+- **修复（验收发现的行为退化）**：签运持久化后 `fortuneDrawn` 恒为 true，爱心收藏的语录被错误标记为「抽签」类型、「DAILY NOTE」类型无法产生；修复为收藏与签运解耦（爱心收藏恒为「DAILY NOTE」快照，旧「抽签」条目收藏室仍兼容展示）。
 - **可读性**：近签行 12px #93877a → 14px #71665b；筛选空提示 #93877a → #71665b。
 - 版本 1.8.15 / 10815；RPK 1,069,951 B（较 1.8.14 +1,202 B），SHA-256 `A53BC716…`；verify-game.mjs 新增 13 条 1.8.15 断言。
 - 模拟器全链路验收 ALL-PASS（含筛选四态/签运持久化哈希级验证/筛选态删除/30 题与退出测试回归，0 错误日志）。详见 `docs/HANDOFF.md`。
@@ -17,9 +26,9 @@
 - 源码经 PR #5 合入 main（`dc35e91`）；Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.14（tag 指向实现提交 `236791a`；BIN/RPK 各 1,068,749 B，SHA-256 `144E2F15…`；8 附件齐全；2026-09-10 用户真机验证通过后转正）。
 
 - **题库 v2 整合**：脑筋急转弯 312 条整体替换为优化后题库（107 条低分题重写，qualityScore 4-5，`qualityScore`/`optimized` 元数据随条目保留；2 条转义污染经反转义与旧内容一致），其余四类共 1,711 条不动，知识库总数仍 2,023；替换审计报告 `data/brain-teaser-v2-report.json`（kept 205 / replaced 107）。
-- **收藏室（新独立页 `pages/favorites`）**：爱心交互（空心 ♡ / 实心 ♥）+ 快照式持久存储（新增数据层 `common/utils/favorites.js`，首页/知识页/收藏室三页共享存储键 `daily_quote_favorites_v2`）；支持列表分页（4 条/页）、详情长文分页、按类型区分（每日一言/抽签/知识分类）、取消收藏、空态提示「还没有收藏内容」；旧版语录收藏（v1 下标数组）自动迁移为 v2 快照条目。
+- **收藏室（新独立页 `pages/favorites`）**：爱心交互（空心 ♡ / 实心 ♥）+ 快照式持久存储（新增数据层 `common/utils/favorites.js`，首页/知识页/收藏室三页共享存储键 `daily_quote_favorites_v2`）；支持列表分页（4 条/页）、详情长文分页、按类型区分（DAILY NOTE/抽签/知识分类）、取消收藏、空态提示「还没有收藏内容」；旧版语录收藏（v1 下标数组）自动迁移为 v2 快照条目。
 - **修复 P1（模拟器验收发现）**：旧版收藏迁移只复制不清源——用户在收藏室删除旧收藏后，下次进入首页迁移重跑导致"删不掉的收藏"；修复为迁移完成后立即回写 v1 存档清除 `favorites` 数组（`legacyMigrated` 标志），迁移只发生一次。
-- **首页改版**：每日一言主卡片放大为视觉重点；「换一句」（仅切换语录）与「抽签」（仅触发签运）拆为两个独立按钮；下部改为四入口卡片（今日日历/趣味星象/知识大全/收藏室）；知识页新增爱心收藏当前题目（快照含题干/答案/解析）。
+- **首页改版**：DAILY NOTE主卡片放大为视觉重点；「换一句」（仅切换语录）与「抽签」（仅触发签运）拆为两个独立按钮；下部改为四入口卡片（今日日历/趣味星象/知识大全/收藏室）；知识页新增爱心收藏当前题目（快照含题干/答案/解析）。
 - **「宜」模板扩充**：行动模板 12 → 64 条，独立数据模块 `common/data/fortune_templates.js`（覆盖学习/摸鱼/喝水/早睡/收纳/散步/复盘/发呆/省钱/清理桌面/联系朋友/看书/运动/写计划/整理文件等日常场景）；签级（五档）与配色模板同步从 `zodiac.js` 迁出，数据与工具分离。
 - **「灵光」全量移除**：UI 文案、状态变量、存储字段、统计逻辑全部清理（非仅隐藏）；品牌名保留 Daily Spark。
 - 版本 1.8.14 / 10814（package.json、package-lock.json、src/manifest.json 同步）；RPK 1,068,749 B（对比 1.8.13 +9,025 B），SHA-256 `144E2F15…`；`tools/verify-game.mjs` 新增 15+ 条 1.8.14 防回退断言。
@@ -41,7 +50,7 @@
 ## 1.8.12（本地构建 + 模拟器验收，未发布）
 
 - **纯架构清理，不改任何 UI 与用户行为**：
-  - `pages/index/index.ux` 删除已迁移到独立页的旧实现：知识大全模板（`quiz-mask`/`quiz-panel`/`qa-mode`/`read-mode` 等）与答题逻辑（`startQuiz`/`renderQuiz`/`revealAnswer`/`renderDetail`/`nextDetail`/`prevQuestion`/`nextQuestion`/`closeQuiz`）、月历模板（`month-mask` 及 42 格）与月历逻辑（`openCalendar`/`closeCalendar`/`previousMonth`/`nextMonth`/`currentMonth`/`renderCalendar`），以及 `quizVisible`、`calCell/calToday/calColor×42`、`riddle*`/`detail*` 等状态；首页仅保留 `openKnowledgePage()`、`openCalendarPage()` 两个路由入口与每日一言/抽签/收藏/统计/趣味星象。
+  - `pages/index/index.ux` 删除已迁移到独立页的旧实现：知识大全模板（`quiz-mask`/`quiz-panel`/`qa-mode`/`read-mode` 等）与答题逻辑（`startQuiz`/`renderQuiz`/`revealAnswer`/`renderDetail`/`nextDetail`/`prevQuestion`/`nextQuestion`/`closeQuiz`）、月历模板（`month-mask` 及 42 格）与月历逻辑（`openCalendar`/`closeCalendar`/`previousMonth`/`nextMonth`/`currentMonth`/`renderCalendar`），以及 `quizVisible`、`calCell/calToday/calColor×42`、`riddle*`/`detail*` 等状态；首页仅保留 `openKnowledgePage()`、`openCalendarPage()` 两个路由入口与DAILY NOTE/抽签/收藏/统计/趣味星象。
   - 同步移除随迁移失效的导入与死字段：`RIDDLES`、`mulberry32`、`isLegalHoliday`、`monthHolidayText`、`monthYearText`、`yearDayText`、`calendarHolidayText`。
   - `pages/zodiac-result/zodiac-result.ux` 删除未使用的 `zodiacProfiles`/`zodiacQuestions`/`zodiacTemplates` 导入（结果页仅从 `zodiac_profile_result_v1` 读取已算好的 `analysis`）。
 - 体积（对比 1.8.11）：`pages/index/index.jsc` 830,684 → **261,750 B（−568,934 B / −68.5%）**；`pages/zodiac-result/zodiac-result.jsc` 111,931 → **9,459 B（−102,472 B / −91.5%）**；全部 jsc 合计 1,632,392 → **960,986 B（−655.7 KB）**；RPK 1,341,503 → **1,060,781 B**。

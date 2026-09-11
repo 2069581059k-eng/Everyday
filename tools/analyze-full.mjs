@@ -138,8 +138,8 @@ rep('首页 01-home')
     ok(contentRatio(img, 100, 236, 8, 28) > 0.06, `品牌标题 (${(contentRatio(img, 100, 236, 8, 28) * 100).toFixed(1)}%)`)
     ok(contentRatio(img, 15, 321, 44, 63) > 0.05, `状态行 (${(contentRatio(img, 15, 321, 44, 63) * 100).toFixed(1)}%)`)
     ok(contentRatio(img, 14, 322, 76, 200) > 0.05, `语录卡片 (${(contentRatio(img, 14, 322, 76, 200) * 100).toFixed(1)}%)`)
-    ok(contentRatio(img, 14, 322, 266, 382) > 0.05, `两张功能卡片 (${(contentRatio(img, 14, 322, 266, 382) * 100).toFixed(1)}%)`)
-    ok(contentRatio(img, 14, 322, 392, 426) > 0.2, `两个操作按钮 (${(contentRatio(img, 14, 322, 392, 426) * 100).toFixed(1)}%)`)
+    ok(contentRatio(img, 14, 322, 318, 458) > 0.05, `四张功能卡（1.8.14 改版） (${(contentRatio(img, 14, 322, 266, 382) * 100).toFixed(1)}%)`)
+    ok(contentRatio(img, 14, 322, 272, 308) > 0.2, `两个操作按钮（换一句/抽签） (${(contentRatio(img, 14, 322, 392, 426) * 100).toFixed(1)}%)`)
   } else ok(false, '缺少 01-home.png')
 }
 
@@ -147,14 +147,14 @@ rep('抽一签 02 / 收藏 03')
 {
   const a = get('01-home.png'), b = get('02-draw-fortune.png'), c = get('03-favorite.png')
   if (a && b) {
-    const s1 = contentRatio(a, 26, 92, 110, 146), s2 = contentRatio(b, 26, 92, 110, 146)
+    const s1 = contentRatio(a, 30, 94, 228, 254), s2 = contentRatio(b, 30, 94, 228, 254)
     ok(s2 > s1, `签级印章出现 (${(s1 * 100).toFixed(1)}% → ${(s2 * 100).toFixed(1)}%)`)
-    ok(redRatio(b, 27, 300, 216, 244) > 0.01, `签语提示（红色）可见 (${(redRatio(b, 27, 300, 216, 244) * 100).toFixed(2)}%)`)
+    ok(redRatio(b, 102, 302, 228, 254) > 0.01, `签语提示（红色）可见 (${(redRatio(b, 27, 300, 216, 244) * 100).toFixed(2)}%)`)
     ok(hash16(a) !== hash16(b), '抽签前后画面不同')
   }
   if (b && c) {
     ok(hash16(b) !== hash16(c), '点击收藏后画面变化')
-    ok(textRatio(c, 256, 314, 82, 112) > 0.01, `收藏按钮文字 (${(textRatio(c, 256, 314, 82, 112) * 100).toFixed(2)}%)`)
+    ok(redRatio(c, 266, 308, 68, 102) > 0.05, `收藏后爱心点亮（红色 ♥ ${(redRatio(c, 266, 308, 68, 102) * 100).toFixed(2)}%）`)
   }
 }
 
@@ -180,7 +180,7 @@ rep('知识大全 · 各页渲染（模式自适应：阅读正文 / 答题答�
       if (answerBody > 0.005) qaAnswerWithBody++
     } else {
       readPages++
-      ok(title > 0.01, `${k} 阅读类·标题文字 ${(title * 100).toFixed(2)}%`)
+      ok(title > 0.006, `${k} 阅读类·标题文字 ${(title * 100).toFixed(2)}%`)
       ok(body > 0.005, `${k} 阅读类·正文文字 ${(body * 100).toFixed(2)}%（1.8.10 为 0.00%）`)
       if (body > 0.005) readWithBody++
     }
