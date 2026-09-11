@@ -1,5 +1,18 @@
 # 当前交接
 
+## 2026-09-11 · Trae Code 1.8.21 素材统一 imgs 目录（应用图标 + 日历导航图标补全）（分支 trae/v1.8.21-imgs-assets）
+
+- 任务（用户明确要求「素材必须使用 imgs 目录下的」并复查模拟器）：imgs 新增两枚素材入库——c5272a00（星光轨道）→ `src/common/icon.png` 应用图标（336 画布/240 安全区/透明底，替代 1.8.20 还原的 1.8.14 旧图标）；176d8279（日历）→ `ic-nav-calendar.png` 48×48（此前沿用旧版）。
+- 基线：origin/main @ `67f4671`（含 1.8.20 正式发布记录，PR #11）；版本 1.8.21 / 10821。
+- 改动文件：`src/common/icon.png`、`src/common/assets/ic-nav-calendar.png`（process-assets-1.8.21.py，PIL --user 安装）；版本三件套 1.8.21 / 10821。
+- **验收记录（按模拟器验收门槛）**：
+  - 验收时间：2026-09-11 20:35–20:50（GMT+8）
+  - 模拟器：Trae_AGI（5578 / gRPC 8578；⚠️ 期间两次被外部以默认端口 5554 启动——poweroff 对第二个实例无效，用 `adb -s emulator-5554 emu kill` 终止后 launch-emulator.mjs 规范重启回 5578/8578）
+  - 源码快照：`Temp\build-1.8.21-trae-20260911`（verify-game 全绿 → inline → aiot build --enable-jsc → verify-rpk 通过）
+  - 安装包：`dist/com.dailyquote.band10pro.debug.1.8.21.rpk`，705,269 B，SHA-256 `9B568E6AD175C8E493DCE1AAA22C4A7E5C5447EBF8578221979F5109D1B58E3D`；RPK 解包 icon.png / ic-nav-calendar.png 哈希与 src 一致
+  - 用例与结果：ALL-PASS（14 张截图）——版本核验 1.8.21/10821 → 首页新日历图标/星光轨道/书本/爱心书签导航图标全可见 → 退出提示白纸卡片置顶 → 原 13 场景回归全过
+- **真机未验**：应用图标与日历导航图标建议真机复核。
+
 ## 2026-09-11 · Trae Code 1.8.20 应用图标还原 1.8.14 + 退出提示主题化置顶（分支 trae/v1.8.20-icon-exit-hint）
 
 - 任务（用户反馈 1.8.19 三项）：①应用图标与预期不符（1.8.19 包内为设计板裁切碎片，构图被切断）——还原为 1.8.14 版图标（紫蓝魔法书+金色星光）；②右滑退出提示不要使用黑色——改羊皮纸主题卡片（#fffdf8 纸卡 + #ece3d6 描边 + #574e45 墨褐文字）；③提示位置移到屏幕最上方（top 140→12）。
