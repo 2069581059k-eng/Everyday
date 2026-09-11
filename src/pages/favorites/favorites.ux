@@ -87,11 +87,11 @@ let detailIndex = -1
 let detailChunks = []
 let detailChunkIndex = 0
 
-// 类型筛选：0=全部 1=每日一言 2=抽签 3=知识（知识类合并五类题目分类）
+// 类型筛选：0=全部 1=DAILY NOTE 2=抽签 3=知识（知识类合并五类题目分类）
 function applyFilter(mode) {
-  if (mode === 1) filteredItems = favoritesItems.filter(function (item) { return item.type === '每日一言' })
+  if (mode === 1) filteredItems = favoritesItems.filter(function (item) { return item.type === 'DAILY NOTE' })
   else if (mode === 2) filteredItems = favoritesItems.filter(function (item) { return item.type === '抽签' })
-  else if (mode === 3) filteredItems = favoritesItems.filter(function (item) { return item.type !== '每日一言' && item.type !== '抽签' })
+  else if (mode === 3) filteredItems = favoritesItems.filter(function (item) { return item.type !== 'DAILY NOTE' && item.type !== '抽签' })
   else filteredItems = favoritesItems.slice()
 }
 

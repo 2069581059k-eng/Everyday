@@ -226,12 +226,12 @@ export default {
               legacyMigrated = true
             }
           } catch (error) {
-            console.log('每日一言存档解析失败: ' + error)
+            console.log('DAILY NOTE存档解析失败: ' + error)
           }
           finishLoad()
         },
         fail(data, code) {
-          console.log('每日一言存档读取失败: ' + code)
+          console.log('DAILY NOTE存档读取失败: ' + code)
           finishLoad()
         }
       })
@@ -247,7 +247,7 @@ export default {
       storage.set({
         key: STORAGE_KEY,
         value: JSON.stringify(state),
-        fail(data, code) { console.log('每日一言存档保存失败: ' + code) }
+        fail(data, code) { console.log('DAILY NOTE存档保存失败: ' + code) }
       })
     } catch (error) {
       console.log('存储模块不可用: ' + error)
@@ -310,7 +310,7 @@ export default {
     router.replace({ uri: 'pages/favorites' })
   },
 
-  // 换一句：仅切换每日一言；今日签运独立持久化，不再随换句清空（1.8.15）
+  // 换一句：仅切换DAILY NOTE；今日签运独立持久化，不再随换句清空（1.8.15）
   changeQuote() {
     if (!this.stateReady) return
     let next = (currentIndex + 1 + Math.floor(Math.random() * (QUOTES.length - 1))) % QUOTES.length
@@ -368,7 +368,7 @@ export default {
     this.maskHistoryText = recent.length > 0 ? '近签 ' + recent.map(function (item) { return item.level }).join('·') : ''
   },
 
-  // 爱心收藏：纯语录快照（1.8.15 签运持久化后与签运解耦，恒为「每日一言」类型；
+  // 爱心收藏：纯语录快照（1.8.15 签运持久化后与签运解耦，恒为「DAILY NOTE」类型；
   // 旧版「抽签」类型条目收藏室仍兼容展示）
   toggleFavorite() {
     if (!this.stateReady) return

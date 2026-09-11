@@ -1,5 +1,25 @@
 # 当前交接
 
+## 2026-09-11 · WorkBuddy(agent) 1.8.16 品牌文案统一（每日一言 → DAILY NOTE）
+
+- 任务（用户要求）：把仓库内所有「每日一言」改为「**DAILY NOTE**」——用户选择「全部 31 处（含历史记录）」与「存档值直改（接受数据风险）」。
+- 改动范围（32 处 / 10 文件 + 版本三处同步）：
+  - 产品：`src/manifest.json` **应用名 → DAILY NOTE**；`src/common/utils/favorites.js` 与 `src/pages/favorites/favorites.ux` 的收藏类型值/筛选值 → `DAILY NOTE`；`src/pages/index/index.ux`、`src/app.ux` 的日志与注释。
+  - 文档与工具：`README.md`、`docs/CHANGELOG.md`、`docs/HANDOFF.md`、`package.json` description、`tools/verify-game.mjs` 断言文案。
+  - 校验：替换后全仓库残留「每日一言」= 0，`DAILY NOTE` = 32。
+- ⚠️ **已知数据影响（用户已确认接受）**：收藏存档 `type` 由 `'每日一言'` 直改 `'DAILY NOTE'`，**升级前收藏的"一言"条目在 1.8.16「一言」筛选下不显示**（「全部」仍可见）。未加旧值回退；如需可在读取侧补兼容（1 行）。
+- 未改动（明确说明）：收藏室筛选按钮文案仍为「一言」（原文非"每日一言"，且 336px 宽筛选栏容纳 10 字符英文有排版风险，未擅自改）。
+- **验收工具适配**（1.8.14/1.8.15 改版后我上一轮验收出现 9 项误报，本轮修正）：`capture-full.mjs` 首页坐标（抽签 248,290 / 爱心 287,85 / 知识卡 88,425 / 日历卡 88,351 / 星象卡 248,351）；`analyze-full.mjs` 区域与阈值（功能卡 318–458、按钮 272–308、签章 30–94/228–254、签语 102–302/228–254、知识标题 >0.6%、收藏断言改为红像素 >5%）。
+- **验收记录（按模拟器验收门槛）**：
+  - 验收时间：2026-09-11 10:00–10:05（GMT+8）
+  - 模拟器：WorkBuddy 独立实例 `WorkBuddy_Band10Pro`（Vela Band 10 Pro 336×480，serial `emulator-5580` / gRPC `8580`，数据目录 `D:\AGI\WorkBuddy\Simulator\vvd\WorkBuddy_Band10Pro.vvd`；同时运行 Trae 的 5578，互不干扰）
+  - 源码快照：`D:\AGI\WorkBuddy\Temp\iso1816`（含独立依赖副本；`@aiot-toolkit/jsc` 1.0.9）
+  - 安装包：`dist/com.dailyquote.band10pro.debug.1.8.16.rpk`，1,069,853 B，SHA-256 `d0975b2652a3c5864bcec0e527c8c9c66e5b7b9bf2ff05497d3a5ad14c081ef1`；`verify-rpk` 通过
+  - 用例与结果：**95 项全部通过（0 未通过）**（首页 4 功能卡与换一句/抽签、抽签签章+签语红字、收藏 ♥ 点亮 19.9%、知识大全 4 阅读页正文 + 2 答题未展开 + 2 已展开答案、上一题、日历翻月、星象遮罩/换星座、星象答题 8 边框线与进度条、结果页 4 页与循环回第 1 页、结果页返回主页、再进答题页、**退出测试后应用仍在前台**（1.8.13 P1 修复回归通过）、重启后首页正常）；logcat 0 错误行
+  - 证据路径：`qa-1.8.16/`（30 张截图 + logcat.txt / error-lines.txt / runtime.log）
+- 版本约束：本次为 1.8.16（符合 ≥1.8.16/10816）；**未创建 Release，真机未验**。
+
+
 ## 2026-09-11 · WorkBuddy(agent) 验收脚本多工具隔离（PR #3 合入 main）
 
 - 背景：同一台机器上 WorkBuddy / TraeCode / Codex 三套工具并行开发，需各自独立的模拟器实例与端口，互不占用。
@@ -31,7 +51,7 @@
 - 任务（用户选定方向 B）：①收藏室类型筛选；②抽签历史持久化；③v2 题库 qualityScore 高分优先选题。
 - 改动文件：
   - 修改：`src/pages/favorites/favorites.ux`（四档筛选栏 + slot 布局下移 + 筛选空提示 + 按 id 删除映射）、`src/pages/index/index.ux`（签运持久化 state.fortune/fortuneHistory、换一句不清签、遮罩页今日签/近签两行、爱心收藏与签运解耦）、`src/common/utils/knowledge.js`（pickDaily 优先选题）、`src/pages/knowledge/knowledge.ux`（quizSchema 181）、`src/manifest.json` / `package.json` / `package-lock.json`（1.8.15/10815）、`tools/verify-game.mjs`（13 条新断言，quizHelpers 注入正则含 pickDaily）
-- **修复（验收发现的行为退化）**：签运持久化使 `fortuneDrawn` 恒为 true → 爱心收藏恒被标记「抽签」类型、「每日一言」类型无法产生；修复为 `makeQuoteFavorite(currentIndex, quote, '', '')` 解耦（旧「抽签」条目收藏室筛选仍兼容）。
+- **修复（验收发现的行为退化）**：签运持久化使 `fortuneDrawn` 恒为 true → 爱心收藏恒被标记「抽签」类型、「DAILY NOTE」类型无法产生；修复为 `makeQuoteFavorite(currentIndex, quote, '', '')` 解耦（旧「抽签」条目收藏室筛选仍兼容）。
 - **验收记录（按模拟器验收门槛）**：
   - 验收时间：2026-09-10 22:35–22:42（GMT+8）
   - 模拟器：Trae_AGI（Vela Band 10 Pro，336×480，端口 5578 / gRPC 8578），验收前冷重启（规避 AOD 坏帧）
@@ -43,7 +63,7 @@
 
 ## 2026-09-10 · Trae Code 1.8.14 题库v2 + 收藏室 + 首页改版 + 宜模板扩充（分支 trae/v1.8.14-revamp）
 
-- 任务（用户要求）：①脑筋急转弯题库替换为优化后 v2（312 题 JSON）；②收藏改爱心交互 + 新增收藏室；③首页布局重做（换一句/抽签拆分为独立按钮，突出每日一言）；④「宜」模板明显扩充；⑤「灵光」功能与代码全量移除；⑥保持多页面架构，index 不回退为巨石页面。
+- 任务（用户要求）：①脑筋急转弯题库替换为优化后 v2（312 题 JSON）；②收藏改爱心交互 + 新增收藏室；③首页布局重做（换一句/抽签拆分为独立按钮，突出DAILY NOTE）；④「宜」模板明显扩充；⑤「灵光」功能与代码全量移除；⑥保持多页面架构，index 不回退为巨石页面。
 - 改动文件：
   - 新增：`src/pages/favorites/favorites.ux`（收藏室独立页：列表分页/详情长文分页/取消收藏/空态）、`src/common/utils/favorites.js`（三页共享收藏数据层）、`src/common/data/fortune_templates.js`（宜行动 64 条 + 五档签级 + 配色）、`data/brain-teaser-v2-report.json`（v2 替换审计报告）
   - 修改：`src/pages/index/index.ux`（首页改版 + 旧收藏迁移修复）、`src/pages/knowledge/knowledge.ux`（爱心收藏当前题目）、`src/common/utils/zodiac.js`（宜/签运模板迁出）、`src/manifest.json`（版本 1.8.14/10814 + 注册 pages/favorites）、`src/common/data/knowledge.js` 与 `data/final-input.json`/`data/knowledge-selected.json`（题库 v2 重新生成）、`tools/generate-quotes.mjs`（v2 元数据透传）、`tools/verify-game.mjs`（15+ 条新断言）
@@ -53,7 +73,7 @@
   - 模拟器：Trae_AGI（Vela Band 10 Pro，336×480，端口 5578 / gRPC 8578），冷重启后验收（规避 AOD 灰屏假阳性）；安装版本经 `manifest-watch.json` 核对为 1.8.14 / 10814
   - 源码快照：Workspace → `Temp\build-1.8.14-trae-20260910b`（独立无 .git 构建副本，npm test 全绿 → inline-modules 内联 → aiot build --enable-jsc）
   - 安装包：`dist/com.dailyquote.band10pro.debug.1.8.14.rpk`，1,068,749 B，SHA-256 `144E2F1532B63EFFE2765E3FFF5E43D1994FC9E4F303969B88559709754B212F`；verify-rpk 校验通过
-  - 用例与结果：36 项 ALL-PASS（验收脚本 `tools/capture-1814.mjs`，证据 `qa-1.8.14/` 38 张截图 + runtime.log + logcat.txt）——前置清理（UI 驱动删除历史遗留收藏至空态）→ 首页新布局 → 换一句/抽签独立生效（抽签签章红像素 +500）→ 收藏室空态（像素级）→ **迁移修复验证（清理后经首页往返收藏不复活，空态哈希一致 `4616f9d3`）** → 首页爱心点亮（实心 ♥ 红像素 +242）→ 知识页 v2 题库（阅读类自动展开/答题类查看答案自适应）+ 爱心收藏 → 收藏室列表 2 条按类型区分（知识大全 + 每日一言）→ 详情/返回列表（哈希一致）/删除（2→1）→ **持久化（am stop/start 重启后收藏室哈希级一致 `881085e6`，详情哈希亦一致）** → 删除最后一条回空态（像素级）→ 日历翻月 → 星象遮罩（宜文案渲染）+ 换星座 → 星座测试 30 题 → 结果页 4 页分页 → 退出测试 P1 回归（返回首页、应用仍在前台）；logcat onError/pagehook/invalid pagename 0 行
+  - 用例与结果：36 项 ALL-PASS（验收脚本 `tools/capture-1814.mjs`，证据 `qa-1.8.14/` 38 张截图 + runtime.log + logcat.txt）——前置清理（UI 驱动删除历史遗留收藏至空态）→ 首页新布局 → 换一句/抽签独立生效（抽签签章红像素 +500）→ 收藏室空态（像素级）→ **迁移修复验证（清理后经首页往返收藏不复活，空态哈希一致 `4616f9d3`）** → 首页爱心点亮（实心 ♥ 红像素 +242）→ 知识页 v2 题库（阅读类自动展开/答题类查看答案自适应）+ 爱心收藏 → 收藏室列表 2 条按类型区分（知识大全 + DAILY NOTE）→ 详情/返回列表（哈希一致）/删除（2→1）→ **持久化（am stop/start 重启后收藏室哈希级一致 `881085e6`，详情哈希亦一致）** → 删除最后一条回空态（像素级）→ 日历翻月 → 星象遮罩（宜文案渲染）+ 换星座 → 星座测试 30 题 → 结果页 4 页分页 → 退出测试 P1 回归（返回首页、应用仍在前台）；logcat onError/pagehook/invalid pagename 0 行
   - 环境备忘：①Vela `pm install` 升级保留应用存储、`pm uninstall` 亦不清 storage 且无 `pm clear`——验收"全新状态"需 UI 驱动清理（capture-1814.mjs 前置清理阶段）或专用实例；②验收脚本按钮坐标须按嵌套绝对定位精确计算（首页爱心在 quote-card(14,62) 内，绝对中心 (287,85)，初版坐标误击品牌区导致收藏未添加——已修正并全绿）；③npm test 前对同一文件的并行编辑竞争会丢修改（历史教训再现，第三次），编辑后必须核验落盘。
 - Release：https://github.com/2069581059k-eng/Everyday/releases/tag/v1.8.14（发布时为预发布，**2026-09-10 用户真机验证通过后转正**）
   - PR #5 经 merge commit `dc35e91` 合入 main；tag `v1.8.14` 指向实现提交 `236791a`
@@ -97,7 +117,7 @@
 
 - 分支 agent-knux-cleanup；实现提交见本条下方的"验收记录"对应源码快照（未提前提交，按门槛先生成快照构建并验收）。
 - 任务（用户要求）：把 1.8.4 起"复制而非迁移"的旧实现真正删掉，**不改任何 UI 与用户行为**。
-  - `index.ux` 删除：知识大全模板（`quiz-mask`/`quiz-panel`/`qa-mode`/`read-mode` 等）与 `startQuiz/renderQuiz/revealAnswer/renderDetail/nextDetail/prevQuestion/nextQuestion/closeQuiz`；月历模板（`month-mask` + 42 格）与 `openCalendar/closeCalendar/previousMonth/nextMonth/currentMonth/renderCalendar`；状态 `quizVisible`、`calCell/calToday/calColor ×42`、`riddle*/detail*/answerVisible/prev*/next*`；失效导入 `RIDDLES`、`mulberry32`、`isLegalHoliday`、`monthHolidayText` 与死字段 `monthYearText`/`yearDayText`/`calendarHolidayText`。首页仅保留 `openKnowledgePage()`、`openCalendarPage()` 入口 + 每日一言/抽签/收藏/统计/趣味星象。
+  - `index.ux` 删除：知识大全模板（`quiz-mask`/`quiz-panel`/`qa-mode`/`read-mode` 等）与 `startQuiz/renderQuiz/revealAnswer/renderDetail/nextDetail/prevQuestion/nextQuestion/closeQuiz`；月历模板（`month-mask` + 42 格）与 `openCalendar/closeCalendar/previousMonth/nextMonth/currentMonth/renderCalendar`；状态 `quizVisible`、`calCell/calToday/calColor ×42`、`riddle*/detail*/answerVisible/prev*/next*`；失效导入 `RIDDLES`、`mulberry32`、`isLegalHoliday`、`monthHolidayText` 与死字段 `monthYearText`/`yearDayText`/`calendarHolidayText`。首页仅保留 `openKnowledgePage()`、`openCalendarPage()` 入口 + DAILY NOTE/抽签/收藏/统计/趣味星象。
   - `zodiac-result.ux` 删除未使用的 `zodiacProfiles`/`zodiacQuestions`/`zodiacTemplates` 导入。
 - 体积（对比基准 1.8.11）：`pages/index/index.jsc` 830,684 → **261,750 B（−68.5%）**；`pages/zodiac-result/zodiac-result.jsc` 111,931 → **9,459 B（−91.5%）**；jsc 合计 1,632,392 → **960,986 B（−655.7 KB）**；RPK 1,341,503 → **1,060,781 B**。`knowledge/calendar/zodiac-test` 三个 jsc 未变（其内联数据仍被需要）。
 - `tools/verify-game.mjs`：原断言"主页面包含真实日期日历信息"依据的 `yearDayText` 属死字段，已按新架构改为校验首页日历卡片 `dayText`/`monthShortText`/`weekdayText`；另加 7 条迁移完整性防回退断言（首页不得再出现 quiz/month/calCell 等旧实现、结果页不得再导入题库模板数据）。

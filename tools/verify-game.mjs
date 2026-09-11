@@ -69,14 +69,14 @@ const uniqueRiddleQuestions = new Set(riddles.map((item) => item.question))
 const sourceKnowledgeByQuestion = new Map(sourceKnowledge.map((item) => [item.question, item]))
 const visibleAiMarker = /人工智能|(^|[^a-z])a[\s._-]*i([^a-z]|$)/iu
 
-// ---- 语录（每日一言）验收：保持原有约束不变 ----
+// ---- 语录（DAILY NOTE）验收：保持原有约束不变 ----
 check(manifest.package === 'com.dailyquote.band10pro', '使用中性独立包名')
 check(packageJson.version === manifest.versionName, 'package.json 与 manifest.json 版本号一致')
 check(!manifest.package.includes('konghongwei'), '包名未包含禁用名称')
 check(manifest.config.designWidth === 336, '设计宽度为 Band 10 Pro 的 336')
 check(manifest.features.some((item) => item.name === 'system.storage'), '声明本地存储能力')
 check(fs.existsSync(iconPath) && fs.statSync(iconPath).size > 1000, '独立应用图标存在')
-check(quoteCount === expectedQuoteCount, `内置恰好 ${expectedQuoteCount} 条真实离线每日一言`)
+check(quoteCount === expectedQuoteCount, `内置恰好 ${expectedQuoteCount} 条真实离线DAILY NOTE`)
 check(uniqueTexts.size === quoteCount, '语录全文无重复')
 check(uniqueUuids.size === quoteCount, `${expectedQuoteCount} 条语录的官方 UUID 均唯一`)
 check(selected.length === quoteCount, '运行时语录与可审计源数据数量一致')
@@ -252,7 +252,7 @@ check(!page.includes('riddleQuestion') && !page.includes('riddleExplain') && !pa
 check(!page.includes('month-mask') && !page.includes('calCell') && !page.includes('calToday') && !page.includes('calColor') && !page.includes('renderCalendar'), '首页已移除月历模板与 42 格状态/逻辑（迁移到日历页）')
 check(!page.includes('isLegalHoliday') && !page.includes('monthHolidayText'), '首页不再导入节假日工具（改由日历页负责）')
 check(!page.includes('openCalendar(') && !page.includes('previousMonth') && !page.includes('currentMonth'), '首页不再保留月历内部方法，仅留路由入口')
-check(page.includes('drawFortune') && page.includes('toggleFavorite') && page.includes('zodiac-mask') && page.includes('startZodiacTest'), '首页保留每日一言、抽签、收藏与趣味星象')
+check(page.includes('drawFortune') && page.includes('toggleFavorite') && page.includes('zodiac-mask') && page.includes('startZodiacTest'), '首页保留DAILY NOTE、抽签、收藏与趣味星象')
 check(!zodiacResult.includes('zodiacProfiles') && !zodiacResult.includes('zodiacQuestions') && !zodiacResult.includes('zodiacTemplates'), '结果页不再导入题库/模板数据（仅从本地存储读取已算好的 analysis）')
 
 // ---- 1.8.13 P2 清理：工具模块按消费者拆分，消除内联死代码（防回退） ----
@@ -269,7 +269,7 @@ check(brainTeasers.filter((item) => item.optimized === true).length === 107, 'v2
 check(brainTeasers.every((item) => item.qualityScore === undefined || (item.qualityScore >= 3 && item.qualityScore <= 5)), '优化条目质量评分在 3-5 区间')
 check(sourceKnowledge.filter((item) => item.category === '脑筋急转弯' && item.optimized === true).length === 107, '可审计清单与运行时优化条目一致')
 // 换一句 / 抽签 职能拆分
-check(page.includes('value="换一句"') && page.includes('changeQuote()'), '「换一句」独立按钮：仅切换每日一言')
+check(page.includes('value="换一句"') && page.includes('changeQuote()'), '「换一句」独立按钮：仅切换DAILY NOTE')
 check(page.includes('value="抽签"') && page.includes('drawFortune()'), '「抽签」独立按钮：仅触发签运')
 check(!page.includes('value="抽一签"'), '旧的「抽一签」混合按钮已移除')
 // 爱心收藏
@@ -323,4 +323,4 @@ if (quizHelpers) {
   check(yiOk, '多日采样：脑筋急转弯每日 10 题中优化条目稳定 ≥6（qualityScore 优先生效）')
 }
 
-console.log(`\n每日一言静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)  
+console.log(`\nDAILY NOTE静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)  

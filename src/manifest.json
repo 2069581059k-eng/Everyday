@@ -1,8 +1,8 @@
 {
   "package": "com.dailyquote.band10pro",
-  "name": "每日一言",
-  "versionName": "1.8.15",
-  "versionCode": 10815,
+  "name": "DAILY NOTE",
+  "versionName": "1.8.16",
+  "versionCode": 10816,
   "minPlatformVersion": 1000,
   "icon": "/common/icon.png",
   "simulationVersion": "default",

@@ -2,7 +2,7 @@
 // 存储键：daily_quote_favorites_v2，结构 { items: [...] }
 // 条目结构（快照式存储，收藏室页面无需再导入题库）：
 //   { id, type, text, sub, detail, savedDay }
-//   id: 'q'+语录下标 / 'k'+题干（同内容去重）；type: 每日一言 | 抽签 | 题目分类
+//   id: 'q'+语录下标 / 'k'+题干（同内容去重）；type: DAILY NOTE | 抽签 | 题目分类
 //   text: 主文案；sub: 来源/签级/分类；detail: 详情（知识类为 答案+解析，其余为空）
 
 const FAVORITES_KEY = 'daily_quote_favorites_v2'
@@ -11,7 +11,7 @@ function makeQuoteFavorite(quoteIndex, quote, fortuneLevel, fortuneTip) {
   const isFortune = !!fortuneLevel
   return {
     id: 'q' + quoteIndex,
-    type: isFortune ? '抽签' : '每日一言',
+    type: isFortune ? '抽签' : 'DAILY NOTE',
     text: quote.text,
     sub: isFortune ? fortuneLevel + ' · ' + fortuneTip : (quote.source || 'Daily Spark'),
     detail: isFortune ? '签运 · ' + fortuneLevel + '\n' + fortuneTip : '',
@@ -52,7 +52,7 @@ function migrateOldFavorites(oldIndexes, quotes) {
     const index = oldIndexes[i]
     const quote = quotes[index]
     if (!quote) continue
-    items.push({ id: 'q' + index, type: '每日一言', text: quote.text, sub: quote.source || 'Daily Spark', detail: '', savedDay: 0 })
+    items.push({ id: 'q' + index, type: 'DAILY NOTE', text: quote.text, sub: quote.source || 'Daily Spark', detail: '', savedDay: 0 })
   }
   return items
 }
