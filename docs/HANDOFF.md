@@ -1,5 +1,26 @@
 # 当前交接
 
+## 2026-09-11 · Trae Code 1.8.18 全局视觉改版（东方纸韵）+ 左缘回退箭头命中修复（分支 trae/v1.8.18-ui-redesign）
+
+- 任务：按用户五张设计稿全局改版（图标/UI/主题/组件）+ 星象分析星座形象采用用户提供素材（裁切 12 枚 96×96 透明底）；修复全链路验收发现的收藏详情页回退箭头点击无响应。
+- 基线：origin/main @ `b25946f`（含 1.8.17 正式发布记录，PR #8）；版本 1.8.18 / 10818。
+- 改动文件：
+  - 六页统一改版（设计令牌：纸底 #f2eee5 / 卡片 #fffdf8 / 主文字 #2b2723 / 次要 #7b7268 / 提示 #9a9186 / 品牌红 #a83b2d / 分割线 #ece3d6）：`src/pages/index|knowledge|calendar|favorites|zodiac-test|zodiac-result/*.ux`
+  - `src/common/assets/`（新入库 22 种素材）：导航图标 4、爱心双态 2、状态图标 2、主题插图 4（sun/mountain/bamboo/night）、星座插画 12（zodiac-*.png 按名映射至结果页 top3 卡）；`src/common/icon.png` 应用图标换新
+  - 统一页面头部：回退箭头 + 顶部分割线；**回退箭头外层 64px 透明命中层**（`.xx-back-hit`），六处（含星象遮罩）
+  - `src/pages/favorites/favorites.ux`：全屏面板下沉 top 12→56px（高 456→412，子元素上移 44px 视觉不变），与头部零重叠
+  - `tools/verify-game.mjs`：新增 1.8.18 断言（令牌/素材/头部/命中层/面板几何守卫）；`tools/capture-vvd.mjs`：回退统一点 (48,30)、爱心 (289,95)、点击变化自动重试；`tools/diag-tap.mjs` ~ `diag7-tap.mjs`（排障证据链留存）
+- **修复 P1（收藏详情页回退箭头点击无响应）**：7 轮递进诊断——层叠顺序调整无效 → 面板几何下沉无效 → 逐点扫查发现 x≥45 可点、x<40 全灭 → 根因：**屏幕左缘 x<40 触摸抖动死区**（模拟器确定性复现，真机边缘手势同风险），40px 箭头 left:10 有效区落入死区。修复 = 面板下沉（零重叠）+ 64px 透明命中层（点击区右移跨死区，视觉不变）；全部二级页同步修复防同类。
+- **验收记录（按模拟器验收门槛）**：
+  - 验收时间：2026-09-11 15:48–15:57（GMT+8）
+  - 模拟器：Trae_AGI（Vela Band 10 Pro，336×480，端口 5578 / gRPC 8578，adb serial **emulator-5578**）
+  - ⚠️ capture-vvd.mjs 需显式注入 `VELA_SERIAL=emulator-5578` 与 `WB_VELA_AVD=Trae_AGI`（脚本默认 emulator-5554 / WorkBuddy_Band10Pro 会命中 Temp 下 WorkBuddy 残留 ini 的失效 gRPC 8580 → connect deadline）
+  - 源码快照：`Temp\build-1.8.18-trae-20260911`（verify-game 全绿 → inline → aiot build --enable-jsc build success 3973ms；node_modules 复用快照；构建尾清理 .gitignore EBUSY 报错沿例忽略，产物已生成）
+  - 安装包：`dist/com.dailyquote.band10pro.debug.1.8.18.rpk`，1,059,874 B，SHA-256 `B3C0C91695C6E173A39D789653D6E6C764C1A5852B31BD5E8F8DF3C19CADA700`；verify-rpk 通过
+  - 用例与结果：ALL-PASS（capture-vvd.mjs，证据 `qa-emulator/` 13 张截图 + runtime.log）——安装版本核验 1.8.18/10818 → 首页改版（令牌/四宫格图标/红爱心）→ 换一句 → 星象遮罩/星座切换 → 遮罩回退 → 日历（中秋 25-27 标注）→ 知识页（kvdb 进度持久化在 50/50 末题，「已是最后一题」边界正常，非缺陷）→ 收藏室（筛选栏/2 条/分页）→ DAILY NOTE 详情居中大字双布局 → 星象答题 30 题 → 结果页星座插画（白羊/金牛/摩羯 top3）渲染正确；**6 次回退箭头点击全部生效（0 重试警告）**
+- 发布：PR #9 合入 main（merge commit `da83a94`），tag `v1.8.18` → 实现提交 `1921c40`，Release 8 附件齐全（RPK/BIN 1,059,874 B `B3C0C916…CADA700`；源码包 2,320,891 B `02A9F295…00E5`）：https://github.com/2069581059k-eng/DAILY-NOTE/releases/tag/v1.8.18
+- **真机未验**：左缘手势与 64px 命中层建议真机复核（尤其收藏详情回退、星象遮罩回退）。
+
 ## 2026-09-11 · Trae Code 1.8.17 右滑重构 + 收藏室详情改版 + 知识页点击翻页（分支 trae/v1.8.17-ux）
 
 - 任务（用户四项需求 + 交互重构）：①收藏室长文正文扩容、去重复「答案：」前缀；②每日一言（无正文）详情移除正文框、居中显示；③小米手环右滑不再直接退出——首页二次确认退出、其他页面右滑返回上一级；④知识大全移除「继续」按钮，点击正文翻页。
