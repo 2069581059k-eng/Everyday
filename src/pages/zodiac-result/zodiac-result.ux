@@ -76,29 +76,11 @@
 <script>
 import router from '@system.router'
 import storage from '@system.storage'
+// 1.8.19：星座插画映射收敛至共享模块（与首页星象遮罩共用）
+import { zodiacImg } from '../../common/utils/zodiac.js'
 
 const STORAGE_KEY = 'zodiac_profile_result_v1'
 const PER_PAGE = 3
-
-// 1.8.18：星座形象采用设计稿插画（按星座名映射本地素材）
-const ZODIAC_IMG = {
-  '白羊座': '/common/assets/zodiac-aries.png',
-  '金牛座': '/common/assets/zodiac-taurus.png',
-  '双子座': '/common/assets/zodiac-gemini.png',
-  '巨蟹座': '/common/assets/zodiac-cancer.png',
-  '狮子座': '/common/assets/zodiac-leo.png',
-  '处女座': '/common/assets/zodiac-virgo.png',
-  '天秤座': '/common/assets/zodiac-libra.png',
-  '天蝎座': '/common/assets/zodiac-scorpio.png',
-  '射手座': '/common/assets/zodiac-sagittarius.png',
-  '摩羯座': '/common/assets/zodiac-capricorn.png',
-  '水瓶座': '/common/assets/zodiac-aquarius.png',
-  '双鱼座': '/common/assets/zodiac-pisces.png'
-}
-
-function zodiacImg(name) {
-  return ZODIAC_IMG[name] || ''
-}
 
 function dimName(key) {
   const map = {

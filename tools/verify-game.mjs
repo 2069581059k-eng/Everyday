@@ -311,7 +311,7 @@ check(page.includes('state.fortune') && page.includes('fortuneHistory'), '签运
 check(!page.includes('this.fortuneDrawn = false'), '换一句不再清空今日签（签运独立于语录持久化）')
 check(page.includes('state.fortuneHistory.length > 16'), '签运历史最多保留 16 条')
 check(page.includes('item.day !== today.dayNumber'), '同日重抽仅保留最新一条历史')
-check(page.includes('maskFortuneText') && page.includes('maskHistoryText') && page.includes('今日未抽签'), '星象遮罩展示今日签与近签历史（未抽时提示）')
+check(!page.includes('maskFortuneText') && !page.includes('zodiac-fortune') && !page.includes('zodiac-history'), '星象遮罩已移除今日签与近签显示（1.8.19，签运数据仍持久化仅不展示）')
 // qualityScore 优先选题（脑筋急转弯每日 10 题中 ≥6 条 v2 优化条目）
 check(knowledgeUtils.includes('function pickDaily(') && knowledgeUtils.includes('preferred: 6'), '脑筋急转弯每日 10 题优先含 6 条 v2 优化条目（pickDaily）')
 check(knowledgePage.includes('quizSchema: 181'), '知识页 quizSchema 升至 181（选题算法变化后升级重置进度）')
@@ -345,6 +345,16 @@ check(favoritesPage.includes('fav-detail-center') && favoritesPage.includes('fav
 check(favoritesPage.includes('fav-detail-doc') && favoritesPage.includes('fav-detail-box'), '有正文类型保持标题+分页正文框布局')
 check(favoritesUtils.includes("const isQa = riddle.displayMode === 'qa'"), '阅读类收藏详情直接用正文（不再拼接「答案：」前缀）')
 
+// ---- 1.8.19 收藏室交互对齐知识页 + 正文清洗 + 星象遮罩瘦身 ----
+check(!favoritesPage.includes('fav-detail-next') && !favoritesPage.includes("'继续 '") && !favoritesPage.includes('detailNextLabel'), '收藏室「继续」按钮已移除（1.8.19）')
+check(favoritesPage.includes('fav-detail-box" onclick="nextDetailChunk"'), '收藏室点击正文翻页（与知识页一致）')
+check(favoritesPage.includes('fav-detail-page') && favoritesPage.includes('detailPageText'), '收藏室保留纯文本页码指示（x/y）')
+check(favoritesPage.includes('function cleanDetailBody(') && favoritesPage.includes('答案[:：]') && favoritesPage.includes('解析[:：]'), '收藏室详情正文剥离开头「答案：」前缀与旧存档首行重复标题')
+check(favoritesPage.includes(' · 已收录$'), '收藏室详情隐藏「分类 · 已收录」冗余副标题（兼容旧存档）')
+check(favoritesUtils.includes("sub: ''"), '知识类新收藏不再写入「已收录」副标题')
+check(favoritesPage.includes('.fav-detail-box { position: absolute; left: 0; top: 108px; width: 312px; height: 226px;'), '收藏室详情正文框扩容至 226px（副标题让位，每日一言居中布局不变）')
+check(page.includes('.exit-hint { position: absolute; left: 38px; top: 140px;'), '右滑退出提示移至屏幕中上方（1.8.19，避开底部手势热区）')
+
 // ---- 1.8.18 全局 UI 改版：东方美学设计令牌 + 设计稿图片素材 + 统一页面头部 ----
 const redesignedPages = [
   ['首页', page], ['知识页', knowledgePage], ['日历页', calendarPage],
@@ -370,12 +380,14 @@ for (const name of assetRefs) {
   check(fs.existsSync(path.join(root, 'src', 'common', 'assets', name)), `设计稿素材已入库：src/common/assets/${name}`)
 }
 check(page.includes('/common/assets/ic-nav-knowledge.png') && page.includes('/common/assets/ic-nav-calendar.png') && page.includes('/common/assets/ic-nav-zodiac.png') && page.includes('/common/assets/ic-nav-favorites.png'), '首页四宫格功能卡全部使用设计稿导航图标')
-check(knowledgePage.includes('/common/assets/ill-mountain.png') && favoritesPage.includes('/common/assets/ill-bamboo.png') && page.includes('/common/assets/ill-sun.png'), '主题插图应用于知识页/收藏室空态/星象遮罩')
+check(knowledgePage.includes('/common/assets/ill-mountain.png') && favoritesPage.includes('/common/assets/ill-bamboo.png'), '主题插图应用于知识页/收藏室空态')
 // 星象分析：12 星座设计稿插画（按星座名映射本地素材，透明底 96×96）
 const zodiacAssetKeys = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces']
 for (const key of zodiacAssetKeys) {
   check(fs.existsSync(path.join(root, 'src', 'common', 'assets', `zodiac-${key}.png`)), `星座插画已入库：zodiac-${key}.png`)
 }
-check(zodiacResultPage.includes('zr-z-img') && (zodiacResultPage.match(/\/common\/assets\/zodiac-/gu) || []).length === 12, '结果页 top3 星座卡使用设计稿星座插画（12 枚按名映射）')
+check((zodiacUtils.match(/\/common\/assets\/zodiac-/gu) || []).length === 12 && zodiacUtils.includes('function zodiacImg(') && zodiacUtils.includes('ZODIAC_IMG, zodiacImg }'), '星座插画按名映射表收敛至共享模块 zodiac.js（12 枚）')
+check(zodiacResultPage.includes("import { zodiacImg } from '../../common/utils/zodiac.js'") && !zodiacResultPage.includes('const ZODIAC_IMG') && zodiacResultPage.includes('zr-z-img'), '结果页 top3 星座卡复用共享星座插画映射')
+check(page.includes('class="zodiac-ill" src="{{zodiacIll}}"') && page.includes('this.zodiacIll = zodiacImg(zodiac.name)') && page.includes("import { ZODIACS, zodiacForDate, zodiacImg }"), '星象遮罩插图直接显示当前星座素材（1.8.19，切换联动刷新）')
 
 console.log(`\nDAILY NOTE静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)

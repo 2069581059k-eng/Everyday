@@ -62,9 +62,9 @@
           <text class="fav-detail-text">{{detailText}}</text>
           <text class="fav-detail-sub">{{detailSub}}</text>
 
-          <div class="fav-detail-box">
+          <div class="fav-detail-box" onclick="nextDetailChunk">
             <text class="fav-detail-body">{{detailBody}}</text>
-            <input class="fav-detail-next" show="{{detailNextVisible}}" type="button" value="{{detailNextLabel}}" onclick="nextDetailChunk" />
+            <text class="fav-detail-page" show="{{detailNextVisible}}">{{detailPageText}}</text>
           </div>
         </div>
 
@@ -90,7 +90,7 @@ import brightness from '@system.brightness'
 import { FAVORITES_KEY } from '../../common/utils/favorites.js'
 
 const PAGE_SIZE = 4
-// 1.8.17：正文区扩大（h190，16px/22lh×8 行×16 字=128 字容量），分页粒度 24 → 120
+// 1.8.19：正文框扩至 h226（body h186，16px/22lh×8 行×18 字=144 字容量），分页粒度 120 保持安全余量
 const CHUNK_CHARS = 120
 
 let favoritesItems = []
@@ -106,6 +106,15 @@ function applyFilter(mode) {
   else if (mode === 2) filteredItems = favoritesItems.filter(function (item) { return item.type === '抽签' })
   else if (mode === 3) filteredItems = favoritesItems.filter(function (item) { return item.type !== 'DAILY NOTE' && item.type !== '抽签' })
   else filteredItems = favoritesItems.slice()
+}
+
+// 1.8.19：详情正文清洗——①剥离开头「答案：」前缀（答题类存档与旧版阅读类存档均有）；
+// ②旧版阅读类存档正文首行重复标题（「答案：标题\n解析：正文」结构），剥到正文本体；
+// ③剥离后若仍以「解析：」开头一并去掉
+function cleanDetailBody(detail, title) {
+  let body = String(detail || '').replace(/^答案[:：]\s*/, '')
+  if (title && body.indexOf(title) === 0) body = body.slice(title.length).replace(/^[\s\n]+/, '')
+  return body.replace(/^解析[:：]\s*/, '')
 }
 
 export default {
@@ -139,7 +148,7 @@ export default {
     detailHasBody: false,
     detailBody: '',
     detailNextVisible: false,
-    detailNextLabel: '',
+    detailPageText: '',
   },
 
   onInit() {
@@ -268,9 +277,10 @@ export default {
     this.detailVisible = true
     this.detailBadge = item.type
     this.detailText = item.text
-    this.detailSub = item.sub
+    // 1.8.19：知识类「分类 · 已收录」副标题与角标重复（鬼故事同一界面出现两次），隐藏；兼容旧存档
+    this.detailSub = / · 已收录$/.test(item.sub || '') ? '' : item.sub
     detailChunks = []
-    const chars = Array.from(String(item.detail || ''))
+    const chars = Array.from(cleanDetailBody(item.detail, item.text))
     for (let i = 0; i < chars.length; i += CHUNK_CHARS) detailChunks.push(chars.slice(i, i + CHUNK_CHARS).join(''))
     // 1.8.17：无正文类型（每日一言等）走居中大字布局，不渲染正文框
     this.detailHasBody = chars.length > 0
@@ -282,7 +292,7 @@ export default {
   renderDetailChunk() {
     this.detailBody = detailChunks[detailChunkIndex] || ''
     this.detailNextVisible = detailChunks.length > 1
-    this.detailNextLabel = '继续 ' + (detailChunkIndex + 1) + '/' + detailChunks.length
+    this.detailPageText = (detailChunkIndex + 1) + '/' + detailChunks.length
   },
 
   nextDetailChunk() {
@@ -379,15 +389,15 @@ export default {
 .fav-empty-hint { position: absolute; left: 16px; top: 212px; width: 280px; height: 18px; line-height: 18px; color: #9a9186; font-size: 13px; text-align: center; }
 .fav-empty-home { position: absolute; left: 76px; top: 266px; width: 160px; height: 44px; border-radius: 6px; background-color: #a83b2d; color: #fffaf2; font-size: 16px; font-weight: bold; }
 
-/* 详情视图 */
+/* 详情视图（1.8.19 重排：副标题让位、正文框扩容至 226px，「继续」按钮移除改点击正文翻页） */
 .fav-detail-view { position: absolute; left: 0; top: 0; width: 312px; height: 412px; }
 .fav-detail-kicker { position: absolute; left: 8px; top: 8px; width: 200px; height: 18px; line-height: 18px; color: #a83b2d; font-size: 13px; font-weight: bold; letter-spacing: 2px; }
 .fav-detail-doc { position: absolute; left: 0; top: 0; width: 312px; height: 412px; }
-.fav-detail-text { position: absolute; left: 8px; top: 32px; width: 296px; height: 74px; color: #2b2723; font-size: 19px; font-weight: bold; line-height: 25px; }
-.fav-detail-sub { position: absolute; left: 8px; top: 108px; width: 296px; height: 14px; line-height: 14px; color: #9a9186; font-size: 12px; }
-.fav-detail-box { position: absolute; left: 0; top: 130px; width: 312px; height: 186px; border-width: 1px; border-color: #ece3d6; border-radius: 8px; background-color: #fffdf8; }
-.fav-detail-body { position: absolute; left: 12px; top: 10px; width: 288px; height: 130px; color: #2b2723; font-size: 16px; line-height: 22px; }
-.fav-detail-next { position: absolute; left: 66px; top: 146px; width: 180px; height: 28px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #f2eee5; color: #7b7268; font-size: 13px; }
+.fav-detail-text { position: absolute; left: 8px; top: 30px; width: 296px; height: 54px; color: #2b2723; font-size: 19px; font-weight: bold; line-height: 25px; }
+.fav-detail-sub { position: absolute; left: 8px; top: 86px; width: 296px; height: 14px; line-height: 14px; color: #9a9186; font-size: 12px; }
+.fav-detail-box { position: absolute; left: 0; top: 108px; width: 312px; height: 226px; border-width: 1px; border-color: #ece3d6; border-radius: 8px; background-color: #fffdf8; }
+.fav-detail-body { position: absolute; left: 12px; top: 12px; width: 288px; height: 186px; color: #2b2723; font-size: 16px; line-height: 22px; }
+.fav-detail-page { position: absolute; left: 12px; top: 202px; width: 288px; height: 14px; line-height: 14px; color: #9a9186; font-size: 11px; text-align: right; }
 
 .fav-detail-center { position: absolute; left: 0; top: 0; width: 312px; height: 412px; }
 .fav-center-text { position: absolute; left: 20px; top: 96px; width: 272px; height: 130px; color: #2b2723; font-size: 21px; font-weight: bold; line-height: 30px; text-align: center; }

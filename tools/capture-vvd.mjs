@@ -191,7 +191,7 @@ async function main() {
     await clickUntilChange(client, 48, 30)
     await clickUntilChange(client, 48, 30)
     await clickUntilChange(client, 246, 355)
-    await clickUntilChange(client, 168, 388)
+    await clickUntilChange(client, 168, 362)
     await screenshot(client, '11-zodiac-test.png')
     await clickUntilChange(client, 168, 218)
     await screenshot(client, '12-zodiac-test-next.png')
