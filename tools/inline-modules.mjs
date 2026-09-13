@@ -19,10 +19,10 @@ function resolveModule(fromFile, spec) {
 }
 
 // 计算模块内联片段：返回 { code } 供嵌入页面 script（同一作用域）。
-function inlineModule(modPath, defaultName) {
+function inlineModule(modPath, defaultName, seen) {
   let src = fs.readFileSync(modPath, 'utf8').replace(/\r\n/g, '\n')
   // 该模块自身的 import 先内联（递归）
-  src = inlineImports(src, modPath)
+  src = inlineImports(src, modPath, seen)
   // default 导出：转为 const <name> = <expr>
   if (defaultName) {
     if (/^export default\s/m.test(src)) {
@@ -37,7 +37,7 @@ function inlineModule(modPath, defaultName) {
   return src.trim()
 }
 
-function inlineImports(content, fromFile) {
+function inlineImports(content, fromFile, seen) {
   const re = /^import\s+(?:(\w+)\s+from\s+)?(?:\{([\s\S]*?)\}\s+from\s+)?['"]([^'"]+)['"];?\s*$/gm
   let out = ''
   let last = 0
@@ -49,8 +49,15 @@ function inlineImports(content, fromFile) {
     const spec = m[3]
     const modPath = resolveModule(fromFile, spec)
     if (modPath) {
-      const code = inlineModule(modPath, defaultName)
-      out += '\n// [bundled:' + path.basename(modPath) + ']\n' + code + '\n'
+      // 1.8.23：同一页面内同一模块经多条 import 链引入时只内联一次，
+      // 否则顶层 const（如 HOLIDAYS_2026）重复声明导致 UxLoader 解析失败
+      if (seen.has(modPath)) {
+        out += '\n// [bundled-dedup:' + path.basename(modPath) + ']\n'
+      } else {
+        seen.add(modPath)
+        const code = inlineModule(modPath, defaultName, seen)
+        out += '\n// [bundled:' + path.basename(modPath) + ']\n' + code + '\n'
+      }
     } else {
       out += m[0] // 非本项目模块（@system 等）保留原样
     }
@@ -64,7 +71,7 @@ function processPage(pageFile) {
   let src = fs.readFileSync(pageFile, 'utf8').replace(/\r\n/g, '\n')
   const scriptMatch = src.match(/(<script>)([\s\S]*?)(<\/script>)/)
   if (!scriptMatch) return
-  const next = inlineImports(scriptMatch[2], pageFile)
+  const next = inlineImports(scriptMatch[2], pageFile, new Set())
   if (next !== scriptMatch[2]) {
     fs.writeFileSync(pageFile, src.replace(scriptMatch[2], next))
     console.log('inlined', path.relative(root, pageFile))

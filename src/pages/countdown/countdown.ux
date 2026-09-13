@@ -1,0 +1,306 @@
+<template>
+  <div class="cd-mask" onswipe="handleSwipe">
+    <div class="cd-back-hit" onclick="handleBack"><text class="cd-back">‹</text></div>
+    <text class="cd-title">倒数日</text>
+    <div class="header-line"></div>
+
+    <div class="cd-list" show="{{listVisible}}">
+      <text class="cd-sec">最近节日</text>
+      <div class="cd-b-card" show="{{builtinVisible}}">
+        <text class="cd-b-name">{{bName}}</text>
+        <text class="cd-b-date">{{bDate}}</text>
+        <text class="cd-b-days">{{bDays}}</text>
+      </div>
+      <text class="cd-b-empty" show="{{!builtinVisible}}">今年的法定节日已过完</text>
+
+      <text class="cd-sec cd-sec-2">我的倒数 {{customCountText}}/5</text>
+
+      <div class="cd-slot cd-slot-1" show="{{slotVisible1}}">
+        <text class="cd-s-name">{{slotName1}}</text>
+        <text class="cd-s-date">{{slotDate1}}</text>
+        <text class="cd-s-days">{{slotDays1}}</text>
+        <input class="cd-s-del" type="button" value="删除" onclick="removeItem(0)" />
+      </div>
+      <div class="cd-slot cd-slot-2" show="{{slotVisible2}}">
+        <text class="cd-s-name">{{slotName2}}</text>
+        <text class="cd-s-date">{{slotDate2}}</text>
+        <text class="cd-s-days">{{slotDays2}}</text>
+        <input class="cd-s-del" type="button" value="删除" onclick="removeItem(1)" />
+      </div>
+      <div class="cd-slot cd-slot-3" show="{{slotVisible3}}">
+        <text class="cd-s-name">{{slotName3}}</text>
+        <text class="cd-s-date">{{slotDate3}}</text>
+        <text class="cd-s-days">{{slotDays3}}</text>
+        <input class="cd-s-del" type="button" value="删除" onclick="removeItem(2)" />
+      </div>
+      <div class="cd-slot cd-slot-4" show="{{slotVisible4}}">
+        <text class="cd-s-name">{{slotName4}}</text>
+        <text class="cd-s-date">{{slotDate4}}</text>
+        <text class="cd-s-days">{{slotDays4}}</text>
+        <input class="cd-s-del" type="button" value="删除" onclick="removeItem(3)" />
+      </div>
+      <div class="cd-slot cd-slot-5" show="{{slotVisible5}}">
+        <text class="cd-s-name">{{slotName5}}</text>
+        <text class="cd-s-date">{{slotDate5}}</text>
+        <text class="cd-s-days">{{slotDays5}}</text>
+        <input class="cd-s-del" type="button" value="删除" onclick="removeItem(4)" />
+      </div>
+      <text class="cd-empty" show="{{emptyVisible}}">还没有倒数日，点击下方按钮添加</text>
+
+      <input class="cd-add-btn" show="{{!fullVisible}}" type="button" value="+ 添加倒数日" onclick="openAdd" />
+      <input class="cd-add-btn cd-add-full" show="{{fullVisible}}" type="button" value="已达上限 5 条" />
+    </div>
+
+    <div class="cd-add" show="{{addVisible}}">
+      <text class="cd-a-title">添加倒数日</text>
+
+      <text class="cd-a-label cd-a-label-1">名称</text>
+      <input class="cd-a-step" style="left: 88px; top: 108px;" type="button" value="‹" onclick="stepName(-1)" />
+      <text class="cd-a-value" style="top: 108px;">{{addNameText}}</text>
+      <input class="cd-a-step" style="left: 240px; top: 108px;" type="button" value="›" onclick="stepName(1)" />
+
+      <text class="cd-a-label cd-a-label-2">月份</text>
+      <input class="cd-a-step" style="left: 88px; top: 172px;" type="button" value="‹" onclick="stepMonth(-1)" />
+      <text class="cd-a-value" style="top: 172px;">{{addMonthText}}</text>
+      <input class="cd-a-step" style="left: 240px; top: 172px;" type="button" value="›" onclick="stepMonth(1)" />
+
+      <text class="cd-a-label cd-a-label-3">日期</text>
+      <input class="cd-a-step" style="left: 88px; top: 236px;" type="button" value="‹" onclick="stepDay(-1)" />
+      <text class="cd-a-value" style="top: 236px;">{{addDayText}}</text>
+      <input class="cd-a-step" style="left: 240px; top: 236px;" type="button" value="›" onclick="stepDay(1)" />
+
+      <text class="cd-a-label cd-a-label-4">重复</text>
+      <input class="cd-a-step" style="left: 88px; top: 300px;" type="button" value="‹" onclick="stepRepeat(-1)" />
+      <text class="cd-a-value" style="top: 300px;">{{addRepeatText}}</text>
+      <input class="cd-a-step" style="left: 240px; top: 300px;" type="button" value="›" onclick="stepRepeat(1)" />
+
+      <input class="cd-a-save" type="button" value="保存" onclick="saveAdd" />
+      <input class="cd-a-cancel" type="button" value="取消" onclick="closeAdd" />
+    </div>
+  </div>
+</template>
+
+<script>
+import router from '@system.router'
+import storage from '@system.storage'
+import vibrator from '@system.vibrator'
+import { dayInfo } from '../../common/utils/date.js'
+import { COUNTDOWN_KEY, PRESET_NAMES, MAX_CUSTOM, clampDay, withCountdown, builtinFestivals, daysText } from '../../common/utils/countdown.js'
+
+const today = dayInfo(new Date())
+
+let customItems = []
+let currentList = []
+// 添加面板的步进状态（模块级，避免污染渲染数据）
+let addName = 0
+let addMonth = today.month
+let addDay = today.date
+let addYearly = true
+
+export default {
+  // AIoT/Vela 页面数据必须放在 private 中，顶层属性不会被当作模板数据源
+  private: {
+    listVisible: true,
+    addVisible: false,
+    builtinVisible: false,
+    bName: '',
+    bDate: '',
+    bDays: '',
+    customCountText: '0',
+    emptyVisible: true,
+    fullVisible: false,
+    slotVisible1: false, slotName1: '', slotDate1: '', slotDays1: '',
+    slotVisible2: false, slotName2: '', slotDate2: '', slotDays2: '',
+    slotVisible3: false, slotName3: '', slotDate3: '', slotDays3: '',
+    slotVisible4: false, slotName4: '', slotDate4: '', slotDays4: '',
+    slotVisible5: false, slotName5: '', slotDate5: '', slotDays5: '',
+    addNameText: PRESET_NAMES[0],
+    addMonthText: today.month + '月',
+    addDayText: today.date + '日',
+    addRepeatText: '每年重复',
+  },
+
+  onInit() {
+    this.loadEvents()
+  },
+
+  loadEvents() {
+    const page = this
+    try {
+      storage.get({
+        key: COUNTDOWN_KEY,
+        default: '',
+        success(data) {
+          if (data) try {
+            const saved = JSON.parse(data)
+            if (saved && Array.isArray(saved.items)) customItems = saved.items
+          } catch (error) {
+            console.log('倒数日存档解析失败: ' + error)
+          }
+          page.renderList()
+        },
+        fail() { page.renderList() }
+      })
+    } catch (error) {
+      console.log('存储模块不可用: ' + error)
+      this.renderList()
+    }
+  },
+
+  saveEvents() {
+    try {
+      storage.set({
+        key: COUNTDOWN_KEY,
+        value: JSON.stringify({ items: customItems }),
+        fail(data, code) { console.log('倒数日存档保存失败: ' + code) }
+      })
+    } catch (error) {
+      console.log('存储模块不可用: ' + error)
+    }
+  },
+
+  renderList() {
+    const builtin = builtinFestivals(today)
+    const nearest = builtin[0]
+    this.builtinVisible = !!nearest
+    if (nearest) {
+      this.bName = nearest.name
+      this.bDate = nearest.month + '月' + nearest.day + '日 · 法定节日'
+      this.bDays = daysText(nearest.days)
+    }
+    currentList = withCountdown(customItems, today)
+    for (let i = 0; i < MAX_CUSTOM; i++) {
+      const n = i + 1
+      const item = currentList[i]
+      this['slotVisible' + n] = !!item
+      if (item) {
+        this['slotName' + n] = item.name
+        this['slotDate' + n] = item.month + '月' + item.day + '日 · ' + (item.yearly ? '每年' : '一次')
+        this['slotDays' + n] = item.days === 0 ? '今天' : item.days + ' 天'
+      }
+    }
+    this.customCountText = String(customItems.length)
+    this.emptyVisible = customItems.length === 0
+    this.fullVisible = customItems.length >= MAX_CUSTOM
+  },
+
+  openAdd() {
+    if (customItems.length >= MAX_CUSTOM) return
+    addName = 0
+    addMonth = today.month
+    addDay = today.date
+    addYearly = true
+    this.addNameText = PRESET_NAMES[addName]
+    this.addMonthText = addMonth + '月'
+    this.addDayText = addDay + '日'
+    this.addRepeatText = '每年重复'
+    this.addVisible = true
+    this.listVisible = false
+  },
+
+  closeAdd() {
+    this.addVisible = false
+    this.listVisible = true
+  },
+
+  stepName(dir) {
+    addName = (addName + dir + PRESET_NAMES.length) % PRESET_NAMES.length
+    this.addNameText = PRESET_NAMES[addName]
+  },
+
+  stepMonth(dir) {
+    addMonth = ((addMonth - 1 + dir + 12) % 12) + 1
+    this.addMonthText = addMonth + '月'
+  },
+
+  stepDay(dir) {
+    addDay = ((addDay - 1 + dir + 31) % 31) + 1
+    this.addDayText = addDay + '日'
+  },
+
+  stepRepeat() {
+    addYearly = !addYearly
+    this.addRepeatText = addYearly ? '每年重复' : '仅一次'
+  },
+
+  saveAdd() {
+    if (customItems.length >= MAX_CUSTOM) return
+    customItems.push({
+      id: 'c' + Date.now(),
+      name: PRESET_NAMES[addName],
+      month: addMonth,
+      day: clampDay(today.year, addMonth, addDay),
+      yearly: addYearly
+    })
+    this.saveEvents()
+    this.renderList()
+    this.closeAdd()
+    this.pulse()
+  },
+
+  removeItem(index) {
+    const item = currentList[index]
+    if (!item) return
+    // 槽位下标映射回全量列表按 id 删除（不误删同名条目）
+    customItems = customItems.filter((entry) => entry.id !== item.id)
+    this.saveEvents()
+    this.renderList()
+    this.pulse()
+  },
+
+  pulse() {
+    try { vibrator.vibrate({ mode: 'short' }) } catch (error) { console.log('vibrate unavailable: ' + error) }
+  },
+
+  handleBack() {
+    if (this.addVisible) { this.closeAdd(); return }
+    router.replace({ uri: 'pages/calendar' })
+  },
+
+  // 右滑返回上一级（添加面板→列表，列表→日历页）
+  handleSwipe(event) {
+    if (event && event.direction === 'right') this.handleBack()
+  }
+}
+</script>
+
+<style>
+/* 1.8.18 设计令牌：bg #f2eee5 / card #fffdf8 / 主文字 #2b2723 / 次要 #7b7268 / 提示 #9a9186 / 品牌红 #a83b2d / 分割线 #ece3d6 */
+.cd-mask { position: absolute; left: 0; top: 0; width: 336px; height: 480px; background-color: #f2eee5; }
+/* 回退箭头透明命中层加宽至 64px（规避左缘触摸死区，视觉不变） */
+.cd-back-hit { position: absolute; left: 10px; top: 10px; width: 64px; height: 40px; }
+.cd-back { width: 40px; height: 40px; line-height: 40px; color: #2b2723; font-size: 26px; text-align: center; }
+.cd-title { position: absolute; left: 56px; top: 17px; width: 160px; height: 22px; line-height: 22px; color: #2b2723; font-size: 18px; font-weight: bold; }
+.header-line { position: absolute; left: 16px; top: 56px; width: 304px; height: 1px; background-color: #ece3d6; }
+
+/* 列表容器必须显式定位尺寸（1.8.23 修复：无样式 div 高度塌缩为 0 会裁剪内部全部绝对定位子元素，整页空白） */
+.cd-list { position: absolute; left: 0; top: 56px; width: 336px; height: 424px; }
+
+.cd-sec { position: absolute; left: 16px; top: 10px; width: 200px; height: 18px; line-height: 18px; font-size: 13px; color: #9a9186; }
+.cd-sec-2 { top: 108px; }
+.cd-b-card { position: absolute; left: 16px; top: 32px; width: 304px; height: 60px; border-width: 1px; border-color: #ece3d6; border-radius: 8px; background-color: #fffdf8; }
+.cd-b-name { position: absolute; left: 14px; top: 10px; width: 160px; height: 24px; line-height: 24px; font-size: 17px; font-weight: bold; color: #2b2723; }
+.cd-b-date { position: absolute; left: 14px; top: 36px; width: 180px; height: 16px; line-height: 16px; font-size: 12px; color: #9a9186; }
+.cd-b-days { position: absolute; left: 194px; top: 10px; width: 100px; height: 40px; line-height: 40px; font-size: 19px; font-weight: bold; color: #a83b2d; text-align: right; }
+.cd-b-empty { position: absolute; left: 16px; top: 40px; width: 304px; height: 30px; line-height: 30px; font-size: 13px; color: #9a9186; text-align: center; }
+
+.cd-slot { position: absolute; left: 16px; width: 304px; height: 44px; border-width: 1px; border-color: #ece3d6; border-radius: 8px; background-color: #fffdf8; }
+.cd-slot-1 { top: 130px; } .cd-slot-2 { top: 178px; } .cd-slot-3 { top: 226px; } .cd-slot-4 { top: 274px; } .cd-slot-5 { top: 322px; }
+.cd-s-name { position: absolute; left: 12px; top: 5px; width: 130px; height: 20px; line-height: 20px; font-size: 15px; font-weight: bold; color: #2b2723; }
+.cd-s-date { position: absolute; left: 12px; top: 25px; width: 160px; height: 15px; line-height: 15px; font-size: 11px; color: #9a9186; }
+.cd-s-days { position: absolute; left: 176px; top: 10px; width: 80px; height: 24px; line-height: 24px; font-size: 16px; font-weight: bold; color: #a83b2d; text-align: right; }
+.cd-s-del { position: absolute; left: 262px; top: 7px; width: 44px; height: 30px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fffdf8; color: #a83b2d; font-size: 12px; }
+.cd-empty { position: absolute; left: 16px; top: 134px; width: 304px; height: 30px; line-height: 30px; font-size: 13px; color: #9a9186; text-align: center; }
+.cd-add-btn { position: absolute; left: 16px; top: 374px; width: 304px; height: 42px; border-radius: 6px; background-color: #a83b2d; color: #fffaf2; font-size: 16px; font-weight: bold; }
+.cd-add-full { background-color: #ece3d6; color: #9a9186; }
+
+/* 添加面板下沉至头部之下（top 56px，不与回退箭头重叠） */
+.cd-add { position: absolute; left: 0; top: 56px; width: 336px; height: 424px; background-color: #f2eee5; }
+.cd-a-title { position: absolute; left: 16px; top: 16px; width: 304px; height: 24px; line-height: 24px; font-size: 17px; font-weight: bold; color: #2b2723; text-align: center; }
+.cd-a-label { position: absolute; left: 24px; width: 60px; height: 20px; line-height: 20px; font-size: 14px; color: #7b7268; }
+.cd-a-label-1 { top: 116px; } .cd-a-label-2 { top: 180px; } .cd-a-label-3 { top: 244px; } .cd-a-label-4 { top: 308px; }
+.cd-a-step { position: absolute; width: 44px; height: 36px; border-width: 1px; border-color: #ece3d6; border-radius: 6px; background-color: #fffdf8; color: #574e45; font-size: 18px; }
+.cd-a-value { position: absolute; left: 136px; width: 100px; height: 36px; line-height: 36px; font-size: 16px; font-weight: bold; color: #2b2723; text-align: center; }
+.cd-a-save { position: absolute; left: 24px; top: 348px; width: 136px; height: 44px; border-radius: 6px; background-color: #a83b2d; color: #fffaf2; font-size: 16px; font-weight: bold; }
+.cd-a-cancel { position: absolute; left: 176px; top: 348px; width: 136px; height: 44px; border-width: 1px; border-color: #a83b2d; border-radius: 6px; background-color: #fffdf8; color: #a83b2d; font-size: 16px; font-weight: bold; }
+</style>

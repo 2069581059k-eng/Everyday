@@ -1,8 +1,8 @@
 {
   "package": "com.dailyquote.band10pro",
   "name": "DAILY NOTE",
-  "versionName": "1.8.22",
-  "versionCode": 10822,
+  "versionName": "1.8.23",
+  "versionCode": 10823,
   "minPlatformVersion": 1000,
   "icon": "/common/icon.png",
   "simulationVersion": "default",
@@ -41,6 +41,9 @@
       },
       "pages/calendar": {
         "component": "calendar"
+      },
+      "pages/countdown": {
+        "component": "countdown"
       },
       "pages/zodiac-test": {
         "component": "zodiac-test"
