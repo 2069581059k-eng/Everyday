@@ -1,5 +1,16 @@
 # 版本记录
 
+## 1.8.23（正式版 · 真机未验）
+
+- 源码经 PR #14 合入 main（merge commit `ba47390`）；Release：https://github.com/2069581059k-eng/DAILY-NOTE/releases/tag/v1.8.23（tag 指向实现提交 `5b2aaa7`；BIN/RPK 各 1,303,873 B，SHA-256 `0ECE95DE…234A21C1`；源码包 2,566,690 B，SHA-256 `CDED475A…D50BE8`；8 附件齐全）。**基于 1.8.22 基线**。
+- **新增倒数日/纪念日模块**：管理页 `pages/countdown`（预设名称/月/日/每年重复步进选择，无需键盘输入；最多 5 条自定义，按 id 删除不误删同名；非法日期按当月天数自动钳制；kvdb 键 `countdown_events_v1` 持久化）；内置 2026 法定节日最近一条倒数（与日历页同源 `holiday.js`）；日历页日期格标记倒数日（与节假日同色品牌红）并提供入口；首页今日日历卡片副标题显示最近倒数。
+- **数据层纯函数化**：核心计算提取至 `common/utils/countdown.js`（nextDate/dayDiff/withCountdown/builtinFestivals 等），各页面复用不重复逻辑。
+- **构建工具修复**：`inline-modules.mjs` 新增 seen 去重——同一页面同一模块经多条 import 链引入时只内联一次，修复顶层 const（HOLIDAYS_2026）重复声明导致的构建失败。
+- **验收防线加强**：`capture-vvd.mjs` 关键链路点击 strict 模式（3 次无变化直接判失败，不再仅 warn 漏过空白页）；新增截图内容下限断言（≥20KB，整页空白约 4KB）；倒数日页修复 `.cd-list` 容器无显式尺寸导致高度塌缩整页空白、保存/取消按钮与重复行重叠不可点击两处布局缺陷。
+- 版本 1.8.23 / 10823；`verify-game.mjs` 新增 1.8.23 断言组（倒数日数据层/页面结构/日历与首页联动/容器尺寸/按钮位置/验收严格化/去重内联）。
+- **模拟器全链路验收 ALL-PASS**（capture-vvd.mjs，Trae_AGI 5578/8578，18 张截图）：安装版本核验 1.8.23/10823；倒数日链路（空态 → 添加面板步进选择 → 保存 1/5「生日·今天」→ 删除回空态）strict 全过；原 14 场景回归全过。
+- 2026-09-13 发布为正式版；**真机未验**（倒数日新增/删除/日历标记建议真机复核）。
+
 ## 1.8.22（正式版 · 真机未验）
 
 - 源码经 PR #13 合入 main（merge commit `3fd5150`）；Release：https://github.com/2069581059k-eng/DAILY-NOTE/releases/tag/v1.8.22（tag 指向实现提交 `3826131`；BIN/RPK 各 1,295,005 B，SHA-256 `E1D3C429…1DE632`；源码包 2,557,758 B，SHA-256 `E9440483…39A7E1`；8 附件齐全）。**基于 1.8.21 基线**。

@@ -1,5 +1,26 @@
 # 当前交接
 
+## 2026-09-13 · Trae Code 1.8.23 倒数日/纪念日模块（分支 trae/v1.8.23-countdown）
+
+- 任务：新增倒数日/纪念日功能——管理页增删（步进选择无需键盘）、内置法定节日倒数、日历页标记与入口、首页今日日历卡片副标题联动；加强全链路验收防线。
+- 基线：origin/main @ `e3a2b6a`（含 1.8.22 正式发布记录，PR #13）；版本 1.8.23 / 10823。
+- 改动文件：
+  - `src/common/utils/countdown.js`（新增）：倒数日数据层纯函数——nextDate（每年重复取下一次，单次取最近一次）/dayDiff（UTC 稳定）/withCountdown（附剩余天数升序）/builtinFestivals（2026 法定节日起始日，已过去不显示）/clampDay（非法日期钳制）/daysText；kvdb 键 `countdown_events_v1`，上限 MAX_CUSTOM=5
+  - `src/pages/countdown/countdown.ux`（新增）：管理页——最近节日卡 + 5 固定槽位 show 切换（规避 Vela 循环动态 class 限制）+ 添加面板（名称 8 预设/月/日/重复四组步进器）+ 删除按槽位下标映射 id 过滤；64px 回退命中层、面板下沉 top≥56、右滑返回；修复 `.cd-list` 显式定位尺寸（无高度塌缩裁剪整页空白）与保存/取消按钮下移避开重叠
+  - `src/pages/calendar/calendar.ux`：日期格标记倒数日（countdownMarks，与节假日同色品牌红）+ 倒数日入口
+  - `src/pages/index/index.ux`：今日日历卡片副标题显示最近倒数（复用布局只改文案挂点）
+  - `tools/inline-modules.mjs`：seen 集合去重——同页同模块多条 import 链只内联一次（修复 HOLIDAYS_2026 顶层 const 重复声明构建失败）
+  - `tools/capture-vvd.mjs`：clickUntilChange 第四参 strict（关键链路 3 次无变化直接抛错）+ assertShotMinSize 截图内容下限断言（≥20KB 防空白页漏过）；倒数日链路坐标适配
+  - `tools/verify-game.mjs`：1.8.23 断言组；版本三件套 1.8.23 / 10823
+- **验收记录（按模拟器验收门槛）**：
+  - 验收时间：2026-09-11 23:30–23:55（GMT+8）
+  - 模拟器：Trae_AGI（5578 / gRPC 8578，serial emulator-5578）
+  - 源码快照：`Temp\build-1.8.23-trae-20260911`（verify-game 全绿 → inline → aiot build --enable-jsc → verify-rpk 通过；构建尾清理 .gitignore EBUSY 沿例忽略）
+  - 安装包：`dist/com.dailyquote.band10pro.debug.1.8.23.rpk`，1,303,873 B，SHA-256 `0ECE95DE3128B0BEAC872D55FBC86D0581A532E2F159E184737B9AA9234A21C1`
+  - 用例与结果：ALL-PASS（18 张截图，全部 ≥20KB 内容断言）——版本核验 1.8.23/10823 → 退出提示/首页/换一句/星象/日历 → 倒数日空态（内置中秋 12 天）→ 添加面板步进 → 保存 1/5「生日 9月13日·每年 今天」→ 删除回 0/5 → 知识/收藏/星象答题 30 题/结果页 top3 回归全过（知识页「下一题」末题无变化警告沿例非缺陷）
+- 发布：PR #14 合入 main（merge commit `ba47390`），tag `v1.8.23` → 实现提交 `5b2aaa7`，Release 8 附件齐全（RPK/BIN 1,303,873 B `0ECE95DE…234A21C1`；源码包 2,566,690 B `CDED475A…D50BE8`）：https://github.com/2069581059k-eng/DAILY-NOTE/releases/tag/v1.8.23
+- **真机未验**：倒数日新增/删除、日历倒数标记、首页副标题联动建议真机复核。
+
 ## 2026-09-11 · Trae Code 1.8.22 应用图标恢复 1.8.14 版（分支 trae/v1.8.22-icon-restore）
 
 - 任务：用户确认应用图标保留 1.8.14 经典版（紫蓝魔法书+金色星光），撤销 1.8.21 的 imgs 星光轨道应用图标（该图不再占用槽位）；其余 imgs 素材映射（日历/星象/知识/收藏导航、爱心双态、状态图标、四插图）不变。
