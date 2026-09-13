@@ -9,6 +9,7 @@ const calendarPagePath = path.join(root, 'src', 'pages', 'calendar', 'calendar.u
 const favoritesPagePath = path.join(root, 'src', 'pages', 'favorites', 'favorites.ux')
 const zodiacTestPagePath = path.join(root, 'src', 'pages', 'zodiac-test', 'zodiac-test.ux')
 const zodiacResultPagePath = path.join(root, 'src', 'pages', 'zodiac-result', 'zodiac-result.ux')
+const countdownPagePath = path.join(root, 'src', 'pages', 'countdown', 'countdown.ux')
 const manifestPath = path.join(root, 'src', 'manifest.json')
 const packagePath = path.join(root, 'package.json')
 const capturePath = path.join(root, 'tools', 'capture-vvd.mjs')
@@ -22,9 +23,11 @@ const calendarPage = fs.existsSync(calendarPagePath) ? fs.readFileSync(calendarP
 const favoritesPage = fs.existsSync(favoritesPagePath) ? fs.readFileSync(favoritesPagePath, 'utf8').replace(/\r\n/g, '\n') : ''
 const zodiacTestPage = fs.existsSync(zodiacTestPagePath) ? fs.readFileSync(zodiacTestPagePath, 'utf8').replace(/\r\n/g, '\n') : ''
 const zodiacResultPage = fs.existsSync(zodiacResultPagePath) ? fs.readFileSync(zodiacResultPagePath, 'utf8').replace(/\r\n/g, '\n') : ''
+const countdownPage = fs.existsSync(countdownPagePath) ? fs.readFileSync(countdownPagePath, 'utf8').replace(/\r\n/g, '\n') : ''
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
 const packageJson = JSON.parse(fs.readFileSync(packagePath, 'utf8'))
 const captureScript = fs.readFileSync(capturePath, 'utf8')
+const inlineScript = fs.readFileSync(path.join(root, 'tools', 'inline-modules.mjs'), 'utf8')
 
 function check(condition, message) {
   if (!condition) throw new Error(message)
@@ -45,6 +48,7 @@ const moonUtilsPath = path.join(root, 'src', 'common', 'utils', 'moon.js')
 const holidayUtilsPath = path.join(root, 'src', 'common', 'utils', 'holiday.js')
 const zodiacUtilsPath = path.join(root, 'src', 'common', 'utils', 'zodiac.js')
 const knowledgeUtilsPath = path.join(root, 'src', 'common', 'utils', 'knowledge.js')
+const countdownUtilsPath = path.join(root, 'src', 'common', 'utils', 'countdown.js')
 const favoritesUtilsPath = path.join(root, 'src', 'common', 'utils', 'favorites.js')
 const fortuneTemplatesPath = path.join(root, 'src', 'common', 'data', 'fortune_templates.js')
 const zodiacScoringPath = path.join(root, 'src', 'common', 'scripts', 'zodiac-scoring.js')
@@ -57,6 +61,7 @@ const fortuneTemplates = fs.existsSync(fortuneTemplatesPath) ? fs.readFileSync(f
 const randomUtils = fs.existsSync(randomUtilsPath) ? fs.readFileSync(randomUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
 const zodiacUtils = fs.existsSync(zodiacUtilsPath) ? fs.readFileSync(zodiacUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
 const knowledgeUtils = fs.existsSync(knowledgeUtilsPath) ? fs.readFileSync(knowledgeUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
+const countdownUtils = fs.existsSync(countdownUtilsPath) ? fs.readFileSync(countdownUtilsPath, 'utf8').replace(/\r\n/g, '\n') : ''
 // 知识逻辑已抽为共享模块：直接取其函数体与 mulberry32，注入 RIDDLES 运行逻辑测试
 const knowledgeFnSrc = knowledgeUtils.match(/function (isQaMode|knowledgeDetail|knowledgeAnswer|pickDaily|dailyRiddles|shouldResetQuizProgress|mulberry32)\([\s\S]*?\n\}/gu) || []
 const quizHelpers = knowledgeFnSrc.length
@@ -358,12 +363,12 @@ check(page.includes('.exit-hint { position: absolute; left: 38px; top: 12px;') &
 // ---- 1.8.18 全局 UI 改版：东方美学设计令牌 + 设计稿图片素材 + 统一页面头部 ----
 const redesignedPages = [
   ['首页', page], ['知识页', knowledgePage], ['日历页', calendarPage],
-  ['收藏室', favoritesPage], ['答题页', zodiacTestPage], ['结果页', zodiacResultPage]
+  ['收藏室', favoritesPage], ['答题页', zodiacTestPage], ['结果页', zodiacResultPage], ['倒数页', countdownPage]
 ]
 for (const [label, text] of redesignedPages) {
   check(text.includes('#f2eee5') && text.includes('#fffdf8') && text.includes('#2b2723') && text.includes('#a83b2d') && text.includes('#ece3d6'), `${label}使用 1.8.18 设计令牌（纸底/卡片/主文字/品牌红/分割线）`)
 }
-for (const [label, text, backClass] of [['知识页', knowledgePage, 'kn-back'], ['日历页', calendarPage, 'month-back'], ['收藏室', favoritesPage, 'fav-back'], ['答题页', zodiacTestPage, 'zt-back'], ['结果页', zodiacResultPage, 'zr-back']]) {
+for (const [label, text, backClass] of [['知识页', knowledgePage, 'kn-back'], ['日历页', calendarPage, 'month-back'], ['收藏室', favoritesPage, 'fav-back'], ['答题页', zodiacTestPage, 'zt-back'], ['结果页', zodiacResultPage, 'zr-back'], ['倒数页', countdownPage, 'cd-back']]) {
   check(text.includes('header-line') && text.includes(`class="${backClass}"`), `${label}统一页面头部：回退箭头 + 顶部分割线`)
   check(text.includes(`class="${backClass}-hit"`), `${label}回退箭头带 64px 透明加宽命中层（规避左缘触摸死区）`)
 }
@@ -389,5 +394,29 @@ for (const key of zodiacAssetKeys) {
 check((zodiacUtils.match(/\/common\/assets\/zodiac-/gu) || []).length === 12 && zodiacUtils.includes('function zodiacImg(') && zodiacUtils.includes('ZODIAC_IMG, zodiacImg }'), '星座插画按名映射表收敛至共享模块 zodiac.js（12 枚）')
 check(zodiacResultPage.includes("import { zodiacImg } from '../../common/utils/zodiac.js'") && !zodiacResultPage.includes('const ZODIAC_IMG') && zodiacResultPage.includes('zr-z-img'), '结果页 top3 星座卡复用共享星座插画映射')
 check(page.includes('class="zodiac-ill" src="{{zodiacIll}}"') && page.includes('this.zodiacIll = zodiacImg(zodiac.name)') && page.includes("import { ZODIACS, zodiacForDate, zodiacImg }"), '星象遮罩插图直接显示当前星座素材（1.8.19，切换联动刷新）')
+
+// ---- 1.8.23 倒数日/纪念日：数据层 + 管理页 + 首页卡片 + 日历标记 ----
+check(fs.existsSync(countdownUtilsPath), '倒数日数据层位于 common/utils/countdown.js')
+check(countdownUtils.includes("const COUNTDOWN_KEY = 'countdown_events_v1'") && countdownUtils.includes('PRESET_NAMES') && countdownUtils.includes('withCountdown') && countdownUtils.includes('builtinFestivals') && countdownUtils.includes('clampDay'), '倒数日数据层提供存储键/预设名/富化计算/内置节日/日期钳制')
+check(countdownUtils.includes("import { HOLIDAYS_2026 } from './holiday.js'"), '内置法定节日倒数与日历节假日同源（holiday.js）')
+check(countdownUtils.includes('const MAX_CUSTOM = 5'), '自定义倒数日上限 5 条')
+check(manifestPages.includes('pages/countdown'), 'manifest 注册倒数日独立页')
+check(countdownPage.includes("import { COUNTDOWN_KEY, PRESET_NAMES, MAX_CUSTOM, clampDay, withCountdown, builtinFestivals, daysText } from '../../common/utils/countdown.js'"), '倒数页从共享数据层导入（不复制逻辑）')
+check(countdownPage.includes('cd-back-hit') && countdownPage.includes("router.replace({ uri: 'pages/calendar' })"), '倒数页回退返回日历页（上一级）')
+check(countdownPage.includes('onswipe="handleSwipe"') && countdownPage.includes('if (this.addVisible) { this.closeAdd(); return }'), '倒数页右滑返回上一级（添加面板→列表，列表→日历）')
+check(countdownPage.includes('.cd-add { position: absolute; left: 0; top: 56px;'), '倒数页添加面板下沉至头部之下（top 56px 几何守卫）')
+check(countdownPage.includes('slotVisible5') && countdownPage.includes('cd-slot-5'), '倒数页自定义列表 5 个固定槽位 + show 切换（规避 Vela 循环项动态 class 限制）')
+check(countdownPage.includes('stepName(-1)') && countdownPage.includes('stepMonth(1)') && countdownPage.includes('stepDay(1)') && countdownPage.includes('stepRepeat'), '添加面板免键盘步进选择（预设名/月/日/重复）')
+check(countdownPage.includes("customItems.filter((entry) => entry.id !== item.id)"), '倒数日删除按 id 映射回全量列表（不误删同名条目）')
+check(countdownPage.includes('clampDay(today.year, addMonth, addDay)'), '保存时按当月天数钳制日期（2 月 30 日等非法输入收敛）')
+check(page.includes('calendarSubText') && page.includes('loadCountdown') && page.includes("import { COUNTDOWN_KEY, withCountdown, builtinFestivals, daysText } from '../../common/utils/countdown.js'"), '首页今日日历卡片副标题显示最近倒数日')
+check(calendarPage.includes('openCountdown') && calendarPage.includes("uri: 'pages/countdown'") && calendarPage.includes('month-cd-entry'), '日历页提供倒数日管理入口')
+check(calendarPage.includes('cdMarks') && calendarPage.includes("'*-' + m + '-' + d") && calendarPage.includes("import { COUNTDOWN_KEY, countdownMarks, withCountdown, builtinFestivals, daysText } from '../../common/utils/countdown.js'"), '日历页按年/单次语义标记倒数日（品牌红）')
+check(captureScript.includes('14-countdown.png') && captureScript.includes('16-countdown-added.png') && captureScript.includes('17-countdown-removed.png'), '模拟器验收覆盖倒数日场景（列表/添加/删除幂等）')
+// 1.8.23 修复回归防线：无样式 div 高度塌缩为 0 会裁剪内部全部绝对定位子元素（整页空白），容器必须显式定位尺寸
+check(countdownPage.includes('.cd-list { position: absolute; left: 0; top: 56px; width: 336px; height: 424px; }'), '倒数页列表容器显式定位尺寸（防高度塌缩裁剪子元素）')
+check(countdownPage.includes('.cd-a-save { position: absolute; left: 24px; top: 348px;') && captureScript.includes('clickUntilChange(client, 92, 426, 3, true)'), '添加面板保存/取消按钮在重复行之下（top 348 防重叠，QA 点击坐标同步）')
+check(captureScript.includes('clickUntilChange(client, 168, 451, 3, true)') && captureScript.includes("assertShotMinSize('14-countdown.png', 10000)"), '倒数日验收严格化（strict 点击 + 截图内容下限断言）')
+check(inlineScript.includes('bundled-dedup') && inlineScript.includes('seen.has(modPath)'), 'inline-modules 同一页面同一模块只内联一次（防顶层 const 重复声明）')
 
 console.log(`\nDAILY NOTE静态与逻辑验收通过：${quoteCount} 条可追溯真实语录，${riddles.length} 道可追溯真实知识题。`)

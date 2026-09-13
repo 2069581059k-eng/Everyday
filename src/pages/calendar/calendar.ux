@@ -56,6 +56,7 @@
 <text class="month-cell" style="left: 232px; top: 325px; color: {{calColor40}};">{{calCell40}}</text>
 <text class="month-cell" style="left: 276px; top: 325px; color: {{calColor41}};">{{calCell41}}</text>
     <text class="month-info">{{calendarInfo}}</text>
+    <text class="month-cd-entry" onclick="openCountdown">{{countdownEntryText}}</text>
     <input class="month-current" type="button" value="回到本月" onclick="currentMonth" />
     <input class="month-close" type="button" value="返回主页" onclick="goHome" />
   </div>
@@ -63,10 +64,14 @@
 
 <script>
 import router from '@system.router'
+import storage from '@system.storage'
 import { dayInfo } from '../../common/utils/date.js'
 import { isLegalHoliday, monthHolidayText } from '../../common/utils/holiday.js'
+import { COUNTDOWN_KEY, countdownMarks, withCountdown, builtinFestivals, daysText } from '../../common/utils/countdown.js'
 
 const today = dayInfo(new Date())
+// 1.8.23：倒数日标记集合（'*-m-d' 每年重复 / 'y-m-d' 单次）与最近倒数入口文案
+let cdMarks = new Set()
 
 export default {
   // AIoT/Vela 页面数据必须放在 private 中，顶层属性不会被当作模板数据源
@@ -75,6 +80,7 @@ export default {
     calendarMonth: today.month,
     calendarTitle: '',
     calendarInfo: '',
+    countdownEntryText: '倒数日 · 管理 ›',
     calCell0: '', calColor0: '#2b2723',
     calCell1: '', calColor1: '#2b2723',
     calCell2: '', calColor2: '#2b2723',
@@ -122,6 +128,53 @@ export default {
 
   onInit() {
     this.renderCalendar()
+    this.loadCountdown()
+  },
+
+  // 1.8.23：读取倒数日存档，生成日历标记集合并更新入口文案
+  loadCountdown() {
+    const page = this
+    try {
+      storage.get({
+        key: COUNTDOWN_KEY,
+        default: '',
+        success(data) {
+          let items = []
+          if (data) try {
+            const saved = JSON.parse(data)
+            if (saved && Array.isArray(saved.items)) items = saved.items
+          } catch (error) {
+            console.log('倒数日存档解析失败: ' + error)
+          }
+          page.applyCountdown(items)
+        },
+        fail() { page.applyCountdown([]) }
+      })
+    } catch (error) {
+      console.log('存储模块不可用: ' + error)
+      this.applyCountdown([])
+    }
+  },
+
+  applyCountdown(items) {
+    cdMarks = new Set()
+    for (const item of items) {
+      if (item.yearly) cdMarks.add('*-' + item.month + '-' + item.day)
+    }
+    for (const mark of countdownMarks(items.filter((item) => !item.yearly), today)) {
+      cdMarks.add(mark.year + '-' + mark.month + '-' + mark.day)
+    }
+    const all = builtinFestivals(today).concat(withCountdown(items, today))
+    if (all.length) {
+      all.sort((a, b) => a.days - b.days)
+      const nearest = all[0]
+      this.countdownEntryText = nearest.name + ' ' + daysText(nearest.days) + ' ›'
+    }
+    this.renderCalendar()
+  },
+
+  openCountdown() {
+    router.replace({ uri: 'pages/countdown' })
   },
 
   previousMonth() {
@@ -161,7 +214,9 @@ export default {
         const dow = (i % 7)
         const isWeekend = dow === 0 || dow === 6
         const holiday = isLegalHoliday(y, m, d)
+        const isCountdown = cdMarks.has('*-' + m + '-' + d) || cdMarks.has(y + '-' + m + '-' + d)
         if (isToday) color = '#a83b2d'
+        else if (isCountdown) color = '#a83b2d'
         else if (holiday) color = '#c0392b'
         else if (isWeekend) color = '#3f7d46'
         else color = '#2b2723'
@@ -195,6 +250,7 @@ export default {
 .month-week-cell { position: absolute; top: 104px; width: 42px; height: 18px; line-height: 18px; font-size: 13px; color: #9a9186; text-align: center; }
 .month-cell { position: absolute; width: 42px; height: 36px; line-height: 36px; font-size: 20px; text-align: center; }
 .month-info { position: absolute; left: 12px; top: 368px; width: 312px; height: 18px; line-height: 18px; font-size: 13px; color: #7b7268; text-align: center; }
+.month-cd-entry { position: absolute; left: 12px; top: 390px; width: 312px; height: 20px; line-height: 20px; font-size: 13px; color: #a83b2d; text-align: center; }
 .month-current { position: absolute; left: 18px; top: 416px; width: 140px; height: 42px; border-radius: 6px; background-color: #a83b2d; color: #fffaf2; font-size: 16px; font-weight: bold; }
 .month-close { position: absolute; left: 178px; top: 416px; width: 140px; height: 42px; border-width: 1px; border-color: #a83b2d; border-radius: 6px; background-color: #fffdf8; color: #a83b2d; font-size: 16px; font-weight: bold; }
 </style>

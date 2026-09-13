@@ -79,7 +79,7 @@ async function screenshot(client, filename) {
 }
 
 // 1.8.18：点击后检测画面变化，未变化自动重试（模拟器偶发丢触，QA 断言需要重试）
-async function clickUntilChange(client, x, y, tries = 3) {
+async function clickUntilChange(client, x, y, tries = 3, strict = false) {
   let before = null
   try { before = await client.getScreenshot() } catch (error) { before = null }
   for (let i = 0; i < tries; i++) {
@@ -89,7 +89,16 @@ async function clickUntilChange(client, x, y, tries = 3) {
     try { after = await client.getScreenshot() } catch (error) { after = null }
     if (!before || !after || !after.equals(before)) return
   }
+  // 1.8.23：关键链路场景 strict=true 时点击无响应直接判失败（空白页不可点曾仅 warn 漏过）
+  if (strict) throw new Error(`click no-change after ${tries} tries at ${x},${y} (strict)`)
   console.log('warn: click no-change after', tries, 'tries at', x, y)
+}
+
+// 1.8.23：截图内容下限断言（整页空白/纯背景 PNG 约 4KB，正常渲染页面 ≥ 20KB）
+function assertShotMinSize(filename, minBytes) {
+  const target = path.join(outputDir, filename)
+  const size = fs.existsSync(target) ? fs.statSync(target).size : 0
+  if (size < minBytes) throw new Error(`${filename} 内容异常：${size}B < ${minBytes}B（疑似空白页）`)
 }
 
 // 1.8.20：首页右滑手势（gRPC 快速轻扫，起点 x≥56 避开系统边缘手势，6 步 × 8ms）
@@ -115,7 +124,8 @@ async function main() {
     '01-home.png', '02-home-change.png', '08-riddle-next.png',
     '09-favorites.png', '10-favorite-detail.png',
     '11-zodiac-test.png', '12-zodiac-test-next.png', '13-zodiac-result.png',
-    '00-exit-hint.png'
+    '00-exit-hint.png', '14-countdown.png', '15-countdown-add.png',
+    '16-countdown-added.png', '17-countdown-removed.png'
   ]
   for (const filename of oldCaptures) {
     const target = path.join(outputDir, filename)
@@ -190,6 +200,22 @@ async function main() {
     await clickUntilChange(client, 48, 34)
     await clickUntilChange(client, 90, 355)
     await screenshot(client, '05-calendar.png')
+    // 1.8.23：日历页 → 倒数日管理页（最近节日 + 列表）→ 添加一条（默认 生日/当日/每年）→ 删除复原（幂等）
+    // 倒数日链路全 strict：任何一步点击无响应即失败 + 截图内容下限断言（防空白页漏过）
+    await clickUntilChange(client, 168, 400, 3, true)
+    await screenshot(client, '14-countdown.png')
+    assertShotMinSize('14-countdown.png', 10000)
+    await clickUntilChange(client, 168, 451, 3, true)
+    await screenshot(client, '15-countdown-add.png')
+    assertShotMinSize('15-countdown-add.png', 10000)
+    await clickUntilChange(client, 92, 426, 3, true)
+    await screenshot(client, '16-countdown-added.png')
+    assertShotMinSize('16-countdown-added.png', 10000)
+    await clickUntilChange(client, 284, 208, 3, true)
+    await screenshot(client, '17-countdown-removed.png')
+    assertShotMinSize('17-countdown-removed.png', 10000)
+    // 倒数日回退箭头 → 回日历页（后续 (48,30) 点击回首页沿用既有流程）
+    await clickUntilChange(client, 48, 34)
     // 回退箭头 → 回首页 → 知识页 → 查看答案 → 下一题
     await clickUntilChange(client, 48, 30)
     await clickUntilChange(client, 90, 429)

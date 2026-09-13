@@ -29,7 +29,7 @@
         <image class="feature-icon" src="/common/assets/ic-nav-calendar.png" />
         <text class="feature-title">今日日历</text>
         <text class="feature-main">{{monthShortText}}{{dayText}}日</text>
-        <text class="feature-sub">月历 · 进入 ›</text>
+        <text class="feature-sub">{{calendarSubText}}</text>
       </div>
 
       <div class="feature-card feature-card-r" onclick="openZodiac">
@@ -89,6 +89,7 @@ import { WEEKDAYS, moonPhase } from '../../common/utils/moon.js'
 import { ZODIACS, zodiacForDate, zodiacImg } from '../../common/utils/zodiac.js'
 import { ASTRO_ACTIONS, ASTRO_COLORS, FORTUNES } from '../../common/data/fortune_templates.js'
 import { FAVORITES_KEY, makeQuoteFavorite, toggleFavorite, hasFavorite, migrateOldFavorites } from '../../common/utils/favorites.js'
+import { COUNTDOWN_KEY, withCountdown, builtinFestivals, daysText } from '../../common/utils/countdown.js'
 
 const STORAGE_KEY = 'daily_quote_state_v1'
 
@@ -132,6 +133,7 @@ export default {
     fortuneTip: '',
     heartFilled: false,
     favNumText: '0',
+    calendarSubText: '月历 · 进入 ›',
     moonShortText: '',
     zodiacName: ZODIACS[state.zodiacIndex].name,
     zodiacRange: ZODIACS[state.zodiacIndex].range,
@@ -145,6 +147,7 @@ export default {
     this.moonShortText = '月相 · ' + moonPhase(today.dayNumber)
     this.loadState()
     this.refreshAstro()
+    this.loadCountdown()
   },
 
   onShow() {
@@ -282,6 +285,39 @@ export default {
   refreshStats() {
     this.streakText = String(state.streak)
     this.favNumText = String(favoritesItems.length)
+  },
+
+  // 1.8.23：日历卡片副标题显示最近倒数日（内置法定节日 + 自定义条目取最近者）
+  loadCountdown() {
+    const page = this
+    try {
+      storage.get({
+        key: COUNTDOWN_KEY,
+        default: '',
+        success(data) {
+          let items = []
+          if (data) try {
+            const saved = JSON.parse(data)
+            if (saved && Array.isArray(saved.items)) items = saved.items
+          } catch (error) {
+            console.log('倒数日存档解析失败: ' + error)
+          }
+          page.applyCountdown(items)
+        },
+        fail() { page.applyCountdown([]) }
+      })
+    } catch (error) {
+      console.log('存储模块不可用: ' + error)
+      this.applyCountdown([])
+    }
+  },
+
+  applyCountdown(items) {
+    const all = builtinFestivals(today).concat(withCountdown(items, today))
+    if (!all.length) return
+    all.sort((a, b) => a.days - b.days)
+    const nearest = all[0]
+    this.calendarSubText = nearest.days === 0 ? nearest.name + ' 就是今天' : '距 ' + nearest.name + ' ' + nearest.days + ' 天'
   },
 
   refreshAstro() {
